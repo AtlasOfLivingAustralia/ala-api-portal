@@ -1,0 +1,7 @@
+---
+test:
+  title: Atlas of Living Australia API test Documentation
+  baseUrl: https://apis-test.ala.org.au
+  authBaseUrl: https://auth-test.ala.org.au
+  biocacheBaseUrl: https://biocache-ws-test.ala.org.au/ws
+  userdetailsBaseUrl: https://auth-test.ala.org.au/userdetails

@@ -1,0 +1,7 @@
+---
+prod: 
+  title: Atlas of Living Australia API Documentation
+  baseUrl: https://apis.ala.org.au
+  authBaseUrl: https://auth.ala.org.au
+  biocacheBaseUrl: https://biocache-ws.ala.org.au/ws
+  userdetailsBaseUrl: https://auth.ala.org.au/userdetails

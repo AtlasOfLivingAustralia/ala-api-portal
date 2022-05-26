@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    on-failure: ABORT
+    commands:
+      - sudo apt-get update -y
+      - sudo apt install -y ruby ruby-dev build-essential libffi-dev zlib1g-dev liblzma-dev nodejs patch
+      - gem update --system
+      - gem install bundler
+      - bundle install
+  build:
+    commands:
+      - bundle exec middleman build
+
+artifacts:
+  base-directory: ./build
+  files:
+    - '**/*'

@@ -140,6 +140,7 @@ Retrieve the full details of a occurrence record.
 
 `GET <%= I18n.t(:baseUrl) %>/occurrences/{uuid}`
 
+### Occurrence assertions
 
 for full api documentation see: [<%= I18n.t(:biocacheBaseUrl) %>/openapi](<%= I18n.t(:biocacheBaseUrl) %>/openapi)
 

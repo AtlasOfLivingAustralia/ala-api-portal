@@ -222,95 +222,220 @@ Access images and sound recordings from the ALA.
 
 ## User details
 
-#### GET /ws/flickr
+### GET /ws/flickr
 Lists all flickr profiles known to the application, including their ala id, flickr id, username and their flickr URL
 
-HTTP Request
-GET <%= I18n.t(:baseUrl) %>/userdetails/ws/flickr
+HTTP Request \
+`GET <%= I18n.t(:userdetailsBaseUrl) %>/ws/flickr`
 
 ```shell
-curl <%= I18n.t(:userdetailsBaseUrl) %>/userdetails/ws/flickr -H "Authorization: Bearer {access_token}
+curl -X 'GET' \
+  '<%= I18n.t(:userdetailsBaseUrl) %>/ws/flickr' \
+  -H 'accept: application/json' -H "Authorization: Bearer {access_token}
+
+The above command returns JSON structured like this:
+
+{
+  "flickrUsers": [
+    {
+      "id": "21",
+      "externalId": "externalId",
+      "externalUsername": "externalUsername",
+      "externalUrl": "http://www.flickr.com/photos/externalId"
+    },
+  ]
+}
 ```
 
-#### GET /ws/getProperty
+### GET /ws/getUserStats
 Gets a count of all users in the system, including the number locked and activated. In addition it also provides a count of users from one year ago.
 
-HTTP Request
-GET <%= I18n.t(:baseUrl) %>/userdetails/ws/getProperty
+HTTP Request \
+`GET <%= I18n.t(:userdetailsBaseUrl) %>/ws/getUserStats`
 
 ```shell
-curl <%= I18n.t(:userdetailsBaseUrl) %>/userdetails/ws/getProperty
+curl -X 'GET' \
+  '<%= I18n.t(:userdetailsBaseUrl) %>/ws/getUserStats' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+
+{
+   "description":"'totalUsers' count excludes locked and non-activated accounts. 'totalUsersOneYearAgo' count is calculated from the 'created' date being earlier than 1 year from today.",
+   "totalUsers":36275,
+   "totalUsersOneYearAgo":36245
+}
 ```
 
-#### GET /userDetails/byRole
+### GET /userDetails/byRole
 Get Users by Role
 
-HTTP Request
-GET <%= I18n.t(:baseUrl) %>/userdetails/userDetails/byRole
+HTTP Request \
+`GET <%= I18n.t(:userdetailsBaseUrl) %>/userDetails/byRole`
 
 Query Parameters
 
 Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
-role | Y | | `ROLE_ADMIN`
-id | N | | 
-includeProps | N | false | true/false
+role | Y | | The role to get users for
+id | N | | A list of user ids or usernames to limit the results to
+includeProps | N | false | Whether to include additional user properties or not
 
 ```shell
-curl <%= I18n.t(:userdetailsBaseUrl) %>/userdetails/userDetails/byRole?role=role -H "Authorization: Bearer {access_token}"
+curl -X 'GET' \
+  '<%= I18n.t(:userdetailsBaseUrl) %>/userDetails/byRole?role=ROLE_ADMIN' \
+  -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
+
+The above command returns JSON structured like this:
+
+[
+  {
+    "userId": "13",
+    "userName": "userName",
+    "firstName": "firstName",
+    "lastName": "lastName",
+    "email": "email",
+    "activated": true,
+    "locked": false,
+    "roles": [
+      "ROLE_ADMIN"
+    ]
+  }
+]
 ```
 
-#### POST /userDetails/getUserDetails
+### POST /userDetails/getUserDetails
 Get User Details
 
-HTTP Request
-POST <%= I18n.t(:baseUrl) %>/userdetails/userDetails/getUserDetails
+HTTP Request \
+`POST <%= I18n.t(:userdetailsBaseUrl) %>/userDetails/getUserDetails`
 
 Query Parameters
 
 Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
-userName | Y | | email_or_userid
-includeProps | N | false | true/false
+userName | Y | | The username of the user
+includeProps | N | false | Whether to include additional user properties or not
 
 ```shell
-curl -X POST <%= I18n.t(:userdetailsBaseUrl) %>/userdetails/userDetails/getUserDetails?userName=userName -H "Authorization: Bearer {access_token}"
+curl -X 'POST' \
+  '<%= I18n.t(:userdetailsBaseUrl) %>/userDetails/getUserDetails?userName=userName' \
+  -H 'accept: application/json' \
+  -d '' -H "Authorization: Bearer {access_token}"
+
+The above command returns JSON structured like this:
+
+{
+  "userId": "1",
+  "userName": "userName",
+  "firstName": "firstName",
+  "lastName": "lastName",
+  "email": "email",
+  "activated": true,
+  "locked": false,
+  "roles": [
+    "ROLE_USER"
+  ]
+}
 ```
 
-#### POST /userDetails/getUserDetailsFromIdList
+### POST /userDetails/getUserDetailsFromIdList
 Get a list of user details for a list of user ids
 
-HTTP Request
-POST <%= I18n.t(:baseUrl) %>/userdetails/userDetails/getUserDetailsFromIdList
+HTTP Request \
+`POST <%= I18n.t(:userdetailsBaseUrl) %>/userDetails/getUserDetailsFromIdList`
 
 ```shell
-curl -X POST -H "Content-Type: application/json" \
--d '{"userIds": ["0"], "includeProps": true}' \ 
-<%= I18n.t(:userdetailsBaseUrl) %>/userdetails/userDetails/getUserDetailsFromIdList -H "Authorization: Bearer {access_token}"
+curl -X 'POST' \
+  '<%= I18n.t(:userdetailsBaseUrl) %>/userDetails/getUserDetailsFromIdList' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "includeProps": true,
+  "userIds": [
+    0
+  ]
+}' -H "Authorization: Bearer {access_token}"
+
+The above command returns JSON structured like this:
+
+{
+  "users": {
+    "1": {
+      "userId": "1",
+      "userName": "userName",
+      "firstName": "firstName",
+      "lastName": "lastName",
+      "email": "email",
+      "activated": true,
+      "locked": false,
+      "roles": [
+        "ROLE_USER"
+      ],
+      "props": {
+        "state": "ACT",
+        "country": "AU",
+        "organisation": "CSIRO",
+        "city": "Wright",
+        "affiliation": ""
+      }
+    }
+  },
+  "invalidIds": [
+    0
+  ],
+  "success": true
+}
 ```
 
-#### GET /userDetails/search
+### GET /userDetails/search
 Search for users by username, email or display name.
 
-HTTP Request
-GET <%= I18n.t(:baseUrl) %>/userdetails/userDetails/search
+HTTP Request \
+`GET <%= I18n.t(:userdetailsBaseUrl) %>/userDetails/search`
 
 Query Parameters
 
 Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
-q | Y | | 
-max | N | | 
+q | Y | | Search query for the user's username, email or display name
+max | N | | Maximum number of results to return
 
 ```shell
-curl <%= I18n.t(:userdetailsBaseUrl) %>/userdetails/userDetails/search?q=username -H "Authorization: Bearer {access_token}"
+curl -X 'GET' \
+  '<%= I18n.t(:userdetailsBaseUrl) %>/userDetails/search?q=userName' \
+  -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
+
+The above command returns JSON structured like this:
+
+[
+  {
+    "userId": "1",
+    "userName": "userName",
+    "firstName": "firstName",
+    "lastName": "lastName",
+    "email": "email",
+    "activated": true,
+    "locked": false,
+    "roles": [
+      "ROLE_USER"
+    ],
+    "props": {
+      "affiliation": "",
+      "organisation": "CSIRO",
+      "state": "ACT",
+      "city": "Wright",
+      "country": "AU"
+    }
+  }
+]
 ```
 
-#### GET /property/getProperty
+### GET /property/getProperty
 Get a property value for a user
 
-HTTP Request
-GET <%= I18n.t(:baseUrl) %>/userdetails/property/getProperty
+HTTP Request \
+`GET <%= I18n.t(:userdetailsBaseUrl) %>/property/getProperty`
 
 Query Parameters
 
@@ -320,14 +445,25 @@ alaId | Y | | The user's ALA ID
 name | Y | | The name of the property to get
 
 ```shell
-curl <%= I18n.t(:userdetailsBaseUrl) %>/userdetails/property/getProperty?alaId=alaId&name=name -H "Authorization: Bearer {access_token}"
+curl -X 'GET' \
+  '<%= I18n.t(:userdetailsBaseUrl) %>/property/getProperty?alaId=alaId&name=name' \
+  -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
+
+The above command returns JSON structured like this:
+
+[
+  {
+    "property": "name",
+    "value": "value"
+  }
+]
 ```
 
-#### POST /property/saveProperty
+### POST /property/saveProperty
 Saves a property value for a user
 
-HTTP Request
-POST <%= I18n.t(:baseUrl) %>/userdetails/property/saveProperty
+HTTP Request \
+`POST <%= I18n.t(:userdetailsBaseUrl) %>/property/saveProperty`
 
 Query Parameters
 
@@ -338,7 +474,17 @@ name | Y | | The name of the property to get
 value | Y | | The value of the property to set
 
 ```shell
-curl <%= I18n.t(:userdetailsBaseUrl) %>/userdetails/property/saveProperty?alaId=alaId&name=name&value=value -H "Authorization: Bearer {access_token}"
+curl -X 'POST' \
+  '<%= I18n.t(:userdetailsBaseUrl) %>/property/saveProperty?alaId=alaId&name=name&value=value' \
+  -H 'accept: application/json' \
+  -d '' -H "Authorization: Bearer {access_token}"
+
+The above command returns JSON structured like this:
+
+{
+  "property": "name",
+  "value": "value"
+}
 ```
 
 For full api documentation see: [<%= I18n.t(:userdetailsBaseUrl) %>/openapi](<%= I18n.t(:userdetailsBaseUrl) %>/openapi)

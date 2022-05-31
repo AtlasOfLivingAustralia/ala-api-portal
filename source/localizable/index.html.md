@@ -222,5 +222,124 @@ Access images and sound recordings from the ALA.
 
 ## User details
 
-for full api documentation see: [<%= I18n.t(:userdetailsBaseUrl) %>/openapi](<%= I18n.t(:userdetailsBaseUrl) %>/openapi)
+#### GET /ws/flickr
+Lists all flickr profiles known to the application, including their ala id, flickr id, username and their flickr URL
+
+HTTP Request
+GET <%= I18n.t(:baseUrl) %>/userdetails/ws/flickr
+
+```shell
+curl <%= I18n.t(:userdetailsBaseUrl) %>/userdetails/ws/flickr -H "Authorization: Bearer {access_token}
+```
+
+#### GET /ws/getProperty
+Gets a count of all users in the system, including the number locked and activated. In addition it also provides a count of users from one year ago.
+
+HTTP Request
+GET <%= I18n.t(:baseUrl) %>/userdetails/ws/getProperty
+
+```shell
+curl <%= I18n.t(:userdetailsBaseUrl) %>/userdetails/ws/getProperty
+```
+
+#### GET /userDetails/byRole
+Get Users by Role
+
+HTTP Request
+GET <%= I18n.t(:baseUrl) %>/userdetails/userDetails/byRole
+
+Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+role | Y | | `ROLE_ADMIN`
+id | N | | 
+includeProps | N | false | true/false
+
+```shell
+curl <%= I18n.t(:userdetailsBaseUrl) %>/userdetails/userDetails/byRole?role=role -H "Authorization: Bearer {access_token}"
+```
+
+#### POST /userDetails/getUserDetails
+Get User Details
+
+HTTP Request
+POST <%= I18n.t(:baseUrl) %>/userdetails/userDetails/getUserDetails
+
+Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+userName | Y | | email_or_userid
+includeProps | N | false | true/false
+
+```shell
+curl -X POST <%= I18n.t(:userdetailsBaseUrl) %>/userdetails/userDetails/getUserDetails?userName=userName -H "Authorization: Bearer {access_token}"
+```
+
+#### POST /userDetails/getUserDetailsFromIdList
+Get a list of user details for a list of user ids
+
+HTTP Request
+POST <%= I18n.t(:baseUrl) %>/userdetails/userDetails/getUserDetailsFromIdList
+
+```shell
+curl -X POST -H "Content-Type: application/json" \
+-d '{"userIds": ["0"], "includeProps": true}' \ 
+<%= I18n.t(:userdetailsBaseUrl) %>/userdetails/userDetails/getUserDetailsFromIdList -H "Authorization: Bearer {access_token}"
+```
+
+#### GET /userDetails/search
+Search for users by username, email or display name.
+
+HTTP Request
+GET <%= I18n.t(:baseUrl) %>/userdetails/userDetails/search
+
+Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+q | Y | | 
+max | N | | 
+
+```shell
+curl <%= I18n.t(:userdetailsBaseUrl) %>/userdetails/userDetails/search?q=username -H "Authorization: Bearer {access_token}"
+```
+
+#### GET /property/getProperty
+Get a property value for a user
+
+HTTP Request
+GET <%= I18n.t(:baseUrl) %>/userdetails/property/getProperty
+
+Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+alaId | Y | | The user's ALA ID
+name | Y | | The name of the property to get
+
+```shell
+curl <%= I18n.t(:userdetailsBaseUrl) %>/userdetails/property/getProperty?alaId=alaId&name=name -H "Authorization: Bearer {access_token}"
+```
+
+#### POST /property/saveProperty
+Saves a property value for a user
+
+HTTP Request
+POST <%= I18n.t(:baseUrl) %>/userdetails/property/saveProperty
+
+Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+alaId | Y | | The user's ALA ID
+name | Y | | The name of the property to get
+value | Y | | The value of the property to set
+
+```shell
+curl <%= I18n.t(:userdetailsBaseUrl) %>/userdetails/property/saveProperty?alaId=alaId&name=name&value=value -H "Authorization: Bearer {access_token}"
+```
+
+For full api documentation see: [<%= I18n.t(:userdetailsBaseUrl) %>/openapi](<%= I18n.t(:userdetailsBaseUrl) %>/openapi)
 

@@ -437,7 +437,7 @@ Parameter | Mandatory | Default | Description
 alaId | Y | | The user's ALA ID
 name | Y | | The name of the property to get
 
-### POST /property/saveProperty
+## POST /property/saveProperty
 ```shell
 curl -X 'POST' '<%= I18n.t(:userdetailsBaseUrl) %>/property/saveProperty?alaId=alaId&name=name&value=value' \
   -H 'accept: application/json' -d '' -H "Authorization: Bearer {access_token}"

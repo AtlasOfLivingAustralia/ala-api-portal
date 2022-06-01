@@ -222,7 +222,7 @@ Access images and sound recordings from the ALA.
 
 ## User details
 
-### GET /ws/flickr
+## GET /ws/flickr
 ```shell
 curl -X 'GET' '<%= I18n.t(:userdetailsBaseUrl) %>/ws/flickr' \
   -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
@@ -245,7 +245,7 @@ Lists all flickr profiles known to the application, including their ala id, flic
 #### HTTP Request
 `GET <%= I18n.t(:userdetailsBaseUrl) %>/ws/flickr`
 
-### GET /ws/getUserStats
+## GET /ws/getUserStats
 ```shell
 curl -X 'GET' '<%= I18n.t(:userdetailsBaseUrl) %>/ws/getUserStats' -H 'accept: application/json'
 
@@ -262,7 +262,7 @@ Gets a count of all users in the system, including the number locked and activat
 #### HTTP Request
 `GET <%= I18n.t(:userdetailsBaseUrl) %>/ws/getUserStats`
 
-### GET /userDetails/byRole
+## GET /userDetails/byRole
 ```shell
 curl -X 'GET' '<%= I18n.t(:userdetailsBaseUrl) %>/userDetails/byRole?role=ROLE_ADMIN' \
   -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
@@ -297,7 +297,7 @@ role | Y | | The role to get users for
 id | N | | A list of user ids or usernames to limit the results to
 includeProps | N | false | Whether to include additional user properties or not
 
-### POST /userDetails/getUserDetails
+## POST /userDetails/getUserDetails
 ```shell
 curl -X 'POST' '<%= I18n.t(:userdetailsBaseUrl) %>/userDetails/getUserDetails?userName=userName' \
   -H 'accept: application/json' -d '' -H "Authorization: Bearer {access_token}"
@@ -329,7 +329,7 @@ Parameter | Mandatory | Default | Description
 userName | Y | | The username of the user
 includeProps | N | false | Whether to include additional user properties or not
 
-### POST /userDetails/getUserDetailsFromIdList
+## POST /userDetails/getUserDetailsFromIdList
 ```shell
 curl -X 'POST' '<%= I18n.t(:userdetailsBaseUrl) %>/userDetails/getUserDetailsFromIdList' \
   -H 'accept: application/json' -H 'Content-Type: application/json' \
@@ -370,7 +370,7 @@ Get a list of user details for a list of user ids
 #### HTTP Request
 `POST <%= I18n.t(:userdetailsBaseUrl) %>/userDetails/getUserDetailsFromIdList`
 
-### GET /userDetails/search
+## GET /userDetails/search
 ```shell
 curl -X 'GET' '<%= I18n.t(:userdetailsBaseUrl) %>/userDetails/search?q=userName' \
   -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
@@ -411,7 +411,7 @@ Parameter | Mandatory | Default | Description
 q | Y | | Search query for the user's username, email or display name
 max | N | | Maximum number of results to return
 
-### GET /property/getProperty
+## GET /property/getProperty
 ```shell
 curl -X 'GET' '<%= I18n.t(:userdetailsBaseUrl) %>/property/getProperty?alaId=alaId&name=name' \
   -H 'accept: application/json' -H "Authorization: Bearer {access_token}"

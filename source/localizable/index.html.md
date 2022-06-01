@@ -295,7 +295,7 @@ Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 role | Y | | The role to get users for
 id | N | | A list of user ids or usernames to limit the results to
-includeProps | N | false | Whether to include additional user properties or not
+includeProps | N | | Whether to include additional user properties or not
 
 ## POST /userDetails/getUserDetails
 ```shell
@@ -327,7 +327,7 @@ Get User Details
 Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 userName | Y | | The username of the user
-includeProps | N | false | Whether to include additional user properties or not
+includeProps | N | | Whether to include additional user properties or not
 
 ## POST /userDetails/getUserDetailsFromIdList
 ```shell

@@ -224,7 +224,7 @@ Access images and sound recordings from the ALA.
 
 ## GET /ws/flickr
 ```shell
-curl -X 'GET' '<%= I18n.t(:userdetailsBaseUrl) %>/ws/flickr' \
+curl -X 'GET' '<%= I18n.t(:userdetailsAPIUrl) %>/ws/flickr' \
   -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
 
 The above command returns JSON structured like this:
@@ -243,11 +243,11 @@ The above command returns JSON structured like this:
 Lists all flickr profiles known to the application, including their ala id, flickr id, username and their flickr URL
 
 #### HTTP Request
-`GET <%= I18n.t(:userdetailsBaseUrl) %>/ws/flickr`
+`GET <%= I18n.t(:userdetailsAPIUrl) %>/ws/flickr`
 
 ## GET /ws/getUserStats
 ```shell
-curl -X 'GET' '<%= I18n.t(:userdetailsBaseUrl) %>/ws/getUserStats' -H 'accept: application/json'
+curl -X 'GET' '<%= I18n.t(:userdetailsAPIUrl) %>/ws/getUserStats' -H 'accept: application/json'
 
 The above command returns JSON structured like this:
 
@@ -260,11 +260,11 @@ The above command returns JSON structured like this:
 Gets a count of all users in the system, including the number locked and activated. In addition it also provides a count of users from one year ago.
 
 #### HTTP Request
-`GET <%= I18n.t(:userdetailsBaseUrl) %>/ws/getUserStats`
+`GET <%= I18n.t(:userdetailsAPIUrl) %>/ws/getUserStats`
 
 ## GET /userDetails/byRole
 ```shell
-curl -X 'GET' '<%= I18n.t(:userdetailsBaseUrl) %>/userDetails/byRole?role=ROLE_ADMIN' \
+curl -X 'GET' '<%= I18n.t(:userdetailsAPIUrl) %>/userDetails/byRole?role=ROLE_ADMIN' \
   -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
 
 The above command returns JSON structured like this:
@@ -287,7 +287,7 @@ The above command returns JSON structured like this:
 Get Users by Role
 
 #### HTTP Request
-`GET <%= I18n.t(:userdetailsBaseUrl) %>/userDetails/byRole`
+`GET <%= I18n.t(:userdetailsAPIUrl) %>/userDetails/byRole`
 
 #### Query Parameters
 
@@ -299,7 +299,7 @@ includeProps | N | | Whether to include additional user properties or not
 
 ## POST /userDetails/getUserDetails
 ```shell
-curl -X 'POST' '<%= I18n.t(:userdetailsBaseUrl) %>/userDetails/getUserDetails?userName=userName' \
+curl -X 'POST' '<%= I18n.t(:userdetailsAPIUrl) %>/userDetails/getUserDetails?userName=userName' \
   -H 'accept: application/json' -d '' -H "Authorization: Bearer {access_token}"
 
 The above command returns JSON structured like this:
@@ -320,7 +320,7 @@ The above command returns JSON structured like this:
 Get User Details
 
 #### HTTP Request
-`POST <%= I18n.t(:userdetailsBaseUrl) %>/userDetails/getUserDetails`
+`POST <%= I18n.t(:userdetailsAPIUrl) %>/userDetails/getUserDetails`
 
 #### Query Parameters
 
@@ -331,7 +331,7 @@ includeProps | N | | Whether to include additional user properties or not
 
 ## POST /userDetails/getUserDetailsFromIdList
 ```shell
-curl -X 'POST' '<%= I18n.t(:userdetailsBaseUrl) %>/userDetails/getUserDetailsFromIdList' \
+curl -X 'POST' '<%= I18n.t(:userdetailsAPIUrl) %>/userDetails/getUserDetailsFromIdList' \
   -H 'accept: application/json' -H 'Content-Type: application/json' \
   -d '{ "includeProps": true, "userIds": [0, 1] }' -H "Authorization: Bearer {access_token}"
 
@@ -368,11 +368,11 @@ The above command returns JSON structured like this:
 Get a list of user details for a list of user ids
 
 #### HTTP Request
-`POST <%= I18n.t(:userdetailsBaseUrl) %>/userDetails/getUserDetailsFromIdList`
+`POST <%= I18n.t(:userdetailsAPIUrl) %>/userDetails/getUserDetailsFromIdList`
 
 ## GET /userDetails/search
 ```shell
-curl -X 'GET' '<%= I18n.t(:userdetailsBaseUrl) %>/userDetails/search?q=userName' \
+curl -X 'GET' '<%= I18n.t(:userdetailsAPIUrl) %>/userDetails/search?q=userName' \
   -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
 
 The above command returns JSON structured like this:
@@ -402,7 +402,7 @@ The above command returns JSON structured like this:
 Search for users by username, email or display name.
 
 #### HTTP Request
-`GET <%= I18n.t(:userdetailsBaseUrl) %>/userDetails/search`
+`GET <%= I18n.t(:userdetailsAPIUrl) %>/userDetails/search`
 
 #### Query Parameters
 
@@ -413,7 +413,7 @@ max | N | | Maximum number of results to return
 
 ## GET /property/getProperty
 ```shell
-curl -X 'GET' '<%= I18n.t(:userdetailsBaseUrl) %>/property/getProperty?alaId=alaId&name=name' \
+curl -X 'GET' '<%= I18n.t(:userdetailsAPIUrl) %>/property/getProperty?alaId=alaId&name=name' \
   -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
 
 The above command returns JSON structured like this:
@@ -428,7 +428,7 @@ The above command returns JSON structured like this:
 Get a property value for a user
 
 #### HTTP Request
-`GET <%= I18n.t(:userdetailsBaseUrl) %>/property/getProperty`
+`GET <%= I18n.t(:userdetailsAPIUrl) %>/property/getProperty`
 
 #### Query Parameters
 
@@ -439,7 +439,7 @@ name | Y | | The name of the property to get
 
 ## POST /property/saveProperty
 ```shell
-curl -X 'POST' '<%= I18n.t(:userdetailsBaseUrl) %>/property/saveProperty?alaId=alaId&name=name&value=value' \
+curl -X 'POST' '<%= I18n.t(:userdetailsAPIUrl) %>/property/saveProperty?alaId=alaId&name=name&value=value' \
   -H 'accept: application/json' -d '' -H "Authorization: Bearer {access_token}"
 
 The above command returns JSON structured like this:
@@ -452,7 +452,7 @@ The above command returns JSON structured like this:
 Saves a property value for a user
 
 #### HTTP Request
-`POST <%= I18n.t(:userdetailsBaseUrl) %>/property/saveProperty`
+`POST <%= I18n.t(:userdetailsAPIUrl) %>/property/saveProperty`
 
 #### Query Parameters
 

@@ -55,15 +55,9 @@ Open ID connect is used to obtain an access token, once an access token is obtai
 > To authorize, use this code:
 
 ```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
 ```
 
 ```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
 ```
 
 ```shell
@@ -76,9 +70,6 @@ curl "api_endpoint_here" \
 ```
 
 ```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
 ```
 
 >
@@ -110,6 +101,11 @@ Lookup by species (taxonomic name), including bulk species lookup, and downloads
 Search and download occurrence records for specific groups, including a faceted search. There is also an option to ingest data. 
 
 ### Search Occurrence records
+```shell
+curl -X 'GET' '<%= I18n.t(:baseUrl) %>/occurrences/search'
+
+curl -X 'GET' '<%= I18n.t(:baseUrl) %>/occurrences/search?q=genus:Macropus'
+```
 
 `GET <%= I18n.t(:baseUrl) %>/occurrences/search`
 
@@ -135,6 +131,7 @@ radius | N | | The radius in which to limit records (relative to the lat, lon po
 wkt	| N | | The polygon area in which to limit records. For information on Well known text see [https://en.wikipedia.org/wiki/Well-known_text](https://en.wikipedia.org/wiki/Well-known_text)
 
 ### Get Occurrence record
+
 
 Retrieve the full details of a occurrence record.
 
@@ -183,6 +180,21 @@ A range of reports available from the volunteer portal, including lists of exped
 ## Auto complete  
 
 Get a list of scientific or common names that can be used to automatically complete a supplied partial name in searches. 
+
+### Auto complete Search (occurrence based names)
+
+#### HTTP Request
+`GET <%= I18n.t(:autoCompleteBaseUrl) %>/autocomplete/search`
+
+#### Query Parameters
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+q	| Y | | Input query
+fq | N | | Filter query that is used to determine occurrence counts
+pageSize | N | 10	| Max number of results to return
+all	| N | | Set this to true to include matches with 0 occurrences found
+counts | N | | Set this to false to exclude occurrence counts
+synonyms | N | | Set this to false to exclude synonym matches
 
 ## General data  
 

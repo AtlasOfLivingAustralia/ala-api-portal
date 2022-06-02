@@ -4,5 +4,6 @@ prod:
   baseUrl: https://apis.ala.org.au
   authBaseUrl: https://auth.ala.org.au
   biocacheBaseUrl: https://biocache-ws.ala.org.au/ws
+  autoCompleteBaseUrl: https://biocache-ws.ala.org.au/ws
   userdetailsBaseUrl: https://auth.ala.org.au/userdetails
   userdetailsAPIUrl: https://apis.ala.org.au/userdetails

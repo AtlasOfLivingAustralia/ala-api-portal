@@ -14,7 +14,7 @@ phases:
       - npm --prefix ./swagger-ui install
   build:
     commands:
-      - BUNDLE_GEMFILE="$(pwd)/slate/Gemfile" bundle exec middleman build
+      - ./slate/slate.sh build
       - npm --prefix ./swagger-ui run build
 
 artifacts:

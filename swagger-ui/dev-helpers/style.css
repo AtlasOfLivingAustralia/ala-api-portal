@@ -1,0 +1,23 @@
+html
+{
+  box-sizing: border-box;
+  overflow: -moz-scrollbars-vertical;
+  overflow-y: scroll;
+}
+
+.topbar { 
+  background-color: #c44d34;
+}
+
+*,
+*:before,
+*:after
+{
+  box-sizing: inherit;
+}
+
+body
+{
+  margin:0;
+  background: #fafafa;
+}

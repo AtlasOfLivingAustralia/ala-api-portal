@@ -9,7 +9,7 @@ phases:
       - gem update --system
       - gem install bundler
       - bundle install --path ./slate
-  prebuild:
+  pre_build:
     commands:
       - npm --prefix ./swagger-ui install
   build:

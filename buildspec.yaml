@@ -8,13 +8,13 @@ phases:
       - sudo apt install -y ruby ruby-dev build-essential libffi-dev zlib1g-dev liblzma-dev nodejs patch
       - gem update --system
       - gem install bundler
-      - bundle install --path ./slate
+      - BUNDLE_GEMFILE="$(pwd)/slate/Gemfile" bundle install
   pre_build:
     commands:
       - npm --prefix ./swagger-ui install
   build:
     commands:
-      - BUNDLE_GEMFILE="$(dirname $0)"/slate bundle exec middleman build
+      - BUNDLE_GEMFILE="$(pwd)/slate/Gemfile" bundle exec middleman build
       - npm --prefix ./swagger-ui run build
 
 artifacts:

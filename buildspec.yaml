@@ -6,7 +6,7 @@ phases:
     commands:
       # - sudo apt-get update -y
       # - sudo apt install -y ruby ruby-dev build-essential libffi-dev zlib1g-dev liblzma-dev nodejs patch
-      - gem update --system
+      # - gem update --system
       - gem install bundler
       - BUNDLE_GEMFILE="$(pwd)/slate/Gemfile" bundle install
   pre_build:

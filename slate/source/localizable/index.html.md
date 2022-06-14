@@ -198,7 +198,7 @@ Access images and sound recordings from the ALA.
 ## GET /ws/flickr
 ```shell
 curl -X 'GET' '<%= I18n.t(:userdetailsAPIUrl) %>/ws/flickr' \
-  -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
+  -H 'accept: application/json'"
 
 The above command returns JSON structured like this:
 

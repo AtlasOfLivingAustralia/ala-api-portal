@@ -90,6 +90,38 @@ Parameter | Mandetory | Default | Description
 grant_type | Y | | Set to `client_credentials`
 scope | N | | A space separated list of scopes that have been approved for the API Authorization client. These scopes will be included in the Access Token that is returned.
 
+## Password Credentials
+
+> To authorize, use this code:
+
+```shell
+# Exchange the client credentials (client ID & secret) for an access token
+curl -X POST <%= I18n.t(:authBaseUrl) %>/cas/oidc/token -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=password&username={userName}&password={password}&scope={scopes}&client_id={clientId}&client_secret={clientSecret}'
+
+# Use the access_token in the Authorization header
+curl "api_endpoint_here" \
+  -H "Authorization: Bearer {access_token}"
+```
+>
+
+`POST <%= I18n.t(:authBaseUrl) %>/cas/oidc/token`
+
+Header Parameters:
+
+Parameter | Mandetory | Default | Description
+--------- | --------- | ------- | -----------
+Content-Type | Y | | `application/x-www-form-urlencoded`
+
+Request Parameters:
+
+Parameter | Mandetory | Default | Description
+--------- | --------- | ------- | -----------
+grant_type | Y | | Set to `password`
+scope | Y | | A space separated list of scopes that have been approved for the API Authorization client. These scopes will be included in the Access Token that is returned.
+
+Ex:
+<%= image_tag('Postman_example.png') %>
+
 # Products
 <!--
 ## Species profile

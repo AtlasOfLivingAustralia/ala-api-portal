@@ -120,6 +120,7 @@ grant_type | Y | | Set to `password`
 scope | Y | | A space separated list of scopes that have been approved for the API Authorization client. These scopes will be included in the Access Token that is returned.
 
 Ex:
+<img src="Postman_example.png" >
 
 # Products
 <!--

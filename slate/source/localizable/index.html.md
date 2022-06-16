@@ -95,8 +95,8 @@ scope | N | | A space separated list of scopes that have been approved for the A
 ## Implicit
 
 >
-<p>The postman http client supports the implicit authorisation flow. When configured the user will be prompted to authenticate prior to accessing a protected API enpoint.</p><br>
-![](images/postman-implicit.png)
+The postman http client supports the implicit authorisation flow. When configured the user will be prompted to authenticate prior to accessing a protected API enpoint.<br><br>
+![](postman-implicit.png)
 
 >
 
@@ -114,6 +114,39 @@ response_type | Y | | Set to `token`
 client_id | Y | | the client id
 scope | N | | A space separated list of scopes that have been approved for the API Authorization client. These scopes will be included in the Access Token that is returned.
 redirect_uri | Y | | The URL where the authentication server redirects the browser after the user is authorizes.
+
+## Password Credentials
+
+> 
+![Postman Example](postman-password.png)
+
+To authorize, use this code:
+
+```shell
+# Exchange the client credentials (client ID & secret) for an access token
+curl -X POST <%= I18n.t(:authBaseUrl) %>/cas/oidc/token -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=password&username={userName}&password={password}&scope={scopes}&client_id={clientId}&client_secret={clientSecret}'
+
+# Use the access_token in the Authorization header
+curl "api_endpoint_here" \
+  -H "Authorization: Bearer {access_token}"
+```
+>
+
+`POST <%= I18n.t(:authBaseUrl) %>/cas/oidc/token`
+
+Header Parameters:
+
+Parameter | Mandetory | Default | Description
+--------- | --------- | ------- | -----------
+Content-Type | Y | | `application/x-www-form-urlencoded`
+
+
+Request Parameters:
+
+Parameter | Mandetory | Default | Description
+--------- | --------- | ------- | -----------
+grant_type | Y | | Set to `password`
+scope | Y | | A space separated list of scopes that have been approved for the API Authorization client. These scopes will be included in the Access Token that is returned.
 
 # Products
 <!--
@@ -223,7 +256,7 @@ Access images and sound recordings from the ALA.
 ## GET /ws/flickr
 ```shell
 curl -X 'GET' '<%= I18n.t(:userdetailsAPIUrl) %>/ws/flickr' \
-  -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
+  -H 'accept: application/json'"
 
 The above command returns JSON structured like this:
 

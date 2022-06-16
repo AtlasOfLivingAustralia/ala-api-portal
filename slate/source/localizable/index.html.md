@@ -74,6 +74,8 @@ curl "api_endpoint_here" \
 
 >
 
+The Client Credientials grant type is used for machine to machine authentication where no there is no user interation.
+
 `POST <%= I18n.t(:authBaseUrl) %>/token`
 
 Header Parameters:
@@ -89,6 +91,29 @@ Parameter | Mandetory | Default | Description
 --------- | --------- | ------- | -----------
 grant_type | Y | | Set to `client_credentials`
 scope | N | | A space separated list of scopes that have been approved for the API Authorization client. These scopes will be included in the Access Token that is returned.
+
+## Implicit
+
+>
+<p>The postman http client supports the implicit authorisation flow. When configured the user will be prompted to authenticate prior to accessing a protected API enpoint.</p><br>
+![](images/postman-implicit.png)
+
+>
+
+The Implicit Flow is used for apps that have no “back end” logic on the web server, like a Javascript app.
+
+The Implicit flow presents an authorisation page that will prompt a user for credentials before redirecting to the supplied `redirect_url` with the access_token.
+
+`GET <%= I18n.t(:authBaseUrl) %>/authorize`
+
+Request Parameters:
+
+Parameter | Mandetory | Default | Description
+--------- | --------- | ------- | -----------
+response_type | Y | | Set to `token`
+client_id | Y | | the client id
+scope | N | | A space separated list of scopes that have been approved for the API Authorization client. These scopes will be included in the Access Token that is returned.
+redirect_uri | Y | | The URL where the authentication server redirects the browser after the user is authorizes.
 
 # Products
 <!--

@@ -53,6 +53,8 @@ We support multiple way to obtains an access token:
  - [Client Credentials](#client-credentials)
  - [Implicit Flow](#implicit-flow)
 
+You will need a `clientId` and possible `clientSecret` in order to authenticate. Please contact support@ala.org.au to obtain these.
+
 See: [https://auth0.com/docs/get-started/authentication-and-authorization-flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow)
 
 ## Client Credentials

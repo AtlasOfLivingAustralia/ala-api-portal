@@ -35,7 +35,7 @@ We’ve recently moved to this API Gateway to streamline access and improve secu
 
 <any other benefits we should mention?> 
  
-For more information or assistance, please contact mailto:support@ala.org.au. 
+For more information or assistance, please contact support@ala.org.au. 
 
 API Endpoint: <%= I18n.t(:baseUrl) %>
 

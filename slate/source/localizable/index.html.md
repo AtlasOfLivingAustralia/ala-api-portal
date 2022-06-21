@@ -33,11 +33,10 @@ Welcome to the ALA API Portfolio Hub.
 We’ve recently moved to this API Gateway to streamline access and improve security for end-users by incorporating user authentication. ALA data is still open and freely accessible. 
 
 
-<any other benefits we should mention?> 
  
 For more information or assistance, please contact support@ala.org.au. 
 
-API Endpoint: <%= I18n.t(:baseUrl) %>
+API Endpoint: https://apis.ala.org.au
 
 # Authentication
 

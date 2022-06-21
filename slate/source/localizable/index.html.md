@@ -30,25 +30,24 @@ These data stored in the ALA have been fully parsed, processed and augmented wit
 
 Welcome to the ALA API Portfolio Hub.  
 
-We’ve recently moved to this API Gateway to improve security access for end-users by incorporating user authentication. ALA data is still open and freely accessible. 
+We’ve recently moved to this API Gateway to streamline access and improve security for end-users by incorporating user authentication. ALA data is still open and freely accessible. 
 
-Previously, if a user created a dataset, they were unable to make edits later. The move to this API gateway means that it’s now increasingly possible to update your data (rolling out across the various APIs gradually). 
 
 <any other benefits we should mention?> 
  
-For more information or assistance, please contact support@ala.org.au. 
+For more information or assistance, please contact mailto:support@ala.org.au. 
 
 API Endpoint: <%= I18n.t(:baseUrl) %>
 
 # Authentication
 
-Most of the ALA APIs are publically accessible and do not required authentication. For the API endpoints that are portected a JWT access token is used to authenticate requests.
+Most of the ALA APIs are publicly accessible and do not required authentication. For the API endpoints that are protected a JWT access token is used to authenticate requests.
 
-Open ID connect is used to obtain an access token, once an access token is obtained is should be passed as an bearer token in the HTTP Authentication header.
+Open ID connect is used to obtain an access token, once an access token is obtained it should be passed as a bearer token in the HTTP Authentication header.
 
 `Authorization: Bearer <access_token>`
 
-We support multiple way to obtains an access token:
+We support multiple ways to obtain an access token:
  
  - [Client Credentials](#client-credentials)
  - [Implicit Flow](#implicit-flow)
@@ -92,7 +91,7 @@ print(data.decode("utf-8"))
 
 >
 
-The Client Credientials grant type is used for machine to machine authentication where no there is no user interation.
+The Client Credentials grant type is used for machine to machine authentication where no there is no user interation.
 
 `POST <%= I18n.t(:authBaseUrl) %>/token`
 
@@ -238,6 +237,7 @@ Access images and sound recordings from the ALA.
 -->
 ## User details
 
+Access the user details platform.
 
 
 <aside class="notice">
@@ -262,7 +262,7 @@ The above command returns JSON structured like this:
   ]
 }
 ```
-Lists all flickr profiles known to the application, including their ala id, flickr id, username and their flickr URL
+Lists all flickr profiles known to the application, including their ala id, flickr id, username and their flickr URL.
 
 #### HTTP Request
 `GET <%= I18n.t(:userdetailsAPIUrl) %>/ws/flickr`
@@ -306,7 +306,7 @@ The above command returns JSON structured like this:
   }
 ]
 ```
-Get Users by Role
+Get Users by Role.
 
 #### HTTP Request
 `GET <%= I18n.t(:userdetailsAPIUrl) %>/userDetails/byRole`
@@ -339,7 +339,7 @@ The above command returns JSON structured like this:
   ]
 }
 ```
-Get User Details
+Get User Details.
 
 #### HTTP Request
 `POST <%= I18n.t(:userdetailsAPIUrl) %>/userDetails/getUserDetails`
@@ -387,7 +387,7 @@ The above command returns JSON structured like this:
   "success": true
 }
 ```
-Get a list of user details for a list of user ids
+Get a list of user details for a list of user ids.
 
 #### HTTP Request
 `POST <%= I18n.t(:userdetailsAPIUrl) %>/userDetails/getUserDetailsFromIdList`
@@ -447,7 +447,7 @@ The above command returns JSON structured like this:
   }
 ]
 ```
-Get a property value for a user
+Get a property value for a user.
 
 #### HTTP Request
 `GET <%= I18n.t(:userdetailsAPIUrl) %>/property/getProperty`
@@ -471,7 +471,7 @@ The above command returns JSON structured like this:
   "value": "value"
 }
 ```
-Saves a property value for a user
+Saves a property value for a user.
 
 #### HTTP Request
 `POST <%= I18n.t(:userdetailsAPIUrl) %>/property/saveProperty`

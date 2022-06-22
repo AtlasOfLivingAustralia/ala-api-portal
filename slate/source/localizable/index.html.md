@@ -22,7 +22,7 @@ meta:
 
 # Introduction
 
-The Atlas of Living Australia (ALA) is Australia’s national biodiversity database. We provide free, online access to information about Australia’s amazing biodiversity. The ALA is collaborative – the data contained within the ALA have been aggregated from multiple sources, making the information accessible and reusable.  
+The Atlas of Living Australia (ALA) is Australia’s national biodiversity database. It is a collaborative, digital infrastructure that aggregates Australian biodiversity data from multiple sources, making the information open, accessible and reusable. The ALA delivers trusted data services for Australia, supporting world-class biodiversity research and decision-making. 
 
 These data stored in the ALA have been fully parsed, processed and augmented with consistent taxonomic, geolocation and climate/environmental data. Our data API provides access to over 100 million species occurrence records as well as taxonomic and scientific name information for over 153,000 species, complete with geospatial, taxonomic and temporal searching & filtering as well as bulk downloads for use ‘offline’. 
 

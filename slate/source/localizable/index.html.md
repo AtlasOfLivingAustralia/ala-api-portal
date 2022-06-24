@@ -49,7 +49,14 @@ Open ID connect is used to obtain an access token, once an access token is obtai
 We support multiple ways to obtain an access token:
  
  - [Client Credentials](#client-credentials)
+ - [Authentication Code Flow](#authentication-code-flow)
  - [Implicit Flow](#implicit-flow)
+
+ Which authenitcation method should I use?
+
+ Anytime the the system is not concerned with end user identity then [Client Credentials](#client-credentials) should be used. The use case would be a headless client application that does not have the ability for user interaction. In this case the system may need to be authentcated however an end user will not.
+
+ If the end user does need to be authenticated then either [Authentication Code Flow](#authentication-code-flow) or [Implicit Flow](#implicit-flow). The consideration as to which authentication flow should be used can be determined if the application client is public or private. For private client application (eg. server side web application) [Authentication Code Flow](#authentication-code-flow) is the most suitable as is both authenticated the end user and the client application. For public client applications (eg. SPA app or javascript application) [Implicit Flow](#implicit-flow) is more suitable as the access_token is returned directly to the client without the secure exchange of the authentication code for the access_token needed with the [Authentication Code Flow](#authentication-code-flow).
 
 You will need a `clientId` and possible `clientSecret` in order to authenticate. Please contact support@ala.org.au to obtain these.
 
@@ -107,6 +114,45 @@ Parameter | Mandetory | Default | Description
 --------- | --------- | ------- | -----------
 grant_type | Y | | Set to `client_credentials`
 scope | N | | A space separated list of scopes that have been approved for the API Authorization client. These scopes will be included in the Access Token that is returned.
+
+## Authentication Code Flow
+
+>
+The postman http client supports the authorisation code flow. When configured the user will be prompted to authenticate prior to accessing a protected API enpoint.<br><br>
+![](postman-authentication-code.png)
+
+>
+
+`GET <%= I18n.t(:authBaseUrl) %>/authorize`
+
+Request Parameters:
+
+Parameter | Mandetory | Default | Description
+--------- | --------- | ------- | -----------
+response_type | Y | | Set to `code`
+client_id | Y | | the client id
+scope | N | | A space separated list of scopes that have been approved for the API Authorization client. These scopes will be included in the Access Token that is returned.
+redirect_uri | Y | | The URL where the authentication server redirects the browser after the user is authorizes.
+code_challenge_method | N | | Set to `S256` if using PKCE
+code_challenge | N | | the code challenge
+
+`POST <%= I18n.t(:authBaseUrl) %>/token`
+
+Header Parameters:
+
+Parameter | Mandetory | Default | Description
+--------- | --------- | ------- | -----------
+Authorization | Y | | base64 encoded `<clientId>:<clientSecret>`
+Content-Type | Y | | `application/x-www-form-urlencoded`
+
+Request Parameters:
+
+Parameter | Mandetory | Default | Description
+--------- | --------- | ------- | -----------
+grant_type | Y | | Set to `authorization_code`
+code | Y | | The authentication code returned from the authentication step
+redirect_uri | Y | | The URL where the authentication server redirects the browser after the user is authorizes.
+code_verifier | N | | the code challenge if using PKCE
 
 ## Implicit Flow
 

@@ -331,7 +331,7 @@ Gets a count of all users in the system, including the number locked and activat
 #### HTTP Request
 `GET <%= I18n.t(:userdetailsAPIUrl) %>/ws/getUserStats`
 
-## GET /userDetails/byRole <p>&#128274;</p>
+## GET /userDetails/byRole <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'GET' '<%= I18n.t(:userdetailsAPIUrl) %>/userDetails/byRole?role=ROLE_ADMIN' \
   -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
@@ -366,7 +366,7 @@ role | Y | | The role to get users for
 id | N | | A list of user ids or usernames to limit the results to
 includeProps | N | | Whether to include additional user properties or not
 
-## POST /userDetails/getUserDetails
+## POST /userDetails/getUserDetails <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'POST' '<%= I18n.t(:userdetailsAPIUrl) %>/userDetails/getUserDetails?userName=userName' \
   -H 'accept: application/json' -d '' -H "Authorization: Bearer {access_token}"
@@ -398,7 +398,7 @@ Parameter | Mandatory | Default | Description
 userName | Y | | The username of the user
 includeProps | N | | Whether to include additional user properties or not
 
-## POST /userDetails/getUserDetailsFromIdList
+## POST /userDetails/getUserDetailsFromIdList <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'POST' '<%= I18n.t(:userdetailsAPIUrl) %>/userDetails/getUserDetailsFromIdList' \
   -H 'accept: application/json' -H 'Content-Type: application/json' \
@@ -439,7 +439,7 @@ Get a list of user details for a list of user ids.
 #### HTTP Request
 `POST <%= I18n.t(:userdetailsAPIUrl) %>/userDetails/getUserDetailsFromIdList`
 
-## GET /userDetails/search
+## GET /userDetails/search <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'GET' '<%= I18n.t(:userdetailsAPIUrl) %>/userDetails/search?q=userName' \
   -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
@@ -480,7 +480,7 @@ Parameter | Mandatory | Default | Description
 q | Y | | Search query for the user's username, email or display name
 max | N | | Maximum number of results to return
 
-## GET /property/getProperty
+## GET /property/getProperty <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'GET' '<%= I18n.t(:userdetailsAPIUrl) %>/property/getProperty?alaId=alaId&name=name' \
   -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
@@ -506,7 +506,7 @@ Parameter | Mandatory | Default | Description
 alaId | Y | | The user's ALA ID
 name | Y | | The name of the property to get
 
-## POST /property/saveProperty
+## POST /property/saveProperty <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'POST' '<%= I18n.t(:userdetailsAPIUrl) %>/property/saveProperty?alaId=alaId&name=name&value=value' \
   -H 'accept: application/json' -d '' -H "Authorization: Bearer {access_token}"

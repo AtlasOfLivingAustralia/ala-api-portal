@@ -331,7 +331,7 @@ Gets a count of all users in the system, including the number locked and activat
 #### HTTP Request
 `GET <%= I18n.t(:userdetailsAPIUrl) %>/ws/getUserStats`
 
-## GET /userDetails/byRole <i class="fa-solid fa-lock">
+## GET /userDetails/byRole <p>&#128274;</p>
 ```shell
 curl -X 'GET' '<%= I18n.t(:userdetailsAPIUrl) %>/userDetails/byRole?role=ROLE_ADMIN' \
   -H 'accept: application/json' -H "Authorization: Bearer {access_token}"

@@ -64,6 +64,8 @@ See: [https://auth0.com/docs/get-started/authentication-and-authorization-flow](
 
 See [OIDC Authentication for R](https://search.r-project.org/CRAN/refmans/openeo/html/OIDCAuth.html)
 
+<p>&#128274; indicates the relevant API is a protected API and it requires authentication.</p> 
+
 ## Client Credentials
 
 > To authorize, use this code:

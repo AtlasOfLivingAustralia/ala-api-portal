@@ -62,6 +62,8 @@ You will need a `clientId` and possible `clientSecret` in order to authenticate.
 
 See: [https://auth0.com/docs/get-started/authentication-and-authorization-flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow)
 
+See [OIDC Authentication for R](https://search.r-project.org/CRAN/refmans/openeo/html/OIDCAuth.html)
+
 ## Client Credentials
 
 > To authorize, use this code:
@@ -329,7 +331,7 @@ Gets a count of all users in the system, including the number locked and activat
 #### HTTP Request
 `GET <%= I18n.t(:userdetailsAPIUrl) %>/ws/getUserStats`
 
-## GET /userDetails/byRole :lock:
+## GET /userDetails/byRole <i class="fa-solid fa-lock">
 ```shell
 curl -X 'GET' '<%= I18n.t(:userdetailsAPIUrl) %>/userDetails/byRole?role=ROLE_ADMIN' \
   -H 'accept: application/json' -H "Authorization: Bearer {access_token}"

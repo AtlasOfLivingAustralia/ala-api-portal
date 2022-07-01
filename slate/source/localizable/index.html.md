@@ -290,7 +290,7 @@ Access images and sound recordings from the ALA.
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=logger">Open API specification</a>
 </aside>
 
-## GET service/emailBreakdown
+### GET service/emailBreakdown
 ```shell
 curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/emailBreakdown?eventId=1002&entityUid=dp5142' \
   -H 'accept: application/json'

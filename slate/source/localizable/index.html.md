@@ -284,6 +284,363 @@ Create a new species list, search lists and retrieve species list metadata.
 
 Access images and sound recordings from the ALA. 
 -->
+## Logger service
+
+<aside class="notice">
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=logger">Open API specification</a>
+</aside>
+
+## GET service/emailBreakdown
+```shell
+curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/emailBreakdown?eventId=1002&entityUid=dp5142' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+
+{
+  "last3Months": {
+    "events": 0,
+    "records": 0,
+    "emailBreakdown": {
+      "edu": {
+        "events": 0,
+        "records": 0
+      }
+    }
+  },
+  "all": {
+    "events": 22,
+    "records": 1007,
+    "emailBreakdown": {
+      "edu": {
+        "events": 0,
+        "records": 0
+      }
+    }
+  },
+  "thisMonth": {
+    "events": 0,
+    "records": 0,
+    "emailBreakdown": {
+      "edu": {
+        "events": 0,
+        "records": 0
+      }
+    }
+  },
+  "lastYear": {
+    "events": 0,
+    "records": 0,
+    "emailBreakdown": {
+      "edu": {
+        "events": 0,
+        "records": 0
+      }
+    }
+  }
+}
+```
+Get Email Breakdown
+
+#### HTTP Request
+`GET <%= I18n.t(:loggerAPIUrl) %>/service/emailBreakdown`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+eventId | Y | | The event type Id
+entityUid | Y | | The event Uid
+
+## GET service/logger/events
+```shell
+curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/logger/events' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+
+[
+  {
+    "name": "OCCURRENCE_RECORDS_VIEWED",
+    "id": 1000
+  },
+  {
+    "name": "OCCURRENCE_RECORDS_VIEWED_ON_MAP",
+    "id": 1001
+  },
+  {
+    "name": "OCCURRENCE_RECORDS_DOWNLOADED",
+    "id": 1002
+  },
+  {
+    "name": "IMAGE_VIEWED",
+    "id": 2000
+  }
+]
+```
+Get Event Types
+
+#### HTTP Request
+`GET <%= I18n.t(:loggerAPIUrl) %>/service/logger/events`
+
+## GET service/reasonBreakdown
+```shell
+curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/reasonBreakdown?eventId=1002&entityUid=dp5142' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+
+{
+  "thisMonth": {
+    "events": 0,
+    "records": 0,
+    "reasonBreakdown": {
+      "biosecurity management/planning": {
+        "events": 0,
+        "records": 0
+      }
+    }
+  },
+  "last3Months": {
+    "events": 0,
+    "records": 0,
+    "reasonBreakdown": {
+      "biosecurity management/planning": {
+        "events": 0,
+        "records": 0
+      }
+    }
+  },
+  "lastYear": {
+    "events": 0,
+    "records": 0,
+    "reasonBreakdown": {
+      "biosecurity management/planning": {
+        "events": 0,
+        "records": 0
+      }
+    }
+  },
+  "all": {
+    "events": 22,
+    "records": 1007,
+    "reasonBreakdown": {
+      "biosecurity management/planning": {
+        "events": 0,
+        "records": 0
+      }
+    }
+  }
+}
+```
+Get Reason Breakdown
+
+#### HTTP Request
+`GET <%= I18n.t(:loggerAPIUrl) %>/service/reasonBreakdown`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+eventId | Y | | The event type Id
+entityUid | Y | | The event Uid
+
+## GET service/reasonBreakdownMonthly
+```shell
+curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/reasonBreakdownMonthly?eventId=1002&entityUid=in21&reasonId=10&sourceId=4' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+
+{
+  "temporalBreakdown": {
+    "202205": {
+      "records": 963,
+      "events": 4
+    }
+  }
+}
+```
+Get Reason Breakdown by Month
+
+#### HTTP Request
+`GET <%= I18n.t(:loggerAPIUrl) %>/service/reasonBreakdownMonthly`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+eventId | Y | | The event type Id
+entityUid | Y | | The event Uid
+reasonId | N | | The reason Id of the event
+sourceId | N | | The source id of the event
+excludeReasonTypeId | N | | The reason id that needs to be excluded
+
+## GET service/logger/reasons
+```shell
+curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/logger/reasons' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+
+[
+  {
+    "rkey": "logger.download.reason.biosecurity",
+    "name": "biosecurity management/planning",
+    "id": 1,
+    "deprecated": false
+  }
+]
+```
+Get Reason Types
+
+#### HTTP Request
+`GET <%= I18n.t(:loggerAPIUrl) %>/service/logger/reasons`
+
+## GET service/sourceBreakdown
+```shell
+curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/sourceBreakdown?eventId=1002&entityUid=dp5142&excludeReasonTypeId=10' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+
+{
+  "thisMonth": {
+    "events": 0,
+    "records": 0,
+    "sourceBreakdown": {
+      "ALA": {
+        "events": 0,
+        "records": 0
+      }
+    }
+  },
+  "last3Months": {
+    "events": 0,
+    "records": 0,
+    "sourceBreakdown": {
+      "ALA": {
+        "events": 0,
+        "records": 0
+      }
+    }
+  },
+  "lastYear": {
+    "events": 0,
+    "records": 0,
+    "sourceBreakdown": {
+      "ALA": {
+        "events": 0,
+        "records": 0
+      }
+    }
+  },
+  "all": {
+    "events": 6,
+    "records": 484,
+    "sourceBreakdown": {
+      "ALA": {
+        "events": 1,
+        "records": 10
+      }
+    }
+  }
+}
+```
+Get Source Breakdown
+
+#### HTTP Request
+`GET <%= I18n.t(:loggerAPIUrl) %>/service/sourceBreakdown`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+eventId | Y | | The event type Id
+entityUid | Y | | The event Uid
+excludeReasonTypeId | N | | The reason id that needs to be excluded
+
+## GET service/logger/sources
+```shell
+curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/logger/sources' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+
+[
+  {
+    "name": "ALA",
+    "id": 0
+  }
+]
+```
+Get Source Types
+
+#### HTTP Request
+`GET <%= I18n.t(:loggerAPIUrl) %>/service/logger/sources`
+
+## GET service/totalsByType
+```shell
+curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/totalsByType' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+
+{
+  "totals": {
+    "1000": {
+      "records": 1738,
+      "events": 1649
+    },
+    "1002": {
+      "records": 371641484,
+      "events": 3533
+    }
+  }
+}
+```
+Get Totals by Event Type
+
+#### HTTP Request
+`GET <%= I18n.t(:loggerAPIUrl) %>/service/totalsByType`
+
+## GET service/logger/get.json
+```shell
+curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/logger/get.json?eventTypeId=1002&q=dp34&year=2020' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+
+{
+  "months": [
+    [
+      "202002",
+      13900
+    ],
+    [
+      "202003",
+      81766
+    ],
+    [
+      "202004",
+      1530
+    ]
+  ]
+}
+```
+Get Monthly Breakdown by year
+
+#### HTTP Request
+`GET <%= I18n.t(:loggerAPIUrl) %>/service/logger/get.json`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+eventId | Y | | The event type Id
+entityUid | Y | | The event Uid
+year | N | | The event year
+
 ## User details
 
 Access the user details platform.

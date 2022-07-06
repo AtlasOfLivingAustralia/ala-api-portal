@@ -7,3 +7,5 @@ dev:
   autoCompleteBaseUrl: https://biocache-ws-dev.ala.org.au/ws
   userdetailsBaseUrl: https://auth-dev.ala.org.au/userdetails
   userdetailsAPIUrl: https://apis.dev.ala.org.au/userdetails
+  loggerAPIUrl: https://apis.dev.ala.org.au/logger
+  alertsAPIUrl: https://apis.dev.ala.org.au/alerts

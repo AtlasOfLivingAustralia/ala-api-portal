@@ -284,13 +284,109 @@ Create a new species list, search lists and retrieve species list metadata.
 
 Access images and sound recordings from the ALA. 
 -->
+## Alerts
+<aside class="notice">
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=alerts">Open API specification</a>
+</aside>
+
+## GET api/alerts/user/{userId}
+```shell
+curl -X 'GET' '<%= I18n.t(:alertsAPIUrl) %>/api/alerts/user/{1}' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+
+{
+  "disabledQueries": [],
+  "enabledQueries": [],
+  "customQueries": [],
+  "frequencies": [
+    {
+          "id": 1,
+          "name": "hourly",
+          "lastChecked": "2022-07-06T02:48:00Z",
+          "periodInSeconds": 3600,
+          "version": null
+        }
+    ],
+     "user": {
+       "id": 1,
+       "notifications": [],
+       "userId": "1",
+       "locked": false,
+       "frequency": {
+         "id": 3
+       },
+       "unsubscribeToken": "",
+       "email": ""
+     }
+}
+```
+Get User Alerts
+
+#### HTTP Request
+`GET <%= I18n.t(:alertsAPIUrl) %>/api/alerts/user/{userId}`
+
+#### Path Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+userId | Y | | The User Id
+
+## POST api/alerts/user/{userId}/unsubscribe
+```shell
+curl -X 'POST' '<%= I18n.t(:alertsAPIUrl) %>/api/alerts/user/{1}/unsubscribe' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+
+{
+  "success": true
+}
+```
+Unsubscribe User Alerts
+
+#### HTTP Request
+`POST <%= I18n.t(:alertsAPIUrl) %>/api/alerts/user/{userId}/unsubscribe`
+
+#### Path Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+userId | Y | | The User Id
+
+## POST api/alerts/user/createAlerts
+```shell
+curl -X 'POST' '<%= I18n.t(:alertsAPIUrl) %>/api/alerts/user/createAlerts?userId=1&email=email%40com.au&firstName=firstName&lastName=lastName' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+
+[
+  "Blogs and News"
+]
+```
+Create User Alerts
+
+#### HTTP Request
+`POST <%= I18n.t(:alertsAPIUrl) %>/api/alerts/user/createAlerts`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+userId | Y | | The User Id
+email | Y | | The User email
+firstName | N | | The User firstName
+lastName | N | | The User lastName
+
 ## Logger service
 
 <aside class="notice">
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=logger">Open API specification</a>
 </aside>
 
-### GET service/emailBreakdown
+## GET service/emailBreakdown
 ```shell
 curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/emailBreakdown?eventId=1002&entityUid=dp5142' \
   -H 'accept: application/json'

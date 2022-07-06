@@ -8,3 +8,4 @@ prod:
   userdetailsBaseUrl: https://auth.ala.org.au/userdetails
   userdetailsAPIUrl: https://apis.ala.org.au/userdetails
   loggerAPIUrl: https://apis.ala.org.au/logger
+  alertsAPIUrl: https://apis.ala.org.au/alerts

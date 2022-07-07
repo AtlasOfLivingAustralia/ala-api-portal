@@ -103,7 +103,7 @@ print(data.decode("utf-8"))
 
 The Client Credentials grant type is used for machine to machine authentication where no there is no user interation.
 
-`POST <%= I18n.t(:authBaseUrl) %>/token`
+`POST <%= I18n.t(:authBaseUrl) %>/cas/oidc/oidcAccessToken`
 
 Header Parameters:
 

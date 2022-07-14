@@ -103,7 +103,7 @@ print(data.decode("utf-8"))
 
 The Client Credentials grant type is used for machine to machine authentication where no there is no user interation.
 
-`POST <%= I18n.t(:authBaseUrl) %>/token`
+`POST <%= I18n.t(:authBaseUrl) %>/cas/oidc/oidcAccessToken`
 
 Header Parameters:
 
@@ -127,7 +127,7 @@ The postman http client supports the authorisation code flow. When configured th
 
 >
 
-`GET <%= I18n.t(:authBaseUrl) %>/authorize`
+`GET <%= I18n.t(:authBaseUrl) %>/cas/oidc/oidcAuthorize`
 
 Request Parameters:
 
@@ -140,7 +140,7 @@ redirect_uri | Y | | The URL where the authentication server redirects the brows
 code_challenge_method | N | | Set to `S256` if using PKCE
 code_challenge | N | | the code challenge
 
-`POST <%= I18n.t(:authBaseUrl) %>/token`
+`POST <%= I18n.t(:authBaseUrl) %>/cas/oidc/oidcAccessToken`
 
 Header Parameters:
 
@@ -170,7 +170,7 @@ The Implicit Flow is used for apps that have no “back end” logic on the web 
 
 The Implicit flow presents an authorisation page that will prompt a user for credentials before redirecting to the supplied `redirect_url` with the access_token.
 
-`GET <%= I18n.t(:authBaseUrl) %>/authorize`
+`GET <%= I18n.t(:authBaseUrl) %>/cas/oidc/oidcAuthorize`
 
 Request Parameters:
 

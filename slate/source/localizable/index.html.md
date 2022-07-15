@@ -42,7 +42,7 @@ API Endpoint: https://apis.ala.org.au
 
 Most of the ALA APIs are publicly accessible and do not required authentication. For the API endpoints that are protected a JWT access token is used to authenticate requests.
 
-Open ID connect is used to obtain an access token, once an access token is obtained it should be passed as a bearer token in the HTTP Authentication header.
+Open ID Connect is used to obtain an access token, once an access token is obtained it should be passed as a bearer token in the HTTP Authentication header.
 
 `Authorization: Bearer <access_token>`
 
@@ -65,6 +65,37 @@ See: [https://auth0.com/docs/get-started/authentication-and-authorization-flow](
 See [OIDC Authentication for R](https://search.r-project.org/CRAN/refmans/openeo/html/OIDCAuth.html)
 
 <p>&#128274; indicates the relevant API is a protected API and it requires authentication.</p> 
+
+## Discovery
+
+> Example response:
+
+```javascript
+{
+   "issuer":"https://auth.ala.org.au/cas/oidc",
+   "scopes_supported":[
+      "openid",
+      "profile",
+      "... more scopes",
+
+   ],
+   "claims_parameter_supported":true,
+   "...metadata"
+}
+```
+
+
+>
+
+OpenID Connect includes a [discovery mechanism](https://swagger.io/docs/specification/authentication/openid-connect-discovery/), where metadata for an OpenID server can be accessed.
+
+`GET <%= I18n.t(:authBaseUrl) %>/cas/oidc/.well-known`
+
+Some examples of what is included in the metadata are:
+
+- OpenID/OAuth Endpoints
+- Supported Scopes & Claims
+- Public Keys
 
 ## Client Credentials
 

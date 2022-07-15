@@ -91,7 +91,7 @@ OpenID Connect includes a [discovery mechanism](https://swagger.io/docs/specific
 
 `GET <%= I18n.t(:authBaseUrl) %>/cas/oidc/.well-known`
 
-Some examples of what is included in the metadata are:
+Examples of what the metadata includes are:
 
 - OpenID/OAuth Endpoints
 - Supported Scopes & Claims

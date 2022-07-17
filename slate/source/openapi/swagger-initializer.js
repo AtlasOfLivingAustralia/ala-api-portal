@@ -4,12 +4,13 @@ window.onload = function() {
     // the following lines will be replaced by docker/configurator, when it runs in a docker-container
     window.ui = SwaggerUIBundle({
       urls: [
-        { name: "alerts", url: "./specs/alerts.json"},
+        { name: "alerts", url: "./specs/alerts-rest.json"},
         // { name: "biocache", url: "./specs/biocache-http.yaml"},
         // { name: "ecodata", url: "./specs/ecodata-http.yaml"},
         // { name: "images", url: "./specs/images-rest.yaml"},
-        { name: "userdetails", url: "./specs/userdetails-oas30.json"},
-        { name: "logger", url: "./specs/logger.json"}
+        { name: "userdetails", url: "./specs/userdetails-rest.json"},
+        { name: "logger", url: "./specs/logger-rest.json"},
+        { name: "doi", url: "./specs/doi-rest.json"}
       ],
       dom_id: '#swagger-ui',
       deepLinking: true,

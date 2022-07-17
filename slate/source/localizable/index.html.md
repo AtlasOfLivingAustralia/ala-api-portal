@@ -284,12 +284,12 @@ Create a new species list, search lists and retrieve species list metadata.
 
 Access images and sound recordings from the ALA. 
 -->
-## Alerts
+## 1. Alerts
 <aside class="notice">
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=alerts">Open API specification</a>
 </aside>
 
-### GET api/alerts/user/{userId}
+## GET api/alerts/user/{userId}
 ```shell
 curl -X 'GET' '<%= I18n.t(:alertsAPIUrl) %>/api/alerts/user/{1}' \
   -H 'accept: application/json'
@@ -333,7 +333,7 @@ Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 userId | Y | | The User Id
 
-### POST api/alerts/user/{userId}/unsubscribe
+## POST api/alerts/user/{userId}/unsubscribe
 ```shell
 curl -X 'POST' '<%= I18n.t(:alertsAPIUrl) %>/api/alerts/user/{1}/unsubscribe' \
   -H 'accept: application/json'
@@ -355,7 +355,7 @@ Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 userId | Y | | The User Id
 
-### POST api/alerts/user/createAlerts
+## POST api/alerts/user/createAlerts
 ```shell
 curl -X 'POST' '<%= I18n.t(:alertsAPIUrl) %>/api/alerts/user/createAlerts?userId=1&email=email%40com.au&firstName=firstName&lastName=lastName' \
   -H 'accept: application/json'
@@ -380,13 +380,85 @@ email | Y | | The User email
 firstName | N | | The User firstName
 lastName | N | | The User lastName
 
-## Logger service
+## 2. DOI service
+
+<aside class="notice">
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=doi">Open API specification</a>
+</aside>
+
+## GET api/doi
+```shell
+curl -X 'GET' '<%= I18n.t(:doiAPIUrl) %>/api/doi?max=10&offset=0&sort=dateMinted&order=asc&userId=1&activeStatus=all' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+
+[
+  {
+    "id": 0,
+    "uuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "doi": "string",
+    "title": "string",
+    "authors": "string",
+    "userId": "string",
+    "authorisedRoles": [
+      "string"
+    ],
+    "licence": [
+      "string"
+    ],
+    "description": "string",
+    "dateMinted": "2022-07-14T05:36:23.716Z",
+    "provider": "ANDS",
+    "filename": "string",
+    "contentType": "string",
+    "fileHash": [
+      "string"
+    ],
+    "fileSize": 0,
+    "providerMetadata": {
+      "additionalProp1": {},
+      "additionalProp2": {},
+      "additionalProp3": {}
+    },
+    "applicationMetadata": {
+      "additionalProp1": {},
+      "additionalProp2": {},
+      "additionalProp3": {}
+    },
+    "customLandingPageUrl": "string",
+    "applicationUrl": "string",
+    "active": true,
+    "dateCreated": "2022-07-14T05:36:23.716Z",
+    "lastUpdated": "2022-07-14T05:36:23.716Z",
+    "displayTemplate": "string"
+  }
+]
+
+```
+List DOIs
+
+#### HTTP Request
+`GET <%= I18n.t(:doiAPIUrl) %>/api/doi`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+max | N | 10 | The max number of dois to return
+offset | N | 0 | The index of the first record to return
+sort | N | dateMinted | The field to sort the results by. Valid values are 'dateMinted', 'dateCreated', 'lastUpdated', 'title'
+order | N | desc | The direction to sort the results by. Valid values are 'asc', 'desc'
+userId | N | | Add a userid filter, userid should be the user's numeric user id
+activeStatus | N | active | Filters DOIs returned based on active flag. Valid values are 'all', 'active' or 'inactive'
+
+## 3. Logger service
 
 <aside class="notice">
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=logger">Open API specification</a>
 </aside>
 
-### GET service/emailBreakdown
+## GET service/emailBreakdown
 ```shell
 curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/emailBreakdown?eventId=1002&entityUid=dp5142' \
   -H 'accept: application/json'
@@ -448,7 +520,7 @@ Parameter | Mandatory | Default | Description
 eventId | Y | | The event type Id
 entityUid | Y | | The event Uid
 
-### GET service/logger/events
+## GET service/logger/events
 ```shell
 curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/logger/events' \
   -H 'accept: application/json'
@@ -479,7 +551,7 @@ Get Event Types
 #### HTTP Request
 `GET <%= I18n.t(:loggerAPIUrl) %>/service/logger/events`
 
-### GET service/reasonBreakdown
+## GET service/reasonBreakdown
 ```shell
 curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/reasonBreakdown?eventId=1002&entityUid=dp5142' \
   -H 'accept: application/json'
@@ -541,7 +613,7 @@ Parameter | Mandatory | Default | Description
 eventId | Y | | The event type Id
 entityUid | Y | | The event Uid
 
-### GET service/reasonBreakdownMonthly
+## GET service/reasonBreakdownMonthly
 ```shell
 curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/reasonBreakdownMonthly?eventId=1002&entityUid=in21&reasonId=10&sourceId=4' \
   -H 'accept: application/json'
@@ -572,7 +644,7 @@ reasonId | N | | The reason Id of the event
 sourceId | N | | The source id of the event
 excludeReasonTypeId | N | | The reason id that needs to be excluded
 
-### GET service/logger/reasons
+## GET service/logger/reasons
 ```shell
 curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/logger/reasons' \
   -H 'accept: application/json'
@@ -593,7 +665,7 @@ Get Reason Types
 #### HTTP Request
 `GET <%= I18n.t(:loggerAPIUrl) %>/service/logger/reasons`
 
-### GET service/sourceBreakdown
+## GET service/sourceBreakdown
 ```shell
 curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/sourceBreakdown?eventId=1002&entityUid=dp5142&excludeReasonTypeId=10' \
   -H 'accept: application/json'
@@ -656,7 +728,7 @@ eventId | Y | | The event type Id
 entityUid | Y | | The event Uid
 excludeReasonTypeId | N | | The reason id that needs to be excluded
 
-### GET service/logger/sources
+## GET service/logger/sources
 ```shell
 curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/logger/sources' \
   -H 'accept: application/json'
@@ -675,7 +747,7 @@ Get Source Types
 #### HTTP Request
 `GET <%= I18n.t(:loggerAPIUrl) %>/service/logger/sources`
 
-### GET service/totalsByType
+## GET service/totalsByType
 ```shell
 curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/totalsByType' \
   -H 'accept: application/json'
@@ -700,7 +772,7 @@ Get Totals by Event Type
 #### HTTP Request
 `GET <%= I18n.t(:loggerAPIUrl) %>/service/totalsByType`
 
-### GET service/logger/get.json
+## GET service/logger/get.json
 ```shell
 curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/logger/get.json?eventTypeId=1002&q=dp34&year=2020' \
   -H 'accept: application/json'
@@ -737,7 +809,7 @@ eventId | Y | | The event type Id
 entityUid | Y | | The event Uid
 year | N | | The event year
 
-## User details
+## 4. User details
 
 Access the user details platform.
 
@@ -746,7 +818,7 @@ Access the user details platform.
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=userdetails">Open API specification</a>
 </aside>
 
-### GET /ws/flickr
+## GET /ws/flickr
 ```shell
 curl -X 'GET' '<%= I18n.t(:userdetailsAPIUrl) %>/ws/flickr' \
   -H 'accept: application/json'"
@@ -769,7 +841,7 @@ Lists all flickr profiles known to the application, including their ala id, flic
 #### HTTP Request
 `GET <%= I18n.t(:userdetailsAPIUrl) %>/ws/flickr`
 
-### GET /ws/getUserStats
+## GET /ws/getUserStats
 ```shell
 curl -X 'GET' '<%= I18n.t(:userdetailsAPIUrl) %>/ws/getUserStats' -H 'accept: application/json'
 
@@ -786,7 +858,7 @@ Gets a count of all users in the system, including the number locked and activat
 #### HTTP Request
 `GET <%= I18n.t(:userdetailsAPIUrl) %>/ws/getUserStats`
 
-### GET /userDetails/byRole <p style="display: inline;">&#128274;</p>
+## GET /userDetails/byRole <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'GET' '<%= I18n.t(:userdetailsAPIUrl) %>/userDetails/byRole?role=ROLE_ADMIN' \
   -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
@@ -821,7 +893,7 @@ role | Y | | The role to get users for
 id | N | | A list of user ids or usernames to limit the results to
 includeProps | N | | Whether to include additional user properties or not
 
-### POST /userDetails/getUserDetails <p style="display: inline;">&#128274;</p>
+## POST /userDetails/getUserDetails <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'POST' '<%= I18n.t(:userdetailsAPIUrl) %>/userDetails/getUserDetails?userName=userName' \
   -H 'accept: application/json' -d '' -H "Authorization: Bearer {access_token}"
@@ -853,7 +925,7 @@ Parameter | Mandatory | Default | Description
 userName | Y | | The username of the user
 includeProps | N | | Whether to include additional user properties or not
 
-### POST /userDetails/getUserDetailsFromIdList <p style="display: inline;">&#128274;</p>
+## POST /userDetails/getUserDetailsFromIdList <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'POST' '<%= I18n.t(:userdetailsAPIUrl) %>/userDetails/getUserDetailsFromIdList' \
   -H 'accept: application/json' -H 'Content-Type: application/json' \
@@ -894,7 +966,7 @@ Get a list of user details for a list of user ids.
 #### HTTP Request
 `POST <%= I18n.t(:userdetailsAPIUrl) %>/userDetails/getUserDetailsFromIdList`
 
-### GET /userDetails/search <p style="display: inline;">&#128274;</p>
+## GET /userDetails/search <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'GET' '<%= I18n.t(:userdetailsAPIUrl) %>/userDetails/search?q=userName' \
   -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
@@ -935,7 +1007,7 @@ Parameter | Mandatory | Default | Description
 q | Y | | Search query for the user's username, email or display name
 max | N | | Maximum number of results to return
 
-### GET /property/getProperty <p style="display: inline;">&#128274;</p>
+## GET /property/getProperty <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'GET' '<%= I18n.t(:userdetailsAPIUrl) %>/property/getProperty?alaId=alaId&name=name' \
   -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
@@ -961,7 +1033,7 @@ Parameter | Mandatory | Default | Description
 alaId | Y | | The user's ALA ID
 name | Y | | The name of the property to get
 
-### POST /property/saveProperty <p style="display: inline;">&#128274;</p>
+## POST /property/saveProperty <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'POST' '<%= I18n.t(:userdetailsAPIUrl) %>/property/saveProperty?alaId=alaId&name=name&value=value' \
   -H 'accept: application/json' -d '' -H "Authorization: Bearer {access_token}"

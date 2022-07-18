@@ -1,0 +1,173 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Code pipeline for API docs
+
+Parameters:
+  pCloudFormationServiceRole:
+    Type: String
+    Description: Common service role used by Cloudformation
+  pCodeBuildServiceRole:
+    Type: String
+    Description: Common service role used by CodeBuild
+  pCodePipelineServiceRole:
+    Type: String
+    Description: Common service role used by CodePipeline
+  pArtifactsBucket:
+    Type: String
+    Description: Common artifacts bucket used by CodePipeline and CodeBuild
+  pDocumentsBucket:
+    Type: String
+  pApiDocsStackName:
+    Type: String
+  pGitHubRepositoryName:
+    Type: String
+    Description: GitHub repository name.
+  pGitHubOwner:
+    Type: String
+    NoEcho: true
+  pGitHubBranch:
+    Type: String
+    Default: test/userdetails
+  pCodestarConnection:
+    Type: String
+  pDomainName:
+    Type: String
+    Description: API Domain name
+
+Resources:
+ 
+  BuildTemplateConfig:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Name: api-docs-template-config
+      Description: Build the CloudFormation template config file
+      ServiceRole: !Ref pCodeBuildServiceRole
+      Artifacts:
+        Type: CODEPIPELINE
+      Environment:
+        Type: LINUX_CONTAINER
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: aws/codebuild/standard:6.0
+        EnvironmentVariables:
+          - Name: "AWS_ARTIFACTS_BUCKET"
+            Value: !Ref pArtifactsBucket
+      Source:
+        Type:  CODEPIPELINE
+        BuildSpec: template-config-buildspec.yaml
+      TimeoutInMinutes: 5
+
+  BuildExportOpenAPI:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Name: userdetails-export-api-spec
+      Description: Export the openAPI spec from the userdetails API Gateway
+      ServiceRole: !Ref pCodeBuildServiceRole
+      Artifacts:
+        Type: CODEPIPELINE
+      Environment:
+        Type: LINUX_CONTAINER
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: aws/codebuild/standard:6.0
+      Source:
+        Type: CODEPIPELINE
+        BuildSpec: userdetails/cicd/export-api-buildspec.yaml
+      TimeoutInMinutes: 5
+
+
+  Pipeline:
+    Type: "AWS::CodePipeline::Pipeline"
+    Properties:
+      Name: 1-apidocs-code-pipeline
+      RoleArn: !Ref pCodePipelineServiceRole
+      ArtifactStore:
+        Type: S3
+        Location: !Ref pArtifactsBucket
+      Stages:
+      - Name: Source
+        Actions:
+          - Name: CheckoutSrc
+            ActionTypeId:
+              Category: Source
+              Owner: AWS
+              Provider: CodeStarSourceConnection
+              Version: 1
+            Configuration:
+              ConnectionArn: !Ref pCodestarConnection
+              FullRepositoryId: !Sub ${pGitHubOwner}/${pGitHubRepositoryName}
+              BranchName: !Ref pGitHubBranch
+              OutputArtifactFormat: CODE_ZIP
+          Namespace: CheckoutSrcNS
+            OutputArtifacts:
+              - Name: 'ApiDocsSourceArtifact'
+      - Name: Deploy
+        Actions:
+          - Name: BuildTemplateConfig
+            ActionTypeId:
+              Owner: AWS
+              Category: Build
+              Version: 1
+              Provider: CodeBuild
+            Configuration:
+              ProjectName: !Ref BuildTemplateConfig
+              EnvironmentVariables: '[
+                                       { "name":"BRANCH", "value":"#{CheckoutSrcNS.BranchName}" },
+                                       { "name":"COMMIT_ID", "value":"#{CheckoutSrcNS.CommitId}" },
+                                     ]'
+            Namespace: BuildTemplateConfigNS
+            InputArtifacts:
+              - Name: 'ApiDocsSourceArtifact'
+            OutputArtifacts:
+              - Name: BuildTemplateConfigArtifacts
+            RunOrder: 1
+          - Name: DeployCFStack
+            ActionTypeId:
+              Owner: AWS
+              Category: Deploy
+              Version: 1
+              Provider: CloudFormation
+            Configuration:
+              TemplatePath: 'Userdetails-BuildArtifact::userdetails/infra-packaged.template'
+              ActionMode: CREATE_UPDATE
+              Capabilities: CAPABILITY_IAM,CAPABILITY_AUTO_EXPAND
+              ChangeSetName: userdetails-pipeline-changeset
+              RoleArn: !GetAtt
+                - CloudFormationTrustRole
+                - Arn
+              StackName: !Ref pUserdetailsStackName
+              ParameterOverrides: !Sub |
+                    {
+                      "pDomainName":"${pDomainName}",
+                      "pCreateWAFAcl":"${pCreateWAFAcl}",
+                      "pRequireAPIKey":"${pRequireAPIKey}",
+                      "pUpdateTime": { "Fn::GetParam" : [ "Userdetails-BuildArtifact", "userdetails/param.json", "ExecutionTime" ] }
+                    }
+            InputArtifacts:
+              - Name: 'Userdetails-BuildArtifact'
+            Namespace: UserDetailsCFOut
+            OutputArtifacts: []
+            RunOrder: 2         
+
+      - Name: DeployDashboard
+        Actions:
+        - Name: GenerateChangeSet
+          ActionTypeId:
+            Owner: AWS
+            Category: Deploy
+            Version: 1
+            Provider: CloudFormation
+          Configuration:
+            TemplatePath: 'Userdetails-BuildArtifact::userdetails/dashboard.template'
+            ActionMode: CREATE_UPDATE
+            Capabilities: CAPABILITY_IAM,CAPABILITY_AUTO_EXPAND
+            ChangeSetName: userdetails-pipeline-dashboard-changeset
+            RoleArn: !GetAtt
+              - CloudFormationTrustRole
+              - Arn
+            StackName: !Sub ${pDashboardStackName}
+          InputArtifacts:
+            - Name: 'Userdetails-BuildArtifact'
+          OutputArtifacts: []
+          RunOrder: 2
+
+Outputs:
+  PipelineUrl:
+    Value: !Sub https://console.aws.amazon.com/codepipeline/home?region=${AWS::Region}#/view/${Pipeline}

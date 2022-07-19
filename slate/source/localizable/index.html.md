@@ -383,7 +383,7 @@ lastName | N | | The User lastName
 ## 2. Biocollect
 
 <aside class="notice">
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=doi">Open API specification</a>
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=biocollect">Open API specification</a>
 </aside>
 
 ## 2.1 GET ws/bioactivity/delete/{id} <p style="display: inline;">&#128274;</p>

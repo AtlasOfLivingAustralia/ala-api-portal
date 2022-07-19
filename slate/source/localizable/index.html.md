@@ -289,10 +289,10 @@ Access images and sound recordings from the ALA.
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=alerts">Open API specification</a>
 </aside>
 
-## GET api/alerts/user/{userId}
+## 1.1 GET api/alerts/user/{userId} <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'GET' '<%= I18n.t(:alertsAPIUrl) %>/api/alerts/user/{1}' \
-  -H 'accept: application/json'
+  -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
 
 The above command returns JSON structured like this:
 
@@ -333,10 +333,10 @@ Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 userId | Y | | The User Id
 
-## POST api/alerts/user/{userId}/unsubscribe
+## 1.2 POST api/alerts/user/{userId}/unsubscribe <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'POST' '<%= I18n.t(:alertsAPIUrl) %>/api/alerts/user/{1}/unsubscribe' \
-  -H 'accept: application/json'
+  -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
 
 The above command returns JSON structured like this:
 
@@ -355,10 +355,10 @@ Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 userId | Y | | The User Id
 
-## POST api/alerts/user/createAlerts
+## 1.3 POST api/alerts/user/createAlerts <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'POST' '<%= I18n.t(:alertsAPIUrl) %>/api/alerts/user/createAlerts?userId=1&email=email%40com.au&firstName=firstName&lastName=lastName' \
-  -H 'accept: application/json'
+  -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
 
 The above command returns JSON structured like this:
 
@@ -380,13 +380,508 @@ email | Y | | The User email
 firstName | N | | The User firstName
 lastName | N | | The User lastName
 
-## 2. DOI service
+## 2. Biocollect
 
 <aside class="notice">
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=doi">Open API specification</a>
 </aside>
 
-## GET api/doi
+## 2.1 GET ws/bioactivity/delete/{id} <p style="display: inline;">&#128274;</p>
+```shell
+curl -X 'GET' '<%= I18n.t(:biocollectAPIUrl) %>/ws/bioactivity/delete/1' \
+  -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
+
+The above command returns JSON structured like this:
+{
+  "status": 0,
+  "error": "string",
+  "text": "string"
+}
+```
+Delete an activity
+
+#### HTTP Request
+`GET <%= I18n.t(:biocollectAPIUrl) %>/ws/bioactivity/delete/1`
+
+#### Path Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+id | Y | | Activity id
+
+## 2.2 GET ws/bioactivity/model/{id} <p style="display: inline;">&#128274;</p>
+```shell
+curl -X 'GET' '<%= I18n.t(:biocollectAPIUrl) %>/ws/bioactivity/model/1' \
+  -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
+
+The above command returns JSON structured like this:
+{
+  "activity": {
+    "additionalProp1": {},
+    "additionalProp2": {},
+    "additionalProp3": {}
+  },
+  "returnTo": "string",
+  "site": {
+    "extent": {
+      "geometry": {
+        "areaKmSq": 0,
+        "coordinates": [
+          0
+        ],
+        "centre": [
+          0
+        ],
+        "type": "string"
+      },
+      "source": "string"
+    },
+    "lastUpdated": "string",
+    "projects": [
+      "string"
+    ],
+    "dateCreated": "string",
+    "visibility": "string",
+    "name": "string",
+    "siteId": "string",
+    "id": "string",
+    "geoPoint": [
+      0
+    ],
+    "isSciStarter": true,
+    "status": "string"
+  },
+  "project": {
+    "additionalProp1": {},
+    "additionalProp2": {},
+    "additionalProp3": {}
+  },
+  "projectSite": {
+    "additionalProp1": {},
+    "additionalProp2": {},
+    "additionalProp3": {}
+  },
+  "speciesLists": [
+    {}
+  ],
+  "themes": [
+    {}
+  ],
+  "metaModel": {
+    "additionalProp1": {},
+    "additionalProp2": {},
+    "additionalProp3": {}
+  },
+  "outputModels": {
+    "additionalProp1": {},
+    "additionalProp2": {},
+    "additionalProp3": {}
+  },
+  "getpActivity": {
+    "additionalProp1": {},
+    "additionalProp2": {},
+    "additionalProp3": {}
+  },
+  "error": "string"
+}
+```
+Get survey's data model
+
+#### HTTP Request
+`GET <%= I18n.t(:biocollectAPIUrl) %>/ws/bioactivity/model/1`
+
+#### Path Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+id | Y | | Survey id or project activity id
+
+## 2.3 GET ws/bioactivity/data/{id} <p style="display: inline;">&#128274;</p>
+```shell
+curl -X 'GET' '<%= I18n.t(:biocollectAPIUrl) %>/ws/bioactivity/data/1' \
+  -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
+
+The above command returns JSON structured like this:
+{
+  "activity": {
+    "additionalProp1": {},
+    "additionalProp2": {},
+    "additionalProp3": {}
+  },
+  "site": {
+    "extent": {
+      "geometry": {
+        "areaKmSq": 0,
+        "coordinates": [
+          0
+        ],
+        "centre": [
+          0
+        ],
+        "type": "string"
+      },
+      "source": "string"
+    },
+    "lastUpdated": "string",
+    "projects": [
+      "string"
+    ],
+    "dateCreated": "string",
+    "visibility": "string",
+    "name": "string",
+    "siteId": "string",
+    "id": "string",
+    "geoPoint": [
+      0
+    ],
+    "isSciStarter": true,
+    "status": "string"
+  },
+  "project": {
+    "additionalProp1": {},
+    "additionalProp2": {},
+    "additionalProp3": {}
+  },
+  "projectSite": {
+    "additionalProp1": {},
+    "additionalProp2": {},
+    "additionalProp3": {}
+  },
+  "speciesLists": [
+    {}
+  ],
+  "themes": [
+    {}
+  ],
+  "metaModel": {
+    "additionalProp1": {},
+    "additionalProp2": {},
+    "additionalProp3": {}
+  },
+  "outputModels": {
+    "additionalProp1": {},
+    "additionalProp2": {},
+    "additionalProp3": {}
+  },
+  "getpActivity": {
+    "additionalProp1": {},
+    "additionalProp2": {},
+    "additionalProp3": {}
+  },
+  "projectActivityId": "string",
+  "error": "string"
+}
+```
+Get data for an activity
+
+#### HTTP Request
+`GET <%= I18n.t(:biocollectAPIUrl) %>/ws/bioactivity/data/1`
+
+#### Path Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+id | Y | | Activity id
+
+## 2.4 GET ws/bioactivity/map <p style="display: inline;">&#128274;</p>
+```shell
+curl -X 'GET' '<%= I18n.t(:biocollectAPIUrl) %>/ws/bioactivity/map' \
+  -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
+
+The above command returns JSON structured like this:
+{
+  "total": 0,
+  "activities": [
+    {
+      "activityId": "string",
+      "projectActivityId": "string",
+      "type": "string",
+      "name": "string",
+      "activityOwnerName": "string",
+      "records": [
+        {
+          "commonName": "string",
+          "multimedia": [
+            {
+              "rightsHolder": "string",
+              "identifier": "string",
+              "license": "string",
+              "creator": "string",
+              "imageId": "string",
+              "rights": "string",
+              "format": "string",
+              "documentId": "string",
+              "title": "string",
+              "type": "string"
+            }
+          ],
+          "individualCount": 0,
+          "name": "string",
+          "coordinates": [
+            0
+          ],
+          "eventTime": "string",
+          "guid": "string",
+          "occurrenceID": "string",
+          "eventDate": "string"
+        }
+      ],
+      "projectName": "string",
+      "projectId": "string",
+      "sites": [
+        {
+          "extent": {
+            "geometry": {
+              "areaKmSq": 0,
+              "coordinates": [
+                0
+              ],
+              "centre": [
+                0
+              ],
+              "type": "string"
+            },
+            "source": "string"
+          },
+          "lastUpdated": "string",
+          "projects": [
+            "string"
+          ],
+          "dateCreated": "string",
+          "visibility": "string",
+          "name": "string",
+          "siteId": "string",
+          "id": "string",
+          "geoPoint": [
+            0
+          ],
+          "isSciStarter": true,
+          "status": "string"
+        }
+      ],
+      "coordinates": [
+        0
+      ]
+    }
+  ]
+}
+```
+Get sites associated with an activities
+
+#### HTTP Request
+`GET <%= I18n.t(:biocollectAPIUrl) %>/ws/bioactivity/map`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+hub | N | | The hub context this request will be executed in
+searchTerm | N | | Searches for terms in this parameter.
+max | N | 10 | Maximum number of returned activities per page.
+offset | N | 0 | Offset search result by this parameter
+view | N | | Page on which activities will be rendered. Available values : myrecords, project, projectrecords, myprojectrecords, userprojectactivityrecords, allrecords
+fq | N | | Restrict search results to these filter queries.
+sort | N | lastUpdated | Sort by attribute
+order | N | DESC | Order sort item by this parameter
+
+## 2.5 GET ws/bioactivity/search <p style="display: inline;">&#128274;</p>
+```shell
+curl -X 'GET' '<%= I18n.t(:biocollectAPIUrl) %>/ws/bioactivity/search' \
+  -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
+
+The above command returns JSON structured like this:
+{
+  "activities": [
+    {
+      "activityId": "string",
+      "projectActivityId": "string",
+      "type": "string",
+      "status": "string",
+      "lastUpdated": "string",
+      "userId": "string",
+      "siteId": "string",
+      "name": "string",
+      "activityOwnerName": "string",
+      "embargoed": true,
+      "embargoUntil": "string",
+      "records": [
+        {
+          "commonName": "string",
+          "multimedia": [
+            {
+              "rightsHolder": "string",
+              "identifier": "string",
+              "license": "string",
+              "creator": "string",
+              "imageId": "string",
+              "rights": "string",
+              "format": "string",
+              "documentId": "string",
+              "title": "string",
+              "type": "string"
+            }
+          ],
+          "individualCount": 0,
+          "name": "string",
+          "coordinates": [
+            0
+          ],
+          "eventTime": "string",
+          "guid": "string",
+          "occurrenceID": "string",
+          "eventDate": "string"
+        }
+      ],
+      "endDate": "string",
+      "projectName": "string",
+      "projectType": "string",
+      "projectId": "string",
+      "thumbnailUrl": "string",
+      "showCrud": true,
+      "userCanModerate": true
+    }
+  ],
+  "facets": [
+    {
+      "name": "string",
+      "total": 0,
+      "terms": [
+        {
+          "additionalProp1": {},
+          "additionalProp2": {},
+          "additionalProp3": {}
+        }
+      ]
+    }
+  ],
+  "total": 0
+}
+```
+Search activities
+
+#### HTTP Request
+`GET <%= I18n.t(:biocollectAPIUrl) %>/ws/bioactivity/search`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+hub | N | | The hub context this request will be executed in
+searchTerm | N | | Searches for terms in this parameter.
+max | N | 10 | Maximum number of returned activities per page.
+offset | N | 0 | Offset search result by this parameter
+view | N | | Page on which activities will be rendered. Available values : myrecords, project, projectrecords, myprojectrecords, userprojectactivityrecords, allrecords
+fq | N | | Restrict search results to these filter queries.
+sort | N | lastUpdated | Sort by attribute
+order | N | DESC | Order sort item by this parameter
+facets | N | | Comma seperated list of facets the search should return. If left empty, facet list is populated from hub configuration.
+flimit | N | 20 | Maximum number of facets to be returned.
+
+## 2.6 GET ws/species/uniqueId
+```shell
+curl -X 'GET' '<%= I18n.t(:biocollectAPIUrl) %>/ws/species/uniqueId' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+{
+  "outputSpeciesId": "4f28671f-0ec2-41dc-ab01-fd4cb2a5b0a6"
+}
+```
+Get output species identifier
+
+#### HTTP Request
+`GET <%= I18n.t(:biocollectAPIUrl) %>/ws/species/uniqueId`
+
+## 2.7 GET ws/survey/list/{id}
+```shell
+curl -X 'GET' '<%= I18n.t(:biocollectAPIUrl) %>/ws/survey/list/1' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+[
+  "string"
+]
+```
+Get surveys associated with a project
+
+#### HTTP Request
+`GET <%= I18n.t(:biocollectAPIUrl) %>/ws/survey/list/{id}`
+
+#### Path Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+id | Y | | The project id
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+version | N | | The date and time on which project activity was created. Version number unit is milliseconds since epoch.
+
+## 2.8 GET ws/project/search <p style="display: inline;">&#128274;</p>
+```shell
+curl -X 'GET' '<%= I18n.t(:biocollectAPIUrl) %>/ws/project/search' \
+  -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
+
+The above command returns JSON structured like this:
+{
+  "projects": [
+    {
+      "additionalProp1": {},
+      "additionalProp2": {},
+      "additionalProp3": {}
+    }
+  ],
+  "total": 0,
+  "facets": [
+    {
+      "name": "string",
+      "total": 0,
+      "terms": [
+        {
+          "additionalProp1": {},
+          "additionalProp2": {},
+          "additionalProp3": {}
+        }
+      ]
+    }
+  ]
+}
+```
+Search projects
+
+#### HTTP Request
+`GET <%= I18n.t(:biocollectAPIUrl) %>/ws/project/search`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+hub | N | | The hub context this request will be executed in
+q | N | | Searches for terms in this parameter.
+max | N | 20 | Maximum number of returned activities per page.
+offset | N | 0 | Offset search result by this parameter
+status | N | | Return active or completed projects. Available values : active, completed
+organisationName | N | | Filter projects by organisation name
+geoSearchJSON | N | Filter projects by GeoJSON shape
+isCitizenScience | N | false | Get citizen science projects
+isWorks | N | false | Get works projects
+isBiologicalScience | N | false | Get eco-science projects
+difficulty | N | | Difficulty level of projects. Available values : Easy, Medium, Hard
+isWorldWide | N | false | Set to false to return Australia specific projects. Set to true to get all projects.
+isUserPage | N | false | Set to true to get all the projects a user is participating in.
+mobile | N | false | Set to true if the request is coming from mobile client and user need to be identified. 
+facets | N | | Comma seperated list of facets the search should return. If left empty, facet list is populated from hub configuration.
+flimit | N | 15 | Maximum number of facets to be returned.
+
+## 3. DOI service
+
+<aside class="notice">
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=doi">Open API specification</a>
+</aside>
+
+## 3.1 GET api/doi
 ```shell
 curl -X 'GET' '<%= I18n.t(:doiAPIUrl) %>/api/doi?max=10&offset=0&sort=dateMinted&order=asc&userId=1&activeStatus=all' \
   -H 'accept: application/json'
@@ -452,13 +947,13 @@ order | N | desc | The direction to sort the results by. Valid values are 'asc',
 userId | N | | Add a userid filter, userid should be the user's numeric user id
 activeStatus | N | active | Filters DOIs returned based on active flag. Valid values are 'all', 'active' or 'inactive'
 
-## 3. Logger service
+## 4. Logger service
 
 <aside class="notice">
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=logger">Open API specification</a>
 </aside>
 
-## GET service/emailBreakdown
+## 4.1 GET service/emailBreakdown
 ```shell
 curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/emailBreakdown?eventId=1002&entityUid=dp5142' \
   -H 'accept: application/json'
@@ -520,7 +1015,7 @@ Parameter | Mandatory | Default | Description
 eventId | Y | | The event type Id
 entityUid | Y | | The event Uid
 
-## GET service/logger/events
+## 4.2 GET service/logger/events
 ```shell
 curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/logger/events' \
   -H 'accept: application/json'
@@ -551,7 +1046,7 @@ Get Event Types
 #### HTTP Request
 `GET <%= I18n.t(:loggerAPIUrl) %>/service/logger/events`
 
-## GET service/reasonBreakdown
+## 4.3 GET service/reasonBreakdown
 ```shell
 curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/reasonBreakdown?eventId=1002&entityUid=dp5142' \
   -H 'accept: application/json'
@@ -613,7 +1108,7 @@ Parameter | Mandatory | Default | Description
 eventId | Y | | The event type Id
 entityUid | Y | | The event Uid
 
-## GET service/reasonBreakdownMonthly
+## 4.4 GET service/reasonBreakdownMonthly
 ```shell
 curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/reasonBreakdownMonthly?eventId=1002&entityUid=in21&reasonId=10&sourceId=4' \
   -H 'accept: application/json'
@@ -644,7 +1139,7 @@ reasonId | N | | The reason Id of the event
 sourceId | N | | The source id of the event
 excludeReasonTypeId | N | | The reason id that needs to be excluded
 
-## GET service/logger/reasons
+## 4.5 GET service/logger/reasons
 ```shell
 curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/logger/reasons' \
   -H 'accept: application/json'
@@ -665,7 +1160,7 @@ Get Reason Types
 #### HTTP Request
 `GET <%= I18n.t(:loggerAPIUrl) %>/service/logger/reasons`
 
-## GET service/sourceBreakdown
+## 4.6 GET service/sourceBreakdown
 ```shell
 curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/sourceBreakdown?eventId=1002&entityUid=dp5142&excludeReasonTypeId=10' \
   -H 'accept: application/json'
@@ -728,7 +1223,7 @@ eventId | Y | | The event type Id
 entityUid | Y | | The event Uid
 excludeReasonTypeId | N | | The reason id that needs to be excluded
 
-## GET service/logger/sources
+## 4.7 GET service/logger/sources
 ```shell
 curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/logger/sources' \
   -H 'accept: application/json'
@@ -747,7 +1242,7 @@ Get Source Types
 #### HTTP Request
 `GET <%= I18n.t(:loggerAPIUrl) %>/service/logger/sources`
 
-## GET service/totalsByType
+## 4.8 GET service/totalsByType
 ```shell
 curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/totalsByType' \
   -H 'accept: application/json'
@@ -772,7 +1267,7 @@ Get Totals by Event Type
 #### HTTP Request
 `GET <%= I18n.t(:loggerAPIUrl) %>/service/totalsByType`
 
-## GET service/logger/get.json
+## 4.9 GET service/logger/get.json
 ```shell
 curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/logger/get.json?eventTypeId=1002&q=dp34&year=2020' \
   -H 'accept: application/json'
@@ -809,7 +1304,7 @@ eventId | Y | | The event type Id
 entityUid | Y | | The event Uid
 year | N | | The event year
 
-## 4. User details
+## 5. User details
 
 Access the user details platform.
 
@@ -818,7 +1313,7 @@ Access the user details platform.
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=userdetails">Open API specification</a>
 </aside>
 
-## GET /ws/flickr
+## 5.1 GET /ws/flickr
 ```shell
 curl -X 'GET' '<%= I18n.t(:userdetailsAPIUrl) %>/ws/flickr' \
   -H 'accept: application/json'"
@@ -841,7 +1336,7 @@ Lists all flickr profiles known to the application, including their ala id, flic
 #### HTTP Request
 `GET <%= I18n.t(:userdetailsAPIUrl) %>/ws/flickr`
 
-## GET /ws/getUserStats
+## 5.2 GET /ws/getUserStats
 ```shell
 curl -X 'GET' '<%= I18n.t(:userdetailsAPIUrl) %>/ws/getUserStats' -H 'accept: application/json'
 
@@ -858,7 +1353,7 @@ Gets a count of all users in the system, including the number locked and activat
 #### HTTP Request
 `GET <%= I18n.t(:userdetailsAPIUrl) %>/ws/getUserStats`
 
-## GET /userDetails/byRole <p style="display: inline;">&#128274;</p>
+## 5.3 GET /userDetails/byRole <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'GET' '<%= I18n.t(:userdetailsAPIUrl) %>/userDetails/byRole?role=ROLE_ADMIN' \
   -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
@@ -893,7 +1388,7 @@ role | Y | | The role to get users for
 id | N | | A list of user ids or usernames to limit the results to
 includeProps | N | | Whether to include additional user properties or not
 
-## POST /userDetails/getUserDetails <p style="display: inline;">&#128274;</p>
+## 5.4 POST /userDetails/getUserDetails <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'POST' '<%= I18n.t(:userdetailsAPIUrl) %>/userDetails/getUserDetails?userName=userName' \
   -H 'accept: application/json' -d '' -H "Authorization: Bearer {access_token}"
@@ -925,7 +1420,7 @@ Parameter | Mandatory | Default | Description
 userName | Y | | The username of the user
 includeProps | N | | Whether to include additional user properties or not
 
-## POST /userDetails/getUserDetailsFromIdList <p style="display: inline;">&#128274;</p>
+## 5.5 POST /userDetails/getUserDetailsFromIdList <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'POST' '<%= I18n.t(:userdetailsAPIUrl) %>/userDetails/getUserDetailsFromIdList' \
   -H 'accept: application/json' -H 'Content-Type: application/json' \
@@ -966,7 +1461,7 @@ Get a list of user details for a list of user ids.
 #### HTTP Request
 `POST <%= I18n.t(:userdetailsAPIUrl) %>/userDetails/getUserDetailsFromIdList`
 
-## GET /userDetails/search <p style="display: inline;">&#128274;</p>
+## 5.6 GET /userDetails/search <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'GET' '<%= I18n.t(:userdetailsAPIUrl) %>/userDetails/search?q=userName' \
   -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
@@ -1007,7 +1502,7 @@ Parameter | Mandatory | Default | Description
 q | Y | | Search query for the user's username, email or display name
 max | N | | Maximum number of results to return
 
-## GET /property/getProperty <p style="display: inline;">&#128274;</p>
+## 5.7 GET /property/getProperty <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'GET' '<%= I18n.t(:userdetailsAPIUrl) %>/property/getProperty?alaId=alaId&name=name' \
   -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
@@ -1033,7 +1528,7 @@ Parameter | Mandatory | Default | Description
 alaId | Y | | The user's ALA ID
 name | Y | | The name of the property to get
 
-## POST /property/saveProperty <p style="display: inline;">&#128274;</p>
+## 5.8 POST /property/saveProperty <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'POST' '<%= I18n.t(:userdetailsAPIUrl) %>/property/saveProperty?alaId=alaId&name=name&value=value' \
   -H 'accept: application/json' -d '' -H "Authorization: Bearer {access_token}"

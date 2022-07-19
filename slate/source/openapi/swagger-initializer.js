@@ -10,7 +10,8 @@ window.onload = function() {
         // { name: "images", url: "./specs/images-rest.yaml"},
         { name: "userdetails", url: "./specs/userdetails-rest.json"},
         { name: "logger", url: "./specs/logger-rest.json"},
-        { name: "doi", url: "./specs/doi-rest.json"}
+        { name: "doi", url: "./specs/doi-rest.json"},
+        { name: "biocollect", url: "./specs/biocollect-rest.json"}
       ],
       dom_id: '#swagger-ui',
       deepLinking: true,

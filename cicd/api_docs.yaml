@@ -68,6 +68,7 @@ Resources:
 
   ApiDocsCloudFrontDistro:
     Type: AWS::CloudFront::Distribution
+    DependsOn: ApiDocsBucket
     Properties:
       DistributionConfig:
         Aliases:

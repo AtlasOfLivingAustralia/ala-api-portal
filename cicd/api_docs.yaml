@@ -82,7 +82,6 @@ Resources:
               - HEAD
             CachePolicyId: !Ref ApiDocsCachePolicy
             Compress: true
-            OriginRequestPolicyId: String
             PathPattern: /
             TargetOriginId: api-docs-s3
             ViewerProtocolPolicy: redirect-to-https 

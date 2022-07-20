@@ -98,7 +98,7 @@ Resources:
           - DomainName: !Sub "${pBucketName}.s3.${AWS::Region}.amazonaws.com"
             Id: api-docs-s3
             S3OriginConfig:
-              OriginAccessIdentity: !Ref ApiDocsCloudFrontOai
+              OriginAccessIdentity: !Join ['', ['origin-access-identity/cloudfront/', !Ref ApiDocsCloudFrontOai ]]
             OriginPath: !Ref pBucketPath
         ViewerCertificate:
           AcmCertificateArn: !Ref pSslCertificate

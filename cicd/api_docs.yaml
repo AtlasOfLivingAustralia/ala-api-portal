@@ -115,7 +115,7 @@ Resources:
         DefaultTTL: 300
         MaxTTL: 86400
         MinTTL: 1
-        Name: !Sub Api docs cache Policy ${pEnvironment}
+        Name: !Sub Api-docs-cache-Policy-${pEnvironment}
         ParametersInCacheKeyAndForwardedToOrigin: 
           CookiesConfig: 
             CookieBehavior: none

@@ -95,7 +95,7 @@ Resources:
         HttpVersion: http2
         IPV6Enabled: false
         Origins:
-          - DomainName: !Sub ${pBucketName}.s3.{AWS::Region}.amazonaws.com
+          - DomainName: !Sub "${pBucketName}.s3.${AWS::Region}.amazonaws.com"
             Id: api-docs-s3
             S3OriginConfig:
               OriginAccessIdentity: !Ref ApiDocsCloudFrontOai

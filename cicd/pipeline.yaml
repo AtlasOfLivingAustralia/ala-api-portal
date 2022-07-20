@@ -91,7 +91,7 @@ Resources:
             Configuration:
               ProjectName: !Ref BuildTemplateConfig
               EnvironmentVariables: '[
-                                       { "name":"BRANCH", "value":"#{CheckoutSrcNS.BranchName}" },
+                                       { "name":"SRC_BRANCH", "value":"#{CheckoutSrcNS.BranchName}" },
                                        { "name":"COMMIT_ID", "value":"#{CheckoutSrcNS.CommitId}" }
                                      ]'
             Namespace: BuildTemplateConfigNS

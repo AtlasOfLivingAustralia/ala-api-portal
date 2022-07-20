@@ -38,7 +38,7 @@ phases:
     commands:
       - echo Entered the build phase...
       - echo Generating the temaplte config
-      - cicd/gen_template_config.py  --template template_config.j2 > template_config.json
+      - cicd/gen_template_config.py  --template cicd/template_config.j2 > cicd/template_config.json
     finally:
       - #echo This always runs
       - #notify Slack on failure

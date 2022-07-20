@@ -25,12 +25,13 @@ Parameters:
     Description: GitHub repository name.
   pGitHubOwner:
     Type: String
-    NoEcho: true
+    Description: GitHub owner
   pGitHubBranch:
     Type: String
-    Default: test/userdetails
+    Description: GitHub branch we're deploying from
   pCodestarConnection:
     Type: String
+    Description: Codestar connection ARN
 
 Resources:
  
@@ -51,7 +52,7 @@ Resources:
             Value: !Ref pArtifactsBucket
       Source:
         Type:  CODEPIPELINE
-        BuildSpec: template-config-buildspec.yaml
+        BuildSpec: cicd/template-config-buildspec.yaml
       TimeoutInMinutes: 5
 
   Pipeline:

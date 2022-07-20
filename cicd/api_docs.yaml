@@ -90,6 +90,7 @@ Resources:
         DefaultCacheBehavior:
           TargetOriginId: api-docs-s3
           ViewerProtocolPolicy: redirect-to-https 
+          CachePolicyId: !Ref ApiDocsCachePolicy 
         DefaultRootObject: index.html
         Enabled: true
         HttpVersion: http2

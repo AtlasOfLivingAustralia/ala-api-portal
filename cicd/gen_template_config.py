@@ -26,7 +26,8 @@ template_vals = {
     "hosted_zone"     : os.environ['HOSTED_ZONE'],
     "sub_domain"      : os.environ['SUB_DOMAIN'],
     "ssl_certificate" : os.environ['SSL_CERTIFICATE'],
-    "branch"          : os.environ['SRC_BRANCH']
+    "branch"          : os.environ['SRC_BRANCH'],
+    "build"           : os.environ['CODEBUILD_BUILD_NUMBER']
 }
 # do the substitution
 output_text = template.render(template_vals)

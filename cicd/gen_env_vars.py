@@ -9,15 +9,18 @@ import configparser
 parser = argparse.ArgumentParser()
 
 parser.add_argument("--env", "-e", help="The environment we are running in", required=True)
-parser.add_argument("--conf", "-c", help="Path to the congig file. Default: config.ini", required=False, default="config.ini")
+parser.add_argument("--conf", "-c", help="Path to the config file. Default: config.ini", required=False, default="config.ini")
 
 args = parser.parse_args()
 
+# read the config file
 config = configparser.ConfigParser(interpolation=configparser.ExtendedInterpolation())
 config.read(args.conf)
 
+# get values for the relevant environment
 env_config = config[args.env]
 
+# print key/vals
 for key in env_config:
-  print(f"{key}={env_config[key]}")
+  print(f"{key.upper()}={env_config[key]}")
 

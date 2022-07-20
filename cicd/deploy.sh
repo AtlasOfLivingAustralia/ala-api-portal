@@ -1,56 +1,38 @@
 #!/bin/bash
-set -ux
+set -ueo pipefail
 
-# 1) CONFIG
-# read the configuration file to load variables into this shell script
-source config
+###
+# deploy the codepipeline for API documentation
 
-# 2) Creating the package with artifacts uploaded to the s3 bucket
-echo "Creating the package"
-aws cloudformation package --template-file template.yaml \
-        --s3-bucket $ARTIFACTS_BUCKET \
-        --output-template-file infra-packaged.template
+# get the environment
+branch=$(git branch --show-current)
+echo branch: $branch
 
-# 3) Validate the template
-echo "Validating the output template"
-aws cloudformation validate-template \
-  --template-body file://infra-packaged.template
+environment=$(./branch_2_env.py --branch $branch)
+echo environment: $environment
 
-# 3) Deploying the template
+# generate environment vars
+./gen_env_vars.py --env $environment > env.txt
+source env.txt
+rm env.txt
+
+# deploy/update the template
 echo "Deploying the output template"
 aws cloudformation deploy \
-    --template-file infra-packaged.template \
-    --stack-name $STACK_NAME \
+    --template-file pipeline.yaml \
+    --stack-name $PIPELINE_STACK_NAME \
+    --tags $PIPELINE_AWS_TAGS environment=$environment branch=$branch \
     --region $REGION \
     --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM \
     --parameter-overrides \
+        pEnvironment=$environment \
+        pCloudFormationServiceRole=$CLOUDFORMATION_SERVICE_ROLE \
+        pAppStackName=$APP_STACK_NAME \
+        pCodeBuildServiceRole=$CODEBUILD_SERVICE_ROLE \
+        pCodePipelineServiceRole=$CODEPIPELINE_SERVICE_ROLE \
         pArtifactsBucket=$ARTIFACTS_BUCKET \
-        pDomainName=$API_DOMAIN_NAME \
-        pCreateWAFAcl=$CREATE_WEB_ACL \
-        pRequireAPIKey=$REQUIRE_API_KEY \
-        pUpdateTime=$(date +%s) \
-         
-echo "Updated/Created stack $STACK_NAME successfully"
+        pGitHubRepositoryName=$GITHUB_REPO_NAME \
+        pGitHubOwner=$GITHUB_OWNER \
+        pGitHubBranch=$branch \
+        pCodestarConnection=$CODESTAR_CONNECTION
 
-# 4) Creating userdetails dashboard
-echo "Checking if the dashboard stack exists ..."
-
-if ! aws cloudformation describe-stacks --stack-name $DASHBOARD_STACK_NAME ; then
-
-        # 2) Creating userdetails dashboard
-        aws cloudformation create-stack \
-                --stack-name $DASHBOARD_STACK_NAME \
-                --region $REGION \
-                --template-body file://dashboard.yaml \
-                --capabilities CAPABILITY_IAM \
-
-else
-        echo -e "\nStack exists, attempting update ..."
-        #Update stack
-        aws cloudformation update-stack \
-                --stack-name $DASHBOARD_STACK_NAME \
-                --region $REGION \
-                --template-body file://dashboard.yaml \
-                --capabilities CAPABILITY_IAM \
-
-fi

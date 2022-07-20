@@ -1,0 +1,142 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: API docs infrastructure
+
+Parameters:
+  pEnvironment:
+    Type: String
+    Description: The AWS environment this belongs to
+  pBucketName:
+    Type: String
+    Description: The bucket name for the docs
+  pBucketPath:
+    Type: String
+    Description: Optional path that the documentation is stored under
+  pHostedZone:
+    Type: String
+    Description: The hosted zone the docs are accessed under
+  pSubDomain:
+    Type: String
+    Description: The subdomain the docs are accessed on
+  pSslCertificate:
+    Type: String
+    Description: The arn of the SSL certificate to be used 
+
+Resources:
+  
+  ApiDocsBucket:
+    Type: "AWS::S3::Bucket"
+    DeletionPolicy: Delete
+    Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: 'aws:kms'
+              KMSMasterKeyID: KMS-KEY-ARN
+      BucketName: !Sub ${pBucketName}-${pEnvironment}
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: TRUE
+        BlockPublicPolicy: TRUE
+        RestrictPublicBuckets: TRUE
+      Tags:
+        - Key: component
+          Value: storage
+
+  ApiDocsBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref ApiDocsBucket
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Action:
+              - 's3:GetObject'
+            Effect: Allow
+            Resource: !Join [ '', ['arn:aws:s3:::', !Ref ApiDocsBucket ,'/*' ]]
+            Principal: !Join [ '', [ 'arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ', !Ref ApiDocsCloudFrontOai ]]
+
+  ApiDocsDnsRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      Name: !Ref pSubDomain
+      Comment: !Sub API docs domain for the ${pEnvironment} environment
+      Type: A
+      AliasTarget:
+        DNSName: !GetAtt ApiDocsCloudFrontDistro.DomainName
+        HostedZoneId: Z2FDTNDATAQYW2
+      HostedZoneName: !Ref pHostedZone
+      Region: !Ref "AWS::Region"
+
+  ApiDocsCloudFrontDistro:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Aliases:
+          - !Sub "${pSubDomain}.${pHostedZone}"
+        CacheBehaviors:
+          - AllowedMethods: 
+              - GET
+              - HEAD
+            CachedMethods: 
+              - GET
+              - HEAD
+            CachePolicyId: !Ref ApiDocsCachePolicy
+            Compress: true
+            OriginRequestPolicyId: String
+            PathPattern: /
+            TargetOriginId: api-docs-s3
+            ViewerProtocolPolicy: redirect-to-https 
+        Comment: !Sub CF Distribution for the API Docs ${pEnvironment}
+        DefaultCacheBehavior:
+          TargetOriginId: api-docs-s3
+          ViewerProtocolPolicy: redirect-to-https 
+        DefaultRootObject: index.html
+        Enabled: true
+        HttpVersion: http2
+        IPV6Enabled: false
+        Origins:
+          - DomainName: !Sub ${pBucketName}.s3.{AWS::Region}.amazonaws.com
+            Id: api-docs-s3
+            S3OriginConfig:
+              OriginAccessIdentity: !Ref ApiDocsCloudFrontOai
+            OriginPath: !Ref pBucketPath
+        ViewerCertificate:
+          AcmCertificateArn: !Ref pSslCertificate
+          MinimumProtocolVersion: TLSv1.2_2021
+          SslSupportMethod: sni-only
+      Tags:
+        - Key: component
+          Value: cdn
+
+  ApiDocsCachePolicy:
+    Type: AWS::CloudFront::CachePolicy
+    Properties: 
+      CachePolicyConfig: 
+        Comment: !Sub CF Cache Policy for the API Docs ${pEnvironment}
+        DefaultTTL: 300
+        MaxTTL: 86400
+        MinTTL: 1
+        Name: !Sub Api docs cache Policy ${pEnvironment}
+        ParametersInCacheKeyAndForwardedToOrigin: 
+          CookiesConfig: 
+            CookieBehavior: none
+          EnableAcceptEncodingBrotli: true
+          EnableAcceptEncodingGzip: true
+          HeadersConfig: 
+            HeaderBehavior: none
+          QueryStringsConfig: 
+            QueryStringBehavior: whitelist
+            QueryStrings: 
+              - cb
+
+  ApiDocsCloudFrontOai:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: !Sub CF Cache Policy for the API Docs ${pEnvironment}
+
+
+Outputs:
+  ApiDocsBucketName:
+    Value: !Ref ApiDocsBucket
+  ApiDocsBucketArn:
+    Value: !GetAtt ApiDocsBucket.Arn

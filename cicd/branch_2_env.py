@@ -21,8 +21,8 @@ elif re.match('^staging$', args.branch):
   print('staging')
 elif re.match('^feature.*', args.branch):
   #print(f"Branch {args.branch} matched feature")
-  print('testing')
+  print('development')
 else:
   #print(f"Branch {args.branch} didnt match")
-  print('development')
+  print('testing')
    

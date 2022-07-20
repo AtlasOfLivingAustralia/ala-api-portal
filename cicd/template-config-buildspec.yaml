@@ -27,8 +27,9 @@ phases:
       - echo source branch is $BRANCH
       - environment=$(cicd/branch_2_env.py --branch $BRANCH)
       - echo Environment is $environment
+      - cicd/gen_env_vars.py --env $environment > env.txt
       - echo loading config..
-      - source userdetails/config
+      - source env.txt
     finally:
       - #echo This always runs
       - #notify Slack on failure
@@ -36,22 +37,6 @@ phases:
   build:
     commands:
       - echo Entered the build phase...
-      - echo Exporting openAPI spec
-      - if [ "$REST_API" == "true" ] ; then
-           aws apigateway get-export 
-             --rest-api-id $REST_API_ID
-             --export-type oas30
-             --stage-name $REST_STAGE_NAME
-             $REST_OPENAPI_EXPORT_FILENAME ;
-        fi
-      - if [ "$HTTP_API" == "true" ] ; then
-           aws apigatewayv2 export-api
-             --api-id $HTTP_API_ID
-             --output-type JSON
-             --specification OAS30
-             --stage-name $HTTP_DEV_STAGE_NAME
-             $HTTP_OPENAPI_EXPORT_FILENAME ;
-        fi
     finally:
       - #echo This always runs
       - #notify Slack on failure

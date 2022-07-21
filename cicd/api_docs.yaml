@@ -73,23 +73,18 @@ Resources:
       DistributionConfig:
         Aliases:
           - !Sub "${pSubDomain}.${pHostedZone}"
-        CacheBehaviors:
-          - AllowedMethods: 
-              - GET
-              - HEAD
-            CachedMethods: 
-              - GET
-              - HEAD
-            CachePolicyId: !Ref ApiDocsCachePolicy
-            Compress: true
-            PathPattern: /
-            TargetOriginId: api-docs-s3
-            ViewerProtocolPolicy: redirect-to-https 
         Comment: !Sub CF Distribution for the API Docs ${pEnvironment}
         DefaultCacheBehavior:
+          AllowedMethods: 
+            - GET
+            - HEAD
+          CachedMethods: 
+            - GET
+            - HEAD
+          CachePolicyId: !Ref ApiDocsCachePolicy 
+          Compress: true
           TargetOriginId: api-docs-s3
           ViewerProtocolPolicy: redirect-to-https 
-          CachePolicyId: !Ref ApiDocsCachePolicy 
         DefaultRootObject: index.html
         Enabled: true
         HttpVersion: http2

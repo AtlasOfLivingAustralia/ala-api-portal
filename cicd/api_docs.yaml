@@ -64,7 +64,7 @@ Resources:
       AliasTarget:
         DNSName: !GetAtt ApiDocsCloudFrontDistro.DomainName
         HostedZoneId: Z2FDTNDATAQYW2
-      HostedZoneName: !Ref pHostedZone
+      HostedZoneName: !Sub "${pHostedZone}."
       Region: !Ref "AWS::Region"
 
   ApiDocsCloudFrontDistro:

@@ -52,7 +52,8 @@ Resources:
               - 's3:GetObject'
             Effect: Allow
             Resource: !Join [ '', ['arn:aws:s3:::', !Ref ApiDocsBucket ,'/*' ]]
-            Principal: !Join [ '', [ 'arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ', !Ref ApiDocsCloudFrontOai ]]
+            Principal: 
+              AWS: !Join [ '', [ 'arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ', !Ref ApiDocsCloudFrontOai ]]
 
   ApiDocsDnsRecord:
     Type: AWS::Route53::RecordSet

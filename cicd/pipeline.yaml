@@ -104,7 +104,7 @@ Resources:
         Type: S3
         Location: !Ref pArtifactsBucket
       Stages:
-      - Name: Checkout Source
+      - Name: Checkout_Source
         Actions:
           - Name: CheckoutSrc
             ActionTypeId:
@@ -121,7 +121,7 @@ Resources:
             Namespace: CheckoutSrcNS
             OutputArtifacts:
               - Name: 'ApiDocsSourceArtifact'
-      - Name: Deploy Infrastructure
+      - Name: Deploy_Infrastructure
         Actions:
           - Name: BuildTemplateConfig
             ActionTypeId:
@@ -159,7 +159,7 @@ Resources:
             Namespace: CloudFormationOutNS
             OutputArtifacts: []
             RunOrder: 2         
-      - Name: Publish Documentation
+      - Name: Publish_Documentation
         Actions:
           - Name: BuildApiDocs
             ActionTypeId:

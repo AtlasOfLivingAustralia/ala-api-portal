@@ -28,7 +28,7 @@ template_vals = {
     "sub_domain"      : os.environ['SUB_DOMAIN'],
     "ssl_certificate" : os.environ['SSL_CERTIFICATE'],
     "branch"          : os.environ['SRC_BRANCH'],
-    "commit_id"       : os.environ['COMMIT_IT'],
+    "commit_id"       : os.environ['COMMIT_ID'],
     "build"           : os.environ['CODEBUILD_BUILD_NUMBER']
 }
 

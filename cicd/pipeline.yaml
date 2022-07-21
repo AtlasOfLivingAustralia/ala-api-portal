@@ -73,7 +73,7 @@ Resources:
       Source:
         Type: CODEPIPELINE
         BuildSpec: cicd/build_docs_buildspec.yaml
-      TimeoutInMinutes: 5
+      TimeoutInMinutes: 10
 
   EmptyBucket:
     Type: AWS::CodeBuild::Project

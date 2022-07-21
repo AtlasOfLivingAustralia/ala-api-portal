@@ -50,17 +50,27 @@ We support multiple ways to obtain an access token:
  
  - [Client Credentials](#client-credentials)
  - [Authentication Code Flow](#authentication-code-flow)
- - [Implicit Flow](#implicit-flow)
+ - [Implicit Flow](#implicit-flow) (Not recommended)
 
  Which authenitcation method should I use?
 
+**Machine to Machine (No end user)**
+
  Anytime the the system is not concerned with end user identity then [Client Credentials](#client-credentials) should be used. The use case would be a headless client application that does not have the ability for user interaction. In this case the system may need to be authentcated however an end user will not.
 
- If the end user does need to be authenticated then either [Authentication Code Flow](#authentication-code-flow) or [Implicit Flow](#implicit-flow). The consideration as to which authentication flow should be used can be determined if the application client is public or private. For private client application (eg. server side web application) [Authentication Code Flow](#authentication-code-flow) is the most suitable as is both authenticated the end user and the client application. For public client applications (eg. SPA app or javascript application) [Implicit Flow](#implicit-flow) is more suitable as the access_token is returned directly to the client without the secure exchange of the authentication code for the access_token needed with the [Authentication Code Flow](#authentication-code-flow).
+**End User Authentication**
 
-You will need a `clientId` and possible `clientSecret` in order to authenticate. Please contact support@ala.org.au to obtain these.
+If the end user *does* need to be authenticated then [Authentication Code Flow](#authentication-code-flow) should be used. *How* you use Authentication Code Flow depends on whether the application client is public or private. Regardless of your client's publicity, [Proof Key for Code Exchange](https://oauth.net/2/pkce/) (or *PKCE*) can, and should, be used as an additional security measure when authenticating within your application. 
 
-See: [https://auth0.com/docs/get-started/authentication-and-authorization-flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow)
+For <u>private</u> client applications (eg. server side web application), you will need a `clientId` and `clientSecret` in order to authenticate. Please contact [support@ala.org.au](mailto:support@ala.org.au) to obtain these.
+
+For <u>public</u> client applications (eg. Single-Page or JavaScript application), you will just need a `clientId`. [Implicit Flow](#implicit-flow) can also be used for public client authentication, however is discouraged as it is deprecated & insecure.
+
+Example implementations of Authentication Code Flow using PKCE are available on the [oidc-auth-examples](https://github.com/AtlasOfLivingAustralia/oidc-auth-examples) GitHub repository.
+
+**Additional Resources**
+
+See [https://auth0.com/docs/get-started/authentication-and-authorization-flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow)
 
 See [OIDC Authentication for R](https://search.r-project.org/CRAN/refmans/openeo/html/OIDCAuth.html)
 
@@ -146,7 +156,7 @@ Header Parameters:
 
 Parameter | Mandetory | Default | Description
 --------- | --------- | ------- | -----------
-Authorization | Y | | base64 encoded `<clientId>:<clientSecret>`
+Authorization | N | | base64 encoded `<clientId>:<clientSecret>`. Not required for authenticating public clients.
 Content-Type | Y | | `application/x-www-form-urlencoded`
 
 Request Parameters:

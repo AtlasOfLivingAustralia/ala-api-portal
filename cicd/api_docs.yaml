@@ -58,7 +58,7 @@ Resources:
   ApiDocsDnsRecord:
     Type: AWS::Route53::RecordSet
     Properties:
-      Name: !Ref pSubDomain
+      Name: !Sub "${pSubDomain}.${pHostedZone}"
       Comment: !Sub API docs domain for the ${pEnvironment} environment
       Type: A
       AliasTarget:

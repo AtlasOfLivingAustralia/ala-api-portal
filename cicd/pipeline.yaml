@@ -51,8 +51,48 @@ Resources:
           - Name: "AWS_ARTIFACTS_BUCKET"
             Value: !Ref pArtifactsBucket
       Source:
-        Type:  CODEPIPELINE
-        BuildSpec: cicd/template-config-buildspec.yaml
+        Type: CODEPIPELINE
+        BuildSpec: cicd/template_config_buildspec.yaml
+      TimeoutInMinutes: 5
+
+  BuildApiDocs:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Name: !Sub api-docs-build-docs-${pEnvironment}
+      Description: Build the API docs
+      ServiceRole: !Ref pCodeBuildServiceRole
+      Artifacts:
+        Type: CODEPIPELINE
+      Environment:
+        Type: LINUX_CONTAINER
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: aws/codebuild/standard:6.0
+        EnvironmentVariables:
+          - Name: "AWS_ARTIFACTS_BUCKET"
+            Value: !Ref pArtifactsBucket
+      Source:
+        Type: CODEPIPELINE
+        BuildSpec: cicd/build_docs_buildspec.yaml
+      TimeoutInMinutes: 5
+
+  EmptyBucket:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Name: !Sub api-docs-empty-bucket-${pEnvironment}
+      Description: Empty the documentation s3 bucket so it can be deleted
+      ServiceRole: !Ref pCodeBuildServiceRole
+      Artifacts:
+        Type: CODEPIPELINE
+      Environment:
+        Type: LINUX_CONTAINER
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: aws/codebuild/standard:6.0
+        EnvironmentVariables:
+          - Name: "AWS_ARTIFACTS_BUCKET"
+            Value: !Ref pArtifactsBucket
+      Source:
+        Type: CODEPIPELINE
+        BuildSpec: cicd/empty_bucket_buildspec.yaml
       TimeoutInMinutes: 5
 
   Pipeline:
@@ -64,7 +104,7 @@ Resources:
         Type: S3
         Location: !Ref pArtifactsBucket
       Stages:
-      - Name: Source
+      - Name: Checkout Source
         Actions:
           - Name: CheckoutSrc
             ActionTypeId:
@@ -81,7 +121,7 @@ Resources:
             Namespace: CheckoutSrcNS
             OutputArtifacts:
               - Name: 'ApiDocsSourceArtifact'
-      - Name: Deploy
+      - Name: Deploy Infrastructure
         Actions:
           - Name: BuildTemplateConfig
             ActionTypeId:
@@ -119,6 +159,78 @@ Resources:
             Namespace: CloudFormationOutNS
             OutputArtifacts: []
             RunOrder: 2         
+      - Name: Publish Documentation
+        Actions:
+          - Name: BuildApiDocs
+            ActionTypeId:
+              Owner: AWS
+              Category: Build
+              Version: 1
+              Provider: CodeBuild
+            Configuration:
+              ProjectName: !Ref BuildApiDocs
+              EnvironmentVariables: '[
+                                       { "name":"SRC_BRANCH", "value":"#{CheckoutSrcNS.BranchName}" },
+                                       { "name":"COMMIT_ID", "value":"#{CheckoutSrcNS.CommitId}" }
+                                     ]'
+            Namespace: BuildApiDocsNS
+            InputArtifacts:
+              - Name: 'ApiDocsSourceArtifact'
+            OutputArtifacts:
+              - Name: BuildApiDocsArtifact
+            RunOrder: 1
+          - Name: UploadDocsToS3
+            ActionTypeId:
+              Owner: AWS
+              Category: Deploy
+              Version: 1
+              Provider: S3
+            Configuration:
+              BucketName: '#{BuildTemplateConfigNS.DOCUMENTATION_BUCKET}'
+              ObjectKey: '#{BuildTemplateConfigNS.BUCKET_PATH}'
+              Extract: 'true'
+              CacheControl: "public, max-age=#{BuildTemplateConfigNS.MAX_AGE}"
+            OutputArtifacts: []
+            InputArtifacts:
+              - Name: BuildApiDocsArtifact
+            RunOrder: 2
+      - Name: Teardown
+        Actions:
+          - Name: Approval
+            ActionTypeId:
+              Owner: AWS
+              Category: Approval
+              Version: 1
+              Provider: Manual
+            Configuration:
+              CustomData: Approval required to tear down this stack
+            RunOrder: 1
+          - Name: EmptyBucket
+            ActionTypeId:
+              Owner: AWS
+              Category: Build
+              Version: 1
+              Provider: CodeBuild
+            Configuration:
+              ProjectName: !Ref EmptyBucket
+              EnvironmentVariables: '[
+                                       { "name":"DOCUMENTATION_BUCKET", "value":"#{BuildTemplateConfigNS.DOCUMENTATION_BUCKET}" }
+                                     ]'
+            Namespace: EmptyBucketNS
+            InputArtifacts:
+              - Name: 'ApiDocsSourceArtifact'
+            RunOrder: 2
+          - Name: TeardownDocs
+            ActionTypeId:
+              Owner: AWS
+              Category: Deploy
+              Version: 1
+              Provider: CloudFormation
+            Configuration:
+              ActionMode: DELETE_ONLY
+              StackName: !Ref pAppStackName
+              RoleArn: !Ref pCloudFormationServiceRole
+            RunOrder: 3
 
 Outputs:
   PipelineUrl:

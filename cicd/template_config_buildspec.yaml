@@ -1,4 +1,8 @@
 version: 0.2
+###
+# This build project exports any variables needed for later stages and actions
+# and builds the template config used to launch the API docs CloudFormation
+# template
 
 env:
   shell: bash
@@ -6,6 +10,8 @@ env:
     DEBIAN_FRONTEND: "noninteractive"
   exported-variables:
     - CODEBUILD_BUILD_NUMBER
+    - DOCUMENTATION_BUCKET
+    - BUCKET_PATH
 
 phases:
 

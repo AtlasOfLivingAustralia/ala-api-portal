@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
 ###
-# genarate the template configuration
+# genarate the template configuration, used to pass in the the parameters to the
+# CloudFormation template and add aws resource tags
 
 import argparse
 import os
@@ -18,7 +19,7 @@ template_loader = jinja2.FileSystemLoader(searchpath="./")
 template_env = jinja2.Environment(loader=template_loader)
 template = template_env.get_template(args.template)
 
-# get the values
+# get the values from the environment
 template_vals = {
     "environment"     : os.environ['ENVIRONMENT'],
     "bucket_name"     : os.environ['DOCUMENTATION_BUCKET'],
@@ -27,8 +28,10 @@ template_vals = {
     "sub_domain"      : os.environ['SUB_DOMAIN'],
     "ssl_certificate" : os.environ['SSL_CERTIFICATE'],
     "branch"          : os.environ['SRC_BRANCH'],
+    "commit_id"       : os.environ['COMMIT_IT'],
     "build"           : os.environ['CODEBUILD_BUILD_NUMBER']
 }
+
 # do the substitution
 output_text = template.render(template_vals)
 

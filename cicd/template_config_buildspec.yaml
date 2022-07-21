@@ -12,6 +12,7 @@ env:
     - CODEBUILD_BUILD_NUMBER
     - DOCUMENTATION_BUCKET
     - BUCKET_PATH
+    - MAX_AGE
 
 phases:
 

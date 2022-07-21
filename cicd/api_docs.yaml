@@ -65,7 +65,6 @@ Resources:
         DNSName: !GetAtt ApiDocsCloudFrontDistro.DomainName
         HostedZoneId: Z2FDTNDATAQYW2
       HostedZoneName: !Sub "${pHostedZone}."
-      Region: !Ref "AWS::Region"
 
   ApiDocsCloudFrontDistro:
     Type: AWS::CloudFront::Distribution

@@ -166,6 +166,10 @@ The postman http client supports the implicit authorisation flow. When configure
 
 >
 
+**Implicit Authentication is deprecated and not recommended for use due to security concerns.**
+
+**Please refer to [Authentication Code Flow using PKCE](#authentication-code-flow) above.**
+
 The Implicit Flow is used for apps that have no “back end” logic on the web server, like a Javascript app.
 
 The Implicit flow presents an authorisation page that will prompt a user for credentials before redirecting to the supplied `redirect_url` with the access_token.

@@ -32,7 +32,7 @@ Resources:
           - ServerSideEncryptionByDefault:
               SSEAlgorithm: 'aws:kms'
               KMSMasterKeyID: KMS-KEY-ARN
-      BucketName: !Sub ${pBucketName}-${pEnvironment}
+      BucketName: !Sub ${pBucketName}
       PublicAccessBlockConfiguration:
         BlockPublicAcls: TRUE
         BlockPublicPolicy: TRUE

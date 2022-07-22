@@ -8,6 +8,8 @@ env:
 phases:
   install:
     on-failure: ABORT
+    runtime-versions:
+      nodejs: 16
     commands:
       # - sudo apt-get update -y
       # - sudo apt install -y ruby ruby-dev build-essential libffi-dev zlib1g-dev liblzma-dev nodejs patch
@@ -16,7 +18,6 @@ phases:
       - BUNDLE_GEMFILE="$(pwd)/slate/Gemfile" bundle install
   pre_build:
     commands:
-      - npm --version
       - npm --prefix ./swagger-ui install
   build:
     commands:

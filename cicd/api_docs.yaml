@@ -89,7 +89,7 @@ Resources:
             Id: api-docs-s3
             S3OriginConfig:
               OriginAccessIdentity: !Join ['', ['origin-access-identity/cloudfront/', !Ref ApiDocsCloudFrontOai ]]
-            OriginPath: !Ref pBucketPath
+            OriginPath: !Sub "/${pBucketPath}"
         ViewerCertificate:
           AcmCertificateArn: !Ref pSslCertificate
           MinimumProtocolVersion: TLSv1.2_2021

@@ -179,6 +179,21 @@ Resources:
             OutputArtifacts:
               - Name: BuildApiDocsArtifact
             RunOrder: 1
+          - Name: EmptyBucket
+            ActionTypeId:
+              Owner: AWS
+              Category: Build
+              Version: 1
+              Provider: CodeBuild
+            Configuration:
+              ProjectName: !Ref EmptyBucket
+              EnvironmentVariables: '[
+                                       { "name":"DOCUMENTATION_BUCKET", "value":"#{ExportConfigNS.DOCUMENTATION_BUCKET}" }
+                                     ]'
+            Namespace: EmptyBucketNS
+            InputArtifacts:
+              - Name: 'ApiDocsSourceArtifact'
+            RunOrder: 2
           - Name: UploadDocsToS3
             ActionTypeId:
               Owner: AWS
@@ -193,7 +208,7 @@ Resources:
             OutputArtifacts: []
             InputArtifacts:
               - Name: BuildApiDocsArtifact
-            RunOrder: 2
+            RunOrder: 3
       - Name: Teardown
         Actions:
           - Name: Approval

@@ -1,7 +1,8 @@
 version: 0.2
 ###
 # Detetes all objects from the documentation bucket, this needs to be done 
-# before the bucket can be removed
+# before publish so that old files are removed and before the teardown action
+# so the bucket can be removed
 
 env:
   shell: bash

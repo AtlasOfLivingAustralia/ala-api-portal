@@ -35,7 +35,7 @@ Parameters:
 
 Resources:
  
-  BuildTemplateConfig:
+  ExportConfig:
     Type: AWS::CodeBuild::Project
     Properties:
       Name: !Sub api-docs-template-config-${pEnvironment}
@@ -52,7 +52,7 @@ Resources:
             Value: !Ref pArtifactsBucket
       Source:
         Type: CODEPIPELINE
-        BuildSpec: cicd/template_config_buildspec.yaml
+        BuildSpec: cicd/export_config_buildspec.yaml
       TimeoutInMinutes: 5
 
   BuildApiDocs:
@@ -121,26 +121,26 @@ Resources:
             Namespace: CheckoutSrcNS
             OutputArtifacts:
               - Name: 'ApiDocsSourceArtifact'
-      - Name: Deploy_Infrastructure
-        Actions:
-          - Name: BuildTemplateConfig
+          - Name: ExportConfig
             ActionTypeId:
               Owner: AWS
               Category: Build
               Version: 1
               Provider: CodeBuild
             Configuration:
-              ProjectName: !Ref BuildTemplateConfig
+              ProjectName: !Ref ExportConfig
               EnvironmentVariables: '[
                                        { "name":"SRC_BRANCH", "value":"#{CheckoutSrcNS.BranchName}" },
                                        { "name":"COMMIT_ID", "value":"#{CheckoutSrcNS.CommitId}" }
                                      ]'
-            Namespace: BuildTemplateConfigNS
+            Namespace: ExportConfigNS
             InputArtifacts:
               - Name: 'ApiDocsSourceArtifact'
             OutputArtifacts:
-              - Name: BuildTemplateConfigArtifact
+              - Name: ExportConfigArtifact
             RunOrder: 1
+      - Name: Deploy_Infrastructure
+        Actions:
           - Name: DeployCFStack
             ActionTypeId:
               Owner: AWS
@@ -148,14 +148,14 @@ Resources:
               Version: 1
               Provider: CloudFormation
             Configuration:
-              TemplatePath: 'BuildTemplateConfigArtifact::cicd/api_docs.yaml'
-              TemplateConfiguration: 'BuildTemplateConfigArtifact::cicd/template_config.json'
+              TemplatePath: 'ExportConfigArtifact::cicd/api_docs.yaml'
+              TemplateConfiguration: 'ExportConfigArtifact::cicd/template_config.json'
               ActionMode: REPLACE_ON_FAILURE
               Capabilities: CAPABILITY_IAM,CAPABILITY_AUTO_EXPAND
               RoleArn: !Ref pCloudFormationServiceRole
               StackName: !Ref pAppStackName
             InputArtifacts:
-              - Name: 'BuildTemplateConfigArtifact'
+              - Name: 'ExportConfigArtifact'
             Namespace: CloudFormationOutNS
             OutputArtifacts: []
             RunOrder: 2         
@@ -186,10 +186,10 @@ Resources:
               Version: 1
               Provider: S3
             Configuration:
-              BucketName: '#{BuildTemplateConfigNS.DOCUMENTATION_BUCKET}'
-              ObjectKey: '#{BuildTemplateConfigNS.BUCKET_PATH}'
+              BucketName: '#{ExportConfigNS.DOCUMENTATION_BUCKET}'
+              ObjectKey: '#{ExportConfigNS.BUCKET_PATH}'
               Extract: 'true'
-              CacheControl: "public, max-age=#{BuildTemplateConfigNS.MAX_AGE}"
+              CacheControl: "public, max-age=#{ExportConfigNS.MAX_AGE}"
             OutputArtifacts: []
             InputArtifacts:
               - Name: BuildApiDocsArtifact
@@ -214,7 +214,7 @@ Resources:
             Configuration:
               ProjectName: !Ref EmptyBucket
               EnvironmentVariables: '[
-                                       { "name":"DOCUMENTATION_BUCKET", "value":"#{BuildTemplateConfigNS.DOCUMENTATION_BUCKET}" }
+                                       { "name":"DOCUMENTATION_BUCKET", "value":"#{ExportConfigNS.DOCUMENTATION_BUCKET}" }
                                      ]'
             Namespace: EmptyBucketNS
             InputArtifacts:

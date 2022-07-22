@@ -8,5 +8,5 @@ env:
 phases:
   build:
     commands:
-      - echo The CloudFront distribution is: $CLOUDFRONT_DISTRIBUTION_ID
+      - echo The CloudFront distribution is $CLOUDFRONT_DISTRIBUTION_ID
       - aws aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID

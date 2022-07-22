@@ -241,6 +241,8 @@ Resources:
                                        { "name":"CLOUDFRONT_DISTRIBUTION_ID", "value":"#{CloudFormationOutNS.ApiDocsCloudFrontDistributionId}" }
                                      ]'
             Namespace: InvalidateCacheNS
+            InputArtifacts:
+              - Name: 'ApiDocsSourceArtifact'
             RunOrder: 2
       - Name: Teardown
         Actions:
@@ -265,6 +267,8 @@ Resources:
                                        { "name":"DOCUMENTATION_BUCKET", "value":"#{ExportConfigNS.DOCUMENTATION_BUCKET}" }
                                      ]'
             Namespace: EmptyBucketNS
+            InputArtifacts:
+              - Name: 'ApiDocsSourceArtifact'
             RunOrder: 2
           - Name: TeardownDocs
             ActionTypeId:

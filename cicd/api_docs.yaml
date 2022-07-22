@@ -27,11 +27,6 @@ Resources:
     Type: "AWS::S3::Bucket"
     DeletionPolicy: Delete
     Properties:
-      BucketEncryption:
-        ServerSideEncryptionConfiguration:
-          - ServerSideEncryptionByDefault:
-              SSEAlgorithm: 'aws:kms'
-              KMSMasterKeyID: KMS-KEY-ARN
       BucketName: !Sub ${pBucketName}
       PublicAccessBlockConfiguration:
         BlockPublicAcls: TRUE

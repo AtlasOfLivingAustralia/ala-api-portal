@@ -16,6 +16,7 @@ phases:
       - BUNDLE_GEMFILE="$(pwd)/slate/Gemfile" bundle install
   pre_build:
     commands:
+      - npm --version
       - npm --prefix ./swagger-ui install
   build:
     commands:

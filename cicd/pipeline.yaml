@@ -210,7 +210,7 @@ Resources:
               EnvironmentVariables: '[
                                        { "name":"DOCUMENTATION_BUCKET", "value":"#{ExportConfigNS.DOCUMENTATION_BUCKET}" }
                                      ]'
-            Namespace: EmptyBucketNS
+            Namespace: EmptyBucketPreDeployNS
             InputArtifacts:
               - Name: 'ApiDocsSourceArtifact'
             RunOrder: 2
@@ -266,7 +266,7 @@ Resources:
               EnvironmentVariables: '[
                                        { "name":"DOCUMENTATION_BUCKET", "value":"#{ExportConfigNS.DOCUMENTATION_BUCKET}" }
                                      ]'
-            Namespace: EmptyBucketNS
+            Namespace: EmptyBucketPreDeleteNS
             InputArtifacts:
               - Name: 'ApiDocsSourceArtifact'
             RunOrder: 2

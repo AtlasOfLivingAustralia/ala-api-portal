@@ -131,3 +131,5 @@ Outputs:
     Value: !Ref ApiDocsBucket
   ApiDocsBucketArn:
     Value: !GetAtt ApiDocsBucket.Arn
+  ApiDocsCloudFrontDistributionId:
+    Value: !Ref ApiDocsCloudFrontDistro

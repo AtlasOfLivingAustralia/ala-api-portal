@@ -1,0 +1,12 @@
+version: 0.2
+###
+# Invalidate the CloudFront cache, this gets done immediately after a deploy
+
+env:
+  shell: bash
+
+phases:
+  build:
+    commands:
+      - echo The CloudFront distribution is: $CLOUDFRONT_DISTRIBUTION
+      - aws aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION

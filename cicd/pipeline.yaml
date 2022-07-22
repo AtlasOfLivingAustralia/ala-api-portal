@@ -95,6 +95,26 @@ Resources:
         BuildSpec: cicd/empty_bucket_buildspec.yaml
       TimeoutInMinutes: 5
 
+  InvalidateCache:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Name: !Sub api-docs-invalidate-cache-${pEnvironment}
+      Description: Invalidate the CloudFront cache after deploy
+      ServiceRole: !Ref pCodeBuildServiceRole
+      Artifacts:
+        Type: CODEPIPELINE
+      Environment:
+        Type: LINUX_CONTAINER
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: aws/codebuild/standard:6.0
+        EnvironmentVariables:
+          - Name: "AWS_ARTIFACTS_BUCKET"
+            Value: !Ref pArtifactsBucket
+      Source:
+        Type: CODEPIPELINE
+        BuildSpec: cicd/invalidate_cache_buildspec.yaml
+      TimeoutInMinutes: 5
+
   Pipeline:
     Type: "AWS::CodePipeline::Pipeline"
     Properties:
@@ -121,6 +141,8 @@ Resources:
             Namespace: CheckoutSrcNS
             OutputArtifacts:
               - Name: 'ApiDocsSourceArtifact'
+      - Name: Deploy_Infrastructure
+        Actions:
           - Name: ExportConfig
             ActionTypeId:
               Owner: AWS
@@ -139,8 +161,6 @@ Resources:
             OutputArtifacts:
               - Name: ExportConfigArtifact
             RunOrder: 1
-      - Name: Deploy_Infrastructure
-        Actions:
           - Name: DeployCFStack
             ActionTypeId:
               Owner: AWS
@@ -209,6 +229,21 @@ Resources:
             InputArtifacts:
               - Name: BuildApiDocsArtifact
             RunOrder: 3
+          - Name: InvalidateCache
+            ActionTypeId:
+              Owner: AWS
+              Category: Build
+              Version: 1
+              Provider: CodeBuild
+            Configuration:
+              ProjectName: !Ref InvalidateCache
+              EnvironmentVariables: '[
+                                       { "name":"CLOUDFRONT_DISTRIBUTION_ID", "value":"#{CloudFormationOutNS.ApiDocsCloudFrontDistributionId}" }
+                                     ]'
+            Namespace: EmptyBucketNS
+            InputArtifacts:
+              - Name: 'ApiDocsSourceArtifact'
+            RunOrder: 2
       - Name: Teardown
         Actions:
           - Name: Approval

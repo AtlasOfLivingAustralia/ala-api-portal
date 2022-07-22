@@ -243,7 +243,7 @@ Resources:
             Namespace: InvalidateCacheNS
             InputArtifacts:
               - Name: 'ApiDocsSourceArtifact'
-            RunOrder: 2
+            RunOrder: 4
       - Name: Teardown
         Actions:
           - Name: Approval

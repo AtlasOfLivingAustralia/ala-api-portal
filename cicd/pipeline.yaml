@@ -38,7 +38,7 @@ Resources:
   ExportConfig:
     Type: AWS::CodeBuild::Project
     Properties:
-      Name: !Sub api-docs-template-config-${pEnvironment}
+      Name: !Sub api-docs-export-config-${pEnvironment}
       Description: Load the environment and build the CloudFormation template config file
       ServiceRole: !Ref pCodeBuildServiceRole
       Artifacts:
@@ -118,7 +118,7 @@ Resources:
   Pipeline:
     Type: "AWS::CodePipeline::Pipeline"
     Properties:
-      Name: !Sub 1-apidocs-${pEnvironment}
+      Name: !Sub api-docs-${pEnvironment}
       RoleArn: !Ref pCodePipelineServiceRole
       ArtifactStore:
         Type: S3

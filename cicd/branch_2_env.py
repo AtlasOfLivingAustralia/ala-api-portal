@@ -14,15 +14,15 @@ args = parser.parse_args()
 
 # associate the branch with an environmant 
 if re.match('^production$', args.branch):
-  #print(f"Branch {args.branch} matched main")
+  #print(f"Branch {args.branch} matched production")
   print('production')
 elif re.match('^staging$', args.branch):
-  #print(f"Branch {args.branch} matched develop")
+  #print(f"Branch {args.branch} matched staging")
   print('staging')
-elif re.match('^feature.*', args.branch):
-  #print(f"Branch {args.branch} matched feature")
+elif re.match('^testing$', args.branch):
+  #print(f"Branch {args.branch} matched testing")
   print('development')
 else:
   #print(f"Branch {args.branch} didnt match")
-  print('testing')
+  print('development')
    

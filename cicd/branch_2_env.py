@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
 ###
-# convert the current branch to an environment, used to load the appropriate environment vars
+# convert the current code branch to an environment, used to load the appropriate environment vars
+# Usage: ./branch_2_env.py --branch [code-branch]
 
 import argparse
 import re
@@ -13,15 +14,15 @@ parser.add_argument("--branch", "-b", help="The code branch that triggered this 
 args = parser.parse_args()
 
 # associate the branch with an environmant 
-if re.match('^production$', args.branch):
-  #print(f"Branch {args.branch} matched production")
+if re.match('^main$', args.branch):
+  #print(f"Branch {args.branch} matched main")
   print('production')
-elif re.match('^staging$', args.branch):
-  #print(f"Branch {args.branch} matched staging")
+elif re.match('^release.*$', args.branch):
+  #print(f"Branch {args.branch} matched release")
   print('staging')
 elif re.match('^testing$', args.branch):
   #print(f"Branch {args.branch} matched testing")
-  print('development')
+  print('testing')
 else:
   #print(f"Branch {args.branch} didnt match")
   print('development')

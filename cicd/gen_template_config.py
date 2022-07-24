@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 
 ###
-# genarate the template configuration, used to pass in the the parameters to the
+# Genarate the template configuration, used to pass in the parameters to the
 # CloudFormation template and add aws resource tags
+# Usage: gen_template_config.py --template [/path/to/template_config.json]
 
 import argparse
 import os

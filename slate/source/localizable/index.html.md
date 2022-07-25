@@ -50,7 +50,7 @@ We support multiple ways to obtain an access token:
  
  - [Client Credentials](#client-credentials)
  - [Authentication Code Flow](#authentication-code-flow)
- - [Implicit Flow](#implicit-flow) (Not recommended)
+ - [Implicit Flow](#implicit-flow)
 
  Which authenitcation method should I use?
 
@@ -64,11 +64,11 @@ If the end user *does* need to be authenticated then [Authentication Code Flow](
 
 For <u>private</u> client applications (eg. server side web application), you will need a `clientId` and `clientSecret` in order to authenticate. Please contact [support@ala.org.au](mailto:support@ala.org.au) to obtain these.
 
-For <u>public</u> client applications (eg. Single-Page or JavaScript application), you will just need a `clientId`. [Implicit Flow](#implicit-flow) can also be used for public client authentication, however is discouraged as it is deprecated & insecure.
-
-Example implementations of Authentication Code Flow using PKCE are available on the [oidc-auth-examples](https://github.com/AtlasOfLivingAustralia/oidc-auth-examples) GitHub repository.
+For <u>public</u> client applications (eg. Single-Page or JavaScript application), you will just need a `clientId`. [Implicit Flow](#implicit-flow) can also be used for public client authentication, however [Authentication Code Flow using PKCE](#authentication-code-flow) is the recommended mechanism.
 
 **Additional Resources**
+
+See [Authentication Code Flow using PKCE - Examples](https://github.com/AtlasOfLivingAustralia/oidc-auth-examples)
 
 See [https://auth0.com/docs/get-started/authentication-and-authorization-flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow)
 
@@ -207,10 +207,6 @@ The postman http client supports the implicit authorisation flow. When configure
 
 >
 
-**Implicit Authentication is deprecated and not recommended for use due to security concerns.**
-
-**Please refer to [Authentication Code Flow using PKCE](#authentication-code-flow) above.**
-
 The Implicit Flow is used for apps that have no “back end” logic on the web server, like a Javascript app.
 
 The Implicit flow presents an authorisation page that will prompt a user for credentials before redirecting to the supplied `redirect_url` with the access_token.
@@ -225,6 +221,8 @@ response_type | Y | | Set to `token`
 client_id | Y | | the client id
 scope | N | | A space separated list of scopes that have been approved for the API Authorization client. These scopes will be included in the Access Token that is returned.
 redirect_uri | Y | | The URL where the authentication server redirects the browser after the user is authorizes.
+
+[Authentication Code Flow using PKCE](#authentication-code-flow) is recommended for authenticating public clients, as Implicit Authentication reveals the `accessToken` when the end-user is redirected back to the application, introducing a security risk.
 
 # Products
 <!--

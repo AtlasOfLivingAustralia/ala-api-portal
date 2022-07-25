@@ -118,7 +118,7 @@ Resources:
   Pipeline:
     Type: "AWS::CodePipeline::Pipeline"
     Properties:
-      Name: !Sub api-docs-${pEnvironment}
+      Name: !Sub api-docs-portal-${pEnvironment}
       RoleArn: !Ref pCodePipelineServiceRole
       ArtifactStore:
         Type: S3

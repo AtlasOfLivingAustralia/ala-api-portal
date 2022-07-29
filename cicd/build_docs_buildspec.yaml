@@ -1,6 +1,6 @@
 version: 0.2
 ###
-# This build project builds the documentation portal ready for upload to s3
+# This build project builds the documentation portal files ready for upload to s3
 
 env:
   shell: bash
@@ -9,7 +9,7 @@ phases:
   install:
     on-failure: ABORT
     runtime-versions:
-      nodejs: 16
+      nodejs: 14
     commands:
       # - sudo apt-get update -y
       # - sudo apt install -y ruby ruby-dev build-essential libffi-dev zlib1g-dev liblzma-dev nodejs patch

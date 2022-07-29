@@ -2,7 +2,8 @@
 set -ueo pipefail
 
 ###
-# deploy the codepipeline for API documentation
+# Deploy the codepipeline for API documentation.
+# You must have AWS CLI authentication for this to run. 
 
 # get the branch
 branch=$(git branch --show-current)

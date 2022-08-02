@@ -42,7 +42,7 @@ API Endpoint: https://apis.ala.org.au
 
 Most of the ALA APIs are publicly accessible and do not required authentication. For the API endpoints that are protected a JWT access token is used to authenticate requests.
 
-Open ID connect is used to obtain an access token, once an access token is obtained it should be passed as a bearer token in the HTTP Authentication header.
+Open ID Connect is used to obtain an access token, once an access token is obtained it should be passed as a bearer token in the HTTP Authentication header.
 
 `Authorization: Bearer <access_token>`
 
@@ -54,17 +54,58 @@ We support multiple ways to obtain an access token:
 
  Which authenitcation method should I use?
 
+**Machine to Machine (No end user)**
+
  Anytime the the system is not concerned with end user identity then [Client Credentials](#client-credentials) should be used. The use case would be a headless client application that does not have the ability for user interaction. In this case the system may need to be authentcated however an end user will not.
 
- If the end user does need to be authenticated then either [Authentication Code Flow](#authentication-code-flow) or [Implicit Flow](#implicit-flow). The consideration as to which authentication flow should be used can be determined if the application client is public or private. For private client application (eg. server side web application) [Authentication Code Flow](#authentication-code-flow) is the most suitable as is both authenticated the end user and the client application. For public client applications (eg. SPA app or javascript application) [Implicit Flow](#implicit-flow) is more suitable as the access_token is returned directly to the client without the secure exchange of the authentication code for the access_token needed with the [Authentication Code Flow](#authentication-code-flow).
+**End User Authentication**
 
-You will need a `clientId` and possible `clientSecret` in order to authenticate. Please contact support@ala.org.au to obtain these.
+If the end user *does* need to be authenticated then [Authentication Code Flow](#authentication-code-flow) should be used. *How* you use Authentication Code Flow depends on whether the application client is public or private. Regardless of your client's publicity, [Proof Key for Code Exchange](https://oauth.net/2/pkce/) (or *PKCE*) can, and should, be used as an additional security measure when authenticating within your application. 
 
-See: [https://auth0.com/docs/get-started/authentication-and-authorization-flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow)
+For <u>private</u> client applications (eg. server side web application), you will need a `clientId` and `clientSecret` in order to authenticate. Please contact [support@ala.org.au](mailto:support@ala.org.au) to obtain these.
+
+For <u>public</u> client applications (eg. Single-Page or JavaScript application), you will just need a `clientId`. [Implicit Flow](#implicit-flow) can also be used for public client authentication, however [Authentication Code Flow using PKCE](#authentication-code-flow) is the recommended mechanism.
+
+**Additional Resources**
+
+See [Authentication Code Flow using PKCE - Examples](https://github.com/AtlasOfLivingAustralia/oidc-auth-examples)
+
+See [https://auth0.com/docs/get-started/authentication-and-authorization-flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow)
 
 See [OIDC Authentication for R](https://search.r-project.org/CRAN/refmans/openeo/html/OIDCAuth.html)
 
 <p>&#128274; indicates the relevant API is a protected API and it requires authentication.</p> 
+
+## Discovery
+
+> Example response:
+
+```javascript
+{
+   "issuer":"https://auth.ala.org.au/cas/oidc",
+   "scopes_supported":[
+      "openid",
+      "profile",
+      "... more scopes",
+
+   ],
+   "claims_parameter_supported":true,
+   "...metadata"
+}
+```
+
+
+>
+
+OpenID Connect includes a [discovery mechanism](https://swagger.io/docs/specification/authentication/openid-connect-discovery/), where metadata for an OpenID server can be accessed.
+
+`GET <%= I18n.t(:authBaseUrl) %>/cas/oidc/.well-known`
+
+Examples of what the metadata includes are:
+
+- OpenID/OAuth Endpoints
+- Supported Scopes & Claims
+- Public Keys
 
 ## Client Credentials
 
@@ -146,7 +187,7 @@ Header Parameters:
 
 Parameter | Mandetory | Default | Description
 --------- | --------- | ------- | -----------
-Authorization | Y | | base64 encoded `<clientId>:<clientSecret>`
+Authorization | N | | base64 encoded `<clientId>:<clientSecret>`. Not required for authenticating public clients.
 Content-Type | Y | | `application/x-www-form-urlencoded`
 
 Request Parameters:
@@ -180,6 +221,8 @@ response_type | Y | | Set to `token`
 client_id | Y | | the client id
 scope | N | | A space separated list of scopes that have been approved for the API Authorization client. These scopes will be included in the Access Token that is returned.
 redirect_uri | Y | | The URL where the authentication server redirects the browser after the user is authorizes.
+
+[Authentication Code Flow using PKCE](#authentication-code-flow) is recommended for authenticating public clients, as Implicit Authentication reveals the `accessToken` when the end-user is redirected back to the application, introducing a security risk.
 
 # Products
 <!--

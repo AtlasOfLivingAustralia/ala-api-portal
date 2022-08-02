@@ -42,7 +42,7 @@ API Endpoint: https://apis.ala.org.au
 
 Most of the ALA APIs are publicly accessible and do not required authentication. For the API endpoints that are protected a JWT access token is used to authenticate requests.
 
-Open ID connect is used to obtain an access token, once an access token is obtained it should be passed as a bearer token in the HTTP Authentication header.
+Open ID Connect is used to obtain an access token, once an access token is obtained it should be passed as a bearer token in the HTTP Authentication header.
 
 `Authorization: Bearer <access_token>`
 
@@ -54,17 +54,58 @@ We support multiple ways to obtain an access token:
 
  Which authenitcation method should I use?
 
+**Machine to Machine (No end user)**
+
  Anytime the the system is not concerned with end user identity then [Client Credentials](#client-credentials) should be used. The use case would be a headless client application that does not have the ability for user interaction. In this case the system may need to be authentcated however an end user will not.
 
- If the end user does need to be authenticated then either [Authentication Code Flow](#authentication-code-flow) or [Implicit Flow](#implicit-flow). The consideration as to which authentication flow should be used can be determined if the application client is public or private. For private client application (eg. server side web application) [Authentication Code Flow](#authentication-code-flow) is the most suitable as is both authenticated the end user and the client application. For public client applications (eg. SPA app or javascript application) [Implicit Flow](#implicit-flow) is more suitable as the access_token is returned directly to the client without the secure exchange of the authentication code for the access_token needed with the [Authentication Code Flow](#authentication-code-flow).
+**End User Authentication**
 
-You will need a `clientId` and possible `clientSecret` in order to authenticate. Please contact support@ala.org.au to obtain these.
+If the end user *does* need to be authenticated then [Authentication Code Flow](#authentication-code-flow) should be used. *How* you use Authentication Code Flow depends on whether the application client is public or private. Regardless of your client's publicity, [Proof Key for Code Exchange](https://oauth.net/2/pkce/) (or *PKCE*) can, and should, be used as an additional security measure when authenticating within your application. 
 
-See: [https://auth0.com/docs/get-started/authentication-and-authorization-flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow)
+For <u>private</u> client applications (eg. server side web application), you will need a `clientId` and `clientSecret` in order to authenticate. Please contact [support@ala.org.au](mailto:support@ala.org.au) to obtain these.
+
+For <u>public</u> client applications (eg. Single-Page or JavaScript application), you will just need a `clientId`. [Implicit Flow](#implicit-flow) can also be used for public client authentication, however [Authentication Code Flow using PKCE](#authentication-code-flow) is the recommended mechanism.
+
+**Additional Resources**
+
+See [Authentication Code Flow using PKCE - Examples](https://github.com/AtlasOfLivingAustralia/oidc-auth-examples)
+
+See [https://auth0.com/docs/get-started/authentication-and-authorization-flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow)
 
 See [OIDC Authentication for R](https://search.r-project.org/CRAN/refmans/openeo/html/OIDCAuth.html)
 
 <p>&#128274; indicates the relevant API is a protected API and it requires authentication.</p> 
+
+## Discovery
+
+> Example response:
+
+```javascript
+{
+   "issuer":"https://auth.ala.org.au/cas/oidc",
+   "scopes_supported":[
+      "openid",
+      "profile",
+      "... more scopes",
+
+   ],
+   "claims_parameter_supported":true,
+   "...metadata"
+}
+```
+
+
+>
+
+OpenID Connect includes a [discovery mechanism](https://swagger.io/docs/specification/authentication/openid-connect-discovery/), where metadata for an OpenID server can be accessed.
+
+`GET <%= I18n.t(:authBaseUrl) %>/cas/oidc/.well-known`
+
+Examples of what the metadata includes are:
+
+- OpenID/OAuth Endpoints
+- Supported Scopes & Claims
+- Public Keys
 
 ## Client Credentials
 
@@ -146,7 +187,7 @@ Header Parameters:
 
 Parameter | Mandetory | Default | Description
 --------- | --------- | ------- | -----------
-Authorization | Y | | base64 encoded `<clientId>:<clientSecret>`
+Authorization | N | | base64 encoded `<clientId>:<clientSecret>`. Not required for authenticating public clients.
 Content-Type | Y | | `application/x-www-form-urlencoded`
 
 Request Parameters:
@@ -180,6 +221,8 @@ response_type | Y | | Set to `token`
 client_id | Y | | the client id
 scope | N | | A space separated list of scopes that have been approved for the API Authorization client. These scopes will be included in the Access Token that is returned.
 redirect_uri | Y | | The URL where the authentication server redirects the browser after the user is authorizes.
+
+[Authentication Code Flow using PKCE](#authentication-code-flow) is recommended for authenticating public clients, as Implicit Authentication reveals the `accessToken` when the end-user is redirected back to the application, introducing a security risk.
 
 # Products
 <!--
@@ -284,460 +327,8 @@ Create a new species list, search lists and retrieve species list metadata.
 
 Access images and sound recordings from the ALA. 
 -->
-## Alerts
-<aside class="notice">
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=alerts">Open API specification</a>
-</aside>
 
-## GET api/alerts/user/{userId}
-```shell
-curl -X 'GET' '<%= I18n.t(:alertsAPIUrl) %>/api/alerts/user/{1}' \
-  -H 'accept: application/json'
-
-The above command returns JSON structured like this:
-
-{
-  "disabledQueries": [],
-  "enabledQueries": [],
-  "customQueries": [],
-  "frequencies": [
-    {
-          "id": 1,
-          "name": "hourly",
-          "lastChecked": "2022-07-06T02:48:00Z",
-          "periodInSeconds": 3600,
-          "version": null
-        }
-    ],
-     "user": {
-       "id": 1,
-       "notifications": [],
-       "userId": "1",
-       "locked": false,
-       "frequency": {
-         "id": 3
-       },
-       "unsubscribeToken": "",
-       "email": ""
-     }
-}
-```
-Get User Alerts
-
-#### HTTP Request
-`GET <%= I18n.t(:alertsAPIUrl) %>/api/alerts/user/{userId}`
-
-#### Path Parameters
-
-Parameter | Mandatory | Default | Description
---------- | --------- | ------- | -----------
-userId | Y | | The User Id
-
-## POST api/alerts/user/{userId}/unsubscribe
-```shell
-curl -X 'POST' '<%= I18n.t(:alertsAPIUrl) %>/api/alerts/user/{1}/unsubscribe' \
-  -H 'accept: application/json'
-
-The above command returns JSON structured like this:
-
-{
-  "success": true
-}
-```
-Unsubscribe User Alerts
-
-#### HTTP Request
-`POST <%= I18n.t(:alertsAPIUrl) %>/api/alerts/user/{userId}/unsubscribe`
-
-#### Path Parameters
-
-Parameter | Mandatory | Default | Description
---------- | --------- | ------- | -----------
-userId | Y | | The User Id
-
-## POST api/alerts/user/createAlerts
-```shell
-curl -X 'POST' '<%= I18n.t(:alertsAPIUrl) %>/api/alerts/user/createAlerts?userId=1&email=email%40com.au&firstName=firstName&lastName=lastName' \
-  -H 'accept: application/json'
-
-The above command returns JSON structured like this:
-
-[
-  "Blogs and News"
-]
-```
-Create User Alerts
-
-#### HTTP Request
-`POST <%= I18n.t(:alertsAPIUrl) %>/api/alerts/user/createAlerts`
-
-#### Query Parameters
-
-Parameter | Mandatory | Default | Description
---------- | --------- | ------- | -----------
-userId | Y | | The User Id
-email | Y | | The User email
-firstName | N | | The User firstName
-lastName | N | | The User lastName
-
-## Logger service
-
-<aside class="notice">
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=logger">Open API specification</a>
-</aside>
-
-## GET service/emailBreakdown
-```shell
-curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/emailBreakdown?eventId=1002&entityUid=dp5142' \
-  -H 'accept: application/json'
-
-The above command returns JSON structured like this:
-
-{
-  "last3Months": {
-    "events": 0,
-    "records": 0,
-    "emailBreakdown": {
-      "edu": {
-        "events": 0,
-        "records": 0
-      }
-    }
-  },
-  "all": {
-    "events": 22,
-    "records": 1007,
-    "emailBreakdown": {
-      "edu": {
-        "events": 0,
-        "records": 0
-      }
-    }
-  },
-  "thisMonth": {
-    "events": 0,
-    "records": 0,
-    "emailBreakdown": {
-      "edu": {
-        "events": 0,
-        "records": 0
-      }
-    }
-  },
-  "lastYear": {
-    "events": 0,
-    "records": 0,
-    "emailBreakdown": {
-      "edu": {
-        "events": 0,
-        "records": 0
-      }
-    }
-  }
-}
-```
-Get Email Breakdown
-
-#### HTTP Request
-`GET <%= I18n.t(:loggerAPIUrl) %>/service/emailBreakdown`
-
-#### Query Parameters
-
-Parameter | Mandatory | Default | Description
---------- | --------- | ------- | -----------
-eventId | Y | | The event type Id
-entityUid | Y | | The event Uid
-
-## GET service/logger/events
-```shell
-curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/logger/events' \
-  -H 'accept: application/json'
-
-The above command returns JSON structured like this:
-
-[
-  {
-    "name": "OCCURRENCE_RECORDS_VIEWED",
-    "id": 1000
-  },
-  {
-    "name": "OCCURRENCE_RECORDS_VIEWED_ON_MAP",
-    "id": 1001
-  },
-  {
-    "name": "OCCURRENCE_RECORDS_DOWNLOADED",
-    "id": 1002
-  },
-  {
-    "name": "IMAGE_VIEWED",
-    "id": 2000
-  }
-]
-```
-Get Event Types
-
-#### HTTP Request
-`GET <%= I18n.t(:loggerAPIUrl) %>/service/logger/events`
-
-## GET service/reasonBreakdown
-```shell
-curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/reasonBreakdown?eventId=1002&entityUid=dp5142' \
-  -H 'accept: application/json'
-
-The above command returns JSON structured like this:
-
-{
-  "thisMonth": {
-    "events": 0,
-    "records": 0,
-    "reasonBreakdown": {
-      "biosecurity management/planning": {
-        "events": 0,
-        "records": 0
-      }
-    }
-  },
-  "last3Months": {
-    "events": 0,
-    "records": 0,
-    "reasonBreakdown": {
-      "biosecurity management/planning": {
-        "events": 0,
-        "records": 0
-      }
-    }
-  },
-  "lastYear": {
-    "events": 0,
-    "records": 0,
-    "reasonBreakdown": {
-      "biosecurity management/planning": {
-        "events": 0,
-        "records": 0
-      }
-    }
-  },
-  "all": {
-    "events": 22,
-    "records": 1007,
-    "reasonBreakdown": {
-      "biosecurity management/planning": {
-        "events": 0,
-        "records": 0
-      }
-    }
-  }
-}
-```
-Get Reason Breakdown
-
-#### HTTP Request
-`GET <%= I18n.t(:loggerAPIUrl) %>/service/reasonBreakdown`
-
-#### Query Parameters
-
-Parameter | Mandatory | Default | Description
---------- | --------- | ------- | -----------
-eventId | Y | | The event type Id
-entityUid | Y | | The event Uid
-
-## GET service/reasonBreakdownMonthly
-```shell
-curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/reasonBreakdownMonthly?eventId=1002&entityUid=in21&reasonId=10&sourceId=4' \
-  -H 'accept: application/json'
-
-The above command returns JSON structured like this:
-
-{
-  "temporalBreakdown": {
-    "202205": {
-      "records": 963,
-      "events": 4
-    }
-  }
-}
-```
-Get Reason Breakdown by Month
-
-#### HTTP Request
-`GET <%= I18n.t(:loggerAPIUrl) %>/service/reasonBreakdownMonthly`
-
-#### Query Parameters
-
-Parameter | Mandatory | Default | Description
---------- | --------- | ------- | -----------
-eventId | Y | | The event type Id
-entityUid | Y | | The event Uid
-reasonId | N | | The reason Id of the event
-sourceId | N | | The source id of the event
-excludeReasonTypeId | N | | The reason id that needs to be excluded
-
-## GET service/logger/reasons
-```shell
-curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/logger/reasons' \
-  -H 'accept: application/json'
-
-The above command returns JSON structured like this:
-
-[
-  {
-    "rkey": "logger.download.reason.biosecurity",
-    "name": "biosecurity management/planning",
-    "id": 1,
-    "deprecated": false
-  }
-]
-```
-Get Reason Types
-
-#### HTTP Request
-`GET <%= I18n.t(:loggerAPIUrl) %>/service/logger/reasons`
-
-## GET service/sourceBreakdown
-```shell
-curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/sourceBreakdown?eventId=1002&entityUid=dp5142&excludeReasonTypeId=10' \
-  -H 'accept: application/json'
-
-The above command returns JSON structured like this:
-
-{
-  "thisMonth": {
-    "events": 0,
-    "records": 0,
-    "sourceBreakdown": {
-      "ALA": {
-        "events": 0,
-        "records": 0
-      }
-    }
-  },
-  "last3Months": {
-    "events": 0,
-    "records": 0,
-    "sourceBreakdown": {
-      "ALA": {
-        "events": 0,
-        "records": 0
-      }
-    }
-  },
-  "lastYear": {
-    "events": 0,
-    "records": 0,
-    "sourceBreakdown": {
-      "ALA": {
-        "events": 0,
-        "records": 0
-      }
-    }
-  },
-  "all": {
-    "events": 6,
-    "records": 484,
-    "sourceBreakdown": {
-      "ALA": {
-        "events": 1,
-        "records": 10
-      }
-    }
-  }
-}
-```
-Get Source Breakdown
-
-#### HTTP Request
-`GET <%= I18n.t(:loggerAPIUrl) %>/service/sourceBreakdown`
-
-#### Query Parameters
-
-Parameter | Mandatory | Default | Description
---------- | --------- | ------- | -----------
-eventId | Y | | The event type Id
-entityUid | Y | | The event Uid
-excludeReasonTypeId | N | | The reason id that needs to be excluded
-
-## GET service/logger/sources
-```shell
-curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/logger/sources' \
-  -H 'accept: application/json'
-
-The above command returns JSON structured like this:
-
-[
-  {
-    "name": "ALA",
-    "id": 0
-  }
-]
-```
-Get Source Types
-
-#### HTTP Request
-`GET <%= I18n.t(:loggerAPIUrl) %>/service/logger/sources`
-
-## GET service/totalsByType
-```shell
-curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/totalsByType' \
-  -H 'accept: application/json'
-
-The above command returns JSON structured like this:
-
-{
-  "totals": {
-    "1000": {
-      "records": 1738,
-      "events": 1649
-    },
-    "1002": {
-      "records": 371641484,
-      "events": 3533
-    }
-  }
-}
-```
-Get Totals by Event Type
-
-#### HTTP Request
-`GET <%= I18n.t(:loggerAPIUrl) %>/service/totalsByType`
-
-## GET service/logger/get.json
-```shell
-curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/logger/get.json?eventTypeId=1002&q=dp34&year=2020' \
-  -H 'accept: application/json'
-
-The above command returns JSON structured like this:
-
-{
-  "months": [
-    [
-      "202002",
-      13900
-    ],
-    [
-      "202003",
-      81766
-    ],
-    [
-      "202004",
-      1530
-    ]
-  ]
-}
-```
-Get Monthly Breakdown by year
-
-#### HTTP Request
-`GET <%= I18n.t(:loggerAPIUrl) %>/service/logger/get.json`
-
-#### Query Parameters
-
-Parameter | Mandatory | Default | Description
---------- | --------- | ------- | -----------
-eventId | Y | | The event type Id
-entityUid | Y | | The event Uid
-year | N | | The event year
-
-## User details
+## 1. User details
 
 Access the user details platform.
 
@@ -746,7 +337,7 @@ Access the user details platform.
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=userdetails">Open API specification</a>
 </aside>
 
-## GET /ws/flickr
+## 1.1 GET /ws/flickr
 ```shell
 curl -X 'GET' '<%= I18n.t(:userdetailsAPIUrl) %>/ws/flickr' \
   -H 'accept: application/json'"
@@ -769,7 +360,7 @@ Lists all flickr profiles known to the application, including their ala id, flic
 #### HTTP Request
 `GET <%= I18n.t(:userdetailsAPIUrl) %>/ws/flickr`
 
-## GET /ws/getUserStats
+## 1.2 GET /ws/getUserStats
 ```shell
 curl -X 'GET' '<%= I18n.t(:userdetailsAPIUrl) %>/ws/getUserStats' -H 'accept: application/json'
 
@@ -786,7 +377,7 @@ Gets a count of all users in the system, including the number locked and activat
 #### HTTP Request
 `GET <%= I18n.t(:userdetailsAPIUrl) %>/ws/getUserStats`
 
-## GET /userDetails/byRole <p style="display: inline;">&#128274;</p>
+## 1.3 GET /userDetails/byRole <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'GET' '<%= I18n.t(:userdetailsAPIUrl) %>/userDetails/byRole?role=ROLE_ADMIN' \
   -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
@@ -821,7 +412,7 @@ role | Y | | The role to get users for
 id | N | | A list of user ids or usernames to limit the results to
 includeProps | N | | Whether to include additional user properties or not
 
-## POST /userDetails/getUserDetails <p style="display: inline;">&#128274;</p>
+## 1.4 POST /userDetails/getUserDetails <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'POST' '<%= I18n.t(:userdetailsAPIUrl) %>/userDetails/getUserDetails?userName=userName' \
   -H 'accept: application/json' -d '' -H "Authorization: Bearer {access_token}"
@@ -853,7 +444,7 @@ Parameter | Mandatory | Default | Description
 userName | Y | | The username of the user
 includeProps | N | | Whether to include additional user properties or not
 
-## POST /userDetails/getUserDetailsFromIdList <p style="display: inline;">&#128274;</p>
+## 1.5 POST /userDetails/getUserDetailsFromIdList <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'POST' '<%= I18n.t(:userdetailsAPIUrl) %>/userDetails/getUserDetailsFromIdList' \
   -H 'accept: application/json' -H 'Content-Type: application/json' \
@@ -894,7 +485,7 @@ Get a list of user details for a list of user ids.
 #### HTTP Request
 `POST <%= I18n.t(:userdetailsAPIUrl) %>/userDetails/getUserDetailsFromIdList`
 
-## GET /userDetails/search <p style="display: inline;">&#128274;</p>
+## 1.6 GET /userDetails/search <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'GET' '<%= I18n.t(:userdetailsAPIUrl) %>/userDetails/search?q=userName' \
   -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
@@ -935,7 +526,7 @@ Parameter | Mandatory | Default | Description
 q | Y | | Search query for the user's username, email or display name
 max | N | | Maximum number of results to return
 
-## GET /property/getProperty <p style="display: inline;">&#128274;</p>
+## 1.7 GET /property/getProperty <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'GET' '<%= I18n.t(:userdetailsAPIUrl) %>/property/getProperty?alaId=alaId&name=name' \
   -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
@@ -961,7 +552,7 @@ Parameter | Mandatory | Default | Description
 alaId | Y | | The user's ALA ID
 name | Y | | The name of the property to get
 
-## POST /property/saveProperty <p style="display: inline;">&#128274;</p>
+## 1.8 POST /property/saveProperty <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'POST' '<%= I18n.t(:userdetailsAPIUrl) %>/property/saveProperty?alaId=alaId&name=name&value=value' \
   -H 'accept: application/json' -d '' -H "Authorization: Bearer {access_token}"
@@ -985,4 +576,3 @@ Parameter | Mandatory | Default | Description
 alaId | Y | | The user's ALA ID
 name | Y | | The name of the property to get
 value | Y | | The value of the property to set
-

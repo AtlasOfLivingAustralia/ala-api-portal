@@ -401,7 +401,7 @@ The above command returns JSON structured like this:
 Delete an activity
 
 #### HTTP Request
-`GET <%= I18n.t(:biocollectAPIUrl) %>/ws/bioactivity/delete/1`
+`GET <%= I18n.t(:biocollectAPIUrl) %>/ws/bioactivity/delete/{id}`
 
 #### Path Parameters
 
@@ -488,7 +488,7 @@ The above command returns JSON structured like this:
 Get survey's data model
 
 #### HTTP Request
-`GET <%= I18n.t(:biocollectAPIUrl) %>/ws/bioactivity/model/1`
+`GET <%= I18n.t(:biocollectAPIUrl) %>/ws/bioactivity/model/{id}`
 
 #### Path Parameters
 
@@ -575,7 +575,7 @@ The above command returns JSON structured like this:
 Get data for an activity
 
 #### HTTP Request
-`GET <%= I18n.t(:biocollectAPIUrl) %>/ws/bioactivity/data/1`
+`GET <%= I18n.t(:biocollectAPIUrl) %>/ws/bioactivity/data/{id}`
 
 #### Path Parameters
 

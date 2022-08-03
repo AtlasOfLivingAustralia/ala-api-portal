@@ -3,6 +3,8 @@ version: 0.2
 # Detetes all objects from the documentation bucket, this needs to be done 
 # before publish so that old files are removed and before the teardown action
 # so the bucket can be removed
+# Files in the www/openapi/specs directory are kept if this is called during a
+# docs portal release
 
 env:
   shell: bash
@@ -10,5 +12,10 @@ env:
 phases:
   build:
     commands:
-      - echo documentation bucket is $DOCUMENTATION_BUCKET
-      - aws s3 rm s3://$DOCUMENTATION_BUCKET --recursive
+      - echo documentation bucket is $DOCUMENTATION_BUCKET/$BUCKET_PATH
+      - EXCLUDE=''
+      - if [ "$KEEP_API_SPECS" == "true" ]; then
+          echo keeping files in s3://$DOCUMENTATION_BUCKET/$BUCKET_PATH/openapi/specs/*
+          EXCLUDE="--exclude \"$BUCKET_PATH/openapi/specs/*\"";
+        fi
+      - aws s3 rm s3://$DOCUMENTATION_BUCKET --recursive $EXCLUDE

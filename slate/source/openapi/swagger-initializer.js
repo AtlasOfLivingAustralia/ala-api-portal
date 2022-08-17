@@ -11,7 +11,8 @@ window.onload = function() {
         { name: "userdetails", url: "./specs/userdetails-rest.json"},
         { name: "logger", url: "./specs/logger-rest.json"},
         { name: "doi", url: "./specs/doi-rest.json"},
-        { name: "biocollect", url: "./specs/biocollect-rest.json"}
+        { name: "biocollect", url: "./specs/biocollect-rest.json"},
+        { name: "bie-index", url:"./specs/bie-index-rest.json"}
       ],
       dom_id: '#swagger-ui',
       deepLinking: true,

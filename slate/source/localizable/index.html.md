@@ -1596,3 +1596,8 @@ alaId | Y | | The user's ALA ID
 name | Y | | The name of the property to get
 value | Y | | The value of the property to set
 
+## 6. Bie Index
+<aside class="notice">
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=bie-index">Open API specification</a>
+</aside>
+

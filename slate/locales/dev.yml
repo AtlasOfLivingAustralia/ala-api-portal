@@ -11,3 +11,4 @@ dev:
   alertsAPIUrl: https://apis.dev.ala.org.au/alerts
   doiAPIUrl: https://apis.dev.ala.org.au/doi
   biocollectAPIUrl: https://apis.dev.ala.org.au/biocollect
+  bieIndexAPIUrl: https://apis.dev.ala.org.au/bie-index

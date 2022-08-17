@@ -35,7 +35,7 @@ A typical workflow would be that there's a task to make a change to the existing
 Create a feature branch to make your changes. This would usually be based off the `main` branch which is production but could be from `testing` or `release` if the updates are being made against an unreleased change. On your new feature branch update the settings in `cicd/config.ini` in the development section to correspond to the changes you're making.
 
 #### 2. Deploy the CodePipeline
-Run your AWS CLI authentication then then run the script `cicd/deploy_pipeline.sh` This will update the code pipeline so that is now points to your newly created feature branch. It also insures that all other CodePipeline settings match any changes you made in the `cicd/config.ini` file
+Run your AWS CLI authentication then then run the script `cicd/deploy_pipeline.sh` This will update the code pipeline so that it now points to your newly created feature branch. It also insures that all other CodePipeline settings match any changes you made in the `cicd/config.ini` file
 
 #### 3. Code away!
 Make your changes. Update the documentation code, infrastructure code and config as required

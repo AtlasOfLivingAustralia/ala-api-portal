@@ -208,7 +208,9 @@ Resources:
             Configuration:
               ProjectName: !Ref EmptyBucket
               EnvironmentVariables: '[
-                                       { "name":"DOCUMENTATION_BUCKET", "value":"#{ExportConfigNS.DOCUMENTATION_BUCKET}" }
+                                       { "name":"DOCUMENTATION_BUCKET", "value":"#{ExportConfigNS.DOCUMENTATION_BUCKET}" },
+                                       { "name":"BUCKET_PATH", "value":"#{ExportConfigNS.BUCKET_PATH}" },
+                                       { "name":"KEEP_API_SPECS", "value":"true" }
                                      ]'
             Namespace: EmptyBucketPreDeployNS
             InputArtifacts:
@@ -264,7 +266,9 @@ Resources:
             Configuration:
               ProjectName: !Ref EmptyBucket
               EnvironmentVariables: '[
-                                       { "name":"DOCUMENTATION_BUCKET", "value":"#{ExportConfigNS.DOCUMENTATION_BUCKET}" }
+                                       { "name":"DOCUMENTATION_BUCKET", "value":"#{ExportConfigNS.DOCUMENTATION_BUCKET}" },
+                                       { "name":"BUCKET_PATH", "value":"#{ExportConfigNS.BUCKET_PATH}" },
+                                       { "name":"KEEP_API_SPECS", "value":"false" }
                                      ]'
             Namespace: EmptyBucketPreDeleteNS
             InputArtifacts:

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 ###
 # Genarate the template configuration, used to pass in the parameters to the

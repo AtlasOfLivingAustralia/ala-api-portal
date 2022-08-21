@@ -1,0 +1,64 @@
+version: 0.2
+###
+# This build project exports any variables needed for later stages and actions
+# and builds the template config used to launch the API docs CloudFormation
+# template
+
+env:
+  shell: bash
+  variables:
+    DEBIAN_FRONTEND: "noninteractive"
+  exported-variables:
+    - CODEBUILD_BUILD_NUMBER
+    - DOCUMENTATION_BUCKET
+    - BUCKET_PATH
+    - MAX_AGE
+
+phases:
+
+  install:
+    runtime-versions:
+      python: 3.9
+    commands:
+      - #echo setting up build environment
+      - echo Running on $(lsb_release -d | cut -f2)
+      - echo aws-cli version $(aws --version)
+    finally:
+      - #echo This always runs even if the update or install command fails
+      - #notify Slack on failure
+
+
+  pre_build:
+    commands:
+      - echo Entered the pre_build phase...
+      - echo source branch is $SRC_BRANCH
+      - environment=$(cicd/branch_2_env.py --branch $SRC_BRANCH)
+      - echo Environment is $environment
+      - cicd/gen_env_vars.py --env $environment --conf cicd/config.ini > env.txt
+      - echo loading config..
+      - set -a ; source env.txt ; set +a
+    finally:
+      - #echo This always runs
+      - #notify Slack on failure
+
+  build:
+    commands:
+      - echo Entered the build phase...
+      - echo Generating the temaplte config
+      - cicd/gen_template_config.py  --template cicd/template_config.j2 > cicd/template_config.json
+    finally:
+      - #echo This always runs
+      - #notify Slack on failure
+
+
+  post_build:
+    commands:
+      - #echo Entered the post_build phase...
+      - #notify Slack
+
+artifacts:
+  files:
+    - cicd/api_docs.yaml
+    - cicd/template_config.json
+  name: BuildTemplateConfigArtifact
+  discard-paths: no

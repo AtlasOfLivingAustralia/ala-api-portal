@@ -1601,3 +1601,109 @@ value | Y | | The value of the property to set
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=bie-index">Open API specification</a>
 </aside>
 
+
+## 6.1 GET /api/services/all <p style="display: inline;">&#128274;</p>
+```shell
+curl -X 'GET' '<%= I18n.t(:bieIndexAPIUrl) %>/api/services/all' \
+  -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
+
+The above command returns JSON structured like this:
+
+{
+    "id": "e68dd770-76fb-444e-a9c0-c8f2a29104c9",
+    "active": true,
+    "success": true,
+    "completed": false,
+    "lifecycle": "RUNNING",
+    "title": "Import all information",
+    "message": null,
+    "lastUpdated": "2022-08-21T23:16:43Z"
+}
+```
+
+Import all features via web service
+
+#### HTTP Request
+`GET <%= I18n.t(:bieIndexAPIUrl) %>/api/services/all`
+
+## 6.2 GET /api/services/status/{id} <p style="display: inline;">&#128274;</p>
+```shell
+curl -X 'GET' '<%= I18n.t(:bieIndexAPIUrl) %>/api/services/status/{112344}' \
+  -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
+
+The above command returns JSON structured like this:
+
+{
+    "id": "e68dd770-76fb-444e-a9c0-c8f2a29104c9",
+    "active": true,
+    "success": true,
+    "completed": false,
+    "lifecycle": "RUNNING",
+    "title": "Import all information",
+    "message": null,
+    "lastUpdated": "2022-08-21T23:16:43Z"
+}
+
+```
+
+#### HTTP Request
+`GET <%= I18n.t(:bieIndexAPIUrl) %>/api/services/status/{id}`
+
+#### Path Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+id | Y | | The import job  Id
+
+## 6.3 GET /search/auto.json 
+```shell
+curl -X 'GET' '<%= I18n.t(:bieIndexAPIUrl) %>/search/auto.json' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+
+{
+  "autoCompleteList":
+  [
+    {
+    "commonName":"Sword Ferns",
+    "commonNameMatches":["<b>Fish<\/b>bone Ferns"],
+    "georeferencedCount":0,
+    "guid":"https://id.biodiversity.org.au/taxon/apni/51283259",
+    "matchedNames":["Fishbone Ferns"],
+    "name":"Nephrolepis",
+    "occurrenceCount":0,
+    "rankID":6000,
+    "rankString":"genus",
+    "scientificNameMatches":[]
+    },
+    {
+      "commonName":"Unicorn Fish",
+      "commonNameMatches":["Unicorn <b>Fish<\/b>"],
+      "georeferencedCount":0,
+      "guid":"https://biodiversity.org.au/afd/taxa/454ce794-b914-420d-9317-ed3a4133973a",
+      "matchedNames":["Unicorn Fish"],
+      "name":"Naso",
+      "occurrenceCount":0,
+      "rankID":6000,
+      "rankString":"genus",
+      "scientificNameMatches":[]
+      }
+  ]
+}
+
+```
+
+#### HTTP Request
+`GET <%= I18n.t(:bieIndexAPIUrl) %>/search/auto.json`
+
+#### Path Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+q | Y | |The value to auto complete e.g. q=Fish
+idxType | N | |The index type to limit . Values include: * TAXON * REGION * COLLECTION * INSTITUTION * DATASET
+kingdom | N | |The higher-order taxonomic rank to limit the result
+geoOnly | N | |(Not Implemented) Limit value to limit result with geospatial occurrence records
+limit | N | |The maximum number of results to return (default = 10)
+

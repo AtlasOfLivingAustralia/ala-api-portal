@@ -9,3 +9,6 @@ prod:
   userdetailsAPIUrl: https://apis.ala.org.au/userdetails
   loggerAPIUrl: https://apis.ala.org.au/logger
   alertsAPIUrl: https://apis.ala.org.au/alerts
+  doiAPIUrl: https://apis.ala.org.au/doi
+  biocollectAPIUrl: https://apis.ala.org.au/biocollect
+  bieIndexAPIUrl: https://apis.ala.org.au/bie-index

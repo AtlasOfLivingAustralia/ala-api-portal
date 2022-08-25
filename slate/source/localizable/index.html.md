@@ -1628,13 +1628,13 @@ Import all features via web service
 
 ## 6.2 GET /api/services/status/{id} <p style="display: inline;">&#128274;</p>
 ```shell
-curl -X 'GET' '<%= I18n.t(:bieIndexAPIUrl) %>/api/services/status/{112344}' \
+curl -X 'GET' '<%= I18n.t(:bieIndexAPIUrl) %>/api/services/status/{id}' \
   -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
 
 The above command returns JSON structured like this:
 
 {
-    "id": "e68dd770-76fb-444e-a9c0-c8f2a29104c9",
+    "id": "112344",
     "active": true,
     "success": true,
     "completed": false,
@@ -1657,7 +1657,7 @@ id | Y | | The import job  Id
 
 ## 6.3 GET /search/auto.json 
 ```shell
-curl -X 'GET' '<%= I18n.t(:bieIndexAPIUrl) %>/search/auto.json' \
+curl -X 'GET' '<%= I18n.t(:bieIndexAPIUrl) %>/search/auto.json?q=fish' \
   -H 'accept: application/json'
 
 The above command returns JSON structured like this:
@@ -1697,7 +1697,7 @@ The above command returns JSON structured like this:
 #### HTTP Request
 `GET <%= I18n.t(:bieIndexAPIUrl) %>/search/auto.json`
 
-#### Path Parameters
+#### Query Parameters
 
 Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
@@ -1706,4 +1706,99 @@ idxType | N | |The index type to limit . Values include: * TAXON * REGION * COLL
 kingdom | N | |The higher-order taxonomic rank to limit the result
 geoOnly | N | |(Not Implemented) Limit value to limit result with geospatial occurrence records
 limit | N | |The maximum number of results to return (default = 10)
+
+
+## 7. Specieslist Webapp
+<aside class="notice">
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=specieslist">Open API specification</a>
+</aside>
+
+## 7.1 GET /ws/speciesList/{druid} 
+```shell
+curl -X 'GET' '<%= I18n.t(:specieslistIndexAPIUrl) %>/ws/speciesList/{druid}' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+
+{
+  dataResourceUid: "dr123"
+  dateCreated: "2021-03-08T22:37:58Z"
+  fullName: null
+  isAuthoritative: false
+  isInvasive: false
+  isThreatened: false
+  itemCount: 59
+  listName: "Example species name"
+  listType: "TEST"
+  username: "someone@example.com"
+}
+```
+
+Get details of a specific species list  - as specified by the {druid}
+
+#### HTTP Request
+`GET <%= I18n.t(:specieslistIndexAPIUrl) %>/ws/speciesList/{druid}`
+
+#### Path Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+druid | Y | | the druid to query
+
+## 7.2 POST /ws/speciesListPost <p style="display: inline;">&#128274;</p>
+```shell
+curl -X 'POST' '<%= I18n.t(:specieslistIndexAPIUrl) %>/ws/speciesListPost' \
+  -H 'accept: application/json' -H "Authorization: Bearer {access_token}" -H "X-ALA-userId : {ala_user_id}" \
+  --data '{"exampleKey": "exampleKey"}' 
+
+The above command returns JSON structured like this:
+
+{
+    "status": 200,
+    "message": "added species list",
+    "druid": "dr123",
+    "data": [
+        {
+            "guid": "some value",
+            "kvps": {
+                "testKey": "testValue",
+                "testKey2": "testValue2"
+            }
+        }
+    ]
+}
+```
+
+Save the provided list in the body to the lists application under the specified {ala_user_id}
+
+#### HTTP Request
+`GET <%= I18n.t(:specieslistIndexAPIUrl) %>/ws/speciesListPost`
+
+
+## 7.3 POST /ws/listCommonKeys 
+```shell
+curl -X 'POST' '<%= I18n.t(:specieslistIndexAPIUrl) %>/ws/listCommonKeys?druid={druid}' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+
+["vernacular name"]
+```
+
+Get a list of keys from KVP common across a list multiple species lists
+
+#### HTTP Request
+`GET <%= I18n.t(:specieslistIndexAPIUrl) %>/ws/listCommonKeys`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+druid | Y | | A comma separated list of druids to query
+
+
+
+
+
+
 

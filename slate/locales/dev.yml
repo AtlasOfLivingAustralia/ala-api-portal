@@ -12,3 +12,4 @@ dev:
   doiAPIUrl: https://apis.dev.ala.org.au/doi
   biocollectAPIUrl: https://apis.dev.ala.org.au/biocollect
   bieIndexAPIUrl: https://apis.dev.ala.org.au/bie-index
+  specieslistIndexAPIUrl: https://apis.dev.ala.org.au/specieslist

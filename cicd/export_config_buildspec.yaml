@@ -43,9 +43,9 @@ phases:
           if [ -z "$CODE_VERSION" ]; then
             echo $SRC_BRANCH must be tagged;
             exit 1;
-          fi
+          fi;
         else
-          CODE_VERSION=$COMMIT_ID
+          CODE_VERSION=$COMMIT_ID;
         fi
       - echo code_version is. $CODE_VERSION
         

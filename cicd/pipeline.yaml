@@ -136,7 +136,7 @@ Resources:
               ConnectionArn: !Ref pCodestarConnection
               FullRepositoryId: !Sub ${pGitHubOwner}/${pGitHubRepositoryName}
               BranchName: !Ref pGitHubBranch
-              OutputArtifactFormat: CODE_ZIP
+              OutputArtifactFormat: CODEBUILD_CLONE_REF
               DetectChanges: false
             Namespace: CheckoutSrcNS
             OutputArtifacts:

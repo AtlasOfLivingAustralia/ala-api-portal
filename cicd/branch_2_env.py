@@ -2,22 +2,23 @@
 
 ###
 # convert the current code branch to an environment, used to load the appropriate environment vars
-# Usage: ./branch_2_env.py --branch [code-branch]
+# Usage: ./branch_2_env.py --branch [code-branch] --env [prod]
 
 import argparse
 import re
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument("--branch", "-b", help="The code branch that triggered this build", required=True)
+parser.add_argument("--branch",  "-b", help="The code branch that triggered this build", required=True)
+parser.add_argument("--env",     "-e", help="The environment, only used when on the master branch", required=False)
 
 args = parser.parse_args()
 
 # associate the branch with an environmant 
-if re.search('^main$', args.branch):
+if re.search('^main$|^master$', args.branch) and args.env == 'production':
   #print(f"Branch {args.branch} matched main")
   print('production')
-elif re.search('^release.*$', args.branch):
+elif re.search('^main$|^master$', args.branch):
   #print(f"Branch {args.branch} matched release")
   print('staging')
 elif re.search('^testing$', args.branch):

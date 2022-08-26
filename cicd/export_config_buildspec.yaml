@@ -37,6 +37,7 @@ phases:
       - cicd/gen_env_vars.py --env $environment --conf cicd/config.ini > env.txt
       - echo loading config..
       - set -a ; source env.txt ; set +a
+      - git tag --points-at HEAD
     finally:
       - #echo This always runs
       - #notify Slack on failure

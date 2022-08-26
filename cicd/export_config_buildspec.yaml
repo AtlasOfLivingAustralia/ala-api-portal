@@ -13,6 +13,7 @@ env:
     - DOCUMENTATION_BUCKET
     - BUCKET_PATH
     - MAX_AGE
+    - CODE_VERSION
 
 phases:
 
@@ -37,7 +38,17 @@ phases:
       - cicd/gen_env_vars.py --env $environment --conf cicd/config.ini > env.txt
       - echo loading config..
       - set -a ; source env.txt ; set +a
-      - git tag --points-at HEAD
+      - if [[ "$SRC_BRANCH" == "master" || "$SRC_BRANCH" == "main" ]]; then
+          CODE_VERSION=$(git tag --points-at HEAD);
+          if [ -z "$CODE_VERSION" ]; then
+            echo $SRC_BRANCH must be tagged;
+            exit 1;
+          fi
+        else
+          CODE_VERSION=$COMMIT_ID
+        fi
+      - echo code_version is. $CODE_VERSION
+        
     finally:
       - #echo This always runs
       - #notify Slack on failure

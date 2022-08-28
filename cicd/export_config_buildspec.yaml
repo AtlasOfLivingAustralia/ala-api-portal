@@ -38,6 +38,7 @@ phases:
       - cicd/gen_env_vars.py --env $environment --conf cicd/config.ini > env.txt
       - echo loading config..
       - set -a ; source env.txt ; set +a
+      - echo getting the code version
       - if [[ "$SRC_BRANCH" == "master" || "$SRC_BRANCH" == "main" ]]; then
           CODE_VERSION=$(git tag --points-at HEAD);
           if [ -z "$CODE_VERSION" ]; then

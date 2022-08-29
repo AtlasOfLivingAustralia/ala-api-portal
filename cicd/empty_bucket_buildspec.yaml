@@ -18,4 +18,5 @@ phases:
           echo keeping files in s3://$DOCUMENTATION_BUCKET/$BUCKET_PATH/openapi/specs/*;
           EXCLUDE="--exclude \"$BUCKET_PATH/openapi/specs/*\"";
         fi
-      - aws s3 rm s3://$DOCUMENTATION_BUCKET --recursive $EXCLUDE
+      - echo s3 rm s3://$DOCUMENTATION_BUCKET --recursive $EXCLUDE
+      - eval "aws s3 rm s3://$DOCUMENTATION_BUCKET --recursive $EXCLUDE"

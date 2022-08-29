@@ -8,7 +8,7 @@ window.onload = function() {
         // { name: "biocache", url: "./specs/biocache-http.yaml"},
         // { name: "ecodata", url: "./specs/ecodata-http.yaml"},
         // { name: "images", url: "./specs/images-rest.yaml"},
-        { name: "userdetails", url: "./specs/userdetails-rest.json"},
+        { name: "userdetails", url: "./specs/userdetails.json"},
         { name: "logger", url: "./specs/logger-rest.json"},
         { name: "doi", url: "./specs/doi-rest.json"},
         { name: "biocollect", url: "./specs/biocollect-rest.json"},

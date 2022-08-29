@@ -1,0 +1,15 @@
+---
+dev:
+  title: Atlas of Living Australia API dev Documentation
+  baseUrl: https://apis.dev.ala.org.au
+  authBaseUrl: https://auth.dev.ala.org.au
+  biocacheBaseUrl: https://biocache-ws-dev.ala.org.au/ws
+  autoCompleteBaseUrl: https://biocache-ws-dev.ala.org.au/ws
+  userdetailsBaseUrl: https://auth-dev.ala.org.au/userdetails
+  userdetailsAPIUrl: https://apis.dev.ala.org.au/userdetails
+  loggerAPIUrl: https://apis.dev.ala.org.au/logger
+  alertsAPIUrl: https://apis.dev.ala.org.au/alerts
+  doiAPIUrl: https://apis.dev.ala.org.au/doi
+  biocollectAPIUrl: https://apis.dev.ala.org.au/biocollect
+  bieIndexAPIUrl: https://apis.dev.ala.org.au/bie-index
+  specieslistIndexAPIUrl: https://apis.dev.ala.org.au/specieslist

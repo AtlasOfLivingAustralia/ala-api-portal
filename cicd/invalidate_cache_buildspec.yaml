@@ -1,0 +1,16 @@
+version: 0.2
+###
+# Invalidate the CloudFront cache, this gets done immediately after a deploy.
+# Note this is only able to invalidate the CloudFront cache. Old values may
+# still be present in intermediate and users browser caches. We cant control
+# those. To ensure fresh data after an update the best way is to set shorter
+# max_age or expires headers on objects
+
+env:
+  shell: bash
+
+phases:
+  build:
+    commands:
+      - echo The CloudFront distribution is $CLOUDFRONT_DISTRIBUTION_ID
+      - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths /

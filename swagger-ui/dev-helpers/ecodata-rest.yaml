@@ -1,0 +1,118 @@
+openapi: "3.0.1"
+info:
+  title: "Ecodata REST API"
+  version: "2022-02-23 01:19:46UTC"
+servers:
+- url: "https://d68py08yxk.execute-api.ap-southeast-2.amazonaws.com/{basePath}"
+  variables:
+    basePath:
+      default: ""
+paths:
+  /project/findByName:
+    get:
+      responses:
+        default:
+          description: "Default response for GET /project/findByName"
+      security:
+      - lambda_authorizer: []
+      x-amazon-apigateway-integration:
+        payloadFormatVersion: "1.0"
+        type: "http_proxy"
+        httpMethod: "GET"
+        uri: "https://ecodata-dev.ala.org.au/ws/project/findByName"
+        connectionType: "INTERNET"
+  /project/list:
+    get:
+      responses:
+        default:
+          description: "Default response for GET /project/list"
+      # This needs to be added if we want to set the api key auth to true
+      # - api_key: []
+      security:
+      - openId: []
+      - cognito_authorizer:
+        - openid
+        - email
+      x-amazon-apigateway-integration:
+        payloadFormatVersion: "1.0"
+        type: "http_proxy"
+        httpMethod: "GET"
+        uri: "https://ecodata-dev.ala.org.au/ws/project/list"
+        connectionType: "INTERNET"
+  /graphql:
+    post:
+      responses:
+        default:
+          description: "Default response for POST /graphql"
+      security:
+      - openId: []
+      - lambda_authorizer: []
+      - api_key: []
+      x-amazon-apigateway-api-key-source: HEADER
+      x-amazon-apigateway-integration:
+        payloadFormatVersion: "1.0"
+        type: "http_proxy"
+        httpMethod: "POST"
+        uri: "https://ecodata-dev.ala.org.au/graphql/index"
+        connectionType: "INTERNET"
+        timeoutInMillis: 29000
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://auth.ala.org.au/cas/oidc/authorize
+          # tokenUrl: https://auth.ala.org.au/cas/oidc/token
+          # refreshUrl: https://auth.ala.org.au/cas/oidc/refresh
+          # scopes:
+        # password:
+          # authorizationUrl: https://auth.ala.org.au/cas/oidc/authorize
+          # tokenUrl: https://auth.ala.org.au/cas/oidc/token
+          # refreshUrl: https://auth.ala.org.au/cas/oidc/refresh
+          # scopes: {}
+        clientCredentials:
+          # authorizationUrl: https://auth.ala.org.au/cas/oidc/authorize
+          tokenUrl: https://auth.ala.org.au/cas/oidc/token
+          # refreshUrl: https://auth.ala.org.au/cas/oidc/refresh
+          # scopes: {}
+        authorizationCode:
+          authorizationUrl: https://auth.ala.org.au/cas/oidc/authorize
+          tokenUrl: https://auth.ala.org.au/cas/oidc/token
+          # refreshUrl: https://auth.ala.org.au/cas/oidc/refresh
+    openId:
+      type: openIdConnect
+      openIdConnectUrl: https://auth.ala.org.au/cas/oidc/.well-known
+      # scheme: bearer
+      # bearerFormat: JWT 
+#      type: "access_token"
+#      name: "Authentication"
+#      schema: "bearer"
+#      bearerFormat: "JWT"
+#      in: "header"
+    api_key:
+      type: "apiKey"
+      name: "x-api-key"
+      in: "header"
+      x-amazon-apigateway-api-key-source: "HEADER"
+    # lambda_authorizer:
+    #   type: "apiKey"
+    #   name: "Authorization"
+    #   in: "header"
+    #   x-amazon-apigateway-authtype: 'oauth2'
+    #   x-amazon-apigateway-authorizer:
+    #     authorizerUri: "arn:aws:apigateway:ap-southeast-2:lambda:path/2015-03-31/functions/arn:aws:lambda:ap-southeast-2:748909248546:function:ala-cas-authorizer/invocations"
+    #     authorizerPayloadFormatVersion: "2.0"
+    #     authorizerResultTtlInSeconds: 300
+    #     authorizerCredentials : "arn:aws:iam::748909248546:role/ala-cas-authorizer-role"
+    #     type: "token"
+    # cognito_authorizer:
+    #   type: "apiKey"
+    #   name: "Authorization"
+    #   in: "header"
+    #   x-amazon-apigateway-authtype: 'cognito_user_pools'
+    #   x-amazon-apigateway-authorizer:
+    #     type: cognito_user_pools
+    #     providerARNs:
+    #       - arn:aws:cognito-idp:ap-southeast-2:748909248546:userpool/ap-southeast-2_dqIVUS9bF
+

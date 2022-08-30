@@ -15,7 +15,8 @@ phases:
       - echo documentation bucket is $DOCUMENTATION_BUCKET/$BUCKET_PATH
       - EXCLUDE=''
       - if [ "$KEEP_API_SPECS" == "true" ]; then
-          echo keeping files in s3://$DOCUMENTATION_BUCKET/$BUCKET_PATH/openapi/specs/*
+          echo keeping files in s3://$DOCUMENTATION_BUCKET/$BUCKET_PATH/openapi/specs/*;
           EXCLUDE="--exclude \"$BUCKET_PATH/openapi/specs/*\"";
         fi
-      - aws s3 rm s3://$DOCUMENTATION_BUCKET --recursive $EXCLUDE
+      - echo s3 rm s3://$DOCUMENTATION_BUCKET --recursive $EXCLUDE
+      - eval "aws s3 rm s3://$DOCUMENTATION_BUCKET --recursive $EXCLUDE"

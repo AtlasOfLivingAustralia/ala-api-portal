@@ -5,6 +5,8 @@ set -ueo pipefail
 # Deploy the codepipeline for API documentation.
 # You must have AWS CLI authentication for this to run. 
 
+ENV="${1:-notprod}"
+
 # get the branch
 branch=$(git branch --show-current)
 echo branch: $branch
@@ -14,7 +16,7 @@ commit_id=$(git rev-parse HEAD)
 echo commit_id: $commit_id
 
 # get the environment based on the branch
-environment=$(./branch_2_env.py --branch $branch)
+environment=$(./branch_2_env.py --branch $branch --env $ENV)
 echo environment: $environment
 
 # load environment vars

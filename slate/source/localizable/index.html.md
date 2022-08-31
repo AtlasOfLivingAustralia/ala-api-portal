@@ -990,6 +990,492 @@ order | N | desc | The direction to sort the results by. Valid values are 'asc',
 userId | N | | Add a userid filter, userid should be the user's numeric user id
 activeStatus | N | active | Filters DOIs returned based on active flag. Valid values are 'all', 'active' or 'inactive'
 
+## 3.2 GET api/doi/{id}
+```shell
+curl -X 'GET' '<%= I18n.t(:doiAPIUrl) %>/api/doi/1' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+{
+    "id": 866,
+    "fileSize": 73585,
+    "dateCreated": "2022-08-18T11:03:36Z",
+    "providerMetadata": {
+        "title": "test",
+        "authors": [
+            "test"
+        ],
+        "subjects": [
+            "test"
+        ],
+        "subtitle": "test",
+        "publisher": "test",
+        "createdDate": "YYYY-MM-ddThh:mm:ssZ",
+        "contributors": [
+            {
+                "name": "test",
+                "type": "Editor"
+            }
+        ],
+        "descriptions": [
+            {
+                "text": "test",
+                "type": "Other"
+            }
+        ],
+        "resourceText": "etc",
+        "resourceType": "Text",
+        "publicationYear": 2020.0
+    },
+    "customLandingPageUrl": null,
+    "dateMinted": "2022-08-18T11:03:30Z",
+    "uuid": "489c109c-76df-4129-b5c7-4a3327568231",
+    "lastUpdated": "2022-08-29T22:39:02Z",
+    "active": true,
+    "doi": "10.80416/TEST_DOI_62fd8fe571828",
+    "applicationMetadata": null,
+    "provider": "ANDS",
+    "title": "test",
+    "applicationUrl": "https://collections-test.ala.org.au",
+    "fileHash": [
+        103
+    ],
+    "filename": "ala.25484e41-62a0-4819-be71-49a9ac4c51fd",
+    "contentType": "text/html;charset=UTF-8",
+    "authors": "test,xyz",
+    "licence": [
+        "cc by"
+    ],
+    "description": "test"
+}
+```
+Get a stored DOI and its metadata
+
+#### HTTP Request
+`GET <%= I18n.t(:doiAPIUrl) %>/api/doi/{id}`
+
+#### Path Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+id | Y | | Either the DOI (encoded or unencoded) or the UUID
+
+## 3.3 GET api/doi/search
+```shell
+curl -X 'GET' '<%= I18n.t(:doiAPIUrl) %>/api/doi/search?q=q&max=10&offset=0&sort=dateMinted&order=asc' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+{
+    "aggregations": {},
+    "highlight": [],
+    "scores": {},
+    "searchResults": [
+        {
+            "id": 1,
+            "fileSize": 9315,
+            "dateCreated": "2020-09-16T15:36:02Z",
+            "providerMetadata": {
+                "title": "test",
+                "authors": [
+                    "Atlas Of Living Australia"
+                ],
+                "creator": [
+                    {
+                        "name": "test",
+                        "type": "Producer"
+                    }
+                ],
+                "publisher": "Atlas Of Living Australia",
+                "contributors": [
+                    {
+                        "name": "test",
+                        "type": "Distributor"
+                    }
+                ],
+                "descriptions": [
+                    {
+                        "text": "ALA occurrence record download",
+                        "type": "Other"
+                    }
+                ],
+                "resourceText": "Species information",
+                "resourceType": "Text"
+            },
+            "customLandingPageUrl": null,
+            "dateMinted": "2020-09-16T15:35:51Z",
+            "uuid": "aa524247-24ec-4122-94ed-81986f93c577",
+            "lastUpdated": "2020-09-16T15:36:04Z",
+            "active": true,
+            "doi": "10.80416/TEST_24ec-4122-94ed-81986f93c577",
+            "applicationMetadata": {
+                "lsid": "urn:lsid:biodiversity.org.au:afd.taxon:b07d25f7-59c3-461c-85f4-0c355353ac62",
+                "name": "Beddomeia tasmanica",
+                "datasets": [
+                    {
+                        "uid": "co198",
+                        "name": "Tasmanian Museum and Art Gallery Invertebrate Collection",
+                        "count": "2",
+                        "licence": ""
+                    }
+                ],
+                "modeller": "test",
+                "searchUrl": "https://biocache-ws-test.ala.org.au/ws/occurrences/search?q=qid:1600234533143",
+                "queryTitle": "<span class='lsid' id='urn:lsid:biodiversity.org.au:afd.taxon:b07d25f7-59c3-461c-85f4-0c355353ac62'>SPECIES: Beddomeia tasmanica</span>",
+                "commonNames": "Hydrobiid Snail (Terrys Creek)",
+                "recordCount": "51",
+                "requestedOn": "Wed Sep 16 15:35:33 AEST 2020",
+                "workflowUrl": "https://nectar-spatial-test.ala.org.au/ws/workflow/show/80",
+                "organisation": "DPIPWE",
+                "qualityFilters": [],
+                "scientificName": "Beddomeia tasmanica",
+                "applicationName": "CSDM",
+                "dataSetAnnotation": "Beddomeia tasmanica points for testing",
+                "workflowAnnotation": ""
+            },
+            "provider": "DATACITE",
+            "title": "Occurrence download Beddomeia_tasmanica__Current_extent_",
+            "applicationUrl": "https://biocache-ws-test.ala.org.au/ws/occurrences/search?q=qid:1600234533143",
+            "fileHash": [
+                -40
+            ],
+            "filename": "Beddomeia_tasmanica__Current_extent_.zip",
+            "contentType": "multipart/form-data",
+            "authors": "Atlas Of Living Australia",
+            "licence": [
+                "CC-BY",
+                "Creative Commons Attribution (Australia) (CC-BY 3.0 (Au))"
+            ],
+            "description": "ALA occurrence record download"
+        }
+    ],
+    "sort": {
+        "1": [
+            1600234551000
+        ]8
+    },
+    "total": 865,
+    "totalRel": "EQUAL_TO"
+}
+
+```
+Search DOIs
+
+#### HTTP Request
+`GET <%= I18n.t(:doiAPIUrl) %>/api/doi/search`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+q | N | | An elasticsearch Simple Query String formatted string
+max | N | 10 | The max number of dois to return
+offset | N | 0 | The index of the first record to return
+sort | N | dateMinted | The field to sort the results by. Valid values are 'dateMinted', 'dateCreated', 'lastUpdated', 'title'
+order | N | desc | The direction to sort the results by. Valid values are 'asc', 'desc'
+fq | N | | filters the search results by by supplied fields
+activeStatus | N | active | Filters DOIs returned based on active flag. Valid values are 'all', 'active' or 'inactive'
+
+## 3.4 GET api/doi/{id}/download
+```shell
+curl -X 'GET' '<%= I18n.t(:doiAPIUrl) %>/api/doi/1/download' \
+  -H 'accept: application/octet-stream'
+```
+Download the file associated with a DOI
+
+#### HTTP Request
+`GET <%= I18n.t(:doiAPIUrl) %>/api/doi/{id}/download`
+
+#### Path Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+id | Y | | Either the DOI (encoded or unencoded) or the UUID
+
+## 3.5 POST api/doi <p style="display: inline;">&#128274;</p>
+```shell
+curl -X 'POST' '<%= I18n.t(:doiAPIUrl) %>/api/doi' \
+  -H 'accept: application/json' -H 'content-type: application/json' -d 
+'{
+    "provider":"ANDS",
+    "title":"test",
+    "authors":"test",
+    "description":"test",
+    "licence":["cc by"],
+    "applicationUrl":"url",
+    "fileUrl":"url",
+    "applicationMetadata":null,
+    "customLandingPageUrl":null,
+    "userId":56544,
+    "active":true,
+    "authorisedRoles":[],
+    "displayTemplate":null,
+    "providerMetadata":{
+    "authors" : [
+        "test"
+    ],
+    "contributors" : [{
+        "name" : "test",
+        "type" : "Editor"
+    }
+    ],
+    "title" : "test",
+    "subjects" : [
+        "test"
+    ],
+    "subtitle" : "test",
+    "publicationYear" : 2020,
+    "createdDate" : "YYYY-MM-ddThh:mm:ssZ",
+    "descriptions" : [{
+        "text" : "test",
+        "type" : "Other"
+    }
+    ],
+    "resourceText" : "etc",
+    "resourceType" : "Text",
+    "publisher" : "test"
+    }
+}'
+
+The above command returns JSON structured like this:
+{
+    "doi":"10.80416/TEST_DOI_630d3d19a0893",
+    "doiServiceLandingPage":"url",
+    "error":null,"landingPage":"url",
+    "status":"ok",
+    "uuid":"1"
+}
+```
+Mint / Register / Reserve a DOI. Required scopes: 'doi/write'.
+
+#### HTTP Request
+`POST <%= I18n.t(:doiAPIUrl) %>/api/doi`
+
+## 3.6 POST api/doi/{id} <p style="display: inline;">&#128274;</p>
+```shell
+curl -X 'POST' '<%= I18n.t(:doiAPIUrl) %>/api/doi/1' \
+  -H 'accept: application/json' -H 'content-type: application/json' -d 
+'{
+    "authors" : [
+        "test"
+    ]
+}'
+
+The above command returns JSON structured like this:
+{
+    "id": 866,
+    "fileSize": 73585,
+    "dateCreated": "2022-08-18T11:03:36Z",
+    "providerMetadata": {
+        "title": "test",
+        "authors": [
+            "test"
+        ],
+        "subjects": [
+            "test"
+        ],
+        "subtitle": "test",
+        "publisher": "test",
+        "createdDate": "YYYY-MM-ddThh:mm:ssZ",
+        "contributors": [
+            {
+                "name": "test",
+                "type": "Editor"
+            }
+        ],
+        "descriptions": [
+            {
+                "text": "test",
+                "type": "Other"
+            }
+        ],
+        "resourceText": "etc",
+        "resourceType": "Text",
+        "publicationYear": 2020.0
+    },
+    "customLandingPageUrl": null,
+    "dateMinted": "2022-08-18T11:03:30Z",
+    "uuid": "489c109c-76df-4129-b5c7-4a3327568231",
+    "lastUpdated": "2022-08-29T22:39:02Z",
+    "active": true,
+    "doi": "10.80416/TEST_DOI_62fd8fe571828",
+    "applicationMetadata": null,
+    "provider": "ANDS",
+    "title": "test",
+    "applicationUrl": "https://collections-test.ala.org.au",
+    "fileHash": [
+        103
+    ],
+    "filename": "ala.25484e41-62a0-4819-be71-49a9ac4c51fd",
+    "contentType": "text/html;charset=UTF-8",
+    "authors": "test,xyz",
+    "licence": [
+        "cc by"
+    ],
+    "description": "test"
+}
+```
+Update the stored metadata or add a file to a DOI. Required scopes: 'doi/write'.
+
+#### HTTP Request
+`POST <%= I18n.t(:doiAPIUrl) %>/api/doi/{id}`
+
+#### Path Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+id | Y | | Either the DOI (encoded or unencoded) or the UUID
+
+## 3.7 PUT api/doi/{id} <p style="display: inline;">&#128274;</p>
+```shell
+curl -X 'PUT' '<%= I18n.t(:doiAPIUrl) %>/api/doi/1' \
+  -H 'accept: application/json' -H 'content-type: application/json' -d 
+'{
+    "authors" : [
+        "test"
+    ]
+}'
+
+The above command returns JSON structured like this:
+{
+    "id": 866,
+    "fileSize": 73585,
+    "dateCreated": "2022-08-18T11:03:36Z",
+    "providerMetadata": {
+        "title": "test",
+        "authors": [
+            "test"
+        ],
+        "subjects": [
+            "test"
+        ],
+        "subtitle": "test",
+        "publisher": "test",
+        "createdDate": "YYYY-MM-ddThh:mm:ssZ",
+        "contributors": [
+            {
+                "name": "test",
+                "type": "Editor"
+            }
+        ],
+        "descriptions": [
+            {
+                "text": "test",
+                "type": "Other"
+            }
+        ],
+        "resourceText": "etc",
+        "resourceType": "Text",
+        "publicationYear": 2020.0
+    },
+    "customLandingPageUrl": null,
+    "dateMinted": "2022-08-18T11:03:30Z",
+    "uuid": "489c109c-76df-4129-b5c7-4a3327568231",
+    "lastUpdated": "2022-08-29T22:39:02Z",
+    "active": true,
+    "doi": "10.80416/TEST_DOI_62fd8fe571828",
+    "applicationMetadata": null,
+    "provider": "ANDS",
+    "title": "test",
+    "applicationUrl": "https://collections-test.ala.org.au",
+    "fileHash": [
+        103
+    ],
+    "filename": "ala.25484e41-62a0-4819-be71-49a9ac4c51fd",
+    "contentType": "text/html;charset=UTF-8",
+    "authors": "test,xyz",
+    "licence": [
+        "cc by"
+    ],
+    "description": "test"
+}
+```
+Update the stored metadata or add a file to a DOI. Required scopes: 'doi/write'.
+
+#### HTTP Request
+`PUT <%= I18n.t(:doiAPIUrl) %>/api/doi/{id}`
+
+#### Path Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+id | Y | | Either the DOI (encoded or unencoded) or the UUID
+
+## 3.8 PATCH api/doi/{id} <p style="display: inline;">&#128274;</p>
+```shell
+curl -X 'PATCH' '<%= I18n.t(:doiAPIUrl) %>/api/doi/1' \
+  -H 'accept: application/json' -H 'content-type: application/json' -d 
+'{
+    "authors" : [
+        "test"
+    ]
+}'
+
+The above command returns JSON structured like this:
+{
+    "id": 866,
+    "fileSize": 73585,
+    "dateCreated": "2022-08-18T11:03:36Z",
+    "providerMetadata": {
+        "title": "test",
+        "authors": [
+            "test"
+        ],
+        "subjects": [
+            "test"
+        ],
+        "subtitle": "test",
+        "publisher": "test",
+        "createdDate": "YYYY-MM-ddThh:mm:ssZ",
+        "contributors": [
+            {
+                "name": "test",
+                "type": "Editor"
+            }
+        ],
+        "descriptions": [
+            {
+                "text": "test",
+                "type": "Other"
+            }
+        ],
+        "resourceText": "etc",
+        "resourceType": "Text",
+        "publicationYear": 2020.0
+    },
+    "customLandingPageUrl": null,
+    "dateMinted": "2022-08-18T11:03:30Z",
+    "uuid": "489c109c-76df-4129-b5c7-4a3327568231",
+    "lastUpdated": "2022-08-29T22:39:02Z",
+    "active": true,
+    "doi": "10.80416/TEST_DOI_62fd8fe571828",
+    "applicationMetadata": null,
+    "provider": "ANDS",
+    "title": "test",
+    "applicationUrl": "https://collections-test.ala.org.au",
+    "fileHash": [
+        103
+    ],
+    "filename": "ala.25484e41-62a0-4819-be71-49a9ac4c51fd",
+    "contentType": "text/html;charset=UTF-8",
+    "authors": "test,xyz",
+    "licence": [
+        "cc by"
+    ],
+    "description": "test"
+}
+```
+Update the stored metadata or add a file to a DOI. Required scopes: 'doi/write'.
+
+#### HTTP Request
+`PATCH <%= I18n.t(:doiAPIUrl) %>/api/doi/{id}`
+
+#### Path Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+id | Y | | Either the DOI (encoded or unencoded) or the UUID
+
 ## 4. Logger service
 
 <aside class="notice">

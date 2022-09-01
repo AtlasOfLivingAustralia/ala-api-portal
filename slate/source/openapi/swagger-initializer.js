@@ -13,7 +13,8 @@ window.onload = function() {
         { name: "doi", url: "./specs/doi.json"},
         { name: "biocollect", url: "./specs/biocollect.json"},
         { name: "bie-index", url:"./specs/bie-index.json"},
-        { name: "specieslist", url:"./specs/specieslist.json"}
+        { name: "specieslist", url:"./specs/specieslist.json"},
+        { name: "collectory", url:"./specs/collectory.json"}
       ],
       dom_id: '#swagger-ui',
       deepLinking: true,

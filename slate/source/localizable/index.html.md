@@ -2283,6 +2283,194 @@ Parameter | Mandatory | Default | Description
 druid | Y | | A comma separated list of druids to query
 
 
+## 8. Collectory
+<aside class="notice">
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=collectory">Open API specification</a>
+</aside>
+
+## 8.1 POST /ws/contacts/{id} <p style="display: inline;">&#128274;</p>
+```shell
+curl -X 'POST' '<%= I18n.t(:collectoryApiUrl) %>/ws/contacts/616' \
+  -H 'accept: application/json' -H "Authorization: Bearer {access_token}" -H 'content-type: application/json' -d 
+'{
+    "title": "Mr",
+    "firstName": "Test name",
+    "lastName": "Test Surname",
+    "email": "testemail @ala.org.au",
+    "phone": null,
+    "fax": null,
+    "mobile": null,
+    "publish": false 
+}'
+
+The above command returns JSON structured like this:
+{
+    "title": "Mr",
+    "firstName": "Test name",
+    "lastName": "Test Surname",
+    "email": "testemail @ala.org.au",
+    "phone": 12345,
+    "fax": 1234556,
+    "mobile": 1234566,
+    "publish": false 
+}
+```
+### HTTP Request
+`POST <%= I18n.t(:collectoryApiUrl) %>/ws/contacts/{id}`
+
+## 8.2 GET /ws/contacts/{id} <p style="display: inline;">&#128274;</p>
+```shell
+curl -X 'GET' '<%= I18n.t(:collectoryApiUrl) %>/ws/contacts/616' \
+  -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
+
+The above command returns JSON structured like this:
+{
+  "id": "616",
+  "title": "Mr",
+  "firstName": "Test name",
+  "lastName": "Test Surname",
+  "email": "testemail @ala.org.au",
+  "phone": 12345,
+  "fax": 1234556,
+  "mobile": 1234566,
+  "publish": false 
+  "dateCreated": "2022-09-01T00:35:29.558Z",
+  "lastUpdated": "2022-09-01T00:35:29.558Z"
+}
+```
+### HTTP Request
+`POST <%= I18n.t(:collectoryApiUrl) %>/ws/contacts/{id}`
+
+## 8.3 GET /ws/eml/{id}
+```shell
+curl -X 'GET' '<%= I18n.t(:collectoryApiUrl) %>/ws/eml/in17' \
+  -H 'accept: text/xml'
+
+The above command returns JSON structured like this:
+
+
+<?xml version="1.0" encoding="UTF-8"?><eml:eml xmlns:d="eml://ecoinformatics.org/dataset-2.1.0" xmlns:eml="eml://ecoinformatics.org/eml-2.1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dc="http://purl.org/dc/terms/" xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.1 http://rs.gbif.org/schema/eml-gbif-profile/1.1/eml-gbif-profile.xsd" system="ALA-Registry" scope="system" xml:lang="en" eml="eml://ecoinformatics.org/eml-2.1.1" xsi="http://www.w3.org/2001/XMLSchema-instance" dc="http://purl.org/dc/terms/">
+  <dataset>
+    <alternateIdentifier>some-internal-identifier</alternateIdentifier>
+    <alternateIdentifier>urn:lsid:biocol.org:col:someid</alternateIdentifier>
+    <alternateIdentifier>https://collections-test.ala.org.au/public/show/in17</alternateIdentifier>
+    <title xmlns:lang="en">Museum and Art Gallery of the Northern Territory</title>
+    <creator>
+      <organizationName>Museum and Art Gallery of the Northern Territory</organizationName>
+      <address/>
+    </creator>
+    <metadataProvider>
+      <organizationName>Museum and Art Gallery of the Northern Territory</organizationName>
+      <address/>
+    </metadataProvider>
+    <associatedParty>
+      <organizationName>Atlas of Living Australia</organizationName>
+      <address>
+        <deliveryPoint>CSIRO Ecosystems Services</deliveryPoint>
+        <city>Canberra</city>
+        <administrativeArea>ACT</administrativeArea>
+        <postalCode>2601</postalCode>
+        <country>Australia</country>
+      </address>
+      <electronicMailAddress>info@ala.org.au</electronicMailAddress>
+      <role>distributor</role>
+    </associatedParty>
+    <associatedParty>
+      <organizationName>Northern Territory Museum and Art Gallery provider for OZCAM</organizationName>
+      <role>publisher</role>
+    </associatedParty>
+    <associatedParty>
+      <organizationName>Database of Australasian Vertebrate Occurrences</organizationName>
+      <role>publisher</role>
+    </associatedParty>
+    <associatedParty>
+      <organizationName>Fossil Birds</organizationName>
+      <role>publisher</role>
+    </associatedParty>
+    <associatedParty>
+      <organizationName>Fossil Fish</organizationName>
+      <role>publisher</role>
+    </associatedParty>
+    <pubDate>2017-01-31</pubDate>
+    <language>English</language>
+    <abstract>
+      <para>The Museum and Art Gallery of the Northern Territory (MAGNT) is the Top End of Australia’s premier scientific, cultural and artistic institution. The MAGNT holds extensive collections covering Natural History, Archaeology, Aboriginal Art and Culture, Northern Territory History, Maritime History, South East Asian and Oceanic Art and the Visual Arts.</para>
+    </abstract>
+    <distribution>
+      <online>
+        <url function="information">https://collections-test.ala.org.au/public/show/in17</url>
+      </online>
+    </distribution>
+    <contact>
+      <organizationName>Atlas of Living Australia</organizationName>
+      <address>
+        <deliveryPoint>CSIRO Ecosystems Services</deliveryPoint>
+        <city>Canberra</city>
+        <administrativeArea>ACT</administrativeArea>
+        <postalCode>2601</postalCode>
+        <country>Australia</country>
+      </address>
+      <electronicMailAddress>info@ala.org.au</electronicMailAddress>
+    </contact>
+  </dataset>
+  <additionalMetadata>
+    <metadata>
+      <gbif>
+        <dateStamp>2017-01-31T12:52:12</dateStamp>
+        <hierarchyLevel>dataset</hierarchyLevel>
+        <resourceLogoUrl>https://collections-test.ala.org.au/data/institution/COMBINED+MAGNT+LOGO+200v3.png</resourceLogoUrl>
+      </gbif>
+    </metadata>
+  </additionalMetadata>
+</eml:eml>
+```
+### HTTP Request
+`GET <%= I18n.t(:collectoryApiUrl) %>/ws/eml/{id}`
+
+## 8.4 GET /ws/lookup/summary/{id}
+```shell
+curl -X 'GET' '<%= I18n.t(:collectoryApiUrl) %>/ws/lookup/summary/co139' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+{
+  "acronym": "MAGNT",
+  "collectionId": "someid",
+  "collectionName": "Museum and Art Gallery of the Northern Territory Amphibian Collection",
+  "collectionUid": "co139",
+  "derivedCollCodes": [
+    "Amphibian"
+  ],
+  "derivedInstCodes": [
+    "MAGNT"
+  ],
+  "hubMembership": [
+    {
+      "uid": "someuid",
+      "name": "Online Zoological Collections of Australian Museums"
+    }
+  ],
+  "id": 140,
+  "institutionId": "someid",
+  "institutionLogoUrl": "https://collections-test.ala.org.au/data/institution/COMBINED MAGNT LOGO 200v3.png",
+  "institutionName": "Museum and Art Gallery of the Northern Territory",
+  "institutionUid": "someid",
+  "lsid": null,
+  "name": "Museum and Art Gallery of the Northern Territory Amphibian Collection",
+  "relatedDataProviders": [],
+  "relatedDataResources": [],
+  "shortDescription": "The MAGNT amphibian collection, established in 1981, consists of about 8,000 databased specimens, the majority of which have been collected in the Northern Territory.\r",
+  "taxonomyCoverageHints": [
+    {
+      "class": "amphibia"
+    }
+  ],
+  "uid": "co139",
+  "uri": "https://collections-test.ala.org.au/ws/collection/co139"
+}
+```
+### HTTP Request
+`POST <%= I18n.t(:collectoryApiUrl) %>/ws/lookup/summary/{id}`
 
 
 

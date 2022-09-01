@@ -1,15 +1,15 @@
 ---
 test:
   title: Atlas of Living Australia API test Documentation
-  baseUrl: https://apis-test.ala.org.au
+  baseUrl: https://apis.test.ala.org.au
   authBaseUrl: https://auth-test.ala.org.au
   biocacheBaseUrl: https://biocache-ws-test.ala.org.au/ws
   autoCompleteBaseUrl: https://biocache-ws-test.ala.org.au/ws
   userdetailsBaseUrl: https://auth-test.ala.org.au/userdetails
-  userdetailsAPIUrl: https://apis.dev.ala.org.au/userdetails
-  loggerAPIUrl: https://apis.dev.ala.org.au/logger
-  alertsAPIUrl: https://apis.dev.ala.org.au/alerts
-  doiAPIUrl: https://apis.dev.ala.org.au/doi
-  biocollectAPIUrl: https://apis.dev.ala.org.au/biocollect
-  bieIndexAPIUrl: https://apis.dev.ala.org.au/bie-index
-  specieslistIndexAPIUrl: https://apis.dev.ala.org.au/specieslist
+  userdetailsAPIUrl: https://apis.test.ala.org.au/userdetails
+  loggerAPIUrl: https://apis.test.ala.org.au/logger
+  alertsAPIUrl: https://apis.test.ala.org.au/alerts
+  doiAPIUrl: https://apis.test.ala.org.au/doi
+  biocollectAPIUrl: https://apis.test.ala.org.au/biocollect
+  bieIndexAPIUrl: https://apis.test.ala.org.au/bie-index
+  specieslistIndexAPIUrl: https://apis.test.ala.org.au/specieslist

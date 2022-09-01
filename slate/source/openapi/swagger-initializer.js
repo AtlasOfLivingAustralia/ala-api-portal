@@ -10,8 +10,8 @@ window.onload = function() {
         // { name: "images", url: "./specs/images-rest.yaml"},
         { name: "userdetails", url: "./specs/userdetails.json"},
         { name: "logger", url: "./specs/logger-rest.json"},
-        { name: "doi", url: "./specs/doi-rest.json"},
-        { name: "biocollect", url: "./specs/biocollect-rest.json"},
+        // { name: "doi", url: "./specs/doi-rest.json"},
+        // { name: "biocollect", url: "./specs/biocollect-rest.json"},
         { name: "bie-index", url:"./specs/bie-index-rest.json"},
         { name: "specieslist", url:"./specs/specieslist-rest.json"}
       ],

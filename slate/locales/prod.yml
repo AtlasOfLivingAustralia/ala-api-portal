@@ -7,7 +7,7 @@ prod:
   autoCompleteBaseUrl: https://biocache-ws.ala.org.au/ws
   userdetailsBaseUrl: https://auth.ala.org.au/userdetails
   userdetailsAPIUrl: https://apis.ala.org.au/userdetails
-  loggerAPIUrl: https://apis.test.ala.org.au/logger
+  loggerAPIUrl: https://apis.ala.org.au/logger
   alertsAPIUrl: https://apis.ala.org.au/alerts
   doiAPIUrl: https://apis.ala.org.au/doi
   biocollectAPIUrl: https://apis.ala.org.au/biocollect

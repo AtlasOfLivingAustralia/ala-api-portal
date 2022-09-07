@@ -328,6 +328,9 @@ Create a new species list, search lists and retrieve species list metadata.
 Access images and sound recordings from the ALA. 
 -->
 ## 1. Alerts
+
+Access alerts functions, including view alert details, unsubscribe from and create an alert.
+
 <aside class="notice">
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=alerts">Open API specification</a>
 </aside>
@@ -2194,7 +2197,10 @@ geoOnly | N | |(Not Implemented) Limit value to limit result with geospatial occ
 limit | N | |The maximum number of results to return (default = 10)
 
 
-## 7. Specieslist Webapp
+## 7. Species lists
+
+Interact with species lists, including get list details and create a list.
+
 <aside class="notice">
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=specieslist">Open API specification</a>
 </aside>
@@ -2283,7 +2289,10 @@ Parameter | Mandatory | Default | Description
 druid | Y | | A comma separated list of druids to query
 
 
-## 8. Collectory
+## 8. Collectory (Museum and herbaria collections)
+
+Services for interacting with attribution information, such as data provider metadata and citations.
+
 <aside class="notice">
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=collectory">Open API specification</a>
 </aside>

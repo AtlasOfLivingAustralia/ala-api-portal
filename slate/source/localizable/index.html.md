@@ -2315,8 +2315,16 @@ The above command returns JSON structured like this:
     "publish": false 
 }
 ```
+Update an existing contact with the specified contact id
+
 ### HTTP Request
 `POST <%= I18n.t(:collectoryApiUrl) %>/ws/contacts/{id}`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+id | Y | | The contact identifier
 
 ## 8.2 GET /ws/contacts/{id} <p style="display: inline;">&#128274;</p>
 ```shell
@@ -2338,8 +2346,15 @@ The above command returns JSON structured like this:
   "lastUpdated": "2022-09-01T00:35:29.558Z"
 }
 ```
+Get an existing contact with the specified contact id
 ### HTTP Request
 `POST <%= I18n.t(:collectoryApiUrl) %>/ws/contacts/{id}`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+id | Y | | The contact identifier
 
 ## 8.3 GET /ws/eml/{id}
 ```shell
@@ -2424,8 +2439,16 @@ The above command returns JSON structured like this:
   </additionalMetadata>
 </eml:eml>
 ```
+Get a field by Id. Includes all objects associated with the field.
+
 ### HTTP Request
 `GET <%= I18n.t(:collectoryApiUrl) %>/ws/eml/{id}`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+id | Y | | The entity identifier
 
 ## 8.4 GET /ws/lookup/summary/{id}
 ```shell
@@ -2469,8 +2492,228 @@ The above command returns JSON structured like this:
   "uri": "https://collections-test.ala.org.au/ws/collection/co139"
 }
 ```
+Get summary information for an entity
 ### HTTP Request
 `POST <%= I18n.t(:collectoryApiUrl) %>/ws/lookup/summary/{id}`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+id | Y | | The entity identifier
+
+
+## 8.5 POST /ws/citations 
+```shell
+curl -X 'POST' '<%= I18n.t(:collectoryApiUrl) %>/ws/citations' \
+  -H 'accept: application/json' -H 'content-type: application/json' -d 
+'[
+  "dr654",
+  "dr653"
+]'
+
+The above command returns JSON structured like this:
+
+[
+    {
+        "name": "Tasmania : Conservation Status",
+        "citation": "Records provided by Tasmania : Conservation Status, accessed through ALA website.",
+        "rights": "other",
+        "link": "For more information: https://collections-test.ala.org.au/public/show/dr654",
+        "dataGeneralizations": "",
+        "informationWithheld": "",
+        "downloadLimit": "",
+        "uid": "dr654",
+        "DOI": ""
+    },
+    {
+        "name": "South Australia : Conservation Status",
+        "citation": "Records provided by South Australia : Conservation Status, accessed through ALA website.",
+        "rights": "other",
+        "link": "For more information: https://collections-test.ala.org.au/public/show/dr653",
+        "dataGeneralizations": "",
+        "informationWithheld": "",
+        "downloadLimit": "",
+        "uid": "dr653",
+        "DOI": ""
+    }
+]
+```
+Get citations for a list of data resource UIDs
+
+### HTTP Request
+`POST <%= I18n.t(:collectoryApiUrl) %>/ws/citations
+
+## 8.6 GET /ws/{entity}}/{uid}
+```shell
+curl -X 'GET' '<%= I18n.t(:collectoryApiUrl) %>/ws/collection/co139' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+
+{
+    "name": "Museum and Art Gallery of the Northern Territory Amphibian Collection",
+    "acronym": "MAGNT",
+    "uid": "co139",
+    "guid": null,
+    "address": {
+        "street": "19 Conacher Street",
+        "city": "Bullocky Point, Darwin",
+        "state": "Northern Territory",
+        "postcode": "0801",
+        "country": "Australia",
+        "postBox": "GPO Box 4646, Darwin, NT 0801"
+    },
+    "phone": null,
+    "email": null,
+    "pubShortDescription": null,
+    "pubDescription": "The MAGNT amphibian collection, established in 1981, consists of about 8,000 databased specimens, the majority of which have been collected in the Northern Territory.\r\n\r\nThe majority of the specimens have been fixed in 10% formalin prior to being transferred into 70% ethanol for long term storage. Recently, frozen and ethanol-fixed tissue samples have been kept for genetic studies.\r\n\r\nSpecimens can be lent to workers at other institutions upon application and the MAGNT also welcomes visiting researchers.",
+    "techDescription": null,
+    "focus": null,
+    "latitude": -12.4373636113,
+    "longitude": 130.8331492698,
+    "state": "Northern Territory",
+    "websiteUrl": "magnt.net.au",
+    "alaPublicUrl": "https://collections-test.ala.org.au/public/show/co139",
+    "imageRef": {
+        "filename": "R24497b.jpg",
+        "caption": "Magnificent Tree Frog: Litoria splendida",
+        "copyright": "MAGNT",
+        "attribution": null,
+        "uri": "https://collections-test.ala.org.au/data/collection/R24497b.jpg"
+    },
+    "networkMembership": [
+        {
+            "name": "Council of Heads of Australian Faunal Collections",
+            "acronym": "CHAFC",
+            "logo": "https://collections-test.ala.org.au/data/network/CHAFC_sm.jpg"
+        },
+        {
+            "name": "Council of Heads of Australian Entomological Collections",
+            "acronym": "CHAEC",
+            "logo": "https://collections-test.ala.org.au/data/network/chaec-logo.png"
+        },
+        "did not match"
+    ],
+    "hubMembership": [
+        {
+            "uid": "dh1",
+            "name": "Online Zoological Collections of Australian Museums",
+            "uri": "https://collections-test.ala.org.au/ws/dataHub/dh1"
+        }
+    ],
+    "taxonomyCoverageHints": [
+        {
+            "class": "amphibia"
+        }
+    ],
+    "attributions": [],
+    "dateCreated": "2010-09-06T03:45:01Z",
+    "lastUpdated": "2021-11-27T08:01:57Z",
+    "userLastModified": "not available",
+    "collectionType": [
+        "preserved",
+        "taxonomic",
+        "tissue"
+    ],
+    "keywords": [
+        "frogs",
+        "amphibians",
+        "fauna",
+        "microbes",
+        "entomology",
+        "plants"
+    ],
+    "active": "Active growth",
+    "numRecords": 8000,
+    "numRecordsDigitised": 8000,
+    "states": null,
+    "geographicDescription": "Mostly from the Northern Territory with some material from northern Western Australia and Queensland.",
+    "startDate": "1981",
+    "endDate": null,
+    "kingdomCoverage": [
+        "Animalia"
+    ],
+    "scientificNames": null,
+    "subCollections": [],
+    "institution": {
+        "name": "Museum and Art Gallery of the Northern Territory",
+        "uri": "https://collections-test.ala.org.au/ws/institution/in17",
+        "uid": "in17"
+    },
+    "recordsProviderMapping": {
+        "collectionCodes": [
+            "Amphibian"
+        ],
+        "institutionCodes": [
+            "MAGNT"
+        ],
+        "matchAnyCollectionCode": false,
+        "exact": true,
+        "warning": null,
+        "dateCreated": "2010-09-06T07:58:02Z",
+        "lastUpdated": "2015-01-29T04:11:29Z"
+    },
+    "gbifRegistryKey": null
+}
+```
+Get a summary of entities that exist for a data type or detailed information for a specific entity.
+### HTTP Request
+`GET <%= I18n.t(:collectoryApiUrl) %>/ws/{entity}/{uid}`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+entity | Y | | The entity name
+uid | N | | The entity uid 
+
+## 8.7 POST /ws/{entity}}/{uid}
+```shell
+curl -X 'POST' '<%= I18n.t(:collectoryApiUrl) %>/ws/dataProvider/dp5249' \
+  -H 'accept: application/json' -H "Authorization: Bearer {access_token}" -d 
+  '{
+    "name": "Test Data Provider 23",
+    "acronym": null,
+    "uid": "dp5249",
+    "guid": null,
+    "address": null,
+    "phone": null,
+    "email": null,
+    "pubShortDescription": null,
+    "pubDescription": null,
+    "techDescription": null,
+    "focus": null,
+    "latitude": null,
+    "longitude": null,
+    "state": null,
+    "websiteUrl": null,
+    "alaPublicUrl": "https://collections-test.ala.org.au/public/show/dp5249",
+    "networkMembership": null,
+    "attributions": [],
+    "dataResources": [],
+    "gbifRegistryKey": null
+    }
+  '
+
+The above command returns JSON structured like this:
+ 'updated DataProvider'
+ OR 
+ 'inserted entity'
+
+```
+Insert or update an entity - if uid is specified, entity must exist and is updated with the provided data
+### HTTP Request
+`POST <%= I18n.t(:collectoryApiUrl) %>/ws/{entity}/{uid}`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+entity | Y | | The entity name
+uid | N | | The entity uid 
+
+
 
 
 

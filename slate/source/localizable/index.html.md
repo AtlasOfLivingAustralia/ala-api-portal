@@ -2665,7 +2665,7 @@ Get a summary of entities that exist for a data type or detailed information for
 
 Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
-entity | Y | | The entity name
+entity | Y | | The entity name e.g. collection, dataProvider, institution
 uid | N | | The entity uid 
 
 ## 8.7 POST /ws/{entity}}/{uid}
@@ -2710,9 +2710,8 @@ Insert or update an entity - if uid is specified, entity must exist and is updat
 
 Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
-entity | Y | | The entity name
+entity | Y | | The entity name e.g. collection, dataProvider, institution
 uid | N | | The entity uid 
-
 
 
 ## 9. Image service

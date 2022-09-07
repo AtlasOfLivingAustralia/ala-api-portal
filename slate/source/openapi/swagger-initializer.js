@@ -11,7 +11,7 @@ window.onload = function() {
         { name: "userdetails", url: "./specs/userdetails.json"},
         { name: "logger", url: "./specs/logger.json"},
         { name: "doi", url: "./specs/doi.json"},
-        // { name: "biocollect", url: "./specs/biocollect-rest.json"},
+        { name: "biocollect", url: "./specs/biocollect.json"},
         { name: "bie-index", url:"./specs/bie-index.json"},
         { name: "specieslist", url:"./specs/specieslist.json"}
       ],

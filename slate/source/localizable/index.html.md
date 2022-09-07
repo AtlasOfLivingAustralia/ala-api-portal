@@ -1787,7 +1787,500 @@ Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 id | Y | | Either the DOI (encoded or unencoded) or the UUID
 
+## 7. Biocollect
 
+<aside class="notice">
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=biocollect">Open API specification</a>
+</aside>
+
+## 7.1 GET ws/bioactivity/delete/{id} <p style="display: inline;">&#128274;</p>
+```shell
+curl -X 'GET' '<%= I18n.t(:biocollectAPIUrl) %>/ws/bioactivity/delete/1' \
+  -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
+
+The above command returns JSON structured like this:
+{
+  "status": 0,
+  "error": "string",
+  "text": "string"
+}
+```
+Delete an activity
+
+#### HTTP Request
+`GET <%= I18n.t(:biocollectAPIUrl) %>/ws/bioactivity/delete/{id}`
+
+#### Path Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+id | Y | | Activity id
+
+## 7.2 GET ws/bioactivity/model/{id} <p style="display: inline;">&#128274;</p>
+```shell
+curl -X 'GET' '<%= I18n.t(:biocollectAPIUrl) %>/ws/bioactivity/model/1' \
+  -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
+
+The above command returns JSON structured like this:
+{
+  "activity": {
+    "additionalProp1": {},
+    "additionalProp2": {},
+    "additionalProp3": {}
+  },
+  "returnTo": "string",
+  "site": {
+    "extent": {
+      "geometry": {
+        "areaKmSq": 0,
+        "coordinates": [
+          0
+        ],
+        "centre": [
+          0
+        ],
+        "type": "string"
+      },
+      "source": "string"
+    },
+    "lastUpdated": "string",
+    "projects": [
+      "string"
+    ],
+    "dateCreated": "string",
+    "visibility": "string",
+    "name": "string",
+    "siteId": "string",
+    "id": "string",
+    "geoPoint": [
+      0
+    ],
+    "isSciStarter": true,
+    "status": "string"
+  },
+  "project": {
+    "additionalProp1": {},
+    "additionalProp2": {},
+    "additionalProp3": {}
+  },
+  "projectSite": {
+    "additionalProp1": {},
+    "additionalProp2": {},
+    "additionalProp3": {}
+  },
+  "speciesLists": [
+    {}
+  ],
+  "themes": [
+    {}
+  ],
+  "metaModel": {
+    "additionalProp1": {},
+    "additionalProp2": {},
+    "additionalProp3": {}
+  },
+  "outputModels": {
+    "additionalProp1": {},
+    "additionalProp2": {},
+    "additionalProp3": {}
+  },
+  "getpActivity": {
+    "additionalProp1": {},
+    "additionalProp2": {},
+    "additionalProp3": {}
+  },
+  "error": "string"
+}
+```
+Get survey's data model
+
+#### HTTP Request
+`GET <%= I18n.t(:biocollectAPIUrl) %>/ws/bioactivity/model/{id}`
+
+#### Path Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+id | Y | | Survey id or project activity id
+
+## 7.3 GET ws/bioactivity/data/{id} <p style="display: inline;">&#128274;</p>
+```shell
+curl -X 'GET' '<%= I18n.t(:biocollectAPIUrl) %>/ws/bioactivity/data/1' \
+  -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
+
+The above command returns JSON structured like this:
+{
+  "activity": {
+    "additionalProp1": {},
+    "additionalProp2": {},
+    "additionalProp3": {}
+  },
+  "site": {
+    "extent": {
+      "geometry": {
+        "areaKmSq": 0,
+        "coordinates": [
+          0
+        ],
+        "centre": [
+          0
+        ],
+        "type": "string"
+      },
+      "source": "string"
+    },
+    "lastUpdated": "string",
+    "projects": [
+      "string"
+    ],
+    "dateCreated": "string",
+    "visibility": "string",
+    "name": "string",
+    "siteId": "string",
+    "id": "string",
+    "geoPoint": [
+      0
+    ],
+    "isSciStarter": true,
+    "status": "string"
+  },
+  "project": {
+    "additionalProp1": {},
+    "additionalProp2": {},
+    "additionalProp3": {}
+  },
+  "projectSite": {
+    "additionalProp1": {},
+    "additionalProp2": {},
+    "additionalProp3": {}
+  },
+  "speciesLists": [
+    {}
+  ],
+  "themes": [
+    {}
+  ],
+  "metaModel": {
+    "additionalProp1": {},
+    "additionalProp2": {},
+    "additionalProp3": {}
+  },
+  "outputModels": {
+    "additionalProp1": {},
+    "additionalProp2": {},
+    "additionalProp3": {}
+  },
+  "getpActivity": {
+    "additionalProp1": {},
+    "additionalProp2": {},
+    "additionalProp3": {}
+  },
+  "projectActivityId": "string",
+  "error": "string"
+}
+```
+Get data for an activity
+
+#### HTTP Request
+`GET <%= I18n.t(:biocollectAPIUrl) %>/ws/bioactivity/data/{id}`
+
+#### Path Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+id | Y | | Activity id
+
+## 7.4 GET ws/bioactivity/map <p style="display: inline;">&#128274;</p>
+```shell
+curl -X 'GET' '<%= I18n.t(:biocollectAPIUrl) %>/ws/bioactivity/map' \
+  -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
+
+The above command returns JSON structured like this:
+{
+  "total": 0,
+  "activities": [
+    {
+      "activityId": "string",
+      "projectActivityId": "string",
+      "type": "string",
+      "name": "string",
+      "activityOwnerName": "string",
+      "records": [
+        {
+          "commonName": "string",
+          "multimedia": [
+            {
+              "rightsHolder": "string",
+              "identifier": "string",
+              "license": "string",
+              "creator": "string",
+              "imageId": "string",
+              "rights": "string",
+              "format": "string",
+              "documentId": "string",
+              "title": "string",
+              "type": "string"
+            }
+          ],
+          "individualCount": 0,
+          "name": "string",
+          "coordinates": [
+            0
+          ],
+          "eventTime": "string",
+          "guid": "string",
+          "occurrenceID": "string",
+          "eventDate": "string"
+        }
+      ],
+      "projectName": "string",
+      "projectId": "string",
+      "sites": [
+        {
+          "extent": {
+            "geometry": {
+              "areaKmSq": 0,
+              "coordinates": [
+                0
+              ],
+              "centre": [
+                0
+              ],
+              "type": "string"
+            },
+            "source": "string"
+          },
+          "lastUpdated": "string",
+          "projects": [
+            "string"
+          ],
+          "dateCreated": "string",
+          "visibility": "string",
+          "name": "string",
+          "siteId": "string",
+          "id": "string",
+          "geoPoint": [
+            0
+          ],
+          "isSciStarter": true,
+          "status": "string"
+        }
+      ],
+      "coordinates": [
+        0
+      ]
+    }
+  ]
+}
+```
+Get sites associated with an activities
+
+#### HTTP Request
+`GET <%= I18n.t(:biocollectAPIUrl) %>/ws/bioactivity/map`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+hub | N | | The hub context this request will be executed in
+searchTerm | N | | Searches for terms in this parameter.
+max | N | 10 | Maximum number of returned activities per page.
+offset | N | 0 | Offset search result by this parameter
+view | N | | Page on which activities will be rendered. Available values : myrecords, project, projectrecords, myprojectrecords, userprojectactivityrecords, allrecords
+fq | N | | Restrict search results to these filter queries.
+sort | N | lastUpdated | Sort by attribute
+order | N | DESC | Order sort item by this parameter
+
+## 7.5 GET ws/bioactivity/search <p style="display: inline;">&#128274;</p>
+```shell
+curl -X 'GET' '<%= I18n.t(:biocollectAPIUrl) %>/ws/bioactivity/search' \
+  -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
+
+The above command returns JSON structured like this:
+{
+  "activities": [
+    {
+      "activityId": "string",
+      "projectActivityId": "string",
+      "type": "string",
+      "status": "string",
+      "lastUpdated": "string",
+      "userId": "string",
+      "siteId": "string",
+      "name": "string",
+      "activityOwnerName": "string",
+      "embargoed": true,
+      "embargoUntil": "string",
+      "records": [
+        {
+          "commonName": "string",
+          "multimedia": [
+            {
+              "rightsHolder": "string",
+              "identifier": "string",
+              "license": "string",
+              "creator": "string",
+              "imageId": "string",
+              "rights": "string",
+              "format": "string",
+              "documentId": "string",
+              "title": "string",
+              "type": "string"
+            }
+          ],
+          "individualCount": 0,
+          "name": "string",
+          "coordinates": [
+            0
+          ],
+          "eventTime": "string",
+          "guid": "string",
+          "occurrenceID": "string",
+          "eventDate": "string"
+        }
+      ],
+      "endDate": "string",
+      "projectName": "string",
+      "projectType": "string",
+      "projectId": "string",
+      "thumbnailUrl": "string",
+      "showCrud": true,
+      "userCanModerate": true
+    }
+  ],
+  "facets": [
+    {
+      "name": "string",
+      "total": 0,
+      "terms": [
+        {
+          "additionalProp1": {},
+          "additionalProp2": {},
+          "additionalProp3": {}
+        }
+      ]
+    }
+  ],
+  "total": 0
+}
+```
+Search activities
+
+#### HTTP Request
+`GET <%= I18n.t(:biocollectAPIUrl) %>/ws/bioactivity/search`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+hub | N | | The hub context this request will be executed in
+searchTerm | N | | Searches for terms in this parameter.
+max | N | 10 | Maximum number of returned activities per page.
+offset | N | 0 | Offset search result by this parameter
+view | N | | Page on which activities will be rendered. Available values : myrecords, project, projectrecords, myprojectrecords, userprojectactivityrecords, allrecords
+fq | N | | Restrict search results to these filter queries.
+sort | N | lastUpdated | Sort by attribute
+order | N | DESC | Order sort item by this parameter
+facets | N | | Comma seperated list of facets the search should return. If left empty, facet list is populated from hub configuration.
+flimit | N | 20 | Maximum number of facets to be returned.
+
+## 2.6 GET ws/species/uniqueId
+```shell
+curl -X 'GET' '<%= I18n.t(:biocollectAPIUrl) %>/ws/species/uniqueId' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+{
+  "outputSpeciesId": "4f28671f-0ec2-41dc-ab01-fd4cb2a5b0a6"
+}
+```
+Get output species identifier
+
+#### HTTP Request
+`GET <%= I18n.t(:biocollectAPIUrl) %>/ws/species/uniqueId`
+
+## 7.7 GET ws/survey/list/{id}
+```shell
+curl -X 'GET' '<%= I18n.t(:biocollectAPIUrl) %>/ws/survey/list/1' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+[
+  "string"
+]
+```
+Get surveys associated with a project
+
+#### HTTP Request
+`GET <%= I18n.t(:biocollectAPIUrl) %>/ws/survey/list/{id}`
+
+#### Path Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+id | Y | | The project id
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+version | N | | The date and time on which project activity was created. Version number unit is milliseconds since epoch.
+
+## 7.8 GET ws/project/search <p style="display: inline;">&#128274;</p>
+```shell
+curl -X 'GET' '<%= I18n.t(:biocollectAPIUrl) %>/ws/project/search' \
+  -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
+
+The above command returns JSON structured like this:
+{
+  "projects": [
+    {
+      "additionalProp1": {},
+      "additionalProp2": {},
+      "additionalProp3": {}
+    }
+  ],
+  "total": 0,
+  "facets": [
+    {
+      "name": "string",
+      "total": 0,
+      "terms": [
+        {
+          "additionalProp1": {},
+          "additionalProp2": {},
+          "additionalProp3": {}
+        }
+      ]
+    }
+  ]
+}
+```
+Search projects
+
+#### HTTP Request
+`GET <%= I18n.t(:biocollectAPIUrl) %>/ws/project/search`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+hub | N | | The hub context this request will be executed in
+q | N | | Searches for terms in this parameter.
+max | N | 20 | Maximum number of returned activities per page.
+offset | N | 0 | Offset search result by this parameter
+status | N | | Return active or completed projects. Available values : active, completed
+organisationName | N | | Filter projects by organisation name
+geoSearchJSON | N | Filter projects by GeoJSON shape
+isCitizenScience | N | false | Get citizen science projects
+isWorks | N | false | Get works projects
+isBiologicalScience | N | false | Get eco-science projects
+difficulty | N | | Difficulty level of projects. Available values : Easy, Medium, Hard
+isWorldWide | N | false | Set to false to return Australia specific projects. Set to true to get all projects.
+isUserPage | N | false | Set to true to get all the projects a user is participating in.
+mobile | N | false | Set to true if the request is coming from mobile client and user need to be identified. 
+facets | N | | Comma seperated list of facets the search should return. If left empty, facet list is populated from hub configuration.
+flimit | N | 15 | Maximum number of facets to be returned.
 
 
 

@@ -14,3 +14,4 @@ prod:
   bieIndexAPIUrl: https://apis.ala.org.au/bie-index
   specieslistIndexAPIUrl: https://apis.ala.org.au/specieslist
   collectoryApiUrl: https://apis.ala.org.au/collectory
+  imagesApiUrl: https://apis.ala.org.au/images

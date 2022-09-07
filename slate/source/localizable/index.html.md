@@ -2715,7 +2715,71 @@ uid | N | | The entity uid
 
 
 
+## 9. Image service
+<aside class="notice">
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=images-service">Open API specification</a>
+</aside>
 
+## 9.1 GET ws/analytics
+```shell
+curl -X 'GET' '<%= I18n.t(:imagesApiUrl) %>/ws/analytics' \
+  -H 'accept: application/json'
+```
+Get overall image usage for the system
 
+### HTTP Request
+`GET <%= I18n.t(:imagesApiUrl) %>/ws/analytics`
 
+## 9.2 GET image/details
+```shell
+curl -X 'GET' '<%= I18n.t(:imagesApiUrl) %>/image/details?id=1' \
+  -H 'accept: application/json'
 
+The above command returns JSON structured like this:
+{
+  "imageIdentifier": "1",
+  "mimeType": "image/jpeg",
+  "originalFileName": "abc.jpg",
+  "sizeInBytes": 65629,
+  "rights": "",
+  "rightsHolder": "",
+  "dateUploaded": "2022-05-23 10:47:02",
+  "dateTaken": "2022-05-23 10:47:02",
+  "imageUrl": "https://images.ala.org.au/1/original",
+  "tileUrlPattern": "https://images.ala.org.au/1/tms/{z}/{x}/{y}.png",
+  "mmPerPixel": "",
+  "height": 480,
+  "width": 640,
+  "tileZoomLevels": 4,
+  "description": "",
+  "title": "",
+  "type": "",
+  "audience": "",
+  "references": "",
+  "publisher": "",
+  "contributor": "",
+  "created": "",
+  "source": "",
+  "creator": "",
+  "license": "",
+  "recognisedLicence": null,
+  "dataResourceUid": "dr893",
+  "occurrenceID": ""
+}
+```
+Get original image.
+
+### HTTP Request
+`GET <%= I18n.t(:imagesApiUrl) %>/image/details?id={id}`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+id | Y | | Image Id
+
+#### Headers
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+Accept | Y | | Content type requested

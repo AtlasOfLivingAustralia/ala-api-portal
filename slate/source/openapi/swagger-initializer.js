@@ -7,7 +7,7 @@ window.onload = function() {
         { name: "alerts", url: "./specs/alerts.json"},
         // { name: "biocache", url: "./specs/biocache-http.yaml"},
         // { name: "ecodata", url: "./specs/ecodata-http.yaml"},
-        { name: "images", url: "./specs/images.json"},
+        { name: "image-service", url: "./specs/images.json"},
         { name: "userdetails", url: "./specs/userdetails.json"},
         { name: "logger", url: "./specs/logger.json"},
         { name: "doi", url: "./specs/doi.json"},

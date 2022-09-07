@@ -14,3 +14,4 @@ test:
   bieIndexAPIUrl: https://apis.test.ala.org.au/bie-index
   specieslistIndexAPIUrl: https://apis.test.ala.org.au/specieslist
   collectoryApiUrl: https://apis.test.ala.org.au/collectory
+  imagesApiUrl: https://apis.test.ala.org.au/images

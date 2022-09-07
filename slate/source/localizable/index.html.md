@@ -2184,7 +2184,7 @@ order | N | DESC | Order sort item by this parameter
 facets | N | | Comma seperated list of facets the search should return. If left empty, facet list is populated from hub configuration.
 flimit | N | 20 | Maximum number of facets to be returned.
 
-## 2.6 GET ws/species/uniqueId
+## 7.6 GET ws/species/uniqueId
 ```shell
 curl -X 'GET' '<%= I18n.t(:biocollectAPIUrl) %>/ws/species/uniqueId' \
   -H 'accept: application/json'

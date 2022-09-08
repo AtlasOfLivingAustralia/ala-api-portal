@@ -12,4 +12,6 @@ prod:
   doiAPIUrl: https://apis.ala.org.au/doi
   biocollectAPIUrl: https://apis.ala.org.au/biocollect
   bieIndexAPIUrl: https://apis.ala.org.au/bie-index
-  specieslistIndexAPIUrl: https://apis.dev.ala.org.au/specieslist
+  specieslistIndexAPIUrl: https://apis.ala.org.au/specieslist
+  collectoryApiUrl: https://apis.ala.org.au/collectory
+  imagesApiUrl: https://apis.ala.org.au/images

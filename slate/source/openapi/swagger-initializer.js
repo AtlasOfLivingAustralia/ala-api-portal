@@ -7,13 +7,14 @@ window.onload = function() {
         { name: "alerts", url: "./specs/alerts.json"},
         // { name: "biocache", url: "./specs/biocache-http.yaml"},
         // { name: "ecodata", url: "./specs/ecodata-http.yaml"},
-        { name: "images", url: "./specs/images.json"},
+        { name: "image-service", url: "./specs/images.json"},
         { name: "userdetails", url: "./specs/userdetails.json"},
         { name: "logger", url: "./specs/logger.json"},
         { name: "doi", url: "./specs/doi.json"},
         { name: "biocollect", url: "./specs/biocollect.json"},
         { name: "bie-index", url:"./specs/bie-index.json"},
-        { name: "specieslist", url:"./specs/specieslist.json"}
+        { name: "specieslist", url:"./specs/specieslist.json"},
+        { name: "collectory", url:"./specs/collectory.json"}
       ],
       dom_id: '#swagger-ui',
       deepLinking: true,

@@ -30,7 +30,7 @@ These data stored in the ALA have been fully parsed, processed and augmented wit
 
 Welcome to the ALA API Portfolio Hub.  
 
-We’ve recently moved to this API Gateway to streamline access and improve security for end-users by incorporating user authentication. ALA data is still open and freely accessible. 
+We’ve recently moved to this API Gateway to streamline access and improve security for end-users by incorporating user authentication. ALA data are still open and freely accessible. 
 
 
  
@@ -52,11 +52,11 @@ We support multiple ways to obtain an access token:
  - [Authentication Code Flow](#authentication-code-flow)
  - [Implicit Flow](#implicit-flow)
 
- Which authenitcation method should I use?
+ Which authentication method should I use?
 
 **Machine to Machine (No end user)**
 
- Anytime the the system is not concerned with end user identity then [Client Credentials](#client-credentials) should be used. The use case would be a headless client application that does not have the ability for user interaction. In this case the system may need to be authentcated however an end user will not.
+ Anytime the system is not concerned with end user identity then [Client Credentials](#client-credentials) should be used. The use case would be a headless client application that does not have the ability for user interaction. In this case the system may need to be authenticated however an end user will not.
 
 **End User Authentication**
 
@@ -142,20 +142,20 @@ print(data.decode("utf-8"))
 
 >
 
-The Client Credentials grant type is used for machine to machine authentication where no there is no user interation.
+The Client Credentials grant type is used for machine to machine authentication where no there is no user interaction.
 
 `POST <%= I18n.t(:authBaseUrl) %>/cas/oidc/oidcAccessToken`
 
 Header Parameters:
 
-Parameter | Mandetory | Default | Description
+Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 Authorization | Y | | base64 encoded `<clientId>:<clientSecret>`
 Content-Type | Y | | `application/x-www-form-urlencoded`
 
 Request Parameters:
 
-Parameter | Mandetory | Default | Description
+Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 grant_type | Y | | Set to `client_credentials`
 scope | N | | A space separated list of scopes that have been approved for the API Authorization client. These scopes will be included in the Access Token that is returned.
@@ -172,7 +172,7 @@ The postman http client supports the authorisation code flow. When configured th
 
 Request Parameters:
 
-Parameter | Mandetory | Default | Description
+Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 response_type | Y | | Set to `code`
 client_id | Y | | the client id
@@ -185,14 +185,14 @@ code_challenge | N | | the code challenge
 
 Header Parameters:
 
-Parameter | Mandetory | Default | Description
+Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 Authorization | N | | base64 encoded `<clientId>:<clientSecret>`. Not required for authenticating public clients.
 Content-Type | Y | | `application/x-www-form-urlencoded`
 
 Request Parameters:
 
-Parameter | Mandetory | Default | Description
+Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 grant_type | Y | | Set to `authorization_code`
 code | Y | | The authentication code returned from the authentication step
@@ -215,7 +215,7 @@ The Implicit flow presents an authorisation page that will prompt a user for cre
 
 Request Parameters:
 
-Parameter | Mandetory | Default | Description
+Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 response_type | Y | | Set to `token`
 client_id | Y | | the client id
@@ -328,6 +328,9 @@ Create a new species list, search lists and retrieve species list metadata.
 Access images and sound recordings from the ALA. 
 -->
 ## 1. Alerts
+
+Access alerts functions, including view alert details, unsubscribe from and create an alert.
+
 <aside class="notice">
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=alerts">Open API specification</a>
 </aside>
@@ -2194,7 +2197,10 @@ geoOnly | N | |(Not Implemented) Limit value to limit result with geospatial occ
 limit | N | |The maximum number of results to return (default = 10)
 
 
-## 7. Specieslist Webapp
+## 7. Species lists
+
+Interact with species lists, including get list details and create a list.
+
 <aside class="notice">
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=specieslist">Open API specification</a>
 </aside>
@@ -2283,8 +2289,505 @@ Parameter | Mandatory | Default | Description
 druid | Y | | A comma separated list of druids to query
 
 
+## 8. Collectory (Museum and herbaria collections)
+
+Services for interacting with attribution information, such as data provider metadata and citations.
+
+<aside class="notice">
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=collectory">Open API specification</a>
+</aside>
+
+## 8.1 POST /ws/contacts/{id} <p style="display: inline;">&#128274;</p>
+```shell
+curl -X 'POST' '<%= I18n.t(:collectoryApiUrl) %>/ws/contacts/616' \
+  -H 'accept: application/json' -H "Authorization: Bearer {access_token}" -H 'content-type: application/json' -d 
+'{
+    "title": "Mr",
+    "firstName": "Test name",
+    "lastName": "Test Surname",
+    "email": "testemail @ala.org.au",
+    "phone": null,
+    "fax": null,
+    "mobile": null,
+    "publish": false 
+}'
+
+The above command returns JSON structured like this:
+{
+    "title": "Mr",
+    "firstName": "Test name",
+    "lastName": "Test Surname",
+    "email": "testemail @ala.org.au",
+    "phone": 12345,
+    "fax": 1234556,
+    "mobile": 1234566,
+    "publish": false 
+}
+```
+Update an existing contact with the specified contact id
+
+### HTTP Request
+`POST <%= I18n.t(:collectoryApiUrl) %>/ws/contacts/{id}`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+id | Y | | The contact identifier
+
+## 8.2 GET /ws/contacts/{id} <p style="display: inline;">&#128274;</p>
+```shell
+curl -X 'GET' '<%= I18n.t(:collectoryApiUrl) %>/ws/contacts/616' \
+  -H 'accept: application/json' -H "Authorization: Bearer {access_token}"
+
+The above command returns JSON structured like this:
+{
+  "id": "616",
+  "title": "Mr",
+  "firstName": "Test name",
+  "lastName": "Test Surname",
+  "email": "testemail @ala.org.au",
+  "phone": 12345,
+  "fax": 1234556,
+  "mobile": 1234566,
+  "publish": false 
+  "dateCreated": "2022-09-01T00:35:29.558Z",
+  "lastUpdated": "2022-09-01T00:35:29.558Z"
+}
+```
+Get an existing contact with the specified contact id
+### HTTP Request
+`POST <%= I18n.t(:collectoryApiUrl) %>/ws/contacts/{id}`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+id | Y | | The contact identifier
+
+## 8.3 GET /ws/eml/{id}
+```shell
+curl -X 'GET' '<%= I18n.t(:collectoryApiUrl) %>/ws/eml/in17' \
+  -H 'accept: text/xml'
+
+The above command returns JSON structured like this:
 
 
+<?xml version="1.0" encoding="UTF-8"?><eml:eml xmlns:d="eml://ecoinformatics.org/dataset-2.1.0" xmlns:eml="eml://ecoinformatics.org/eml-2.1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dc="http://purl.org/dc/terms/" xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.1 http://rs.gbif.org/schema/eml-gbif-profile/1.1/eml-gbif-profile.xsd" system="ALA-Registry" scope="system" xml:lang="en" eml="eml://ecoinformatics.org/eml-2.1.1" xsi="http://www.w3.org/2001/XMLSchema-instance" dc="http://purl.org/dc/terms/">
+  <dataset>
+    <alternateIdentifier>some-internal-identifier</alternateIdentifier>
+    <alternateIdentifier>urn:lsid:biocol.org:col:someid</alternateIdentifier>
+    <alternateIdentifier>https://collections-test.ala.org.au/public/show/in17</alternateIdentifier>
+    <title xmlns:lang="en">Museum and Art Gallery of the Northern Territory</title>
+    <creator>
+      <organizationName>Museum and Art Gallery of the Northern Territory</organizationName>
+      <address/>
+    </creator>
+    <metadataProvider>
+      <organizationName>Museum and Art Gallery of the Northern Territory</organizationName>
+      <address/>
+    </metadataProvider>
+    <associatedParty>
+      <organizationName>Atlas of Living Australia</organizationName>
+      <address>
+        <deliveryPoint>CSIRO Ecosystems Services</deliveryPoint>
+        <city>Canberra</city>
+        <administrativeArea>ACT</administrativeArea>
+        <postalCode>2601</postalCode>
+        <country>Australia</country>
+      </address>
+      <electronicMailAddress>info@ala.org.au</electronicMailAddress>
+      <role>distributor</role>
+    </associatedParty>
+    <associatedParty>
+      <organizationName>Northern Territory Museum and Art Gallery provider for OZCAM</organizationName>
+      <role>publisher</role>
+    </associatedParty>
+    <associatedParty>
+      <organizationName>Database of Australasian Vertebrate Occurrences</organizationName>
+      <role>publisher</role>
+    </associatedParty>
+    <associatedParty>
+      <organizationName>Fossil Birds</organizationName>
+      <role>publisher</role>
+    </associatedParty>
+    <associatedParty>
+      <organizationName>Fossil Fish</organizationName>
+      <role>publisher</role>
+    </associatedParty>
+    <pubDate>2017-01-31</pubDate>
+    <language>English</language>
+    <abstract>
+      <para>The Museum and Art Gallery of the Northern Territory (MAGNT) is the Top End of Australia’s premier scientific, cultural and artistic institution. The MAGNT holds extensive collections covering Natural History, Archaeology, Aboriginal Art and Culture, Northern Territory History, Maritime History, South East Asian and Oceanic Art and the Visual Arts.</para>
+    </abstract>
+    <distribution>
+      <online>
+        <url function="information">https://collections-test.ala.org.au/public/show/in17</url>
+      </online>
+    </distribution>
+    <contact>
+      <organizationName>Atlas of Living Australia</organizationName>
+      <address>
+        <deliveryPoint>CSIRO Ecosystems Services</deliveryPoint>
+        <city>Canberra</city>
+        <administrativeArea>ACT</administrativeArea>
+        <postalCode>2601</postalCode>
+        <country>Australia</country>
+      </address>
+      <electronicMailAddress>info@ala.org.au</electronicMailAddress>
+    </contact>
+  </dataset>
+  <additionalMetadata>
+    <metadata>
+      <gbif>
+        <dateStamp>2017-01-31T12:52:12</dateStamp>
+        <hierarchyLevel>dataset</hierarchyLevel>
+        <resourceLogoUrl>https://collections-test.ala.org.au/data/institution/COMBINED+MAGNT+LOGO+200v3.png</resourceLogoUrl>
+      </gbif>
+    </metadata>
+  </additionalMetadata>
+</eml:eml>
+```
+Get a field by Id. Includes all objects associated with the field.
+
+### HTTP Request
+`GET <%= I18n.t(:collectoryApiUrl) %>/ws/eml/{id}`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+id | Y | | The entity identifier
+
+## 8.4 GET /ws/lookup/summary/{id}
+```shell
+curl -X 'GET' '<%= I18n.t(:collectoryApiUrl) %>/ws/lookup/summary/co139' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+{
+  "acronym": "MAGNT",
+  "collectionId": "someid",
+  "collectionName": "Museum and Art Gallery of the Northern Territory Amphibian Collection",
+  "collectionUid": "co139",
+  "derivedCollCodes": [
+    "Amphibian"
+  ],
+  "derivedInstCodes": [
+    "MAGNT"
+  ],
+  "hubMembership": [
+    {
+      "uid": "someuid",
+      "name": "Online Zoological Collections of Australian Museums"
+    }
+  ],
+  "id": 140,
+  "institutionId": "someid",
+  "institutionLogoUrl": "https://collections-test.ala.org.au/data/institution/COMBINED MAGNT LOGO 200v3.png",
+  "institutionName": "Museum and Art Gallery of the Northern Territory",
+  "institutionUid": "someid",
+  "lsid": null,
+  "name": "Museum and Art Gallery of the Northern Territory Amphibian Collection",
+  "relatedDataProviders": [],
+  "relatedDataResources": [],
+  "shortDescription": "The MAGNT amphibian collection, established in 1981, consists of about 8,000 databased specimens, the majority of which have been collected in the Northern Territory.\r",
+  "taxonomyCoverageHints": [
+    {
+      "class": "amphibia"
+    }
+  ],
+  "uid": "co139",
+  "uri": "https://collections-test.ala.org.au/ws/collection/co139"
+}
+```
+Get summary information for an entity
+### HTTP Request
+`POST <%= I18n.t(:collectoryApiUrl) %>/ws/lookup/summary/{id}`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+id | Y | | The entity identifier
 
 
+## 8.5 POST /ws/citations 
+```shell
+curl -X 'POST' '<%= I18n.t(:collectoryApiUrl) %>/ws/citations' \
+  -H 'accept: application/json' -H 'content-type: application/json' -d 
+'[
+  "dr654",
+  "dr653"
+]'
 
+The above command returns JSON structured like this:
+
+[
+    {
+        "name": "Tasmania : Conservation Status",
+        "citation": "Records provided by Tasmania : Conservation Status, accessed through ALA website.",
+        "rights": "other",
+        "link": "For more information: https://collections-test.ala.org.au/public/show/dr654",
+        "dataGeneralizations": "",
+        "informationWithheld": "",
+        "downloadLimit": "",
+        "uid": "dr654",
+        "DOI": ""
+    },
+    {
+        "name": "South Australia : Conservation Status",
+        "citation": "Records provided by South Australia : Conservation Status, accessed through ALA website.",
+        "rights": "other",
+        "link": "For more information: https://collections-test.ala.org.au/public/show/dr653",
+        "dataGeneralizations": "",
+        "informationWithheld": "",
+        "downloadLimit": "",
+        "uid": "dr653",
+        "DOI": ""
+    }
+]
+```
+Get citations for a list of data resource UIDs
+
+### HTTP Request
+`POST <%= I18n.t(:collectoryApiUrl) %>/ws/citations
+
+## 8.6 GET /ws/{entity}}/{uid}
+```shell
+curl -X 'GET' '<%= I18n.t(:collectoryApiUrl) %>/ws/collection/co139' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+
+{
+    "name": "Museum and Art Gallery of the Northern Territory Amphibian Collection",
+    "acronym": "MAGNT",
+    "uid": "co139",
+    "guid": null,
+    "address": {
+        "street": "19 Conacher Street",
+        "city": "Bullocky Point, Darwin",
+        "state": "Northern Territory",
+        "postcode": "0801",
+        "country": "Australia",
+        "postBox": "GPO Box 4646, Darwin, NT 0801"
+    },
+    "phone": null,
+    "email": null,
+    "pubShortDescription": null,
+    "pubDescription": "The MAGNT amphibian collection, established in 1981, consists of about 8,000 databased specimens, the majority of which have been collected in the Northern Territory.\r\n\r\nThe majority of the specimens have been fixed in 10% formalin prior to being transferred into 70% ethanol for long term storage. Recently, frozen and ethanol-fixed tissue samples have been kept for genetic studies.\r\n\r\nSpecimens can be lent to workers at other institutions upon application and the MAGNT also welcomes visiting researchers.",
+    "techDescription": null,
+    "focus": null,
+    "latitude": -12.4373636113,
+    "longitude": 130.8331492698,
+    "state": "Northern Territory",
+    "websiteUrl": "magnt.net.au",
+    "alaPublicUrl": "https://collections-test.ala.org.au/public/show/co139",
+    "imageRef": {
+        "filename": "R24497b.jpg",
+        "caption": "Magnificent Tree Frog: Litoria splendida",
+        "copyright": "MAGNT",
+        "attribution": null,
+        "uri": "https://collections-test.ala.org.au/data/collection/R24497b.jpg"
+    },
+    "networkMembership": [
+        {
+            "name": "Council of Heads of Australian Faunal Collections",
+            "acronym": "CHAFC",
+            "logo": "https://collections-test.ala.org.au/data/network/CHAFC_sm.jpg"
+        },
+        {
+            "name": "Council of Heads of Australian Entomological Collections",
+            "acronym": "CHAEC",
+            "logo": "https://collections-test.ala.org.au/data/network/chaec-logo.png"
+        },
+        "did not match"
+    ],
+    "hubMembership": [
+        {
+            "uid": "dh1",
+            "name": "Online Zoological Collections of Australian Museums",
+            "uri": "https://collections-test.ala.org.au/ws/dataHub/dh1"
+        }
+    ],
+    "taxonomyCoverageHints": [
+        {
+            "class": "amphibia"
+        }
+    ],
+    "attributions": [],
+    "dateCreated": "2010-09-06T03:45:01Z",
+    "lastUpdated": "2021-11-27T08:01:57Z",
+    "userLastModified": "not available",
+    "collectionType": [
+        "preserved",
+        "taxonomic",
+        "tissue"
+    ],
+    "keywords": [
+        "frogs",
+        "amphibians",
+        "fauna",
+        "microbes",
+        "entomology",
+        "plants"
+    ],
+    "active": "Active growth",
+    "numRecords": 8000,
+    "numRecordsDigitised": 8000,
+    "states": null,
+    "geographicDescription": "Mostly from the Northern Territory with some material from northern Western Australia and Queensland.",
+    "startDate": "1981",
+    "endDate": null,
+    "kingdomCoverage": [
+        "Animalia"
+    ],
+    "scientificNames": null,
+    "subCollections": [],
+    "institution": {
+        "name": "Museum and Art Gallery of the Northern Territory",
+        "uri": "https://collections-test.ala.org.au/ws/institution/in17",
+        "uid": "in17"
+    },
+    "recordsProviderMapping": {
+        "collectionCodes": [
+            "Amphibian"
+        ],
+        "institutionCodes": [
+            "MAGNT"
+        ],
+        "matchAnyCollectionCode": false,
+        "exact": true,
+        "warning": null,
+        "dateCreated": "2010-09-06T07:58:02Z",
+        "lastUpdated": "2015-01-29T04:11:29Z"
+    },
+    "gbifRegistryKey": null
+}
+```
+Get a summary of entities that exist for a data type or detailed information for a specific entity.
+### HTTP Request
+`GET <%= I18n.t(:collectoryApiUrl) %>/ws/{entity}/{uid}`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+entity | Y | | The entity name e.g. collection, dataProvider, institution
+uid | N | | The entity uid 
+
+## 8.7 POST /ws/{entity}}/{uid}
+```shell
+curl -X 'POST' '<%= I18n.t(:collectoryApiUrl) %>/ws/dataProvider/dp5249' \
+  -H 'accept: application/json' -H "Authorization: Bearer {access_token}" -d 
+  '{
+    "name": "Test Data Provider 23",
+    "acronym": null,
+    "uid": "dp5249",
+    "guid": null,
+    "address": null,
+    "phone": null,
+    "email": null,
+    "pubShortDescription": null,
+    "pubDescription": null,
+    "techDescription": null,
+    "focus": null,
+    "latitude": null,
+    "longitude": null,
+    "state": null,
+    "websiteUrl": null,
+    "alaPublicUrl": "https://collections-test.ala.org.au/public/show/dp5249",
+    "networkMembership": null,
+    "attributions": [],
+    "dataResources": [],
+    "gbifRegistryKey": null
+    }
+  '
+
+The above command returns JSON structured like this:
+ 'updated DataProvider'
+ OR 
+ 'inserted entity'
+
+```
+Insert or update an entity - if uid is specified, entity must exist and is updated with the provided data
+### HTTP Request
+`POST <%= I18n.t(:collectoryApiUrl) %>/ws/{entity}/{uid}`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+entity | Y | | The entity name e.g. collection, dataProvider, institution
+uid | N | | The entity uid 
+
+
+## 9. Image service
+<aside class="notice">
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=images-service">Open API specification</a>
+</aside>
+
+## 9.1 GET ws/analytics
+```shell
+curl -X 'GET' '<%= I18n.t(:imagesApiUrl) %>/ws/analytics' \
+  -H 'accept: application/json'
+```
+Get overall image usage for the system
+
+### HTTP Request
+`GET <%= I18n.t(:imagesApiUrl) %>/ws/analytics`
+
+## 9.2 GET image/details
+```shell
+curl -X 'GET' '<%= I18n.t(:imagesApiUrl) %>/image/details?id=1' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+{
+  "imageIdentifier": "1",
+  "mimeType": "image/jpeg",
+  "originalFileName": "abc.jpg",
+  "sizeInBytes": 65629,
+  "rights": "",
+  "rightsHolder": "",
+  "dateUploaded": "2022-05-23 10:47:02",
+  "dateTaken": "2022-05-23 10:47:02",
+  "imageUrl": "https://images.ala.org.au/1/original",
+  "tileUrlPattern": "https://images.ala.org.au/1/tms/{z}/{x}/{y}.png",
+  "mmPerPixel": "",
+  "height": 480,
+  "width": 640,
+  "tileZoomLevels": 4,
+  "description": "",
+  "title": "",
+  "type": "",
+  "audience": "",
+  "references": "",
+  "publisher": "",
+  "contributor": "",
+  "created": "",
+  "source": "",
+  "creator": "",
+  "license": "",
+  "recognisedLicence": null,
+  "dataResourceUid": "dr893",
+  "occurrenceID": ""
+}
+```
+Get original image.
+
+### HTTP Request
+`GET <%= I18n.t(:imagesApiUrl) %>/image/details?id={id}`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+id | Y | | Image Id
+
+#### Headers
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+Accept | Y | | Content type requested

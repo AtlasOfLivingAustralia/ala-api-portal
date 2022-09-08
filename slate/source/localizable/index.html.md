@@ -30,7 +30,7 @@ These data stored in the ALA have been fully parsed, processed and augmented wit
 
 Welcome to the ALA API Portfolio Hub.  
 
-We’ve recently moved to this API Gateway to streamline access and improve security for end-users by incorporating user authentication. ALA data is still open and freely accessible. 
+We’ve recently moved to this API Gateway to streamline access and improve security for end-users by incorporating user authentication. ALA data are still open and freely accessible. 
 
 
  
@@ -52,11 +52,11 @@ We support multiple ways to obtain an access token:
  - [Authentication Code Flow](#authentication-code-flow)
  - [Implicit Flow](#implicit-flow)
 
- Which authenitcation method should I use?
+ Which authentication method should I use?
 
 **Machine to Machine (No end user)**
 
- Anytime the the system is not concerned with end user identity then [Client Credentials](#client-credentials) should be used. The use case would be a headless client application that does not have the ability for user interaction. In this case the system may need to be authentcated however an end user will not.
+ Anytime the system is not concerned with end user identity then [Client Credentials](#client-credentials) should be used. The use case would be a headless client application that does not have the ability for user interaction. In this case the system may need to be authenticated however an end user will not.
 
 **End User Authentication**
 
@@ -142,20 +142,20 @@ print(data.decode("utf-8"))
 
 >
 
-The Client Credentials grant type is used for machine to machine authentication where no there is no user interation.
+The Client Credentials grant type is used for machine to machine authentication where no there is no user interaction.
 
 `POST <%= I18n.t(:authBaseUrl) %>/cas/oidc/oidcAccessToken`
 
 Header Parameters:
 
-Parameter | Mandetory | Default | Description
+Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 Authorization | Y | | base64 encoded `<clientId>:<clientSecret>`
 Content-Type | Y | | `application/x-www-form-urlencoded`
 
 Request Parameters:
 
-Parameter | Mandetory | Default | Description
+Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 grant_type | Y | | Set to `client_credentials`
 scope | N | | A space separated list of scopes that have been approved for the API Authorization client. These scopes will be included in the Access Token that is returned.
@@ -172,7 +172,7 @@ The postman http client supports the authorisation code flow. When configured th
 
 Request Parameters:
 
-Parameter | Mandetory | Default | Description
+Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 response_type | Y | | Set to `code`
 client_id | Y | | the client id
@@ -185,14 +185,14 @@ code_challenge | N | | the code challenge
 
 Header Parameters:
 
-Parameter | Mandetory | Default | Description
+Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 Authorization | N | | base64 encoded `<clientId>:<clientSecret>`. Not required for authenticating public clients.
 Content-Type | Y | | `application/x-www-form-urlencoded`
 
 Request Parameters:
 
-Parameter | Mandetory | Default | Description
+Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 grant_type | Y | | Set to `authorization_code`
 code | Y | | The authentication code returned from the authentication step
@@ -215,7 +215,7 @@ The Implicit flow presents an authorisation page that will prompt a user for cre
 
 Request Parameters:
 
-Parameter | Mandetory | Default | Description
+Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 response_type | Y | | Set to `token`
 client_id | Y | | the client id
@@ -328,6 +328,9 @@ Create a new species list, search lists and retrieve species list metadata.
 Access images and sound recordings from the ALA. 
 -->
 ## 1. Alerts
+
+Access alerts functions, including view alert details, unsubscribe from and create an alert.
+
 <aside class="notice">
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=alerts">Open API specification</a>
 </aside>
@@ -1141,7 +1144,10 @@ geoOnly | N | |(Not Implemented) Limit value to limit result with geospatial occ
 limit | N | |The maximum number of results to return (default = 10)
 
 
-## 5. Specieslist Webapp
+## 5. Species lists
+
+Interact with species lists, including get list details and create a list.
+
 <aside class="notice">
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=specieslist">Open API specification</a>
 </aside>

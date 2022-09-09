@@ -2551,7 +2551,7 @@ The above command returns JSON structured like this:
 Get citations for a list of data resource UIDs
 
 ### HTTP Request
-`POST <%= I18n.t(:collectoryApiUrl) %>/ws/citations
+`POST <%= I18n.t(:collectoryApiUrl) %>/ws/citations`
 
 ## 8.6 GET /ws/{entity}}/{uid}
 ```shell

@@ -151,9 +151,10 @@ Resources:
               Provider: CodeBuild
             Configuration:
               ProjectName: !Ref ExportConfig
-              EnvironmentVariables: '[
+              EnvironmentVariables: !Sub '[
                                        { "name":"SRC_BRANCH", "value":"#{CheckoutSrcNS.BranchName}" },
-                                       { "name":"COMMIT_ID", "value":"#{CheckoutSrcNS.CommitId}" }
+                                       { "name":"COMMIT_ID", "value":"#{CheckoutSrcNS.CommitId}" },
+                                       { "name":"ENVIRONMENT", "value":"${pEnvironment}" }
                                      ]'
             Namespace: ExportConfigNS
             InputArtifacts:

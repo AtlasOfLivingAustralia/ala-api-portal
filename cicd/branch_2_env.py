@@ -10,14 +10,15 @@ import re
 parser = argparse.ArgumentParser()
 
 parser.add_argument("--branch", "-b", help="The code branch that triggered this build", required=True)
+parser.add_argument("--env",    "-e", help="Environment", required=False, default='non-prod')
 
 args = parser.parse_args()
 
 # associate the branch with an environmant 
-if re.search('^main$', args.branch):
+if re.search('^main$|^master$', args.branch) and args.env == 'prod':
   #print(f"Branch {args.branch} matched main")
   print('production')
-elif re.search('^release.*$', args.branch):
+elif re.search('^main$|^master$', args.branch):
   #print(f"Branch {args.branch} matched release")
   print('staging')
 elif re.search('^testing$', args.branch):

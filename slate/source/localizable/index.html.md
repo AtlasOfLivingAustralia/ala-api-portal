@@ -2553,7 +2553,7 @@ Get citations for a list of data resource UIDs
 ### HTTP Request
 `POST <%= I18n.t(:collectoryApiUrl) %>/ws/citations`
 
-## 8.6 GET /ws/{entity}}/{uid}
+## 8.6 GET /ws/{entity}/{uid}
 ```shell
 curl -X 'GET' '<%= I18n.t(:collectoryApiUrl) %>/ws/collection/co139' \
   -H 'accept: application/json'
@@ -2677,7 +2677,7 @@ Parameter | Mandatory | Default | Description
 entity | Y | | The entity name e.g. collection, dataProvider, institution
 uid | N | | The entity uid 
 
-## 8.7 POST /ws/{entity}}/{uid}
+## 8.7 POST /ws/{entity}/{uid}
 ```shell
 curl -X 'POST' '<%= I18n.t(:collectoryApiUrl) %>/ws/dataProvider/dp5249' \
   -H 'accept: application/json' -H "Authorization: Bearer {access_token}" -d 

@@ -3013,7 +3013,7 @@ Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 profileName	| N | | Profile name
 
-## 10.4 GET /api/v1/data-profiles/{profileId}/categories
+## 10.5 GET /api/v1/data-profiles/{profileId}/categories
 ```shell
 curl -X 'GET' '<%= I18n.t(:dqfServiceApiUrl) %>/api/v1/data-profiles/AVH/categories' \
   -H 'accept: application/json'

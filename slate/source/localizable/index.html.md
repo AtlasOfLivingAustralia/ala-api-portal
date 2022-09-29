@@ -2791,3 +2791,287 @@ id | Y | | Image Id
 Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 Accept | Y | | Content type requested
+
+## 10. Data Quality Service
+<aside class="notice">
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=data-quality-service">Open API specification</a>
+</aside>
+
+## 10.1 GET /api/v1/data-profiles
+```shell
+curl -X 'GET' '<%= I18n.t(:dqfServiceApiUrl) %>/api/v1/data-profiles' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+[
+  {
+    "id": 0,
+    "name": "string",
+    "shortName": "string",
+    "description": "string",
+    "contactName": "string",
+    "contactEmail": "string",
+    "enabled": true,
+    "isDefault": true,
+    "displayOrder": 0,
+    "dateCreated": "2022-09-28T06:01:35.253Z",
+    "lastUpdated": "2022-09-28T06:01:35.253Z",
+    "categories": [
+      {
+        "id": 0,
+        "enabled": true,
+        "name": "string",
+        "label": "string",
+        "description": "string",
+        "displayOrder": 0,
+        "dateCreated": "2022-09-28T06:01:35.253Z",
+        "lastUpdated": "2022-09-28T06:01:35.253Z",
+        "qualityProfile": "string",
+        "qualityFilters": [
+          {
+            "id": 0,
+            "enabled": true,
+            "description": "string",
+            "filter": "string",
+            "displayOrder": 0,
+            "dateCreated": "2022-09-28T06:01:35.253Z",
+            "lastUpdated": "2022-09-28T06:01:35.253Z",
+            "qualityCategory": "string",
+            "qualityCategoryId": {}
+          }
+        ],
+        "qualityProfileId": {}
+      }
+    ]
+  }
+]
+```
+List all quality profiles
+
+### HTTP Request
+`GET <%= I18n.t(:dqfServiceApiUrl) %>/api/v1/data-profiles`
+
+#### Query Parameters
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+max	| N | | Maximum results to return
+offset | N | | Number to offset the results by
+sort | N | 	| Propert to sort results by
+order | N | 	| Direction to sort results by
+enabled	| N | | Only return enabled profiles
+name | N | | Search for profiles by name
+shortName | N | | Search for profiles by short name
+
+## 10.2 GET /api/v1/data-profiles/{id}
+```shell
+curl -X 'GET' '<%= I18n.t(:dqfServiceApiUrl) %>/api/v1/data-profiles/123' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+{
+    "id": 0,
+    "name": "string",
+    "shortName": "string",
+    "description": "string",
+    "contactName": "string",
+    "contactEmail": "string",
+    "enabled": true,
+    "isDefault": true,
+    "displayOrder": 0,
+    "dateCreated": "2022-09-28T06:01:35.253Z",
+    "lastUpdated": "2022-09-28T06:01:35.253Z",
+    "categories": [
+      {
+        "id": 0,
+        "enabled": true,
+        "name": "string",
+        "label": "string",
+        "description": "string",
+        "displayOrder": 0,
+        "dateCreated": "2022-09-28T06:01:35.253Z",
+        "lastUpdated": "2022-09-28T06:01:35.253Z",
+        "qualityProfile": "string",
+        "qualityFilters": [
+          {
+            "id": 0,
+            "enabled": true,
+            "description": "string",
+            "filter": "string",
+            "displayOrder": 0,
+            "dateCreated": "2022-09-28T06:01:35.253Z",
+            "lastUpdated": "2022-09-28T06:01:35.253Z",
+            "qualityCategory": "string",
+            "qualityCategoryId": {}
+          }
+        ],
+        "qualityProfileId": {}
+      }
+    ]
+  }
+```
+Retrieve a single quality profile
+
+### HTTP Request
+`GET <%= I18n.t(:dqfServiceApiUrl) %>/api/v1/data-profiles/{id}`
+
+#### Path Parameters
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+id	| Y | | The id or short name for the quality profile or default for the default profile
+
+## 10.3 GET /api/v1/quality/findAllEnabledCategories
+```shell
+curl -X 'GET' '<%= I18n.t(:dqfServiceApiUrl) %>/api/v1/quality/findAllEnabledCategories?profileName=AVH' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+{
+  "id": 0,
+  "enabled": true,
+  "name": "string",
+  "label": "string",
+  "description": "string",
+  "displayOrder": 0,
+  "dateCreated": "2022-09-28T06:07:25.935Z",
+  "lastUpdated": "2022-09-28T06:07:25.935Z",
+  "qualityProfile": {
+    "id": 0,
+    "name": "string",
+    "shortName": "string",
+    "description": "string",
+    "contactName": "string",
+    "contactEmail": "string",
+    "enabled": true,
+    "isDefault": true,
+    "displayOrder": 0,
+    "dateCreated": "2022-09-28T06:07:25.935Z",
+    "lastUpdated": "2022-09-28T06:07:25.935Z",
+    "categories": [
+      "string"
+    ]
+  },
+  "qualityFilters": [
+    {
+      "id": 0,
+      "enabled": true,
+      "description": "string",
+      "filter": "string",
+      "displayOrder": 0,
+      "dateCreated": "2022-09-28T06:07:25.935Z",
+      "lastUpdated": "2022-09-28T06:07:25.935Z",
+      "qualityCategory": "string",
+      "qualityCategoryId": {}
+    }
+  ],
+  "qualityProfileId": {}
+}
+```
+Find All Enabled Categories for a profile
+
+### HTTP Request
+`GET <%= I18n.t(:dqfServiceApiUrl) %>/api/v1/quality/findAllEnabledCategories`
+
+#### Query Parameters
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+profileName	| N | | Profile name
+
+## 10.4 GET /api/v1/quality/getEnabledQualityFilters
+```shell
+curl -X 'GET' '<%= I18n.t(:dqfServiceApiUrl) %>/api/v1/quality/getEnabledQualityFilters?profileName=AVH' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+[
+  "-spatiallyValid:\"false\"",
+  "-coordinateUncertaintyInMeters:[10001 TO *]",
+  "-userAssertions:50001",
+  "-outlierLayerCount:[3 TO *]",
+  "-year:[* TO 1700]",
+  "-raw_identification_qualifier:[* TO *]",
+  "-(establishment_means:MANAGED OR establishment_means:CULTIVATED OR establishment_means:CAPTIVE)",
+  "-assertions:TAXON_MATCH_NONE",
+  "-decimalLatitude:0",
+  "-assertions:INVALID_SCIENTIFIC_NAME",
+  "-userAssertions:50005",
+  "-assertions:TAXON_HOMONYM",
+  "-decimalLongitude:0",
+  "-assertions:\"PRESUMED_SWAPPED_COORDINATE\"",
+  "-assertions:UNKNOWN_KINGDOM",
+  "-assertions:TAXON_SCOPE_MISMATCH",
+  "-assertions:\"COORDINATES_CENTRE_OF_STATEPROVINCE\"",
+  "-assertions:\"COORDINATES_CENTRE_OF_COUNTRY\""
+]
+```
+Get Enabled Quality Filters for a profile
+
+### HTTP Request
+`GET <%= I18n.t(:dqfServiceApiUrl) %>/api/v1/quality/getEnabledQualityFilters`
+
+#### Query Parameters
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+profileName	| N | | Profile name
+
+## 10.5 GET /api/v1/data-profiles/{profileId}/categories
+```shell
+curl -X 'GET' '<%= I18n.t(:dqfServiceApiUrl) %>/api/v1/data-profiles/AVH/categories' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+[
+  {
+    "id": 0,
+    "enabled": true,
+    "name": "string",
+    "label": "string",
+    "description": "string",
+    "displayOrder": 0,
+    "dateCreated": "2022-09-28T06:13:59.669Z",
+    "lastUpdated": "2022-09-28T06:13:59.669Z",
+    "qualityProfile": {
+      "id": 0,
+      "name": "string",
+      "shortName": "string",
+      "description": "string",
+      "contactName": "string",
+      "contactEmail": "string",
+      "enabled": true,
+      "isDefault": true,
+      "displayOrder": 0,
+      "dateCreated": "2022-09-28T06:13:59.669Z",
+      "lastUpdated": "2022-09-28T06:13:59.669Z",
+      "categories": [
+        "string"
+      ]
+    },
+    "qualityFilters": [
+      {
+        "id": 0,
+        "enabled": true,
+        "description": "string",
+        "filter": "string",
+        "displayOrder": 0,
+        "dateCreated": "2022-09-28T06:13:59.669Z",
+        "lastUpdated": "2022-09-28T06:13:59.669Z",
+        "qualityCategory": "string",
+        "qualityCategoryId": {}
+      }
+    ],
+    "qualityProfileId": {}
+  }
+]
+```
+List all quality categories for a profile
+
+### HTTP Request
+`GET <%= I18n.t(:dqfServiceApiUrl) %>/api/v1/data-profiles/{profileId}/categories`
+
+#### Path Parameters
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+profileId	| Y | | The id or short name for the quality profile or default for the default profile
+#### Query Parameters
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+max	| N | | Max resunts to return

@@ -2791,3 +2791,9 @@ id | Y | | Image Id
 Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 Accept | Y | | Content type requested
+
+
+## 11. Profiles service
+<aside class="notice">
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=profiles">Open API specification</a>
+</aside>

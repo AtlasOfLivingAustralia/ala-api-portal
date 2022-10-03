@@ -2792,6 +2792,62 @@ Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 Accept | Y | | Content type requested
 
+## 9.3 GET ws/images/tag/{tagID}
+```shell
+curl -X 'GET' '<%= I18n.t(:imagesApiUrl) %>/ws/images/tag/1?max=100&offset=0' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+{
+  "tagID": "671",
+  "totalImageCount": 0,
+  "images": []
+}
+```
+Find images by tag id.
+
+### HTTP Request
+`GET <%= I18n.t(:imagesApiUrl) %>/ws/images/tag/{tagID}`
+
+#### Path Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+tagID | Y | | tag Id
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+max | N | 100 | max results to return
+offset | N | 0 | offset for paging
+
+## 9.4 GET ws/getMetadataKeys
+```shell
+curl -X 'GET' '<%= I18n.t(:imagesApiUrl) %>/ws/getMetadataKeys?source=Embedded' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+[
+  "Accelerometer X",
+  "Accelerometer Y",
+  "Accelerometer Z",
+  "Active D-Lighting",
+  "Advanced Scene Mode",
+  "AE Bracket Compensation"
+]
+```
+Find images by tag id.
+
+### HTTP Request
+`GET <%= I18n.t(:imagesApiUrl) %>/ws/getMetadataKeys?source={source}`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+source | N | Embedded | source - valid values are - Embedded, UserDefined and SystemDefined
+
 ## 10. Data Quality Service
 <aside class="notice">
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=data-quality-service">Open API specification</a>

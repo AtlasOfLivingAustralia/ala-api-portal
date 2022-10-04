@@ -15,4 +15,5 @@ dev:
   specieslistIndexAPIUrl: https://apis.test.ala.org.au/specieslist
   collectoryApiUrl: https://apis.test.ala.org.au/collectory
   imagesApiUrl: https://apis.test.ala.org.au/images
+  profilesApiUrl: https://apis.test.ala.org.au/images
   dqfServiceApiUrl: https://apis.test.ala.org.au/dqf-service

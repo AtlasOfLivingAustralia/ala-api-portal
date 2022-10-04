@@ -15,4 +15,5 @@ prod:
   specieslistIndexAPIUrl: https://apis.ala.org.au/specieslist
   collectoryApiUrl: https://apis.ala.org.au/collectory
   imagesApiUrl: https://apis.ala.org.au/images
+  profilesApiUrl: https://apis.ala.org.au/images
   dqfServiceApiUrl: https://apis.ala.org.au/dqf-service

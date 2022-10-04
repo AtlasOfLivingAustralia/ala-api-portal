@@ -15,7 +15,7 @@ window.onload = function() {
         { name: "bie-index", url:"./specs/bie-index.json"},
         { name: "specieslist", url:"./specs/specieslist.json"},
         { name: "collectory", url:"./specs/collectory.json"},
-        { name: "data-quality-service", url: "./specs/data-quality-service.json"}
+        { name: "data-quality-service", url: "./specs/dqf-service.json"}
       ],
       dom_id: '#swagger-ui',
       deepLinking: true,

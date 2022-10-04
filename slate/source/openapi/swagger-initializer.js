@@ -16,7 +16,7 @@ window.onload = function() {
         { name: "specieslist", url:"./specs/specieslist.json"},
         { name: "collectory", url:"./specs/collectory.json"},
         { name: "profiles", url:"./specs/profiles.json"},
-        { name: "data-quality-service", url: "./specs/data-quality-service.json"}
+        { name: "data-quality-service", url: "./specs/dqf-service.json"}
       ],
       dom_id: '#swagger-ui',
       deepLinking: true,

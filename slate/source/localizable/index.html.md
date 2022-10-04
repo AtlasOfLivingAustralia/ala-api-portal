@@ -2725,7 +2725,7 @@ uid | N | | The entity uid
 
 ## 9. Image service
 <aside class="notice">
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=images-service">Open API specification</a>
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=image-service">Open API specification</a>
 </aside>
 
 ## 9.1 GET ws/analytics

@@ -142,7 +142,7 @@ print(data.decode("utf-8"))
 
 >
 
-The Client Credentials grant type is used for machine to machine authentication where no there is no user interaction.
+The Client Credentials grant type is used for machine to machine authentication where there is no user interaction.
 
 `POST <%= I18n.t(:authBaseUrl) %>/cas/oidc/oidcAccessToken`
 
@@ -177,7 +177,7 @@ Parameter | Mandatory | Default | Description
 response_type | Y | | Set to `code`
 client_id | Y | | the client id
 scope | N | | A space separated list of scopes that have been approved for the API Authorization client. These scopes will be included in the Access Token that is returned.
-redirect_uri | Y | | The URL where the authentication server redirects the browser after the user is authorizes.
+redirect_url | Y | | The URL where the authentication server redirects the browser after the user is authorised.
 code_challenge_method | N | | Set to `S256` if using PKCE
 code_challenge | N | | the code challenge
 
@@ -196,7 +196,7 @@ Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 grant_type | Y | | Set to `authorization_code`
 code | Y | | The authentication code returned from the authentication step
-redirect_uri | Y | | The URL where the authentication server redirects the browser after the user is authorizes.
+redirect_url | Y | | The URL where the authentication server redirects the browser after the user is authorised.
 code_verifier | N | | the code challenge if using PKCE
 
 ## Implicit Flow
@@ -220,7 +220,7 @@ Parameter | Mandatory | Default | Description
 response_type | Y | | Set to `token`
 client_id | Y | | the client id
 scope | N | | A space separated list of scopes that have been approved for the API Authorization client. These scopes will be included in the Access Token that is returned.
-redirect_uri | Y | | The URL where the authentication server redirects the browser after the user is authorizes.
+redirect_url | Y | | The URL where the authentication server redirects the browser after the user is authorised.
 
 [Authentication Code Flow using PKCE](#authentication-code-flow) is recommended for authenticating public clients, as Implicit Authentication reveals the `accessToken` when the end-user is redirected back to the application, introducing a security risk.
 
@@ -712,7 +712,7 @@ The above command returns JSON structured like this:
   ]
 }
 ```
-Get sites associated with an activities
+Get sites associated with an activity
 
 #### HTTP Request
 `GET <%= I18n.t(:biocollectAPIUrl) %>/ws/bioactivity/map`
@@ -863,7 +863,7 @@ id | Y | | The project id
 
 Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
-version | N | | The date and time on which project activity was created. Version number unit is milliseconds since epoch.
+version | N | | The date and time in which project activity was created. Version number unit is milliseconds since epoch.
 
 ## 2.8 GET ws/project/search <p style="display: inline;">&#128274;</p>
 ```shell
@@ -908,7 +908,7 @@ hub | N | | The hub context this request will be executed in
 q | N | | Searches for terms in this parameter.
 max | N | 20 | Maximum number of returned activities per page.
 offset | N | 0 | Offset search result by this parameter
-status | N | | Return active or completed projects. Available values : active, completed
+status | N | | Return active or completed projects. Available values: active, completed
 organisationName | N | | Filter projects by organisation name
 geoSearchJSON | N | Filter projects by GeoJSON shape
 isCitizenScience | N | false | Get citizen science projects
@@ -2135,6 +2135,8 @@ The above command returns JSON structured like this:
 
 ```
 
+Get status
+
 #### HTTP Request
 `GET <%= I18n.t(:bieIndexAPIUrl) %>/api/services/status/{id}`
 
@@ -2183,6 +2185,8 @@ The above command returns JSON structured like this:
 
 ```
 
+Get results from JSON autocomplete
+
 #### HTTP Request
 `GET <%= I18n.t(:bieIndexAPIUrl) %>/search/auto.json`
 
@@ -2191,7 +2195,7 @@ The above command returns JSON structured like this:
 Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 q | Y | |The value to auto complete e.g. q=Fish
-idxType | N | |The index type to limit . Values include: * TAXON * REGION * COLLECTION * INSTITUTION * DATASET
+idxType | N | |The index type to limit. Values include: * TAXON * REGION * COLLECTION * INSTITUTION * DATASET
 kingdom | N | |The higher-order taxonomic rank to limit the result
 geoOnly | N | |(Not Implemented) Limit value to limit result with geospatial occurrence records
 limit | N | |The maximum number of results to return (default = 10)
@@ -2277,7 +2281,7 @@ The above command returns JSON structured like this:
 ["vernacular name"]
 ```
 
-Get a list of keys from KVP common across a list multiple species lists
+Get a list of keys from KVP common across multiple species lists
 
 #### HTTP Request
 `GET <%= I18n.t(:specieslistIndexAPIUrl) %>/ws/listCommonKeys`
@@ -2448,7 +2452,7 @@ The above command returns JSON structured like this:
   </additionalMetadata>
 </eml:eml>
 ```
-Get a field by Id. Includes all objects associated with the field.
+Get a field by id. Includes all objects associated with the field.
 
 ### HTTP Request
 `GET <%= I18n.t(:collectoryApiUrl) %>/ws/eml/{id}`
@@ -2553,7 +2557,7 @@ Get citations for a list of data resource UIDs
 ### HTTP Request
 `POST <%= I18n.t(:collectoryApiUrl) %>/ws/citations`
 
-## 8.6 GET /ws/{entity}}/{uid}
+## 8.6 GET /ws/{entity}/{uid}
 ```shell
 curl -X 'GET' '<%= I18n.t(:collectoryApiUrl) %>/ws/collection/co139' \
   -H 'accept: application/json'
@@ -2677,7 +2681,7 @@ Parameter | Mandatory | Default | Description
 entity | Y | | The entity name e.g. collection, dataProvider, institution
 uid | N | | The entity uid 
 
-## 8.7 POST /ws/{entity}}/{uid}
+## 8.7 POST /ws/{entity}/{uid}
 ```shell
 curl -X 'POST' '<%= I18n.t(:collectoryApiUrl) %>/ws/dataProvider/dp5249' \
   -H 'accept: application/json' -H "Authorization: Bearer {access_token}" -d 
@@ -2725,7 +2729,7 @@ uid | N | | The entity uid
 
 ## 9. Image service
 <aside class="notice">
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=images-service">Open API specification</a>
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=image-service">Open API specification</a>
 </aside>
 
 ## 9.1 GET ws/analytics
@@ -2791,3 +2795,348 @@ id | Y | | Image Id
 Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 Accept | Y | | Content type requested
+
+## 9.3 GET ws/images/tag/{tagID}
+```shell
+curl -X 'GET' '<%= I18n.t(:imagesApiUrl) %>/ws/images/tag/1?max=100&offset=0' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+{
+  "tagID": "1",
+  "totalImageCount": 0,
+  "images": []
+}
+```
+Find images by tag id.
+
+### HTTP Request
+`GET <%= I18n.t(:imagesApiUrl) %>/ws/images/tag/{tagID}`
+
+#### Path Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+tagID | Y | | tag Id
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+max | N | 100 | max results to return
+offset | N | 0 | offset for paging
+
+## 9.4 GET ws/getMetadataKeys
+```shell
+curl -X 'GET' '<%= I18n.t(:imagesApiUrl) %>/ws/getMetadataKeys?source=Embedded' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+[
+  "Accelerometer X",
+  "Accelerometer Y",
+  "Accelerometer Z",
+  "Active D-Lighting",
+  "Advanced Scene Mode",
+  "AE Bracket Compensation"
+]
+```
+Find images by tag id.
+
+### HTTP Request
+`GET <%= I18n.t(:imagesApiUrl) %>/ws/getMetadataKeys?source={source}`
+
+#### Query Parameters
+
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+source | N | Embedded | source - valid values are - Embedded, UserDefined and SystemDefined
+
+## 10. Data Quality Service
+<aside class="notice">
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=data-quality-service">Open API specification</a>
+</aside>
+
+## 10.1 GET /api/v1/data-profiles
+```shell
+curl -X 'GET' '<%= I18n.t(:dqfServiceApiUrl) %>/api/v1/data-profiles' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+[
+  {
+    "id": 0,
+    "name": "string",
+    "shortName": "string",
+    "description": "string",
+    "contactName": "string",
+    "contactEmail": "string",
+    "enabled": true,
+    "isDefault": true,
+    "displayOrder": 0,
+    "dateCreated": "2022-09-28T06:01:35.253Z",
+    "lastUpdated": "2022-09-28T06:01:35.253Z",
+    "categories": [
+      {
+        "id": 0,
+        "enabled": true,
+        "name": "string",
+        "label": "string",
+        "description": "string",
+        "displayOrder": 0,
+        "dateCreated": "2022-09-28T06:01:35.253Z",
+        "lastUpdated": "2022-09-28T06:01:35.253Z",
+        "qualityProfile": "string",
+        "qualityFilters": [
+          {
+            "id": 0,
+            "enabled": true,
+            "description": "string",
+            "filter": "string",
+            "displayOrder": 0,
+            "dateCreated": "2022-09-28T06:01:35.253Z",
+            "lastUpdated": "2022-09-28T06:01:35.253Z",
+            "qualityCategory": "string",
+            "qualityCategoryId": {}
+          }
+        ],
+        "qualityProfileId": {}
+      }
+    ]
+  }
+]
+```
+List all quality profiles
+
+### HTTP Request
+`GET <%= I18n.t(:dqfServiceApiUrl) %>/api/v1/data-profiles`
+
+#### Query Parameters
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+max	| N | | Maximum results to return
+offset | N | | Number to offset the results by
+sort | N | 	| Propert to sort results by
+order | N | 	| Direction to sort results by
+enabled	| N | | Only return enabled profiles
+name | N | | Search for profiles by name
+shortName | N | | Search for profiles by short name
+
+## 10.2 GET /api/v1/data-profiles/{id}
+```shell
+curl -X 'GET' '<%= I18n.t(:dqfServiceApiUrl) %>/api/v1/data-profiles/123' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+{
+    "id": 0,
+    "name": "string",
+    "shortName": "string",
+    "description": "string",
+    "contactName": "string",
+    "contactEmail": "string",
+    "enabled": true,
+    "isDefault": true,
+    "displayOrder": 0,
+    "dateCreated": "2022-09-28T06:01:35.253Z",
+    "lastUpdated": "2022-09-28T06:01:35.253Z",
+    "categories": [
+      {
+        "id": 0,
+        "enabled": true,
+        "name": "string",
+        "label": "string",
+        "description": "string",
+        "displayOrder": 0,
+        "dateCreated": "2022-09-28T06:01:35.253Z",
+        "lastUpdated": "2022-09-28T06:01:35.253Z",
+        "qualityProfile": "string",
+        "qualityFilters": [
+          {
+            "id": 0,
+            "enabled": true,
+            "description": "string",
+            "filter": "string",
+            "displayOrder": 0,
+            "dateCreated": "2022-09-28T06:01:35.253Z",
+            "lastUpdated": "2022-09-28T06:01:35.253Z",
+            "qualityCategory": "string",
+            "qualityCategoryId": {}
+          }
+        ],
+        "qualityProfileId": {}
+      }
+    ]
+  }
+```
+Retrieve a single quality profile
+
+### HTTP Request
+`GET <%= I18n.t(:dqfServiceApiUrl) %>/api/v1/data-profiles/{id}`
+
+#### Path Parameters
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+id	| Y | | The id or short name for the quality profile or default for the default profile
+
+## 10.3 GET /api/v1/quality/findAllEnabledCategories
+```shell
+curl -X 'GET' '<%= I18n.t(:dqfServiceApiUrl) %>/api/v1/quality/findAllEnabledCategories?profileName=AVH' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+{
+  "id": 0,
+  "enabled": true,
+  "name": "string",
+  "label": "string",
+  "description": "string",
+  "displayOrder": 0,
+  "dateCreated": "2022-09-28T06:07:25.935Z",
+  "lastUpdated": "2022-09-28T06:07:25.935Z",
+  "qualityProfile": {
+    "id": 0,
+    "name": "string",
+    "shortName": "string",
+    "description": "string",
+    "contactName": "string",
+    "contactEmail": "string",
+    "enabled": true,
+    "isDefault": true,
+    "displayOrder": 0,
+    "dateCreated": "2022-09-28T06:07:25.935Z",
+    "lastUpdated": "2022-09-28T06:07:25.935Z",
+    "categories": [
+      "string"
+    ]
+  },
+  "qualityFilters": [
+    {
+      "id": 0,
+      "enabled": true,
+      "description": "string",
+      "filter": "string",
+      "displayOrder": 0,
+      "dateCreated": "2022-09-28T06:07:25.935Z",
+      "lastUpdated": "2022-09-28T06:07:25.935Z",
+      "qualityCategory": "string",
+      "qualityCategoryId": {}
+    }
+  ],
+  "qualityProfileId": {}
+}
+```
+Find All Enabled Categories for a profile
+
+### HTTP Request
+`GET <%= I18n.t(:dqfServiceApiUrl) %>/api/v1/quality/findAllEnabledCategories`
+
+#### Query Parameters
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+profileName	| N | | Profile name
+
+## 10.4 GET /api/v1/quality/getEnabledQualityFilters
+```shell
+curl -X 'GET' '<%= I18n.t(:dqfServiceApiUrl) %>/api/v1/quality/getEnabledQualityFilters?profileName=AVH' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+[
+  "-spatiallyValid:\"false\"",
+  "-coordinateUncertaintyInMeters:[10001 TO *]",
+  "-userAssertions:50001",
+  "-outlierLayerCount:[3 TO *]",
+  "-year:[* TO 1700]",
+  "-raw_identification_qualifier:[* TO *]",
+  "-(establishment_means:MANAGED OR establishment_means:CULTIVATED OR establishment_means:CAPTIVE)",
+  "-assertions:TAXON_MATCH_NONE",
+  "-decimalLatitude:0",
+  "-assertions:INVALID_SCIENTIFIC_NAME",
+  "-userAssertions:50005",
+  "-assertions:TAXON_HOMONYM",
+  "-decimalLongitude:0",
+  "-assertions:\"PRESUMED_SWAPPED_COORDINATE\"",
+  "-assertions:UNKNOWN_KINGDOM",
+  "-assertions:TAXON_SCOPE_MISMATCH",
+  "-assertions:\"COORDINATES_CENTRE_OF_STATEPROVINCE\"",
+  "-assertions:\"COORDINATES_CENTRE_OF_COUNTRY\""
+]
+```
+Get Enabled Quality Filters for a profile
+
+### HTTP Request
+`GET <%= I18n.t(:dqfServiceApiUrl) %>/api/v1/quality/getEnabledQualityFilters`
+
+#### Query Parameters
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+profileName	| N | | Profile name
+
+## 10.5 GET /api/v1/data-profiles/{profileId}/categories
+```shell
+curl -X 'GET' '<%= I18n.t(:dqfServiceApiUrl) %>/api/v1/data-profiles/AVH/categories' \
+  -H 'accept: application/json'
+
+The above command returns JSON structured like this:
+[
+  {
+    "id": 0,
+    "enabled": true,
+    "name": "string",
+    "label": "string",
+    "description": "string",
+    "displayOrder": 0,
+    "dateCreated": "2022-09-28T06:13:59.669Z",
+    "lastUpdated": "2022-09-28T06:13:59.669Z",
+    "qualityProfile": {
+      "id": 0,
+      "name": "string",
+      "shortName": "string",
+      "description": "string",
+      "contactName": "string",
+      "contactEmail": "string",
+      "enabled": true,
+      "isDefault": true,
+      "displayOrder": 0,
+      "dateCreated": "2022-09-28T06:13:59.669Z",
+      "lastUpdated": "2022-09-28T06:13:59.669Z",
+      "categories": [
+        "string"
+      ]
+    },
+    "qualityFilters": [
+      {
+        "id": 0,
+        "enabled": true,
+        "description": "string",
+        "filter": "string",
+        "displayOrder": 0,
+        "dateCreated": "2022-09-28T06:13:59.669Z",
+        "lastUpdated": "2022-09-28T06:13:59.669Z",
+        "qualityCategory": "string",
+        "qualityCategoryId": {}
+      }
+    ],
+    "qualityProfileId": {}
+  }
+]
+```
+List all quality categories for a profile
+
+### HTTP Request
+`GET <%= I18n.t(:dqfServiceApiUrl) %>/api/v1/data-profiles/{profileId}/categories`
+
+#### Path Parameters
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+profileId	| Y | | The id or short name for the quality profile or default for the default profile
+#### Query Parameters
+Parameter | Mandatory | Default | Description
+--------- | --------- | ------- | -----------
+max	| N | | Max resunts to return
+
+## 11. Profiles service
+<aside class="notice">
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=profiles">Open API specification</a>
+</aside>

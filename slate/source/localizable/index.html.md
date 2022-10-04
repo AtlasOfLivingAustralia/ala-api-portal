@@ -2799,7 +2799,7 @@ curl -X 'GET' '<%= I18n.t(:imagesApiUrl) %>/ws/images/tag/1?max=100&offset=0' \
 
 The above command returns JSON structured like this:
 {
-  "tagID": "671",
+  "tagID": "1",
   "totalImageCount": 0,
   "images": []
 }

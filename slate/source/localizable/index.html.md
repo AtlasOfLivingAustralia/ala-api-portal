@@ -38,9 +38,17 @@ For more information or assistance, please contact support@ala.org.au.
 
 API Endpoint: https://apis.ala.org.au
 
-# Authentication
+# API Types
 
-Most of the ALA APIs are publicly accessible and do not required authentication. For the API endpoints that are protected a JWT access token is used to authenticate requests.
+ALA APIs allow three main methods of access
+
+1. No Authentication - The majority of the API endpoints across all published ALA services do not require authentication and is open to public access.
+
+2. API Key  - For a curated [list](postman_link) of  API endpoints commonly used by the ALA, partners, and public users, an API key (which can be requested from ALA Support) is expected (# TODO - add more details on HOW the api key is sent e.g. header). Please note that this API key is not used for authentication but rater for usage tracking, monitoring, and rate limiting due to the expected high frequency of usage on these endpoints.
+
+3. JWT Authentication - For API endpoints that provide write access and read access to sensitive or private data, the requestor(user or machine) needs to be authenticated. JWT access token can used to authenticate requests. The [Authentication](#authentication) section provides details on JWT usage.
+
+# Authentication
 
 Open ID Connect is used to obtain an access token, once an access token is obtained it should be passed as a bearer token in the HTTP Authentication header.
 

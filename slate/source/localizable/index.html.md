@@ -43,7 +43,9 @@ ALA APIs allow three main methods of access
 
 1. No Authentication - The majority of the API endpoints across all published ALA services do not require authentication and is open to public access.
 
-2. API Key for Common and Frequently used APIs  - For a curated [list](https://documenter.getpostman.com/view/23926959/2s847FuDC4) of  API endpoints commonly used by the ALA, partners, and public users, an API key (which can be requested from ALA Support) is expected (# TODO - add more details on HOW the api key is sent e.g. header). Please note that this API key is not used for authentication but rater for usage tracking, monitoring, and rate limiting due to the expected high frequency of usage on these endpoints.
+2. API Key for Common and Frequently used APIs  - For a curated of  APIs commonly used by the ALA, partners, and public users, an API key (which can be requested from ALA Support) is expected. Please note that this API key is not used for authentication but rater for usage tracking, monitoring, and rate limiting due to the expected high frequency of usage on these endpoints. The postman *'Run in Postman'* link below demonstrates the usage of these APIs with API key. Further usage documentation on these APIs can be found in the corresponding application sections (e.g. Alerts, Logger etc) under [Products](#products).
+
+      [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/23926959-f59627be-b952-4939-bdd9-3b16236c143c?action=collection%2Ffork&collection-url=entityId%3D23926959-f59627be-b952-4939-bdd9-3b16236c143c%26entityType%3Dcollection%26workspaceId%3De9363855-ef16-46ba-bf16-cee7f7f2f8e9)
 
 
 3. JWT Authentication/Advances Access - For API endpoints that provide write access and read access to sensitive or private data, the requestor(user or machine) needs to be authenticated. JWT access token can used to authenticate requests. The [Authentication](#authentication) section provides details on JWT usage.

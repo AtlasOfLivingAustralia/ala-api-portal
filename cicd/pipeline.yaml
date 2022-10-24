@@ -171,7 +171,7 @@ Resources:
             Configuration:
               TemplatePath: 'ExportConfigArtifact::cicd/api_docs.yaml'
               TemplateConfiguration: 'ExportConfigArtifact::cicd/template_config.json'
-              ActionMode: REPLACE_ON_FAILURE
+              ActionMode: CREATE_UPDATE
               Capabilities: CAPABILITY_IAM,CAPABILITY_AUTO_EXPAND
               RoleArn: !Ref pCloudFormationServiceRole
               StackName: !Ref pAppStackName

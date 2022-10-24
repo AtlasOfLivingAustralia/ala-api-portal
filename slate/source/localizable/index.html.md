@@ -3299,7 +3299,7 @@ The above command returns JSON structured like this:
 
 Occurrence search service that supports facets
 ### HTTP Request
-`GET <%= I18n.t(:dqfServiceApiUrl) %>/occurrences/search`
+`GET <%= I18n.t(:biocacheServiceApiUrl) %>/occurrences/search`
 
 #### Query Parameters
 Parameter | Mandatory | Default | Description
@@ -5133,7 +5133,7 @@ The above command returns JSON structured like this:
 Retrieve full record details. If an JWT is supplied, and the user has the appropriate permissions the results might include sensitive species data if available. 
 
 #### HTTP Request
-`GET <%= I18n.t(:alertsAPIUrl) %>/occurrences/{recordUuid}`
+`GET <%= I18n.t(:biocacheServiceApiUrl) %>/occurrences/{recordUuid}`
 
 #### Path Parameters
 
@@ -5150,7 +5150,7 @@ This above command returns a 200 OK with an empty response body on a successful 
 ```
 
 #### HTTP Request
-`DELETE <%= I18n.t(:alertsAPIUrl) %>occurrences/{recordUuid}/assertions/delete`
+`DELETE <%= I18n.t(:biocacheServiceApiUrl) %>/occurrences/{recordUuid}/assertions/delete`
 
 #### Path Parameters
 

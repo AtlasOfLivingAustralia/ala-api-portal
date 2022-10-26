@@ -17,7 +17,8 @@ window.onload = function() {
         { name: "collectory", url:"./specs/collectory.json"},
         { name: "profiles", url:"./specs/profiles.json"},
         { name: "data-quality-service", url: "./specs/dqf-service.json"},
-        { name: "biocache-service", url: "./specs/biocache.json"}
+        { name: "biocache-service", url: "./specs/biocache.json"},
+        { name: "common", url: "./specs/common.json"}
       ],
       dom_id: '#swagger-ui',
       deepLinking: true,

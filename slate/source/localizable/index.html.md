@@ -34,20 +34,20 @@ We’ve recently moved to this API Gateway to streamline access and improve secu
 
 
  
-For more information or assistance, please contact support@ala.org.au. 
+For more information or assistance, please contact [support@ala.org.au](mailto:support@ala.org.au). 
 
 API Endpoint: https://apis.ala.org.au
 
 
 ALA APIs allow three main methods of access
 
-1. No Authentication - The majority of the API endpoints across all published ALA services do not require authentication and is open to public access.
+1. No Authentication - The majority of the API endpoints across all published ALA services do not require authentication and are open to public access.
 
-2. JWT Authentication/Advanced Access - For API endpoints that provide write access and read access to sensitive or private data, the requestor(user or machine) needs to be authenticated. JWT access token can used to authenticate requests. The [Authentication](#authentication) section provides details on JWT usage.
+2. JWT Authentication/Advanced Access - For API endpoints that provide write access and read access to sensitive or private data, the requestor (user or machine) needs to be authenticated. JWT access token can used to authenticate requests. The [Authentication](#authentication) section provides details on JWT usage.
 
 # Authentication
 
-Open ID Connect is used to obtain an access token, once an access token is obtained it should be passed as a bearer token in the HTTP Authentication header.
+Open ID Connect is used to obtain an access token. Once an access token is obtained it should be passed as a bearer token in the HTTP Authentication header.
 
 `Authorization: Bearer <access_token>`
 
@@ -338,12 +338,12 @@ Access images and sound recordings from the ALA.
 -->
 ## 1. Alerts
 
-Access alerts functions, including view alert details, unsubscribe from and create an alert.
+Services for interacting with the ALA Alerts app, including view alert details, unsubscribe from and create an alert.
 
 <aside class="notice">
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=alerts">Open API specification</a>
 </aside>
-
+<!--
 ## 1.1 GET api/alerts/user/{userId} <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'GET' '<%= I18n.t(:alertsAPIUrl) %>/api/alerts/user/{1}' \
@@ -434,13 +434,15 @@ userId | Y | | The User Id
 email | Y | | The User email
 firstName | N | | The User firstName
 lastName | N | | The User lastName
-
+-->
 ## 2. Biocollect
+
+Interact with the ALA BioCollect app, such as searching for projects, surveys and activities. 
 
 <aside class="notice">
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=biocollect">Open API specification</a>
 </aside>
-
+<!--
 ## 2.1 GET ws/bioactivity/delete/{id} <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'GET' '<%= I18n.t(:biocollectAPIUrl) %>/ws/bioactivity/delete/1' \
@@ -929,13 +931,15 @@ isUserPage | N | false | Set to true to get all the projects a user is participa
 mobile | N | false | Set to true if the request is coming from mobile client and user need to be identified. 
 facets | N | | Comma seperated list of facets the search should return. If left empty, facet list is populated from hub configuration.
 flimit | N | 15 | Maximum number of facets to be returned.
-
+-->
 ## 3. DOI service
+
+Generate DOIs for ALA applications.
 
 <aside class="notice">
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=doi">Open API specification</a>
 </aside>
-
+<!--
 ## 3.1 GET api/doi
 ```shell
 curl -X 'GET' '<%= I18n.t(:doiAPIUrl) %>/api/doi?max=10&offset=0&sort=dateMinted&order=asc&userId=1&activeStatus=all' \
@@ -1487,13 +1491,15 @@ Update the stored metadata or add a file to a DOI. Required scopes: 'doi/write'.
 Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 id | Y | | Either the DOI (encoded or unencoded) or the UUID
-
+-->
 ## 4. Logger service
+
+Interact with the ALA Logger webapp, such as getting event types and reason breakdowns.
 
 <aside class="notice">
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=logger">Open API specification</a>
 </aside>
-
+<!--
 ## 4.1 GET service/emailBreakdown
 ```shell
 curl -X 'GET' '<%= I18n.t(:loggerAPIUrl) %>/service/emailBreakdown?eventId=1002&entityUid=dp5142' \
@@ -1844,16 +1850,16 @@ Parameter | Mandatory | Default | Description
 eventId | Y | | The event type Id
 entityUid | Y | | The event Uid
 year | N | | The event year
-
+-->
 ## 5. User details
 
-Access the user details platform.
+Access the ALA user details platform, such as a total count of users in the system and users by role.
 
 
 <aside class="notice">
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=userdetails">Open API specification</a>
 </aside>
-
+<!--
 ## 5.1 GET /ws/flickr
 ```shell
 curl -X 'GET' '<%= I18n.t(:userdetailsAPIUrl) %>/ws/flickr' \
@@ -2093,13 +2099,17 @@ Parameter | Mandatory | Default | Description
 alaId | Y | | The user's ALA ID
 name | Y | | The name of the property to get
 value | Y | | The value of the property to set
+-->
 
-## 6. Biodiversity Information Explorer Service
+## 6. Biodiversity Information Explorer Service (Species information)
+
+Services for species profile data.
+
 <aside class="notice">
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=bie-index">Open API specification</a>
 </aside>
 
-
+<!--
 ## 6.1 GET /api/services/all <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'GET' '<%= I18n.t(:bieIndexAPIUrl) %>/api/services/all' \
@@ -2208,7 +2218,7 @@ idxType | N | |The index type to limit. Values include: * TAXON * REGION * COLLE
 kingdom | N | |The higher-order taxonomic rank to limit the result
 geoOnly | N | |(Not Implemented) Limit value to limit result with geospatial occurrence records
 limit | N | |The maximum number of results to return (default = 10)
-
+-->
 
 ## 7. Species lists
 
@@ -2217,7 +2227,7 @@ Interact with species lists, including get list details and create a list.
 <aside class="notice">
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=specieslist">Open API specification</a>
 </aside>
-
+<!--
 ## 7.1 GET /ws/speciesList/{druid} 
 ```shell
 curl -X 'GET' '<%= I18n.t(:specieslistIndexAPIUrl) %>/ws/speciesList/{druid}' \
@@ -2300,16 +2310,16 @@ Get a list of keys from KVP common across multiple species lists
 Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 druid | Y | | A comma separated list of druids to query
+-->
 
-
-## 8. Collectory (Museum and herbaria collections)
+## 8. Collectory (Data provider information)
 
 Services for interacting with attribution information, such as data provider metadata and citations.
 
 <aside class="notice">
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=collectory">Open API specification</a>
 </aside>
-
+<!--
 ## 8.1 POST /ws/contacts/{id} <p style="display: inline;">&#128274;</p>
 ```shell
 curl -X 'POST' '<%= I18n.t(:collectoryApiUrl) %>/ws/contacts/616' \
@@ -2734,13 +2744,16 @@ Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 entity | Y | | The entity name e.g. collection, dataProvider, institution
 uid | N | | The entity uid 
-
+-->
 
 ## 9. Image service
+
+Access ALA images, such as finding an image by keyword.
+
 <aside class="notice">
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=image-service">Open API specification</a>
 </aside>
-
+<!--
 ## 9.1 GET ws/analytics
 ```shell
 curl -X 'GET' '<%= I18n.t(:imagesApiUrl) %>/ws/analytics' \
@@ -2860,12 +2873,15 @@ Find images by tag id.
 Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 source | N | Embedded | source - valid values are - Embedded, UserDefined and SystemDefined
-
+-->
 ## 10. Data Quality Service
+
+Interact with ALA data quality filters. 
+
 <aside class="notice">
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=data-quality-service">Open API specification</a>
 </aside>
-
+<!--
 ## 10.1 GET /api/v1/data-profiles
 ```shell
 curl -X 'GET' '<%= I18n.t(:dqfServiceApiUrl) %>/api/v1/data-profiles' \
@@ -3144,10 +3160,10 @@ profileId	| Y | | The id or short name for the quality profile or default for th
 Parameter | Mandatory | Default | Description
 --------- | --------- | ------- | -----------
 max	| N | | Max resunts to return
-
+-->
 ## 11. Galah
 
-ALA services required for Galah can be accessed via Common APIs, a curated list  APIs commonly used by the ALA, partners, and public users, an API key (which can be requested from ALA Support) is required for access. Please note that this API key is not used for authentication but rather for usage tracking, monitoring, and rate limiting due to the expected high frequency of usage on these endpoints. The postman *'Run in Postman'* link below demonstrates the usage of these APIs with API key. Further usage documentation on these APIs can be found in the corresponding application sections (e.g. Alerts, Logger etc) under [Products](#products).
+ALA services required for Galah can be accessed via Common APIs, a curated list of APIs commonly used by the ALA, partners, and public users, an API key (which can be requested from ALA Support) is required for access. Please note that this API key is not used for authentication but rather for usage tracking, monitoring, and rate limiting due to the expected high frequency of usage on these endpoints. The postman *'Run in Postman'* link below demonstrates the usage of these APIs with API key. Further usage documentation on these APIs can be found in the corresponding application sections (e.g. Alerts, Logger etc) under [Products](#products).
 
   [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/23926959-f59627be-b952-4939-bdd9-3b16236c143c?action=collection%2Ffork&collection-url=entityId%3D23926959-f59627be-b952-4939-bdd9-3b16236c143c%26entityType%3Dcollection%26workspaceId%3De9363855-ef16-46ba-bf16-cee7f7f2f8e9)
 

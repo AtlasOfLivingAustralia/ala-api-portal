@@ -17,7 +17,9 @@ window.onload = function() {
         { name: "collectory", url:"./specs/collectory.json"},
         { name: "profiles", url:"./specs/profiles.json"},
         { name: "data-quality-service", url: "./specs/dqf-service.json"},
-        { name: "biocache-service", url: "./specs/biocache.json"},
+        // biocache has been commented out to allow updated release of docs to production before biocache. 
+        // TODO - uncomment after biocache is released
+        // { name: "biocache-service", url: "./specs/biocache.json"},
         { name: "common", url: "./specs/common.json"}
       ],
       dom_id: '#swagger-ui',

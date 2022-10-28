@@ -352,32 +352,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=bi
 
 &nbsp;
 
-## 3. DOI service
-
-Generate DOIs for ALA applications.
-
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=doi">Open API specification</a>
-
-&nbsp;
-
-## 4. Logger service
-
-Interact with the ALA Logger webapp, such as getting event types and reason breakdowns.
-
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=logger">Open API specification</a>
-
-&nbsp;
-
-## 5. User details
-
-Access the ALA user details platform, such as a total count of users in the system and users by role.
-
-
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=userdetails">Open API specification</a>
-
-&nbsp;
-
-## 6. Biodiversity Information Explorer Service (Species information)
+## 3. Biodiversity Information Explorer Service (Species information)
 
 Services for species profile data.
 
@@ -385,15 +360,8 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=bi
 
 &nbsp;
 
-## 7. Species lists
 
-Interact with species lists, including get list details and create a list.
-
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=specieslist">Open API specification</a>
-
-&nbsp;
-
-## 8. Collectory (Data provider information)
+## 4. Collectory (Data provider information)
 
 Services for interacting with attribution information, such as data provider metadata and citations.
 
@@ -401,15 +369,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=co
 
 &nbsp;
 
-## 9. Image service
-
-Access ALA images, such as finding an image by keyword.
-
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=image-service">Open API specification</a>
-
-&nbsp;
-
-## 10. Data Quality Service
+## 5. Data Quality Service
 
 Interact with ALA data quality filters. 
 
@@ -417,10 +377,18 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=da
 
 &nbsp;
 
-## 11. Galah
+## 6. DOI service
+
+Generate DOIs for ALA applications.
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=doi">Open API specification</a>
+
+&nbsp;
+
+## 7. Galah
 Access a curated list of common  ALA services. 
 
-ALA services required for Galah can be accessed via Common APIs, a curated list of APIs commonly used by the ALA, partners, and public users, an API key (which can be requested from ALA Support) is required for access. Please note that this API key is not used for authentication but rather for usage tracking, monitoring, and rate limiting due to the expected high frequency of usage on these endpoints. The postman *'Run in Postman'* link below demonstrates the usage of these APIs with API key. Further usage documentation on these APIs can be found in the corresponding application sections (e.g. Alerts, Logger etc) under [Products](#products).
+ALA services required for Galah can be accessed via Common APIs, a curated list of APIs commonly used by the ALA, partners, and public users. An API key (which can be requested from ALA Support) is required for access. Please note that this API key is not used for authentication but rather for usage tracking, monitoring, and rate limiting due to the expected high frequency of usage on these endpoints. The postman *'Run in Postman'* link below demonstrates the usage of these APIs with API key. Further usage documentation on these APIs can be found in the corresponding application sections (e.g. Alerts, Logger etc) under [Products](#products).
 
   [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/23926959-f59627be-b952-4939-bdd9-3b16236c143c?action=collection%2Ffork&collection-url=entityId%3D23926959-f59627be-b952-4939-bdd9-3b16236c143c%26entityType%3Dcollection%26workspaceId%3De9363855-ef16-46ba-bf16-cee7f7f2f8e9)
 
@@ -429,6 +397,39 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=co
 &nbsp;
 
 
+## 8. Image service
+
+Access ALA images, such as finding an image by keyword.
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=image-service">Open API specification</a>
+
+&nbsp;
+
+
+## 9. Logger service
+
+Interact with the ALA Logger webapp, such as getting event types and reason breakdowns.
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=logger">Open API specification</a>
+
+&nbsp;
+
+## 10. User details
+
+Access the ALA user details platform, such as a total count of users in the system and users by role.
+
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=userdetails">Open API specification</a>
+
+&nbsp;
+
+## 11. Species lists
+
+Interact with species lists, including get list details and create a list.
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=specieslist">Open API specification</a>
+
+&nbsp;
 
 
 

@@ -15,7 +15,9 @@ window.onload = function() {
         { name: "bie-index", url:"./specs/bie-index.json"},
         { name: "specieslist", url:"./specs/specieslist.json"},
         { name: "collectory", url:"./specs/collectory.json"},
-        { name: "profiles", url:"./specs/profiles.json"},
+        // profiles has been commented out to allow updated release of docs to production before biocache. 
+        // TODO - uncomment after profiles is released
+        // { name: "profiles", url:"./specs/profiles.json"},
         { name: "data-quality-service", url: "./specs/dqf-service.json"},
         // biocache has been commented out to allow updated release of docs to production before biocache. 
         // TODO - uncomment after biocache is released

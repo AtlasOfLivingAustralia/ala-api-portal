@@ -357,18 +357,18 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=bi
 
 Services for species profile data. 
 
-Explore interactively on the ALA <a href="https://bie.ala.org.au" target="_blank"> Biodiversity Information Explorer </a> app. 
+Explore interactively on the ALA <a href="https://bie.ala.org.au" target="_blank">Biodiversity Information Explorer</a> app. 
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=bie-index">Open API specification</a>
 
 &nbsp;
 
 
-## 4. Collectory (Data provider information)
+## 4. Collectory (Natural history collections)
 
 Services for interacting with attribution information, such as data provider metadata and citations. 
 
-Explore interactively on the ALA <a href="https://collections.ala.org.au" target="_blank"> Collectory </a> app. 
+Explore interactively on the ALA <a href="https://collections.ala.org.au" target="_blank">Collectory</a> app. 
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=collectory">Open API specification</a>
 
@@ -378,7 +378,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=co
 
 Interact with ALA data quality filters. 
 
-Explore interactively on the ALA <a href="https://data-quality-service.ala.org.au" target="_blank"> Data Quality Filter Service </a> app. 
+Explore interactively on the ALA <a href="https://data-quality-service.ala.org.au" target="_blank">Data Quality Filter Service</a> app. 
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=data-quality-service">Open API specification</a>
 
@@ -388,7 +388,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=da
 
 Generate DOIs for ALA applications. 
 
-Explore interactively on the ALA <a href="https://doi.ala.org.au" target="_blank"> DOI </a> app. 
+Explore interactively on the ALA <a href="https://doi.ala.org.au" target="_blank">DOI</a> app. 
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=doi">Open API specification</a>
 
@@ -410,7 +410,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=co
 
 Access ALA images, such as finding an image by keyword.
 
-Explore interactively on the ALA <a href="https://images.ala.org.au" target="_blank"> Images </a> app. 
+Explore interactively on the ALA <a href="https://images.ala.org.au" target="_blank">Images</a> app. 
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=image-service">Open API specification</a>
 
@@ -419,7 +419,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=im
 
 ## 9. Logger service
 
-Interact with the ALA Logger <a href="https://logger.ala.org.au" target="_blank"> Logger </a>  webapp, such as getting event types and reason breakdowns.
+Interact with the ALA Logger <a href="https://logger.ala.org.au" target="_blank">Logger</a>  webapp, such as getting event types and reason breakdowns.
 
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=logger">Open API specification</a>
@@ -428,7 +428,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=lo
 
 ## 10. User details
 
-Access the ALA   <a href="https://auth.ala.org.au/userdetails" target="_blank"> user details </a>  platform, such as a total count of users in the system and users by role.
+Access the ALA   <a href="https://auth.ala.org.au/userdetails/" target="_blank">user details</a>  platform, such as a total count of users in the system and users by role.
 
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=userdetails">Open API specification</a>
@@ -437,7 +437,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=us
 
 ## 11. Species lists
 
-Interact with   <a href="https://lists.ala.org.au" target="_blank"> species lists </a> , including get list details and create a list.
+Interact with   <a href="https://lists.ala.org.au" target="_blank">species lists</a> , including get list details and create a list.
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=specieslist">Open API specification</a>
 

@@ -339,7 +339,6 @@ Access images and sound recordings from the ALA.
 
 Services for interacting with the ALA  <a href="https://alerts.ala.org.au" target="_blank">Alerts</a> app, including view alert details, unsubscribe from and create an alert. 
 
-
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=alerts">Open API specification</a>
 
 

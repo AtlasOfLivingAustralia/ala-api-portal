@@ -5,7 +5,6 @@ window.onload = function() {
     window.ui = SwaggerUIBundle({
       urls: [
         { name: "alerts", url: "./specs/alerts.json"},
-        // { name: "biocache", url: "./specs/biocache-http.yaml"},
         // { name: "ecodata", url: "./specs/ecodata-http.yaml"},
         { name: "image-service", url: "./specs/images.json"},
         { name: "userdetails", url: "./specs/userdetails.json"},
@@ -16,13 +15,12 @@ window.onload = function() {
         { name: "specieslist", url:"./specs/specieslist.json"},
         { name: "collectory", url:"./specs/collectory.json"},
         // profiles has been commented out to allow updated release of docs to production before biocache. 
-        // TODO - uncomment after profiles is released
-        // { name: "profiles", url:"./specs/profiles.json"},
+        { name: "profiles", url:"./specs/profiles.json"},
         { name: "data-quality-service", url: "./specs/dqf-service.json"},
         // biocache has been commented out to allow updated release of docs to production before biocache. 
-        // TODO - uncomment after biocache is released
-        // { name: "biocache-service", url: "./specs/biocache.json"},
-        { name: "common", url: "./specs/common.json"}
+        { name: "biocache-service", url: "./specs/biocache.json"},
+        { name: "common", url: "./specs/common.json"},
+        { name: "spatial", url: "./specs/spatial.json"}
       ],
       dom_id: '#swagger-ui',
       deepLinking: true,

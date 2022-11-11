@@ -26,7 +26,7 @@ The Atlas of Living Australia (ALA) is Australia’s national biodiversity datab
 
 These data stored in the ALA have been fully parsed, processed and augmented with consistent taxonomic, geolocation and climate/environmental data. Our data API provides access to over 100 million species occurrence records as well as taxonomic and scientific name information for over 153,000 species, complete with geospatial, taxonomic and temporal searching & filtering as well as bulk downloads for use ‘offline’. 
 
-# API Portfolio Hub 
+# Documentation
 
 Welcome to the ALA API Portfolio Hub.  
 
@@ -233,7 +233,7 @@ redirect_url | Y | | The URL where the authentication server redirects the brows
 
 [Authentication Code Flow using PKCE](#authentication-code-flow) is recommended for authenticating public clients, as Implicit Authentication reveals the `accessToken` when the end-user is redirected back to the application, introducing a security risk.
 
-# Products
+# Services
 <!--
 ## Species profile
 
@@ -344,7 +344,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=al
 
 &nbsp;
 
-## 2. BioCache Service (Occurrence Records)
+## 2. Occurrences
 
 Services for interacting species occurrence records. 
 
@@ -354,7 +354,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=bi
 
 &nbsp;
 
-## 3. Biocollect
+## 3. Surveys
 
 
 Interact with the ALA <a href="https://biocollect.ala.org.au" target="_blank">BioCollect</a> app, such as searching for projects, surveys and activities. 
@@ -363,7 +363,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=bi
 
 &nbsp;
 
-## 4. Biodiversity Information Explorer Service (Species information)
+## 4. Species
 
 Services for species profile data. 
 
@@ -374,7 +374,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=bi
 &nbsp;
 
 
-## 5. Collectory (Natural history collections)
+## 5. Metadata
 
 Services for interacting with attribution information, such as data provider metadata and citations. 
 
@@ -394,7 +394,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=da
 
 &nbsp;
 
-## 7. DOI service
+## 7. DOI
 
 Generate DOIs for ALA applications. 
 
@@ -407,7 +407,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=do
 ## 8. Galah
 Access a curated list of common  ALA services. 
 
-ALA services required for Galah can be accessed via Common APIs, a curated list of APIs commonly used by the ALA, partners, and public users. An API key (which can be requested from ALA Support) is required for access. Please note that this API key is not used for authentication but rather for usage tracking, monitoring, and rate limiting due to the expected high frequency of usage on these endpoints. The postman *'Run in Postman'* link below demonstrates the usage of these APIs with API key. Further usage documentation on these APIs can be found in the corresponding application sections (e.g. Alerts, Logger etc) under [Products](#products).
+ALA services required for Galah can be accessed via Common APIs, a curated list of APIs commonly used by the ALA, partners, and public users. An API key (which can be requested from ALA Support) is required for access. Please note that this API key is not used for authentication but rather for usage tracking, monitoring, and rate limiting due to the expected high frequency of usage on these endpoints. The postman *'Run in Postman'* link below demonstrates the usage of these APIs with API key. Further usage documentation on these APIs can be found in the corresponding service sections (e.g. Alerts, Logger etc) under [Services](#services).
 
   [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/23926959-f59627be-b952-4939-bdd9-3b16236c143c?action=collection%2Ffork&collection-url=entityId%3D23926959-f59627be-b952-4939-bdd9-3b16236c143c%26entityType%3Dcollection%26workspaceId%3De9363855-ef16-46ba-bf16-cee7f7f2f8e9)
 
@@ -416,7 +416,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=co
 &nbsp;
 
 
-## 9. Image service
+## 9. Images
 
 Access ALA images, such as finding an image by keyword.
 
@@ -427,7 +427,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=im
 &nbsp;
 
 
-## 10. Logger service
+## 10. Download statistics
 
 Interact with the ALA Logger <a href="https://logger.ala.org.au" target="_blank">Logger</a>  webapp, such as getting event types and reason breakdowns.
 
@@ -449,7 +449,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=pr
 &nbsp;
 
 
-## 12. Species lists
+## 12. Species lists and traits
 
 Interact with   <a href="https://lists.ala.org.au" target="_blank">species lists</a> , including get list details and create a list.
 

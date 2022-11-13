@@ -350,7 +350,7 @@ Services for interacting species occurrence records.
 
 Explore interactively on the ALA <a href="https://biocache.ala.org.au" target="_blank">BioCache</a> app. 
 
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=biocache-service">Open API specification</a>
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=occurrences">Open API specification</a>
 
 &nbsp;
 
@@ -359,7 +359,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=bi
 
 Interact with the ALA <a href="https://biocollect.ala.org.au" target="_blank">BioCollect</a> app, such as searching for projects, surveys and activities. 
 
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=biocollect">Open API specification</a>
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=surveys">Open API specification</a>
 
 &nbsp;
 
@@ -369,7 +369,7 @@ Services for species profile data.
 
 Explore interactively on the ALA <a href="https://bie.ala.org.au" target="_blank">Biodiversity Information Explorer</a> app. 
 
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=bie-index">Open API specification</a>
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=species">Open API specification</a>
 
 &nbsp;
 
@@ -380,7 +380,7 @@ Services for interacting with attribution information, such as data provider met
 
 Explore interactively on the ALA <a href="https://collections.ala.org.au" target="_blank">Collectory</a> app. 
 
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=collectory">Open API specification</a>
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=metadata">Open API specification</a>
 
 &nbsp;
 

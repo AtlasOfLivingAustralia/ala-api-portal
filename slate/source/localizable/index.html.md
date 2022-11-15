@@ -457,7 +457,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=sp
 
 &nbsp;
 
-## 13. Spatial 
+<!-- ## 13. Spatial 
 
 Services for interacting with ALA Spatial services
 
@@ -465,9 +465,9 @@ Explore interactively on the ALA <a href="https://spatial.ala.org.au" target="_b
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=spatial">Open API specification</a>
 
-&nbsp;
+&nbsp; -->
 
-## 14. User details
+## 13. User details
 
 Access the ALA   <a href="https://auth.ala.org.au/userdetails/" target="_blank">user details</a>  platform, such as a total count of users in the system and users by role.
 

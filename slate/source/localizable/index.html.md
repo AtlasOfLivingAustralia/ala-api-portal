@@ -422,7 +422,7 @@ Access ALA images, such as finding an image by keyword.
 
 Explore interactively on the ALA <a href="https://images.ala.org.au" target="_blank">Images</a> app. 
 
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=image-service">Open API specification</a>
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=images">Open API specification</a>
 
 &nbsp;
 
@@ -432,7 +432,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=im
 Interact with the ALA Logger <a href="https://logger.ala.org.au" target="_blank">Logger</a>  webapp, such as getting event types and reason breakdowns.
 
 
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=logger">Open API specification</a>
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=download-statistics">Open API specification</a>
 
 &nbsp;
 

@@ -15,11 +15,11 @@ window.onload = function() {
         { name: "specieslist", url:"./specs/specieslist.json"},
         { name: "metadata", url:"./specs/collectory.json"},
         // profiles has been commented out to allow updated release of docs to production before biocache. 
-        { name: "profiles", url:"./specs/profiles.json"},
+        // { name: "profiles", url:"./specs/profiles.json"},
         { name: "data-quality-service", url: "./specs/dqf-service.json"},
         // biocache has been commented out to allow updated release of docs to production before biocache. 
         { name: "occurrences", url: "./specs/biocache.json"},
-        { name: "common", url: "./specs/common.json"},
+        // { name: "common", url: "./specs/common.json"},
         // { name: "spatial", url: "./specs/spatial.json"}
       ],
       dom_id: '#swagger-ui',

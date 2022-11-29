@@ -344,7 +344,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=al
 
 &nbsp;
 
-<!-- ## 2. Occurrences
+## 2. Occurrences
 
 Services for interacting species occurrence records. 
 
@@ -352,9 +352,9 @@ Explore interactively on the ALA <a href="https://biocache.ala.org.au" target="_
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=occurrences">Open API specification</a>
 
-&nbsp; -->
+&nbsp;
 
-## 2. Surveys
+## 3. Surveys
 
 
 Interact with the ALA <a href="https://biocollect.ala.org.au" target="_blank">BioCollect</a> app, such as searching for projects, surveys and activities. 
@@ -363,7 +363,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=su
 
 &nbsp;
 
-## 3. Species
+## 4. Species
 
 Services for species profile data. 
 
@@ -374,7 +374,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=sp
 &nbsp;
 
 
-## 4. Metadata
+## 5. Metadata
 
 Services for interacting with attribution information, such as data provider metadata and citations. 
 
@@ -384,7 +384,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=me
 
 &nbsp;
 
-## 5. Data Quality Service
+## 6. Data Quality Service
 
 Interact with ALA data quality filters. 
 
@@ -394,7 +394,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=da
 
 &nbsp;
 
-## 6. DOI
+## 7. DOI
 
 Generate DOIs for ALA applications. 
 
@@ -404,7 +404,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=do
 
 &nbsp;
 
-## 7. Galah
+## 8. Galah
 Access a curated list of common  ALA services. 
 
 ALA services required for Galah can be accessed via Common APIs, a curated list of APIs commonly used by the ALA, partners, and public users. An API key (which can be requested from ALA Support) is required for access. Please note that this API key is not used for authentication but rather for usage tracking, monitoring, and rate limiting due to the expected high frequency of usage on these endpoints. The postman *'Run in Postman'* link below demonstrates the usage of these APIs with API key. Further usage documentation on these APIs can be found in the corresponding service sections (e.g. Alerts, Logger etc) under [Services](#services).
@@ -416,7 +416,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=co
 &nbsp;
 
 
-## 8. Images
+## 9. Images
 
 Access ALA images, such as finding an image by keyword.
 
@@ -427,7 +427,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=im
 &nbsp;
 
 
-## 9. Download statistics
+## 10. Download statistics
 
 Interact with the ALA Logger <a href="https://logger.ala.org.au" target="_blank">Logger</a>  webapp, such as getting event types and reason breakdowns.
 
@@ -449,7 +449,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=pr
 &nbsp; -->
 
 
-## 10. Species lists and traits
+## 11. Species lists and traits
 
 Interact with   <a href="https://lists.ala.org.au" target="_blank">species lists</a> , including get list details and create a list.
 
@@ -467,7 +467,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=sp
 
 &nbsp; -->
 
-## 11. User details
+## 12. User details
 
 Access the ALA   <a href="https://auth.ala.org.au/userdetails/" target="_blank">user details</a>  platform, such as a total count of users in the system and users by role.
 

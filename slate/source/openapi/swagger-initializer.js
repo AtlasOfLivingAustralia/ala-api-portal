@@ -19,7 +19,7 @@ window.onload = function() {
         { name: "data-quality-service", url: "./specs/dqf-service.json"},
         // biocache has been commented out to allow updated release of docs to production before biocache. 
         { name: "occurrences", url: "./specs/biocache.json"},
-        // { name: "common", url: "./specs/common.json"},
+        { name: "common", url: "./specs/common.json"}
         // { name: "spatial", url: "./specs/spatial.json"}
       ],
       dom_id: '#swagger-ui',

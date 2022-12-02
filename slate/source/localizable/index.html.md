@@ -476,8 +476,10 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=us
 
 &nbsp;
 
+## 15. Namematching
 
+Access the ALA   <a href="https://namematching-ws.ala.org.au/" target="_blank">namematching</a> service.
 
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=namematching">Open API specification</a>
 
-
-
+&nbsp;

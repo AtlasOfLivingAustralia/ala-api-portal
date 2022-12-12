@@ -52,7 +52,7 @@ Open ID Connect is used to obtain an access token. Once an access token is obtai
 
 `Authorization: Bearer <access_token>`
 
-Client application details are required for access token generation. Please follow this [step-by-step guide](https://pkce-feature-cicd.dev.ala.org.au/) for <strong>Client Registration</strong> and <strong>Token Generation</strong>.  The <strong>Token Generation</strong> functionality of the guide implements the ALA recommented [Authentication Code Flow using PKCE](#authentication-code-flow) flow mentioned below. 
+Client application details are required for access token generation. Please follow this <a href="https://pkce-feature-cicd.dev.ala.org.au/" target="_blank" >step-by-step guide</a> for <strong>Client Registration</strong> and <strong>Token Generation</strong>.  The <strong>Token Generation</strong> functionality of the guide implements the ALA recommented [Authentication Code Flow using PKCE](#authentication-code-flow) flow mentioned below. 
 
 We support multiple ways to obtain an access token:
 

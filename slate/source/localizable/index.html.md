@@ -49,15 +49,18 @@ ALA APIs allow two main methods of access
 
 Open ID Connect is used to obtain an access token. Once an access token is obtained it should be passed as a bearer token in the HTTP Authentication header.
 
+
 `Authorization: Bearer <access_token>`
 
+Client application details are required for access token generation. Please follow this <a href="https://pkce-feature-cicd.dev.ala.org.au/" target="_blank" >step-by-step guide</a> for <strong>Client Registration</strong> and <strong>Token Generation</strong>.  The <strong>Token Generation</strong> functionality of the guide implements the ALA recommented [Authentication Code Flow using PKCE](#authentication-code-flow) flow mentioned below. 
+
 We support multiple ways to obtain an access token:
- 
+
  - [Client Credentials](#client-credentials)
  - [Authentication Code Flow](#authentication-code-flow)
  - [Implicit Flow](#implicit-flow)
 
-  The Postman Collection below shows some examples of the above token generation methods and the subsequent usage of the generated token.
+  The Postman Collection below shows some examples of the above token generation flows and the subsequent usage of the generated token.
 
  [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/23926959-0b42d403-9afd-415d-b431-99b4e37691a4?action=collection%2Ffork&collection-url=entityId%3D23926959-0b42d403-9afd-415d-b431-99b4e37691a4%26entityType%3Dcollection%26workspaceId%3De9363855-ef16-46ba-bf16-cee7f7f2f8e9)
 

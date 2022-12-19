@@ -41,8 +41,11 @@ set :relative_links, true
 
 set :build_dir, '../build'
 
-activate :i18n, :mount_at_root => :test
+configure :development do
+  activate :i18n, :mount_at_root => :test
+end
 
+activate :i18n, :mount_at_root => :dev
 # Build Configuration
 configure :build do
   # We do want to hash woff and woff2 as there's a bug where woff2 will use

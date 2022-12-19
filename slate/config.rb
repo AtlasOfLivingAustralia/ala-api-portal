@@ -42,7 +42,7 @@ set :relative_links, true
 set :build_dir, '../build'
 
 configure :development do
-  activate :i18n, :mount_at_root => :test
+  #activate :i18n, :mount_at_root => :test
 end
 
 activate :i18n, :mount_at_root => :dev

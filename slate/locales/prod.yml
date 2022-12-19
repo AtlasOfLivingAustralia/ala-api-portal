@@ -18,4 +18,5 @@ prod:
   profilesApiUrl: https://apis.ala.org.au/images
   dqfServiceApiUrl: https://apis.ala.org.au/dqf-service
   biocacheServiceApiUrl: https://apis.ala.org.au/biocache
-  spatialServiceApiUrl: https://apis.ala.org.au/spatial  
+  spatialServiceApiUrl: https://apis.ala.org.au/spatial
+  tokensAppUrl: https://tokens.ala.org.au

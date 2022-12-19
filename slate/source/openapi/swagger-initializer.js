@@ -20,7 +20,8 @@ window.onload = function() {
         // biocache has been commented out to allow updated release of docs to production before biocache. 
         { name: "occurrences", url: "./specs/biocache.json"},
         { name: "common", url: "./specs/common.json"},
-        { name: "spatial", url: "./specs/spatial.json"}
+        { name: "spatial", url: "./specs/spatial.json"},
+        { name: "namematching", url: "./specs/namematching.json"}
       ],
       dom_id: '#swagger-ui',
       deepLinking: true,

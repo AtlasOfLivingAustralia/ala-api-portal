@@ -9,7 +9,7 @@ phases:
   install:
     on-failure: ABORT
     runtime-versions:
-      nodejs: 14
+      nodejs: 16
     commands:
       # - sudo apt-get update -y
       # - sudo apt install -y ruby ruby-dev build-essential libffi-dev zlib1g-dev liblzma-dev nodejs patch

@@ -41,7 +41,7 @@ set :relative_links, true
 
 set :build_dir, '../build'
 
-activate :i18n, :mount_at_root => :ENV['ENVIRONMENT']
+activate :i18n, :mount_at_root => :ENV['ENVIRONMENT'], :path => ":locales"
 
 # Build Configuration
 configure :build do

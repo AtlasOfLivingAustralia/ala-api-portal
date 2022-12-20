@@ -41,7 +41,8 @@ set :relative_links, true
 
 set :build_dir, '../build'
 
-activate :i18n, :mount_at_root => :ENV['ENVIRONMENT']
+#activate :i18n, :mount_at_root => :ENV['ENVIRONMENT']
+activate :i18n, :mount_at_root => :production
 
 # Build Configuration
 configure :build do

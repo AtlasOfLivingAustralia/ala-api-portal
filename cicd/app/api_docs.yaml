@@ -11,6 +11,9 @@ Parameters:
   pBucketPath:
     Type: String
     Description: Optional path that the documentation is stored under
+  pCleanBranch:
+    Type: String
+    Description: A clean version of the branch, used for resource naming
   pHostedZone:
     Type: String
     Description: The hosted zone the docs are accessed under

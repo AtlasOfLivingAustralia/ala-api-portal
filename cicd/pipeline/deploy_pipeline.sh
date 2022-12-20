@@ -42,6 +42,8 @@ aws cloudformation deploy \
         pAppStackName=$APP_STACK_NAME \
         pCodeBuildServiceRole=$CODEBUILD_SERVICE_ROLE \
         pCodePipelineServiceRole=$CODEPIPELINE_SERVICE_ROLE \
+        pCleanBranch=$CLEAN_BRANCH \
+        pProductName=$PRODUCT_NAME \
         pArtifactsBucket=$ARTIFACTS_BUCKET \
         pGitHubRepositoryName=$GITHUB_REPO_NAME \
         pGitHubOwner=$GITHUB_OWNER \

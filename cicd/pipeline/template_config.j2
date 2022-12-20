@@ -4,12 +4,13 @@
     "pBucketName"     : "{{ bucket_name }}",
     "pBucketPath"     : "{{ bucket_path }}",
     "pHostedZone"     : "{{ hosted_zone }}",
+    "pCleanBranch"    : "{{ clean_branch }}",
     "pSubDomain"      : "{{ sub_domain }}",
     "pSslCertificate" : "{{ ssl_certificate }}"
   },
   "Tags" : {
-    "product"    : "api-docs",
-    "component"   : "docs",
+    "product"    : "{{ product_name }}",
+    "component"   : "{{ component }}",
     "environment" : "{{ environment }}",
     "branch"      : "{{ branch }}",
     "version"     : "{{ commit_id }}",

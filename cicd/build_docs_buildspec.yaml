@@ -21,7 +21,7 @@ phases:
       - npm --prefix ./swagger-ui install
   build:
     commands:
-      - echo env: $ENVIRONMENT
+      - echo env $ENVIRONMENT
       - cd ./slate && bundle exec middleman build && cd ..
       - npm --prefix ./swagger-ui run build
 

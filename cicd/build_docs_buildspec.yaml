@@ -21,7 +21,7 @@ phases:
       - npm --prefix ./swagger-ui install
   build:
     commands:
-      - cd ./slate && bundle exec middleman build -e production && cd ..
+      - cd ./slate && bundle exec middleman build && cd ..
       - npm --prefix ./swagger-ui run build
 
 artifacts:

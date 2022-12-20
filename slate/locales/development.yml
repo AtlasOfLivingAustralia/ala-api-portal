@@ -1,5 +1,5 @@
 ---
-dev:
+development:
   title: Atlas of Living Australia API dev Documentation
   baseUrl: https://apis.test.ala.org.au
   authBaseUrl: https://auth.dev.ala.org.au

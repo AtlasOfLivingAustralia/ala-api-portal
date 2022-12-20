@@ -39,12 +39,19 @@ Parameters:
     Type: String
     Description: Codestar connection ARN
 
+Conditions:
+  IsDev: !Equals
+    - !Ref pEnvironment
+    - development
+
 Resources:
  
   ExportConfig:
     Type: AWS::CodeBuild::Project
     Properties:
-      Name: !Sub api-docs-export-config-${pEnvironment}
+      Name: !Sub
+              - "${pProductName}-export-config-${ResourceName}"
+              - ResourceName: !If [ IsDev, !Ref pCleanBranch, !Ref pEnvironment ]
       Description: Load the environment and build the CloudFormation template config file
       ServiceRole: !Ref pCodeBuildServiceRole
       Artifacts:
@@ -76,7 +83,9 @@ Resources:
   BuildApiDocs:
     Type: AWS::CodeBuild::Project
     Properties:
-      Name: !Sub api-docs-build-docs-${pEnvironment}
+      Name: !Sub
+              - "${pProductName}-build-${ResourceName}"
+              - ResourceName: !If [ IsDev, !Ref pCleanBranch, !Ref pEnvironment ]
       Description: Build the API docs
       ServiceRole: !Ref pCodeBuildServiceRole
       Artifacts:
@@ -108,7 +117,9 @@ Resources:
   EmptyBucket:
     Type: AWS::CodeBuild::Project
     Properties:
-      Name: !Sub api-docs-empty-bucket-${pEnvironment}
+      Name: !Sub
+              - "${pProductName}-empty-bucket-${ResourceName}"
+              - ResourceName: !If [ IsDev, !Ref pCleanBranch, !Ref pEnvironment ]
       Description: Empty the documentation s3 bucket so it can be deleted
       ServiceRole: !Ref pCodeBuildServiceRole
       Artifacts:
@@ -140,7 +151,9 @@ Resources:
   InvalidateCache:
     Type: AWS::CodeBuild::Project
     Properties:
-      Name: !Sub api-docs-invalidate-cache-${pEnvironment}
+      Name: !Sub
+              - "${pProductName}-invalidate-cache-${ResourceName}"
+              - ResourceName: !If [ IsDev, !Ref pCleanBranch, !Ref pEnvironment ]
       Description: Invalidate the CloudFront cache after deploy
       ServiceRole: !Ref pCodeBuildServiceRole
       Artifacts:
@@ -172,7 +185,10 @@ Resources:
   Pipeline:
     Type: "AWS::CodePipeline::Pipeline"
     Properties:
-      Name: !Sub api-docs-portal-${pEnvironment}
+      Name: !Sub
+              - "${pProductName}-${ResourceName}"
+              - ResourceName: !If [ IsDev, !Ref pCleanBranch, !Ref pEnvironment ]
+
       RoleArn: !Ref pCodePipelineServiceRole
       ArtifactStore:
         Type: S3

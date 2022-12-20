@@ -192,7 +192,8 @@ Resources:
               ProjectName: !Ref BuildApiDocs
               EnvironmentVariables: '[
                                        { "name":"SRC_BRANCH", "value":"#{CheckoutSrcNS.BranchName}" },
-                                       { "name":"COMMIT_ID", "value":"#{CheckoutSrcNS.CommitId}" }
+                                       { "name":"COMMIT_ID", "value":"#{CheckoutSrcNS.CommitId}" },
+                                       { "name":"ENVIRONMENT", "value":"${pEnvironment}" }
                                      ]'
             Namespace: BuildApiDocsNS
             InputArtifacts:

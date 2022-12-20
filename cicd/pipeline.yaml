@@ -190,7 +190,7 @@ Resources:
               Provider: CodeBuild
             Configuration:
               ProjectName: !Ref BuildApiDocs
-              EnvironmentVariables: '[
+              EnvironmentVariables: !Sub '[
                                        { "name":"SRC_BRANCH", "value":"#{CheckoutSrcNS.BranchName}" },
                                        { "name":"COMMIT_ID", "value":"#{CheckoutSrcNS.CommitId}" },
                                        { "name":"ENVIRONMENT", "value":"${pEnvironment}" }

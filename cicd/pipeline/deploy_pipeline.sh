@@ -24,7 +24,7 @@ environment=$(./branch_2_env.py --branch $branch --env $ENV)
 echo environment: $environment
 
 # load environment vars
-./gen_env_vars.py --env $environment  --clean-branch $clean_branch --conf ../../congig.ini > env.txt
+./gen_env_vars.py --env $environment  --clean-branch $clean_branch --conf ../../config.ini > env.txt
 source env.txt
 rm env.txt
 

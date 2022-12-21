@@ -65,7 +65,7 @@ Resources:
             Value: !Ref pArtifactsBucket
       Source:
         Type: CODEPIPELINE
-        BuildSpec: cicd/export_config_buildspec.yaml
+        BuildSpec: cicd/pipeline/export_config_buildspec.yaml
       TimeoutInMinutes: 5
 
   ExportConfigLogGroup:
@@ -99,7 +99,7 @@ Resources:
             Value: !Ref pArtifactsBucket
       Source:
         Type: CODEPIPELINE
-        BuildSpec: cicd/build_docs_buildspec.yaml
+        BuildSpec: cicd/pipeline/build_docs_buildspec.yaml
       TimeoutInMinutes: 10
 
   BuildApiDocsLogGroup:
@@ -133,7 +133,7 @@ Resources:
             Value: !Ref pArtifactsBucket
       Source:
         Type: CODEPIPELINE
-        BuildSpec: cicd/empty_bucket_buildspec.yaml
+        BuildSpec: cicd/pipeline/empty_bucket_buildspec.yaml
       TimeoutInMinutes: 5
 
   EmptyBucketLogGroup:
@@ -167,7 +167,7 @@ Resources:
             Value: !Ref pArtifactsBucket
       Source:
         Type: CODEPIPELINE
-        BuildSpec: cicd/invalidate_cache_buildspec.yaml
+        BuildSpec: cicd/pipeline/invalidate_cache_buildspec.yaml
       TimeoutInMinutes: 5
 
   InvalidateCacheLogGroup:
@@ -239,8 +239,8 @@ Resources:
               Version: 1
               Provider: CloudFormation
             Configuration:
-              TemplatePath: 'ExportConfigArtifact::cicd/api_docs.yaml'
-              TemplateConfiguration: 'ExportConfigArtifact::cicd/template_config.json'
+              TemplatePath: 'ExportConfigArtifact::cicd/app/api_docs.yaml'
+              TemplateConfiguration: 'ExportConfigArtifact::cicd/pipeline/template_config.json'
               ActionMode: CREATE_UPDATE
               Capabilities: CAPABILITY_IAM,CAPABILITY_AUTO_EXPAND
               RoleArn: !Ref pCloudFormationServiceRole

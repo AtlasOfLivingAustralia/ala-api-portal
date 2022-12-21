@@ -49,7 +49,7 @@ Resources:
         IgnorePublicAcls: TRUE
       Tags:
         - Key: Name
-          Value: !Sub ${pBucketName}
+          Value: !Ref pBucketName
 
   ApiDocsBucketPolicy:
     Type: AWS::S3::BucketPolicy

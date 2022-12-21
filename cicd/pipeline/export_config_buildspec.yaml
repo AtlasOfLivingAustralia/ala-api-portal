@@ -59,7 +59,7 @@ phases:
 
 artifacts:
   files:
-    - cicd/apps/api_docs.yaml
+    - cicd/app/api_docs.yaml
     - cicd/pipeline/template_config.json
   name: BuildTemplateConfigArtifact
   discard-paths: no

@@ -224,6 +224,7 @@ Resources:
               EnvironmentVariables: !Sub '[
                                        { "name":"SRC_BRANCH", "value":"#{CheckoutSrcNS.BranchName}" },
                                        { "name":"COMMIT_ID", "value":"#{CheckoutSrcNS.CommitId}" },
+                                       { "name":"CLEAN_BRANCH", "value":"${pCleanBranch}" }
                                        { "name":"ENVIRONMENT", "value":"${pEnvironment}" }
                                      ]'
             Namespace: ExportConfigNS

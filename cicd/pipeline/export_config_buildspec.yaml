@@ -33,8 +33,9 @@ phases:
     commands:
       - echo Entered the pre_build phase...
       - echo source branch is $SRC_BRANCH
+      - echo clean branch is $CLEAN_BRANCH
       - echo Environment is $ENVIRONMENT
-      - cicd/pipeline/gen_env_vars.py --env $ENVIRONMENT --conf config.ini > env.txt
+      - cicd/pipeline/gen_env_vars.py --env $ENVIRONMENT --clean-branch $CLEAN_BRANCH --conf config.ini > env.txt
       - echo loading config..
       - set -a ; source env.txt ; set +a
     finally:

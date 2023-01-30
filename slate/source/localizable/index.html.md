@@ -31,13 +31,10 @@ These data stored in the ALA have been fully parsed, processed and augmented wit
 Welcome to the ALA API Portfolio Hub.  
 
 We’ve recently moved to this API Gateway to streamline access and improve security for end-users by incorporating user authentication. ALA data are still open and freely accessible. 
-
-
- 
 For more information or assistance, please contact [support@ala.org.au](mailto:support@ala.org.au). 
 
 API Endpoint: https://apis.ala.org.au
-
+>  Legacy API and documentation are still available at [api.ala.org.au](https://api.ala.org.au/)
 
 ALA APIs allow two main methods of access
 
@@ -52,7 +49,7 @@ Open ID Connect is used to obtain an access token. Once an access token is obtai
 
 `Authorization: Bearer <access_token>`
 
-Client application details are required for access token generation. Please follow this <a href="<%= I18n.t(:tokensAppUrl) %>" target="_blank" >step-by-step guide</a> for <strong>Client Registration</strong> and <strong>Token Generation</strong>.  The <strong>Token Generation</strong> functionality of the guide implements the ALA recommented [Authentication Code Flow using PKCE](#authentication-code-flow) flow mentioned below. 
+Client application details are required for access token generation. Please follow this <a href="<%= I18n.t(:tokensAppUrl) %>" >step-by-step guide</a> for <strong>Client Registration</strong> and <strong>Token Generation</strong>.  The <strong>Token Generation</strong> functionality of the guide implements the ALA recommended [Authentication Code Flow using PKCE](#authentication-code-flow) flow mentioned below. 
 
 We support multiple ways to obtain an access token:
 

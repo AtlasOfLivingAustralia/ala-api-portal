@@ -34,7 +34,7 @@ We’ve recently moved to this API Gateway to streamline access and improve secu
 For more information or assistance, please contact [support@ala.org.au](mailto:support@ala.org.au). 
 
 API Endpoint: https://apis.ala.org.au
->  Legacy API and documentation are still available at [apis.ala.org.au](https://apis.ala.org.au/)
+>  Legacy API and documentation are still available at [api.ala.org.au](https://api.ala.org.au/)
 
 ALA APIs allow two main methods of access
 

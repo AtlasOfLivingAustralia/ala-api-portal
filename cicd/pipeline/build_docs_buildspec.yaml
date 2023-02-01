@@ -8,9 +8,13 @@ env:
 phases:
   install:
     on-failure: ABORT
-    runtime-versions:
-      nodejs: 14
     commands:
+      # The latest AWS ubuntu build container only supports up to node 16 out of the box
+      # so we manually install it ourself using the $NODE_VERSION defined in conf.ini
+      - echo adding the specified version of node
+      - curl -fsSL https://deb.nodesource.com/setup_$NODE_VERSION.x | bash -
+      - apt-get update
+      - apt-get -y install nodejs
       # - sudo apt-get update -y
       # - sudo apt install -y ruby ruby-dev build-essential libffi-dev zlib1g-dev liblzma-dev nodejs patch
       # - gem update --system

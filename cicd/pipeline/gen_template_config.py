@@ -22,15 +22,18 @@ template = template_env.get_template(args.template)
 
 # get the values from the environment
 template_vals = {
-    "environment"     : os.environ['ENVIRONMENT'],
-    "bucket_name"     : os.environ['DOCUMENTATION_BUCKET'],
-    "bucket_path"     : os.environ['BUCKET_PATH'],
-    "hosted_zone"     : os.environ['HOSTED_ZONE'],
-    "sub_domain"      : os.environ['SUB_DOMAIN'],
-    "ssl_certificate" : os.environ['SSL_CERTIFICATE'],
-    "branch"          : os.environ['SRC_BRANCH'],
-    "commit_id"       : os.environ['COMMIT_ID'],
-    "build"           : os.environ['CODEBUILD_BUILD_NUMBER']
+    "environment"       : os.environ['ENVIRONMENT'],
+    "bucket_name"       : os.environ['DOCUMENTATION_BUCKET'],
+    "bucket_path"       : os.environ['BUCKET_PATH'],
+    "hosted_zone"       : os.environ['HOSTED_ZONE'],
+    "sub_domain"        : os.environ['SUB_DOMAIN'],
+    "clean_branch"      : os.environ['CLEAN_BRANCH'],
+    "product_name"      : os.environ['PRODUCT_NAME'],
+    "product_component" : os.environ['PRODUCT_COMPONENT'],
+    "ssl_certificate"   : os.environ['SSL_CERTIFICATE'],
+    "branch"            : os.environ['SRC_BRANCH'],
+    "commit_id"         : os.environ['COMMIT_ID'],
+    "build"             : os.environ['CODEBUILD_BUILD_NUMBER']
 }
 
 # do the substitution

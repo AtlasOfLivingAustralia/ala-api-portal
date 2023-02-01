@@ -11,6 +11,10 @@ ENV="${1:-notprod}"
 branch=$(git branch --show-current)
 echo branch: $branch
 
+# get the clean version of the branch
+clean_branch=$(./clean_branch.sh $branch)
+echo clean branch: $clean_branch
+
 # get the commit_id
 commit_id=$(git rev-parse HEAD)
 echo commit_id: $commit_id
@@ -20,7 +24,7 @@ environment=$(./branch_2_env.py --branch $branch --env $ENV)
 echo environment: $environment
 
 # load environment vars
-./gen_env_vars.py --env $environment > env.txt
+./gen_env_vars.py --env $environment  --clean-branch $clean_branch --conf ../../config.ini > env.txt
 source env.txt
 rm env.txt
 
@@ -29,7 +33,7 @@ echo "Deploying the pipeline template"
 aws cloudformation deploy \
     --template-file pipeline.yaml \
     --stack-name $PIPELINE_STACK_NAME \
-    --tags $PIPELINE_AWS_TAGS environment=$environment branch=$branch version=$commit_id \
+    --tags product=$PRODUCT_NAME component=cicd environment=$environment branch=$branch version=$commit_id \
     --region $REGION \
     --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM \
     --parameter-overrides \
@@ -38,6 +42,8 @@ aws cloudformation deploy \
         pAppStackName=$APP_STACK_NAME \
         pCodeBuildServiceRole=$CODEBUILD_SERVICE_ROLE \
         pCodePipelineServiceRole=$CODEPIPELINE_SERVICE_ROLE \
+        pCleanBranch=$CLEAN_BRANCH \
+        pProductName=$PRODUCT_NAME \
         pArtifactsBucket=$ARTIFACTS_BUCKET \
         pGitHubRepositoryName=$GITHUB_REPO_NAME \
         pGitHubOwner=$GITHUB_OWNER \

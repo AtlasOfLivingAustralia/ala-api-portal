@@ -14,6 +14,12 @@ Parameters:
   pAppStackName:
     Type: String
     Description: The name of the application stack
+  pCleanBranch:
+    Type: String
+    Description: A clean version of the branch, used for resource naming
+  pProductName:
+    Type: String
+    Description: The product name
   pCodePipelineServiceRole:
     Type: String
     Description: Common service role used by CodePipeline
@@ -33,12 +39,19 @@ Parameters:
     Type: String
     Description: Codestar connection ARN
 
+Conditions:
+  IsDev: !Equals
+    - !Ref pEnvironment
+    - development
+
 Resources:
  
   ExportConfig:
     Type: AWS::CodeBuild::Project
     Properties:
-      Name: !Sub api-docs-export-config-${pEnvironment}
+      Name: !Sub
+              - "${pProductName}-export-config-${ResourceName}"
+              - ResourceName: !If [ IsDev, !Ref pCleanBranch, !Ref pEnvironment ]
       Description: Load the environment and build the CloudFormation template config file
       ServiceRole: !Ref pCodeBuildServiceRole
       Artifacts:
@@ -52,13 +65,27 @@ Resources:
             Value: !Ref pArtifactsBucket
       Source:
         Type: CODEPIPELINE
-        BuildSpec: cicd/export_config_buildspec.yaml
+        BuildSpec: cicd/pipeline/export_config_buildspec.yaml
       TimeoutInMinutes: 5
+
+  ExportConfigLogGroup:
+    Type: AWS::Logs::LogGroup
+    DeletionPolicy: Delete
+    Properties:
+      LogGroupName: !Sub
+                       - /aws/codebuild/${ProjectName}
+                       - ProjectName: !Ref ExportConfig
+      RetentionInDays: 30
+      Tags:
+        - Key: Name
+          Value: !Ref AWS::StackName
 
   BuildApiDocs:
     Type: AWS::CodeBuild::Project
     Properties:
-      Name: !Sub api-docs-build-docs-${pEnvironment}
+      Name: !Sub
+              - "${pProductName}-build-${ResourceName}"
+              - ResourceName: !If [ IsDev, !Ref pCleanBranch, !Ref pEnvironment ]
       Description: Build the API docs
       ServiceRole: !Ref pCodeBuildServiceRole
       Artifacts:
@@ -72,13 +99,27 @@ Resources:
             Value: !Ref pArtifactsBucket
       Source:
         Type: CODEPIPELINE
-        BuildSpec: cicd/build_docs_buildspec.yaml
+        BuildSpec: cicd/pipeline/build_docs_buildspec.yaml
       TimeoutInMinutes: 10
+
+  BuildApiDocsLogGroup:
+    Type: AWS::Logs::LogGroup
+    DeletionPolicy: Delete
+    Properties:
+      LogGroupName: !Sub
+                       - /aws/codebuild/${ProjectName}
+                       - ProjectName: !Ref BuildApiDocs
+      RetentionInDays: 30
+      Tags:
+        - Key: Name
+          Value: !Ref AWS::StackName
 
   EmptyBucket:
     Type: AWS::CodeBuild::Project
     Properties:
-      Name: !Sub api-docs-empty-bucket-${pEnvironment}
+      Name: !Sub
+              - "${pProductName}-empty-bucket-${ResourceName}"
+              - ResourceName: !If [ IsDev, !Ref pCleanBranch, !Ref pEnvironment ]
       Description: Empty the documentation s3 bucket so it can be deleted
       ServiceRole: !Ref pCodeBuildServiceRole
       Artifacts:
@@ -92,13 +133,27 @@ Resources:
             Value: !Ref pArtifactsBucket
       Source:
         Type: CODEPIPELINE
-        BuildSpec: cicd/empty_bucket_buildspec.yaml
+        BuildSpec: cicd/pipeline/empty_bucket_buildspec.yaml
       TimeoutInMinutes: 5
+
+  EmptyBucketLogGroup:
+    Type: AWS::Logs::LogGroup
+    DeletionPolicy: Delete
+    Properties:
+      LogGroupName: !Sub
+                       - /aws/codebuild/${ProjectName}
+                       - ProjectName: !Ref EmptyBucket
+      RetentionInDays: 30
+      Tags:
+        - Key: Name
+          Value: !Ref AWS::StackName
 
   InvalidateCache:
     Type: AWS::CodeBuild::Project
     Properties:
-      Name: !Sub api-docs-invalidate-cache-${pEnvironment}
+      Name: !Sub
+              - "${pProductName}-invalidate-cache-${ResourceName}"
+              - ResourceName: !If [ IsDev, !Ref pCleanBranch, !Ref pEnvironment ]
       Description: Invalidate the CloudFront cache after deploy
       ServiceRole: !Ref pCodeBuildServiceRole
       Artifacts:
@@ -112,13 +167,28 @@ Resources:
             Value: !Ref pArtifactsBucket
       Source:
         Type: CODEPIPELINE
-        BuildSpec: cicd/invalidate_cache_buildspec.yaml
+        BuildSpec: cicd/pipeline/invalidate_cache_buildspec.yaml
       TimeoutInMinutes: 5
+
+  InvalidateCacheLogGroup:
+    Type: AWS::Logs::LogGroup
+    DeletionPolicy: Delete
+    Properties:
+      LogGroupName: !Sub
+                       - /aws/codebuild/${ProjectName}
+                       - ProjectName: !Ref InvalidateCache
+      RetentionInDays: 30
+      Tags:
+        - Key: Name
+          Value: !Ref AWS::StackName
 
   Pipeline:
     Type: "AWS::CodePipeline::Pipeline"
     Properties:
-      Name: !Sub api-docs-portal-${pEnvironment}
+      Name: !Sub
+              - "${pProductName}-${ResourceName}"
+              - ResourceName: !If [ IsDev, !Ref pCleanBranch, !Ref pEnvironment ]
+
       RoleArn: !Ref pCodePipelineServiceRole
       ArtifactStore:
         Type: S3
@@ -154,6 +224,7 @@ Resources:
               EnvironmentVariables: !Sub '[
                                        { "name":"SRC_BRANCH", "value":"#{CheckoutSrcNS.BranchName}" },
                                        { "name":"COMMIT_ID", "value":"#{CheckoutSrcNS.CommitId}" },
+                                       { "name":"CLEAN_BRANCH", "value":"${pCleanBranch}" },
                                        { "name":"ENVIRONMENT", "value":"${pEnvironment}" }
                                      ]'
             Namespace: ExportConfigNS
@@ -169,8 +240,8 @@ Resources:
               Version: 1
               Provider: CloudFormation
             Configuration:
-              TemplatePath: 'ExportConfigArtifact::cicd/api_docs.yaml'
-              TemplateConfiguration: 'ExportConfigArtifact::cicd/template_config.json'
+              TemplatePath: 'ExportConfigArtifact::cicd/app/api_docs.yaml'
+              TemplateConfiguration: 'ExportConfigArtifact::cicd/pipeline/template_config.json'
               ActionMode: CREATE_UPDATE
               Capabilities: CAPABILITY_IAM,CAPABILITY_AUTO_EXPAND
               RoleArn: !Ref pCloudFormationServiceRole
@@ -192,6 +263,7 @@ Resources:
               ProjectName: !Ref BuildApiDocs
               EnvironmentVariables: '[
                                        { "name":"SRC_BRANCH", "value":"#{CheckoutSrcNS.BranchName}" },
+                                       { "name":"NODE_VERSION", "value":"#{ExportConfigNS.NODE_VERSION}" },
                                        { "name":"COMMIT_ID", "value":"#{CheckoutSrcNS.CommitId}" }
                                      ]'
             Namespace: BuildApiDocsNS
@@ -249,14 +321,14 @@ Resources:
             RunOrder: 4
       - Name: Teardown
         Actions:
-          - Name: Approval
+          - Name: AppTeardownApproval
             ActionTypeId:
               Owner: AWS
               Category: Approval
               Version: 1
               Provider: Manual
             Configuration:
-              CustomData: Approval required to tear down this stack
+              CustomData: Approval required to tear down the bucket and cloudfront distro
             RunOrder: 1
           - Name: EmptyBucket
             ActionTypeId:
@@ -286,6 +358,28 @@ Resources:
               StackName: !Ref pAppStackName
               RoleArn: !Ref pCloudFormationServiceRole
             RunOrder: 3
+          - Name: PipelineTeardownApproval
+            ActionTypeId:
+              Owner: AWS
+              Category: Approval
+              Version: 1
+              Provider: Manual
+            Configuration:
+              CustomData: Approval required to tear down the pipeline. Self termination
+            RunOrder: 4
+          - Name: TeardownPipeline
+            ActionTypeId:
+              Owner: AWS
+              Category: Deploy
+              Version: 1
+              Provider: CloudFormation
+            Configuration:
+              ActionMode: DELETE_ONLY
+              StackName: !Ref AWS::StackName
+              RoleArn: !Ref pCloudFormationServiceRole
+            RunOrder: 5
+
+
 
 Outputs:
   PipelineUrl:

@@ -31,13 +31,11 @@ These data stored in the ALA have been fully parsed, processed and augmented wit
 Welcome to the ALA API Portfolio Hub.  
 
 We’ve recently moved to this API Gateway to streamline access and improve security for end-users by incorporating user authentication. ALA data are still open and freely accessible. 
-
-
- 
 For more information or assistance, please contact [support@ala.org.au](mailto:support@ala.org.au). 
 
 API Endpoint: https://apis.ala.org.au
 
+Legacy API and documentation are still available at [api.ala.org.au](https://api.ala.org.au/)
 
 ALA APIs allow two main methods of access
 
@@ -52,7 +50,7 @@ Open ID Connect is used to obtain an access token. Once an access token is obtai
 
 `Authorization: Bearer <access_token>`
 
-Client application details are required for access token generation. Please follow this <a href="<%= I18n.t(:tokensAppUrl) %>" target="_blank" >step-by-step guide</a> for <strong>Client Registration</strong> and <strong>Token Generation</strong>.  The <strong>Token Generation</strong> functionality of the guide implements the ALA recommented [Authentication Code Flow using PKCE](#authentication-code-flow) flow mentioned below. 
+Client application details are required for access token generation. Please follow this <a href="<%= I18n.t(:tokensAppUrl) %>" >step-by-step guide</a> for <strong>Client Registration</strong> and <strong>Token Generation</strong>.  The <strong>Token Generation</strong> functionality of the guide implements the ALA recommended [Authentication Code Flow using PKCE](#authentication-code-flow) flow mentioned below. 
 
 We support multiple ways to obtain an access token:
 
@@ -425,7 +423,7 @@ Access ALA images, such as finding an image by keyword.
 
 Explore interactively on the ALA <a href="https://images.ala.org.au" target="_blank">Images</a> app. 
 
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=image-service">Open API specification</a>
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=images">Open API specification</a>
 
 &nbsp;
 
@@ -435,11 +433,11 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=im
 Interact with the ALA Logger <a href="https://logger.ala.org.au" target="_blank">Logger</a>  webapp, such as getting event types and reason breakdowns.
 
 
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=logger">Open API specification</a>
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=download-statistics">Open API specification</a>
 
 &nbsp;
 
-## 11. Profiles service
+<!-- ## 11. Profiles service
 
 Services for interacting with ALA Profile collections 
 
@@ -449,10 +447,10 @@ Explore interactively on the ALA <a href="https://profiles.ala.org.au" target="_
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=profiles">Open API specification</a>
 </aside>
 
-&nbsp;
+&nbsp; -->
 
 
-## 12. Species lists and traits
+## 11. Species lists and traits
 
 Interact with   <a href="https://lists.ala.org.au" target="_blank">species lists</a> , including get list details and create a list.
 
@@ -460,7 +458,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=sp
 
 &nbsp;
 
-## 13. Spatial 
+<!-- ## 13. Spatial 
 
 Services for interacting with ALA Spatial services
 
@@ -468,9 +466,9 @@ Explore interactively on the ALA <a href="https://spatial.ala.org.au" target="_b
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=spatial">Open API specification</a>
 
-&nbsp;
+&nbsp; -->
 
-## 14. User details
+## 12. User details
 
 Access the ALA   <a href="https://auth.ala.org.au/userdetails/" target="_blank">user details</a>  platform, such as a total count of users in the system and users by role.
 
@@ -479,10 +477,10 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=us
 
 &nbsp;
 
-## 15. Namematching
+<!-- ## 15. Namematching
 
 Access the ALA   <a href="https://namematching-ws.ala.org.au/" target="_blank">namematching</a> service.
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=namematching">Open API specification</a>
 
-&nbsp;
+&nbsp; -->

@@ -11,6 +11,9 @@ Parameters:
   pBucketPath:
     Type: String
     Description: Optional path that the documentation is stored under
+  pCleanBranch:
+    Type: String
+    Description: A clean version of the branch, used for resource naming
   pHostedZone:
     Type: String
     Description: The hosted zone the docs are accessed under
@@ -21,6 +24,11 @@ Parameters:
     Type: String
     Description: The arn of the SSL certificate to be used 
 
+Conditions:
+  IsDev: !Equals
+    - !Ref pEnvironment
+    - development
+
 Resources:
   
   ApiDocsBucket:
@@ -28,13 +36,20 @@ Resources:
     DeletionPolicy: Delete
     Properties:
       BucketName: !Sub ${pBucketName}
+      LifecycleConfiguration:
+        Rules:
+          - Id: delete incomplete uploads
+            AbortIncompleteMultipartUpload:
+               DaysAfterInitiation: 1
+            Status: Enabled
       PublicAccessBlockConfiguration:
         BlockPublicAcls: TRUE
         BlockPublicPolicy: TRUE
         RestrictPublicBuckets: TRUE
+        IgnorePublicAcls: TRUE
       Tags:
-        - Key: component
-          Value: storage
+        - Key: Name
+          Value: !Ref pBucketName
 
   ApiDocsBucketPolicy:
     Type: AWS::S3::BucketPolicy
@@ -68,7 +83,7 @@ Resources:
       DistributionConfig:
         Aliases:
           - !Sub "${pSubDomain}.${pHostedZone}"
-        Comment: !Sub CF Distribution for the API Docs ${pEnvironment}
+        Comment: !Sub API Docs portal ${pEnvironment}
         DefaultCacheBehavior:
           AllowedMethods: 
             - GET
@@ -106,7 +121,10 @@ Resources:
         DefaultTTL: 300
         MaxTTL: 86400
         MinTTL: 1
-        Name: !Sub Api-docs-cache-Policy-${pEnvironment}
+        Name: !Sub
+                - "api-docs-cache-Policy-${ResourceName}"
+                - ResourceName: !If [ IsDev, !Ref pCleanBranch, !Ref pEnvironment ]
+
         ParametersInCacheKeyAndForwardedToOrigin: 
           CookiesConfig: 
             CookieBehavior: none

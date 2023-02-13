@@ -33,9 +33,9 @@ Welcome to the ALA API Portfolio Hub.
 We’ve recently moved to this API Gateway to streamline access and improve security for end-users by incorporating user authentication. ALA data are still open and freely accessible. 
 For more information or assistance, please contact [support@ala.org.au](mailto:support@ala.org.au). 
 
-API Endpoint: https://apis.ala.org.au
+API Endpoint: [api.ala.org.au](https://api.ala.org.au/)
 
-Legacy API and documentation are still available at [api.ala.org.au](https://api.ala.org.au/)
+Legacy API and documentation are still available at [api-legacy.ala.org.au](https://api-legacy.ala.org.au/)
 
 ALA APIs allow two main methods of access
 

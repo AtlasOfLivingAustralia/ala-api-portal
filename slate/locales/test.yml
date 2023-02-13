@@ -1,22 +1,22 @@
 ---
 test:
   title: Atlas of Living Australia API test Documentation
-  baseUrl: https://apis.test.ala.org.au
+  baseUrl: https://api.test.ala.org.au
   authBaseUrl: https://auth-test.ala.org.au
   biocacheBaseUrl: https://biocache-ws-test.ala.org.au/ws
   autoCompleteBaseUrl: https://biocache-ws-test.ala.org.au/ws
   userdetailsBaseUrl: https://auth-test.ala.org.au/userdetails
-  userdetailsAPIUrl: https://apis.test.ala.org.au/userdetails
-  loggerAPIUrl: https://apis.test.ala.org.au/logger
-  alertsAPIUrl: https://apis.test.ala.org.au/alerts
-  doiAPIUrl: https://apis.test.ala.org.au/doi
-  biocollectAPIUrl: https://apis.test.ala.org.au/biocollect
-  bieIndexAPIUrl: https://apis.test.ala.org.au/bie-index
-  specieslistIndexAPIUrl: https://apis.test.ala.org.au/specieslist
-  collectoryApiUrl: https://apis.test.ala.org.au/collectory
-  imagesApiUrl: https://apis.test.ala.org.au/images
-  profilesApiUrl: https://apis.test.ala.org.au/images
-  dqfServiceApiUrl: https://apis.test.ala.org.au/dqf-service
-  biocacheServiceApiUrl: https://apis.test.ala.org.au/biocachev2
-  spatialServiceApiUrl: https://apis.test.ala.org.au/spatial
+  userdetailsAPIUrl: https://api.test.ala.org.au/userdetails
+  loggerAPIUrl: https://api.test.ala.org.au/logger
+  alertsAPIUrl: https://api.test.ala.org.au/alerts
+  doiAPIUrl: https://api.test.ala.org.au/doi
+  biocollectAPIUrl: https://api.test.ala.org.au/biocollect
+  bieIndexAPIUrl: https://api.test.ala.org.au/bie-index
+  specieslistIndexAPIUrl: https://api.test.ala.org.au/specieslist
+  collectoryApiUrl: https://api.test.ala.org.au/collectory
+  imagesApiUrl: https://api.test.ala.org.au/images
+  profilesApiUrl: https://api.test.ala.org.au/images
+  dqfServiceApiUrl: https://api.test.ala.org.au/dqf-service
+  biocacheServiceApiUrl: https://api.test.ala.org.au/biocachev2
+  spatialServiceApiUrl: https://api.test.ala.org.au/spatial
   tokensAppUrl: https://tokens.test.ala.org.au

@@ -1,5 +1,5 @@
 ---
-test:
+testing:
   title: Atlas of Living Australia API test Documentation
   baseUrl: https://api.test.ala.org.au
   authBaseUrl: https://auth-test.ala.org.au

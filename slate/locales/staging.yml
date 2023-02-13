@@ -1,5 +1,5 @@
 ---
-prod:
+staging:
   title: Atlas of Living Australia API Documentation
   baseUrl: https://api.ala.org.au
   authBaseUrl: https://auth.ala.org.au

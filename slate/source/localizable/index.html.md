@@ -437,7 +437,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=do
 
 &nbsp;
 
-<!-- ## 11. Profiles service
+## 11. Profiles service
 
 Services for interacting with ALA Profile collections 
 
@@ -447,10 +447,10 @@ Explore interactively on the ALA <a href="https://profiles.ala.org.au" target="_
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=profiles">Open API specification</a>
 </aside>
 
-&nbsp; -->
+&nbsp;
 
 
-## 11. Species lists and traits
+## 12. Species lists and traits
 
 Interact with   <a href="https://lists.ala.org.au" target="_blank">species lists</a> , including get list details and create a list.
 
@@ -458,7 +458,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=sp
 
 &nbsp;
 
-<!-- ## 13. Spatial 
+## 13. Spatial 
 
 Services for interacting with ALA Spatial services
 
@@ -466,9 +466,9 @@ Explore interactively on the ALA <a href="https://spatial.ala.org.au" target="_b
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=spatial">Open API specification</a>
 
-&nbsp; -->
+&nbsp;
 
-## 12. User details
+## 14. User details
 
 Access the ALA   <a href="https://auth.ala.org.au/userdetails/" target="_blank">user details</a>  platform, such as a total count of users in the system and users by role.
 
@@ -477,10 +477,10 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=us
 
 &nbsp;
 
-<!-- ## 15. Namematching
+## 15. Namematching
 
 Access the ALA   <a href="https://namematching-ws.ala.org.au/" target="_blank">namematching</a> service.
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=namematching">Open API specification</a>
 
-&nbsp; -->
+&nbsp;

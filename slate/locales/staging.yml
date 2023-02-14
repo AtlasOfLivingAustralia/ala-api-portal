@@ -15,7 +15,7 @@ staging:
   specieslistIndexAPIUrl: https://api.ala.org.au/specieslist
   collectoryApiUrl: https://api.ala.org.au/collectory
   imagesApiUrl: https://api.ala.org.au/images
-  profilesApiUrl: https://api.ala.org.au/images
+  profilesApiUrl: https://api.ala.org.au/profiles
   dqfServiceApiUrl: https://api.ala.org.au/dqf-service
   biocacheServiceApiUrl: https://api.ala.org.au/biocache
   spatialServiceApiUrl: https://api.ala.org.au/spatial

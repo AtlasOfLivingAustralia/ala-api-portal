@@ -1,22 +1,22 @@
 ---
 staging:
   title: Atlas of Living Australia API Documentation
-  baseUrl: https://apis.ala.org.au
+  baseUrl: https://api.ala.org.au
   authBaseUrl: https://auth.ala.org.au
   biocacheBaseUrl: https://biocache-ws.ala.org.au/ws
   autoCompleteBaseUrl: https://biocache-ws.ala.org.au/ws
   userdetailsBaseUrl: https://auth.ala.org.au/userdetails
-  userdetailsAPIUrl: https://apis.ala.org.au/userdetails
-  loggerAPIUrl: https://apis.ala.org.au/logger
-  alertsAPIUrl: https://apis.ala.org.au/alerts
-  doiAPIUrl: https://apis.ala.org.au/doi
-  biocollectAPIUrl: https://apis.ala.org.au/biocollect
-  bieIndexAPIUrl: https://apis.ala.org.au/bie-index
-  specieslistIndexAPIUrl: https://apis.ala.org.au/specieslist
-  collectoryApiUrl: https://apis.ala.org.au/collectory
-  imagesApiUrl: https://apis.ala.org.au/images
-  profilesApiUrl: https://apis.ala.org.au/images
-  dqfServiceApiUrl: https://apis.ala.org.au/dqf-service
-  biocacheServiceApiUrl: https://apis.ala.org.au/biocache
-  spatialServiceApiUrl: https://apis.ala.org.au/spatial
+  userdetailsAPIUrl: https://api.ala.org.au/userdetails
+  loggerAPIUrl: https://api.ala.org.au/logger
+  alertsAPIUrl: https://api.ala.org.au/alerts
+  doiAPIUrl: https://api.ala.org.au/doi
+  biocollectAPIUrl: https://api.ala.org.au/biocollect
+  bieIndexAPIUrl: https://api.ala.org.au/bie-index
+  specieslistIndexAPIUrl: https://api.ala.org.au/specieslist
+  collectoryApiUrl: https://api.ala.org.au/collectory
+  imagesApiUrl: https://api.ala.org.au/images
+  profilesApiUrl: https://api.ala.org.au/profiles
+  dqfServiceApiUrl: https://api.ala.org.au/dqf-service
+  biocacheServiceApiUrl: https://api.ala.org.au/biocache
+  spatialServiceApiUrl: https://api.ala.org.au/spatial
   tokensAppUrl: https://tokens.ala.org.au

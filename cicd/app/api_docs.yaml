@@ -123,7 +123,7 @@ Resources:
         MinTTL: 1
         Name: !Sub
                 - "api-docs-cache-Policy-${ResourceName}"
-                - ResourceName: !If [ IsDev, !Ref pCleanBranch, !Ref pEnvironment ]
+                - ResourceName: !If [ IsDev, !Ref pEnvironment, !Ref pEnvironment ]
 
         ParametersInCacheKeyAndForwardedToOrigin: 
           CookiesConfig: 

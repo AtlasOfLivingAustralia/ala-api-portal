@@ -51,7 +51,7 @@ Resources:
     Properties:
       Name: !Sub
               - "${pProductName}-export-config-${ResourceName}"
-              - ResourceName: !If [ IsDev, !Ref pCleanBranch, !Ref pEnvironment ]
+              - ResourceName: !If [ IsDev, !Ref pEnvironment, !Ref pEnvironment ]
       Description: Load the environment and build the CloudFormation template config file
       ServiceRole: !Ref pCodeBuildServiceRole
       Artifacts:
@@ -85,7 +85,7 @@ Resources:
     Properties:
       Name: !Sub
               - "${pProductName}-build-${ResourceName}"
-              - ResourceName: !If [ IsDev, !Ref pCleanBranch, !Ref pEnvironment ]
+              - ResourceName: !If [ IsDev, !Ref pEnvironment, !Ref pEnvironment ]
       Description: Build the API docs
       ServiceRole: !Ref pCodeBuildServiceRole
       Artifacts:
@@ -119,7 +119,7 @@ Resources:
     Properties:
       Name: !Sub
               - "${pProductName}-empty-bucket-${ResourceName}"
-              - ResourceName: !If [ IsDev, !Ref pCleanBranch, !Ref pEnvironment ]
+              - ResourceName: !If [ IsDev, !Ref pEnvironment, !Ref pEnvironment ]
       Description: Empty the documentation s3 bucket so it can be deleted
       ServiceRole: !Ref pCodeBuildServiceRole
       Artifacts:
@@ -153,7 +153,7 @@ Resources:
     Properties:
       Name: !Sub
               - "${pProductName}-invalidate-cache-${ResourceName}"
-              - ResourceName: !If [ IsDev, !Ref pCleanBranch, !Ref pEnvironment ]
+              - ResourceName: !If [ IsDev, !Ref pEnvironment, !Ref pEnvironment ]
       Description: Invalidate the CloudFront cache after deploy
       ServiceRole: !Ref pCodeBuildServiceRole
       Artifacts:
@@ -187,7 +187,7 @@ Resources:
     Properties:
       Name: !Sub
               - "${pProductName}-${ResourceName}"
-              - ResourceName: !If [ IsDev, !Ref pCleanBranch, !Ref pEnvironment ]
+              - ResourceName: !If [ IsDev, !Ref pEnvironment, !Ref pEnvironment ]
 
       RoleArn: !Ref pCodePipelineServiceRole
       ArtifactStore:

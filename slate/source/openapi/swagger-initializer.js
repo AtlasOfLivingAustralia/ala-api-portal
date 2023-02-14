@@ -14,13 +14,14 @@ window.onload = function() {
         { name: "species", url:"./specs/bie-index.json"},
         { name: "specieslist", url:"./specs/specieslist.json"},
         { name: "metadata", url:"./specs/collectory.json"},
-        // profiles has been commented out to allow updated release of docs to production before biocache. 
-        // { name: "profiles", url:"./specs/profiles.json"},
         { name: "data-quality-service", url: "./specs/dqf-service.json"},
-        // biocache has been commented out to allow updated release of docs to production before biocache. 
         { name: "occurrences", url: "./specs/biocache.json"},
-        { name: "common", url: "./specs/common.json"}
-        // { name: "spatial", url: "./specs/spatial.json"}
+        { name: "common", url: "./specs/common.json"},
+        // TODO -comment out the below specs before staging and prod release as these apis have not yet been resealed to PROD
+        { name: "profiles", url:"./specs/profiles.json"},
+        { name: "spatial", url: "./specs/spatial.json"},
+        { name: "namematching", url: "./specs/namematching.json"},
+
       ],
       dom_id: '#swagger-ui',
       deepLinking: true,

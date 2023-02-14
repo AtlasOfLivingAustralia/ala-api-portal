@@ -15,7 +15,7 @@ development:
   specieslistIndexAPIUrl: https://api.test.ala.org.au/specieslist
   collectoryApiUrl: https://api.test.ala.org.au/collectory
   imagesApiUrl: https://api.test.ala.org.au/images
-  profilesApiUrl: https://api.test.ala.org.au/images
+  profilesApiUrl: https://api.test.ala.org.au/profiles
   dqfServiceApiUrl: https://api.test.ala.org.au/dqf-service
   biocacheServiceApiUrl: https://api.test.ala.org.au/biocachev2
   spatialServiceApiUrl: https://api.test.ala.org.au/spatial

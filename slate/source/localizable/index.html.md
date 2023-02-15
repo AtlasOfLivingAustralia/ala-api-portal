@@ -437,6 +437,27 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=do
 
 &nbsp;
 
+<!-- Uncomment 11. Species lists and traits AND  12. User details  for prod deployment.  Comment them out for dev and test -->
+
+## 11. Species lists and traits
+
+Interact with   <a href="https://lists.ala.org.au" target="_blank">species lists</a> , including get list details and create a list.
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=specieslist">Open API specification</a>
+
+&nbsp;
+
+## 12. User details
+
+Access the ALA   <a href="https://auth.ala.org.au/userdetails/" target="_blank">user details</a>  platform, such as a total count of users in the system and users by role.
+
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=userdetails">Open API specification</a>
+
+<!-- Uncomment 11. 12. 13. 14. 15. for test and dev deploys. Comment them out for prod  -->
+
+<!-- &nbsp;
+
 ## 11. Profiles service
 
 Services for interacting with ALA Profile collections 
@@ -483,4 +504,4 @@ Access the ALA   <a href="https://namematching-ws.ala.org.au/" target="_blank">n
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=namematching">Open API specification</a>
 
-&nbsp;
+&nbsp; -->

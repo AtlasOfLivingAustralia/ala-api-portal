@@ -132,17 +132,21 @@ curl "api_endpoint_here" \
 
 ```python
 import http.client
+import base64
 
-conn = http.client.HTTPSConnection("")
-
-payload = "grant_type=client_credentials&scope={scope}"
+oauth_host = "auth.ala.org.au"
+oauth_port = 443
+oauth_path = "/cas/oidc/oidcAccessToken"
+scope = "openid+email"
+conn = http.client.HTTPSConnection(oauth_host, oauth_port)
+payload = f"grant_type=client_credentials&scope={scope}"
 
 headers = { 
-  'Authorization': 'Basic {}'.format(base64.b64encode(bytes(f"{clientId}:{clientSecret}","utf-8")).decode("ascii"))
+  'Authorization': 'Basic {}'.format(base64.b64encode(bytes(f"{clientId}:{clientSecret}","utf-8")).decode("ascii")),
   'content-type': "application/x-www-form-urlencoded" 
 }
 
-conn.request("POST", "https://ala-test.auth.ap-southeast-2.amazoncognito.com/oauth2/token", payload, headers)
+conn.request("POST", oauth_path, payload, headers)
 
 res = conn.getresponse()
 data = res.read()

@@ -488,3 +488,12 @@ Access the ALA   <a href="https://namematching-ws.ala.org.au/" target="_blank">n
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=namematching">Open API specification</a>
 
 &nbsp;
+
+## 16. Events
+
+Access the ALA   <a href="https://events-test.ala.org.au/" target="_blank">Events</a> app.
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=events">Open API specification</a>
+
+&nbsp;
+

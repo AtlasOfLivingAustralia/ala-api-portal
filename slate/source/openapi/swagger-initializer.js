@@ -21,7 +21,7 @@ window.onload = function() {
         { name: "profiles", url:"./specs/profiles.json"},
         { name: "spatial", url: "./specs/spatial.json"},
         { name: "namematching", url: "./specs/namematching.json"},
-
+        { name: "events", url: "./specs/events.json"},        
       ],
       dom_id: '#swagger-ui',
       deepLinking: true,

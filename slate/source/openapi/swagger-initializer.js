@@ -21,7 +21,7 @@ window.onload = function() {
         // TODO -comment out the below specs before staging and prod release as these apis have not yet been resealed to PROD
         { name: "profiles", url:"./specs/profiles.json"},
         { name: "namematching", url: "./specs/namematching.json"},
-
+        { name: "events", url: "./specs/events.json"},
       ],
       dom_id: '#swagger-ui',
       deepLinking: true,

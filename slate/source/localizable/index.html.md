@@ -437,7 +437,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=do
 
 &nbsp;
 
-<!-- Uncomment 11. Species lists and traits AND  12. User details  for prod deployment.  Comment them out for dev and test -->
+<!-- Uncomment 11. Species lists and traits,  12. User details and 13. Spatial 14. Events  for prod deployment.  Comment them out for dev and test -->
 
 ## 11. Species lists and traits
 
@@ -454,7 +454,26 @@ Access the ALA   <a href="https://auth.ala.org.au/userdetails/" target="_blank">
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=userdetails">Open API specification</a>
 
-<!-- Uncomment 11. 12. 13. 14. 15. for test and dev deploys. Comment them out for prod  -->
+&nbsp;
+
+## 13. Spatial 
+
+Services for interacting with ALA Spatial services
+
+Explore interactively on the ALA <a href="https://spatial.ala.org.au" target="_blank">Spatial</a> app. 
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=spatial">Open API specification</a>
+
+&nbsp;
+## 14. Events
+
+Access the ALA   <a href="https://events-test.ala.org.au/" target="_blank">Events</a> app.
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=events">Open API specification</a>
+
+&nbsp;
+
+<!-- Uncomment 11. 12. 13. 14. 15. 16. for test and dev deploys. Comment them out for prod  -->
 
 <!-- &nbsp;
 
@@ -503,5 +522,13 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=us
 Access the ALA   <a href="https://namematching-ws.ala.org.au/" target="_blank">namematching</a> service.
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=namematching">Open API specification</a>
+
+&nbsp;
+
+## 16. Events
+
+Access the ALA   <a href="https://events-test.ala.org.au/" target="_blank">Events</a> app.
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=events">Open API specification</a>
 
 &nbsp; -->

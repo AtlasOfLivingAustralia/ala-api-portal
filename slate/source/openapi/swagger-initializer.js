@@ -17,11 +17,12 @@ window.onload = function() {
         { name: "data-quality-service", url: "./specs/dqf-service.json"},
         { name: "occurrences", url: "./specs/biocache.json"},
         { name: "common", url: "./specs/common.json"},
+        { name: "spatial", url: "./specs/spatial.json"},
         // TODO -comment out the below specs before staging and prod release as these apis have not yet been resealed to PROD
         { name: "profiles", url:"./specs/profiles.json"},
-        { name: "spatial", url: "./specs/spatial.json"},
         { name: "namematching", url: "./specs/namematching.json"},
-        { name: "events", url: "./specs/events.json"},        
+        { name: "events", url: "./specs/events.json"},
+        { name: "ecodata", url: "./specs/ecodata.json"}
       ],
       dom_id: '#swagger-ui',
       deepLinking: true,

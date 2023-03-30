@@ -21,3 +21,4 @@ production:
   spatialServiceApiUrl: https://api.ala.org.au/spatial
   tokensAppUrl: https://tokens.ala.org.au
   eventsUrl: https://api.ala.org.au/events
+  ecodataApiUrl: https://api.ala.org.au/ecodata

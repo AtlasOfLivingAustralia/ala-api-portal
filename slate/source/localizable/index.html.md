@@ -441,6 +441,39 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=do
 
 &nbsp;
 
+<!-- Uncomment 11. Species lists and traits,  12. User details and 13. Spatial  for prod deployment.  Comment them out for dev and test -->
+
+<!-- ## 11. Species lists and traits
+
+Interact with   <a href="https://lists.ala.org.au" target="_blank">species lists</a> , including get list details and create a list.
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=specieslist">Open API specification</a>
+
+&nbsp;
+
+## 12. User details
+
+Access the ALA   <a href="https://auth.ala.org.au/userdetails/" target="_blank">user details</a>  platform, such as a total count of users in the system and users by role.
+
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=userdetails">Open API specification</a>
+
+&nbsp;
+
+## 13. Spatial 
+
+Services for interacting with ALA Spatial services
+
+Explore interactively on the ALA <a href="https://spatial.ala.org.au" target="_blank">Spatial</a> app. 
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=spatial">Open API specification</a>
+
+&nbsp; -->
+
+<!-- Uncomment 11. 12. 13. 14. 15. for test and dev deploys. Comment them out for prod  -->
+
+&nbsp;
+
 ## 11. Profiles service
 
 Services for interacting with ALA Profile collections 
@@ -497,3 +530,10 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=ev
 
 &nbsp;
 
+## 17. Ecodata
+
+Services for the <a href="https://fieldcapture.ala.org.au/" target="_blank">MERIT</a> and <a ref="https://biocollect.ala.org.au/" target="_blank">BioCollect</a> applications.
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=ecodata">Open API specification</a>
+
+&nbsp;

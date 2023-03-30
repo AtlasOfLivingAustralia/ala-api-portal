@@ -525,3 +525,11 @@ Access the ALA   <a href="https://events-test.ala.org.au/" target="_blank">Event
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=events">Open API specification</a>
 
 &nbsp;
+
+## 17. Ecodata
+
+Services for the <a href="https://fieldcapture.ala.org.au/" target="_blank">MERIT</a> and <a ref="https://biocollect.ala.org.au/" target="_blank">BioCollect</a> applications.
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=ecodata">Open API specification</a>
+
+&nbsp;

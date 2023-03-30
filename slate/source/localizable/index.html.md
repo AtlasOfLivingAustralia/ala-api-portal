@@ -528,7 +528,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=ev
 
 ## 17. Ecodata
 
-Services for the <a href="https://fieldcapture-test.ala.org.au/" target="_blank">MERIT</a> and <a ref="https://biocollect-test.ala.org.au/acsa/" target="_blank">BioCollect</a> applications.
+Services for the <a href="https://fieldcapture.ala.org.au/" target="_blank">MERIT</a> and <a ref="https://biocollect.ala.org.au/" target="_blank">BioCollect</a> applications.
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=ecodata">Open API specification</a>
 

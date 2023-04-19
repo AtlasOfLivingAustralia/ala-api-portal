@@ -437,7 +437,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=do
 
 &nbsp;
 
-<!-- Uncomment 11. Species lists and traits,  12. User details and 13. Spatial 14. Events  for prod deployment.  Comment them out for dev and test -->
+<!-- Uncomment 11. Species lists and traits,  12. User details and 13. Spatial 14. Events , 15. Profiles service for prod deployment.  Comment them out for dev and test -->
 
 ## 11. Species lists and traits
 
@@ -470,6 +470,18 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=sp
 Access the ALA   <a href="https://events-test.ala.org.au/" target="_blank">Events</a> app.
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=events">Open API specification</a>
+
+&nbsp;
+
+## 15. Profiles service
+
+Services for interacting with ALA Profile collections 
+
+Explore interactively on the ALA <a href="https://profiles.ala.org.au" target="_blank">Profile collection</a> app. 
+
+<aside class="notice">
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=profiles">Open API specification</a>
+</aside>
 
 &nbsp;
 

@@ -21,3 +21,4 @@ development:
   spatialServiceApiUrl: https://api.test.ala.org.au/spatial
   tokensAppUrl: https://tokens.dev.ala.org.au
   ecodataApiUrl: https://api.test.ala.org.au/ecodata
+  sdsWebappAPiUrl: https://api.test.ala.org.au/sds-webapp

@@ -21,3 +21,4 @@ staging:
   spatialServiceApiUrl: https://api.ala.org.au/spatial
   tokensAppUrl: https://tokens.ala.org.au
   ecodataApiUrl: https://api.ala.org.au/ecodata
+  sdsWebappAPiUrl: https://api.ala.org.au/sds-webapp

@@ -441,7 +441,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=do
 
 &nbsp;
 
-<!-- Uncomment 11. Species lists and traits,  12. User details and 13. Spatial  for prod deployment.  Comment them out for dev and test -->
+<!-- Uncomment 11. 12. 13. 14. 15. 16 for prod deployment.  Comment them out for dev and test -->
 
 <!-- ## 11. Species lists and traits
 
@@ -467,10 +467,36 @@ Services for interacting with ALA Spatial services
 Explore interactively on the ALA <a href="https://spatial.ala.org.au" target="_blank">Spatial</a> app. 
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=spatial">Open API specification</a>
+&nbsp;
+
+## 14. Events
+
+Access the ALA   <a href="https://events-test.ala.org.au/" target="_blank">Events</a> app.
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=events">Open API specification</a>
+
+&nbsp;
+
+## 15. Profiles service
+
+Services for interacting with ALA Profile collections 
+
+Explore interactively on the ALA <a href="https://profiles.ala.org.au" target="_blank">Profile collection</a> app. 
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=profiles">Open API specification</a>
+&nbsp;
+
+## 16. SDS Webapp
+
+Services for interacting with Sensitive Data Service (SDS) Webapp
+
+Explore interactively on the ALA <a href="https://sds.ala.org.au" target="_blank">SDS Webapp</a> app. 
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=sds-webapp">Open API specification</a>
 
 &nbsp; -->
 
-<!-- Uncomment 11. 12. 13. 14. 15. for test and dev deploys. Comment them out for prod  -->
+<!-- Uncomment 11. 12. 13. 14. 15. 16. 17. 18 for test and dev deploys. Comment them out for prod  -->
 
 &nbsp;
 
@@ -480,9 +506,7 @@ Services for interacting with ALA Profile collections
 
 Explore interactively on the ALA <a href="https://profiles.ala.org.au" target="_blank">Profile collection</a> app. 
 
-<aside class="notice">
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=profiles">Open API specification</a>
-</aside>
 
 &nbsp;
 
@@ -535,5 +559,15 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=ev
 Services for the <a href="https://fieldcapture.ala.org.au/" target="_blank">MERIT</a> and <a href="https://biocollect.ala.org.au/" target="_blank">BioCollect</a> applications.
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=ecodata">Open API specification</a>
+
+&nbsp;
+
+## 18. SDS Webapp
+
+Services for interacting with Sensitive Data Service (SDS) Webapp
+
+Explore interactively on the ALA <a href="https://sds.ala.org.au" target="_blank">SDS Webapp</a> app. 
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=sds-webapp">Open API specification</a>
 
 &nbsp;

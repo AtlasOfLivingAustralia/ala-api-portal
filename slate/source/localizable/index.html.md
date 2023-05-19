@@ -123,7 +123,7 @@ Examples of what the metadata includes are:
 
 ```shell
 # Exchange the client credentials (client ID & secret) for an access token
-curl --user {clientId}:{clientSecret}  -X POST -d 'grant_type=client_credentials' -d 'scope={scope}' https://ala-test.auth.ap-southeast-2.amazoncognito.com/oauth2/token
+curl --user {clientId}:{clientSecret}  -X POST -d 'grant_type=client_credentials' -d 'scope={scope}' https://auth.ala.org.au/cas/oidc/oidcAccessToken
 
 # Use the access_token in the Authorization header
 curl "api_endpoint_here" \

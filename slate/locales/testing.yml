@@ -20,3 +20,6 @@ testing:
   biocacheServiceApiUrl: https://api.test.ala.org.au/biocachev2
   spatialServiceApiUrl: https://api.test.ala.org.au/spatial
   tokensAppUrl: https://tokens.test.ala.org.au
+  eventsUrl: https://api.test.ala.org.au/events
+  ecodataApiUrl: https://api.test.ala.org.au/ecodata
+  sdsWebappAPiUrl: https://api.test.ala.org.au/sds-webapp

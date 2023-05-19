@@ -123,7 +123,7 @@ Examples of what the metadata includes are:
 
 ```shell
 # Exchange the client credentials (client ID & secret) for an access token
-curl --user {clientId}:{clientSecret}  -X POST -d 'grant_type=client_credentials' -d 'scope={scope}' https://ala-test.auth.ap-southeast-2.amazoncognito.com/oauth2/token
+curl --user {clientId}:{clientSecret}  -X POST -d 'grant_type=client_credentials' -d 'scope={scope}' https://auth.ala.org.au/cas/oidc/oidcAccessToken
 
 # Use the access_token in the Authorization header
 curl "api_endpoint_here" \
@@ -132,17 +132,21 @@ curl "api_endpoint_here" \
 
 ```python
 import http.client
+import base64
 
-conn = http.client.HTTPSConnection("")
-
-payload = "grant_type=client_credentials&scope={scope}"
+oauth_host = "auth.ala.org.au"
+oauth_port = 443
+oauth_path = "/cas/oidc/oidcAccessToken"
+scope = "openid+email"
+conn = http.client.HTTPSConnection(oauth_host, oauth_port)
+payload = f"grant_type=client_credentials&scope={scope}"
 
 headers = { 
-  'Authorization': 'Basic {}'.format(base64.b64encode(bytes(f"{clientId}:{clientSecret}","utf-8")).decode("ascii"))
+  'Authorization': 'Basic {}'.format(base64.b64encode(bytes(f"{clientId}:{clientSecret}","utf-8")).decode("ascii")),
   'content-type': "application/x-www-form-urlencoded" 
 }
 
-conn.request("POST", "https://ala-test.auth.ap-southeast-2.amazoncognito.com/oauth2/token", payload, headers)
+conn.request("POST", oauth_path, payload, headers)
 
 res = conn.getresponse()
 data = res.read()
@@ -437,7 +441,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=do
 
 &nbsp;
 
-<!-- Uncomment 11. Species lists and traits,  12. User details and 13. Spatial 14. Events , 15. Profiles service for prod deployment.  Comment them out for dev and test -->
+<!-- Uncomment 11. 12. 13. 14. 15. 16 for prod deployment.  Comment them out for dev and test -->
 
 ## 11. Species lists and traits
 
@@ -463,8 +467,8 @@ Services for interacting with ALA Spatial services
 Explore interactively on the ALA <a href="https://spatial.ala.org.au" target="_blank">Spatial</a> app. 
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=spatial">Open API specification</a>
-
 &nbsp;
+
 ## 14. Events
 
 Access the ALA   <a href="https://events-test.ala.org.au/" target="_blank">Events</a> app.
@@ -479,15 +483,21 @@ Services for interacting with ALA Profile collections
 
 Explore interactively on the ALA <a href="https://profiles.ala.org.au" target="_blank">Profile collection</a> app. 
 
-<aside class="notice">
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=profiles">Open API specification</a>
-</aside>
-
 &nbsp;
 
-<!-- Uncomment 11. 12. 13. 14. 15. 16. for test and dev deploys. Comment them out for prod  -->
+## 16. SDS Webapp
 
-<!-- &nbsp;
+Services for interacting with Sensitive Data Service (SDS) Webapp
+
+Explore interactively on the ALA <a href="https://sds.ala.org.au" target="_blank">SDS Webapp</a> app. 
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=sds-webapp">Open API specification</a>
+
+
+<!-- Uncomment 11. 12. 13. 14. 15. 16. 17. 18 for test and dev deploys. Comment them out for prod  -->
+
+<!-- 
 
 ## 11. Profiles service
 
@@ -495,9 +505,7 @@ Services for interacting with ALA Profile collections
 
 Explore interactively on the ALA <a href="https://profiles.ala.org.au" target="_blank">Profile collection</a> app. 
 
-<aside class="notice">
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=profiles">Open API specification</a>
-</aside>
 
 &nbsp;
 
@@ -542,5 +550,23 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=na
 Access the ALA   <a href="https://events-test.ala.org.au/" target="_blank">Events</a> app.
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=events">Open API specification</a>
+
+&nbsp;
+
+## 17. Ecodata
+
+Services for the <a href="https://fieldcapture.ala.org.au/" target="_blank">MERIT</a> and <a href="https://biocollect.ala.org.au/" target="_blank">BioCollect</a> applications.
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=ecodata">Open API specification</a>
+
+&nbsp;
+
+## 18. SDS Webapp
+
+Services for interacting with Sensitive Data Service (SDS) Webapp
+
+Explore interactively on the ALA <a href="https://sds.ala.org.au" target="_blank">SDS Webapp</a> app. 
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=sds-webapp">Open API specification</a>
 
 &nbsp; -->

@@ -20,3 +20,6 @@ production:
   biocacheServiceApiUrl: https://api.ala.org.au/biocache
   spatialServiceApiUrl: https://api.ala.org.au/spatial
   tokensAppUrl: https://tokens.ala.org.au
+  eventsUrl: https://api.ala.org.au/events
+  ecodataApiUrl: https://api.ala.org.au/ecodata
+  sdsWebappAPiUrl: https://api.ala.org.au/sds-webapp

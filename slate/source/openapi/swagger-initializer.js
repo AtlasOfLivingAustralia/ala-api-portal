@@ -18,11 +18,12 @@ window.onload = function() {
         { name: "occurrences", url: "./specs/biocache.json"},
         { name: "common", url: "./specs/common.json"},
         { name: "spatial", url: "./specs/spatial.json"},
-        { name: "events", url: "./specs/events.json"},
         { name: "profiles", url:"./specs/profiles.json"},
+        { name: "events", url: "./specs/events.json"},
+        { name: "sds-webapp", url: "./specs/sds-webapp.json"},
         // TODO -comment out the below specs before staging and prod release as these apis have not yet been resealed to PROD
-        // { name: "namematching", url: "./specs/namematching.json"},
-
+        // { name: "ecodata", url: "./specs/ecodata.json"},
+        // { name: "namematching", url: "./specs/namematching.json"}
       ],
       dom_id: '#swagger-ui',
       deepLinking: true,

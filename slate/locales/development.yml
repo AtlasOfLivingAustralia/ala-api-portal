@@ -2,7 +2,7 @@
 development:
   title: Atlas of Living Australia API dev Documentation
   baseUrl: https://api.test.ala.org.au
-  authBaseUrl: https://auth.dev.ala.org.au
+  authBaseUrl: https://auth-dev.ala.org.au
   biocacheBaseUrl: https://biocache-ws-dev.ala.org.au/ws
   autoCompleteBaseUrl: https://biocache-ws-dev.ala.org.au/ws
   userdetailsBaseUrl: https://auth-dev.ala.org.au/userdetails

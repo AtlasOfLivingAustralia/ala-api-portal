@@ -22,8 +22,8 @@ window.onload = function() {
         { name: "events", url: "./specs/events.json"},
         { name: "sds-webapp", url: "./specs/sds-webapp.json"},
         // TODO -comment out the below specs before staging and prod release as these apis have not yet been resealed to PROD
-        { name: "ecodata", url: "./specs/ecodata.json"},
-        { name: "namematching", url: "./specs/namematching.json"}
+        // { name: "ecodata", url: "./specs/ecodata.json"},
+        // { name: "namematching", url: "./specs/namematching.json"}
       ],
       dom_id: '#swagger-ui',
       deepLinking: true,

@@ -442,7 +442,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=do
 &nbsp;
 
 <!-- Uncomment 11. 12. 13. 14. 15. 16 for prod deployment.  Comment them out for dev and test -->
-
+<!-- 
 ## 11. Species lists and traits
 
 Interact with   <a href="https://lists.ala.org.au" target="_blank">species lists</a> , including get list details and create a list.
@@ -492,12 +492,12 @@ Services for interacting with Sensitive Data Service (SDS) Webapp
 
 Explore interactively on the ALA <a href="https://sds.ala.org.au" target="_blank">SDS Webapp</a> app. 
 
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=sds-webapp">Open API specification</a>
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=sds-webapp">Open API specification</a> -->
 
 
 <!-- Uncomment 11. 12. 13. 14. 15. 16. 17. 18 for test and dev deploys. Comment them out for prod  -->
 
-<!-- 
+
 
 ## 11. Profiles service
 
@@ -569,4 +569,4 @@ Explore interactively on the ALA <a href="https://sds.ala.org.au" target="_blank
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=sds-webapp">Open API specification</a>
 
-&nbsp; -->
+&nbsp;

@@ -92,7 +92,7 @@ See [OIDC Authentication for R](https://search.r-project.org/CRAN/refmans/openeo
 
 ```javascript
 {
-   "issuer":"https://auth.ala.org.au/cas/oidc",
+   "issuer":"<%= I18n.t(:authBaseUrl) %>/cas/oidc",
    "scopes_supported":[
       "openid",
       "profile",
@@ -123,7 +123,7 @@ Examples of what the metadata includes are:
 
 ```shell
 # Exchange the client credentials (client ID & secret) for an access token
-curl --user {clientId}:{clientSecret}  -X POST -d 'grant_type=client_credentials' -d 'scope={scope}' https://auth.ala.org.au/cas/oidc/oidcAccessToken
+curl --user {clientId}:{clientSecret}  -X POST -d 'grant_type=client_credentials' -d 'scope={scope}' '<%= I18n.t(:authBaseUrl) %>/cas/oidc/oidcAccessToken'
 
 # Use the access_token in the Authorization header
 curl "api_endpoint_here" \
@@ -134,7 +134,7 @@ curl "api_endpoint_here" \
 import http.client
 import base64
 
-oauth_host = "auth.ala.org.au"
+oauth_host = "<%= I18n.t(:authBaseUrl) %>"
 oauth_port = 443
 oauth_path = "/cas/oidc/oidcAccessToken"
 scope = "openid+email"
@@ -442,8 +442,8 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=do
 &nbsp;
 
 <!-- Uncomment 11. 12. 13. 14. 15. 16 for prod deployment.  Comment them out for dev and test -->
-
-<!-- ## 11. Species lists and traits
+<!-- 
+## 11. Species lists and traits
 
 Interact with   <a href="https://lists.ala.org.au" target="_blank">species lists</a> , including get list details and create a list.
 
@@ -492,13 +492,12 @@ Services for interacting with Sensitive Data Service (SDS) Webapp
 
 Explore interactively on the ALA <a href="https://sds.ala.org.au" target="_blank">SDS Webapp</a> app. 
 
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=sds-webapp">Open API specification</a>
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=sds-webapp">Open API specification</a> -->
 
-&nbsp; -->
 
 <!-- Uncomment 11. 12. 13. 14. 15. 16. 17. 18 for test and dev deploys. Comment them out for prod  -->
 
-&nbsp;
+
 
 ## 11. Profiles service
 

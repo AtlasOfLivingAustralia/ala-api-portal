@@ -570,3 +570,11 @@ Explore interactively on the ALA <a href="https://sds.ala.org.au" target="_blank
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=sds-webapp">Open API specification</a>
 
 &nbsp;
+
+## 19. Fieldguide
+
+Access the ALA   <a href="https://fieldguide-test.ala.org.au/" target="_blank">fieldguide</a> service.
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=fieldguide">Open API specification</a>
+
+&nbsp;

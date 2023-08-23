@@ -502,6 +502,14 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=na
 
 &nbsp;
 
+## 18. Fieldguide
+
+Access the ALA   <a href="https://fieldguide.ala.org.au/" target="_blank">fieldguide</a> service.
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=fieldguide">Open API specification</a>
+
+&nbsp;
+
 <!-- Uncomment 11. 12. 13. 14. 15. 16. 17. 18 for test and dev deploys. Comment them out for prod  -->
 
 <!--

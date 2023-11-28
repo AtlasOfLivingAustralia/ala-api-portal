@@ -73,5 +73,5 @@ Make sure you are on the main branch. Run `cicd/deploy_pipeline.sh` to pick up a
 #### 2. Deploy
 In the AWS console navigate to CodePipeline and find the `api-docs-portal-production` pipeline and click "Release change". Follow the progress in the AWS console and look out for any errors. When the deploy is finished your changes will be ready to review at the domain specified in the config.ini file against the production environment.
 
-## rollback
-CodePipeline is only able to release the latest commit on any branch. If you need to roll back a change you must either manually revert the change in the repo and commit it, or reset the head of the branch to point to a previous commit. Once this is done click "Release change" on the environment you need to roll back
+## Rollback
+To rollback to any previous revision go to CodePipeline and after slecting "Release Change" choose the commit to release. [Detailed instructions here](https://docs.aws.amazon.com/codepipeline/latest/userguide/pipelines-trigger-source-overrides.html#pipelines-trigger-source-overrides-console)

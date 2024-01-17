@@ -33,7 +33,7 @@ Welcome to the ALA API Portfolio Hub.
 We’ve recently moved to this API Gateway to streamline access and improve security for end-users by incorporating user authentication. ALA data are still open and freely accessible. 
 For more information or assistance, please contact [support@ala.org.au](mailto:support@ala.org.au). 
 
-API Endpoint: [api.ala.org.au](https://api.ala.org.au/)
+API Endpoint: ["<%= I18n.t(:baseUrl) %>"](https://api.ala.org.au/)
 
 Legacy API and documentation are still available at [api-legacy.ala.org.au](https://api-legacy.ala.org.au/)
 
@@ -92,7 +92,7 @@ See [OIDC Authentication for R](https://search.r-project.org/CRAN/refmans/openeo
 
 ```javascript
 {
-   "issuer":"<%= I18n.t(:authBaseUrl) %>/cas/oidc",
+   "issuer":"<%= I18n.t(:oidcIssuer) %>",
    "scopes_supported":[
       "openid",
       "profile",
@@ -109,7 +109,7 @@ See [OIDC Authentication for R](https://search.r-project.org/CRAN/refmans/openeo
 
 OpenID Connect includes a [discovery mechanism](https://swagger.io/docs/specification/authentication/openid-connect-discovery/), where metadata for an OpenID server can be accessed.
 
-`GET <%= I18n.t(:authBaseUrl) %>/cas/oidc/.well-known`
+`GET <%= I18n.t(:oidcIssuer) %>/.well-known/openid-configuration`
 
 Examples of what the metadata includes are:
 
@@ -123,7 +123,7 @@ Examples of what the metadata includes are:
 
 ```shell
 # Exchange the client credentials (client ID & secret) for an access token
-curl --user {clientId}:{clientSecret}  -X POST -d 'grant_type=client_credentials' -d 'scope={scope}' '<%= I18n.t(:authBaseUrl) %>/cas/oidc/oidcAccessToken'
+curl --user {clientId}:{clientSecret}  -X POST -d 'grant_type=client_credentials' -d 'scope={scope}' '<%= I18n.t(:oidcHost) %>/oauth2/token'
 
 # Use the access_token in the Authorization header
 curl "api_endpoint_here" \
@@ -134,9 +134,9 @@ curl "api_endpoint_here" \
 import http.client
 import base64
 
-oauth_host = "<%= I18n.t(:authBaseUrl) %>"
+oauth_host = "<%= I18n.t(:oidcHost) %>"
 oauth_port = 443
-oauth_path = "/cas/oidc/oidcAccessToken"
+oauth_path = "/oauth2/token"
 scope = "openid+email"
 conn = http.client.HTTPSConnection(oauth_host, oauth_port)
 payload = f"grant_type=client_credentials&scope={scope}"
@@ -158,7 +158,7 @@ print(data.decode("utf-8"))
 
 The Client Credentials grant type is used for machine to machine authentication where there is no user interaction.
 
-`POST <%= I18n.t(:authBaseUrl) %>/cas/oidc/oidcAccessToken`
+`POST <%= I18n.t(:oidcHost) %>/oauth2/token`
 
 Header Parameters:
 
@@ -182,7 +182,7 @@ The postman http client supports the authorisation code flow. When configured th
 
 >
 
-`GET <%= I18n.t(:authBaseUrl) %>/cas/oidc/oidcAuthorize`
+`GET <%= I18n.t(:oidcHost) %>/oauth2/authorize`
 
 Request Parameters:
 
@@ -195,7 +195,7 @@ redirect_url | Y | | The URL where the authentication server redirects the brows
 code_challenge_method | N | | Set to `S256` if using PKCE
 code_challenge | N | | the code challenge
 
-`POST <%= I18n.t(:authBaseUrl) %>/cas/oidc/oidcAccessToken`
+`POST <%= I18n.t(:oidcHost) %>/oauth2/token`
 
 Header Parameters:
 
@@ -225,7 +225,7 @@ The Implicit Flow is used for apps that have no “back end” logic on the web 
 
 The Implicit flow presents an authorisation page that will prompt a user for credentials before redirecting to the supplied `redirect_url` with the access_token.
 
-`GET <%= I18n.t(:authBaseUrl) %>/cas/oidc/oidcAuthorize`
+`GET <%= I18n.t(:oidcHost) %>/oauth2/authorize`
 
 Request Parameters:
 
@@ -342,7 +342,7 @@ Access images and sound recordings from the ALA.
 -->
 ## 1. Alerts
 
-Services for interacting with the ALA  <a href="https://alerts.ala.org.au" target="_blank">Alerts</a> app, including view alert details, unsubscribe from and create an alert. 
+Services for interacting with the ALA  <a href="<%= I18n.t(:alertsAppUrl) %>" target="_blank">Alerts</a> app, including view alert details, unsubscribe from and create an alert. 
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=alerts">Open API specification</a>
 

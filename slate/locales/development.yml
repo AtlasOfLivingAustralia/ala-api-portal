@@ -27,14 +27,19 @@ development:
   loggerAppUrl: https://logger-test.ala.org.au
   alertsAppUrl: https://alerts-test.ala.org.au
   doiAppUrl: https://doi-test.ala.org.au
-  biocollectAppUrl: https://www-test.ala.org.au/biocollect/
+  biocollectUrl: https://www-test.ala.org.au/biocollect/
   bieIndexAppUrl: https://bie-test.ala.org.au
   specieslistIndexAppUrl: https://lists-test.ala.org.au
   collectoryAppUrl: https://collections-test.ala.org.au
   imagesAppUrl: https://images-test.ala.org.au
   profilesAppUrl: https://profiles-dev.ala.org.au
-  dqfServiceAppUrl: https://data-quality-service-test.ala.org.au/data-profiles
+  dqfServiceAppUrl: https://data-quality-service-test.ala.org.au
   biocacheServiceAppUrl: https://biocache-test.ala.org.au
   spatialServiceAppUrl: https://spatial-dev.ala.org.au
   ecodataAppUrl: https://ecodata-test.ala.org.au/documentation/index
   sdsWebappAppUrl: https://sds-test.ala.org.au
+  eventsAppUrl: https://events.test.ala.org.au
+  namematchingUrl: https://namematching-ws-test.ala.org.au
+  fieldcaptureUrl: https://fieldcapture-dev.ala.org.au/
+  biocollectAppUrl: https://biocollect.ala.org.au
+  fieldguideUrl: https://fieldguide-test.ala.org.au/

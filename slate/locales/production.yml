@@ -23,3 +23,24 @@ production:
   eventsUrl: https://api.ala.org.au/events
   ecodataApiUrl: https://api.ala.org.au/ecodata
   sdsWebappAPiUrl: https://api.ala.org.au/sds-webapp
+  oidcIssuer: https://cognito-idp.ap-southeast-2.amazonaws.com/ap-southeast-2_Auyv55MYO
+  oidcHost: https://auth-secure.ala.org.au
+  loggerAppUrl: https://logger.ala.org.au
+  alertsAppUrl: https://alerts.ala.org.au
+  doiAppUrl: https://doi.ala.org.au
+  biocollectUrl: https://www.ala.org.au/biocollect/
+  bieIndexAppUrl: https://bie.ala.org.au
+  specieslistIndexAppUrl: https://lists.ala.org.au
+  collectoryAppUrl: https://collections.ala.org.au
+  imagesAppUrl: https://images.ala.org.au
+  profilesAppUrl: https://profiles.ala.org.au
+  dqfServiceAppUrl: https://data-quality-service.ala.org.au
+  biocacheServiceAppUrl: https://biocache.ala.org.au
+  spatialServiceAppUrl: https://spatial.ala.org.au
+  ecodataAppUrl: https://ecodata.ala.org.au/documentation/index
+  sdsWebappAppUrl: https://sds.ala.org.au
+  eventsAppUrl: https://events.ala.org.au
+  namematchingUrl: https://namematching-ws.ala.org.au
+  fieldcaptureUrl: https://fieldcapture.ala.org.au/
+  biocollectAppUrl: https://biocollect.ala.org.au
+  fieldguideUrl: https://fieldguide.ala.org.au/

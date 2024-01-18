@@ -41,5 +41,5 @@ development:
   eventsAppUrl: https://events.test.ala.org.au
   namematchingUrl: https://namematching-ws-test.ala.org.au
   fieldcaptureUrl: https://fieldcapture-dev.ala.org.au/
-  biocollectAppUrl: https://biocollect.ala.org.au
+  biocollectAppUrl: https://biocollect-test.ala.org.au
   fieldguideUrl: https://fieldguide-test.ala.org.au/

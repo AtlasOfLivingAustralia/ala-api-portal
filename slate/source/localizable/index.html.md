@@ -35,8 +35,6 @@ For more information or assistance, please contact [support@ala.org.au](mailto:s
 
 API Endpoint: ["<%= I18n.t(:baseUrl) %>"](https://api.ala.org.au/)
 
-Legacy API and documentation are still available at [api-legacy.ala.org.au](https://api-legacy.ala.org.au/)
-
 ALA APIs allow two main methods of access
 
 1. No Authentication - The majority of the API endpoints across all published ALA services do not require authentication and are open to public access.

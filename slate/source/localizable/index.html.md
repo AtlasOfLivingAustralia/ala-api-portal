@@ -483,13 +483,13 @@ Explore interactively on the ALA <a href="https://profiles.ala.org.au" target="_
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=profiles">Open API specification</a>
 &nbsp;
 
-## 16. SDS Webapp
+## 16. Sensitive
 
-Services for interacting with Sensitive Data Service (SDS) Webapp
+Services for interacting with Sensitive Data Service
 
-Explore interactively on the ALA <a href="https://sds.ala.org.au" target="_blank">SDS Webapp</a> app. 
+Explore interactively on the ALA <a href="https://sensitive-ws.ala.org.au" target="_blank">sensitive</a> service.
 
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=sds-webapp">Open API specification</a>
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=sensitive">Open API specification</a>
 &nbsp;
 
 ## 17. Namematching
@@ -574,12 +574,12 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=ec
 
 &nbsp;
 
-## 18. SDS Webapp
+## 18. Sensitive
 
-Services for interacting with Sensitive Data Service (SDS) Webapp
+Services for interacting with Sensitive Data Service
 
-Explore interactively on the ALA <a href="https://sds.ala.org.au" target="_blank">SDS Webapp</a> app. 
+Explore interactively on the ALA <a href="https://sensitive-ws.ala.org.au" target="_blank">sensitive</a> service. 
 
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=sds-webapp">Open API specification</a>
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=sensitive">Open API specification</a>
 
 &nbsp; -->

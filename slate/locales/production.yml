@@ -22,4 +22,4 @@ production:
   tokensAppUrl: https://tokens.ala.org.au
   eventsUrl: https://api.ala.org.au/events
   ecodataApiUrl: https://api.ala.org.au/ecodata
-  sdsWebappAPiUrl: https://api.ala.org.au/sds-webapp
+  sensitiveApiUrl: https://api.ala.org.au/sensitive

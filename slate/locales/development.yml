@@ -21,7 +21,7 @@ development:
   spatialServiceApiUrl: https://api.test.ala.org.au/spatial
   tokensAppUrl: https://tokens.dev.ala.org.au
   ecodataApiUrl: https://api.test.ala.org.au/ecodata
-  sdsWebappAPiUrl: https://api.test.ala.org.au/sds-webapp
+  sensitiveApiUrl: https://api.test.ala.org.au/sensitive
   oidcIssuer: https://cognito-idp.ap-southeast-2.amazonaws.com/ap-southeast-2_pQUl30qBX
   oidcHost: https://auth-secure-development.auth.ap-southeast-2.amazoncognito.com
   loggerAppUrl: https://logger-test.ala.org.au
@@ -37,7 +37,7 @@ development:
   biocacheServiceAppUrl: https://biocache-test.ala.org.au
   spatialServiceAppUrl: https://spatial-dev.ala.org.au
   ecodataAppUrl: https://ecodata-test.ala.org.au/documentation/index
-  sdsWebappAppUrl: https://sds-test.ala.org.au
+  sensitiveAppUrl: https://sensitive-ws-test.ala.org.au
   eventsAppUrl: https://events.test.ala.org.au
   namematchingUrl: https://namematching-ws-test.ala.org.au
   fieldcaptureUrl: https://fieldcapture-dev.ala.org.au/

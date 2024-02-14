@@ -484,13 +484,13 @@ Explore interactively on the ALA <a href="<%= I18n.t(:profilesAppUrl) %>" target
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=profiles">Open API specification</a>
 &nbsp;
 
-## 16. SDS Webapp
+## 16. Sensitive
 
-Services for interacting with Sensitive Data Service (SDS) Webapp
+Services for interacting with Sensitive Data Service
 
-Explore interactively on the ALA <a href="<%= I18n.t(:sdsWebappAppUrl) %>" target="_blank">SDS Webapp</a> app. 
+Explore interactively on the ALA <a href="<%= I18n.t(:sensitiveAppUrl) %>" target="_blank">sensitive</a> service. 
 
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=sds-webapp">Open API specification</a> -->
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=sensitive">Open API specification</a> -->
 
 
 <!-- Uncomment 11. 12. 13. 14. 15. 16. 17. 18 for test and dev deploys. Comment them out for prod  -->
@@ -559,13 +559,13 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=ec
 
 &nbsp;
 
-## 18. SDS Webapp
+## 18. Sensitive
 
-Services for interacting with Sensitive Data Service (SDS) Webapp
+Services for interacting with Sensitive Data Service
 
-Explore interactively on the ALA <a href="<%= I18n.t(:sdsWebappAppUrl) %>" target="_blank">SDS Webapp</a> app. 
+Explore interactively on the ALA <a href="<%= I18n.t(:sensitiveAppUrl) %>" target="_blank">sensitive</a> service. 
 
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=sds-webapp">Open API specification</a>
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=sensitive">Open API specification</a>
 
 &nbsp;
 

@@ -21,7 +21,7 @@ staging:
   spatialServiceApiUrl: https://api.ala.org.au/spatial
   tokensAppUrl: https://tokens.ala.org.au
   ecodataApiUrl: https://api.ala.org.au/ecodata
-  sdsWebappAPiUrl: https://api.ala.org.au/sds-webapp
+  sensitiveApiUrl: https://api.ala.org.au/sensitive
   oidcIssuer: https://cognito-idp.ap-southeast-2.amazonaws.com/ap-southeast-2_Auyv55MYO
   oidcHost: https://auth-secure.ala.org.au
   loggerAppUrl: https://logger.ala.org.au
@@ -37,7 +37,7 @@ staging:
   biocacheServiceAppUrl: https://biocache.ala.org.au
   spatialServiceAppUrl: https://spatial.ala.org.au
   ecodataAppUrl: https://ecodata.ala.org.au/documentation/index
-  sdsWebappAppUrl: https://sds.ala.org.au
+  sensitiveAppUrl: https://sensitive-ws.ala.org.au
   eventsAppUrl: https://events.ala.org.au
   namematchingUrl: https://namematching-ws.ala.org.au
   fieldcaptureUrl: https://fieldcapture.ala.org.au/

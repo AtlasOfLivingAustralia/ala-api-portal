@@ -17,7 +17,7 @@ production:
   imagesApiUrl: https://api.ala.org.au/images
   profilesApiUrl: https://api.ala.org.au/profiles
   dqfServiceApiUrl: https://api.ala.org.au/dqf-service
-  biocacheServiceApiUrl: https://api.ala.org.au/biocache
+  biocacheServiceApiUrl: https://api.ala.org.au/occurrences
   spatialServiceApiUrl: https://api.ala.org.au/spatial
   tokensAppUrl: https://tokens.ala.org.au
   eventsUrl: https://api.ala.org.au/events

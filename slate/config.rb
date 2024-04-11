@@ -41,7 +41,7 @@ set :relative_links, true
 
 set :build_dir, '../build'
 
-activate :i18n, :langs => [ENV['ENVIRONMENT']]
+activate :i18n, :langs => [ENV['ENVIRONMENT'] || 'development']
 
 # Build Configuration
 configure :build do

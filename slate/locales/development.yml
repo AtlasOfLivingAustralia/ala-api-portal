@@ -17,7 +17,7 @@ development:
   imagesApiUrl: https://api.test.ala.org.au/images
   profilesApiUrl: https://api.test.ala.org.au/profiles
   dqfServiceApiUrl: https://api.test.ala.org.au/dqf-service
-  biocacheServiceApiUrl: https://api.test.ala.org.au/biocachev2
+  biocacheServiceApiUrl: https://api.test.ala.org.au/occurrences
   spatialServiceApiUrl: https://api.test.ala.org.au/spatial
   tokensAppUrl: https://tokens.dev.ala.org.au
   ecodataApiUrl: https://api.test.ala.org.au/ecodata

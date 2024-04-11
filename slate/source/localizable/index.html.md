@@ -355,6 +355,9 @@ Explore interactively on the ALA <a href="<%= I18n.t(:biocacheServiceAppUrl) %>"
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=occurrences">Open API specification</a>
 
+Examples:
+- <a href="./html/map.html?occurrencesUrl=<%= I18n.t(:biocacheServiceApiUrl) %>">WMS Usage</a>
+
 &nbsp;
 
 ## 3. Surveys

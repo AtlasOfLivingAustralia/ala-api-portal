@@ -508,7 +508,16 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=fi
 
 &nbsp;
 
-<!-- Uncomment 11. 12. 13. 14. 15. 16. 17. 18 for test and dev deploys. Comment them out for prod  -->
+## 19. Ecodata
+
+Services for the <a href="https://fieldcapture.ala.org.au/" target="_blank">MERIT</a> and <a href="https://biocollect.ala.org.au/" target="_blank">BioCollect</a> applications.
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=ecodata">Open API specification</a>
+
+&nbsp;
+
+
+<!-- Uncomment 11. 12. 13. 14. 15. 16. 18 for test and dev deploys. Comment them out for prod  -->
 
 <!--
 
@@ -563,14 +572,6 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=na
 Access the ALA   <a href="https://events-test.ala.org.au/" target="_blank">Events</a> app.
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=events">Open API specification</a>
-
-&nbsp;
-
-## 17. Ecodata
-
-Services for the <a href="https://fieldcapture.ala.org.au/" target="_blank">MERIT</a> and <a href="https://biocollect.ala.org.au/" target="_blank">BioCollect</a> applications.
-
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=ecodata">Open API specification</a>
 
 &nbsp;
 

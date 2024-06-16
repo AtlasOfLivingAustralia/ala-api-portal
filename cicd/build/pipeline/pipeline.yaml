@@ -141,6 +141,27 @@ Resources:
         BuildSpec: !Sub cicd/${pProductComponent}/pipeline/invalidate_cache_buildspec.yaml
       TimeoutInMinutes: 5
 
+  DeployNotification:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Name: !Sub 
+              - ${pProductName}-${pProductComponent}-deploy-notification-${ResourceName}
+              - ResourceName: !If [ IsDev, !Ref pCleanBranch, !Ref pEnvironment ]
+      Description: Send out the deploy notifications
+      ServiceRole:
+               Fn::ImportValue:
+                 Fn::Sub: ${pBootstrapStackName}-CodeBuildServiceRoleArn
+      Artifacts:                           
+        Type: CODEPIPELINE                 
+      Environment:                         
+        Type: LINUX_CONTAINER              
+        ComputeType: BUILD_GENERAL1_SMALL  
+        Image: aws/codebuild/standard:7.0  
+      Source:                             
+        Type: CODEPIPELINE
+        BuildSpec: !Sub cicd/${pProductComponent}/pipeline/deploy_notification_buildspec.yaml
+      TimeoutInMinutes: 5
+
 
   Pipeline:
     Type: "AWS::CodePipeline::Pipeline"
@@ -411,6 +432,16 @@ Resources:
     DeletionPolicy: Delete
     Properties:
       LogGroupName: !Sub /aws/codebuild/${InvalidateCache}
+      RetentionInDays: 30
+      Tags:
+        - Key: Name
+          Value: !Ref AWS::StackName
+
+  DeployNotificationCodeBuildLogGroup:
+    Type: AWS::Logs::LogGroup
+    DeletionPolicy: Delete
+    Properties:
+      LogGroupName: !Sub /aws/codebuild/${DeployNotification}
       RetentionInDays: 30
       Tags:
         - Key: Name

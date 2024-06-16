@@ -2,7 +2,7 @@
 
 ###
 # convert the current code branch to an environment, used to load the appropriate environment vars
-# Usage: ./branch_2_env.py --branch [code-branch] --env [prod]
+# Usage: ./branch_2_env.py --branch [code-branch] --env [environment]
 
 import argparse
 import re
@@ -14,7 +14,7 @@ parser.add_argument("--env",    "-e", help="Environment", required=False, defaul
 
 args = parser.parse_args()
 
-# associate the branch with an environmant 
+# associate the branch with an environment 
 if re.search('^main$|^master$', args.branch) and args.env == 'prod':
   #print(f"Branch {args.branch} matched main")
   print('production')

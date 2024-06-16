@@ -4,7 +4,12 @@ Description: API docs infrastructure
 Parameters:
   pEnvironment:
     Type: String
-    Description: The AWS environment this belongs to
+    AllowedValues:
+         - development
+         - testing
+         - staging
+         - production
+    Description: The environment this belongs to
   pBucketName:
     Type: String
     Description: The bucket name for the docs
@@ -32,7 +37,7 @@ Conditions:
 Resources:
   
   ApiDocsBucket:
-    Type: "AWS::S3::Bucket"
+    Type: AWS::S3::Bucket
     DeletionPolicy: Delete
     Properties:
       BucketName: !Sub ${pBucketName}
@@ -59,7 +64,7 @@ Resources:
         Version: 2012-10-17
         Statement:
           - Action:
-              - 's3:GetObject'
+              - s3:GetObject
             Effect: Allow
             Resource: !Join [ '', ['arn:aws:s3:::', !Ref ApiDocsBucket ,'/*' ]]
             Principal: 
@@ -122,8 +127,8 @@ Resources:
         MaxTTL: 86400
         MinTTL: 1
         Name: !Sub
-                - "api-docs-cache-Policy-${ResourceName}"
-                - ResourceName: !If [ IsDev, !Ref pEnvironment, !Ref pEnvironment ]
+                - api-docs-cache-Policy-${ResourceName}
+                - ResourceName: !If [ IsDev, !Ref pCleanBranch, !Ref pEnvironment ]
 
         ParametersInCacheKeyAndForwardedToOrigin: 
           CookiesConfig: 

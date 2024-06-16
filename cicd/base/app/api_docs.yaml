@@ -10,7 +10,7 @@ Parameters:
          - staging
          - production
     Description: The environment this belongs to
-  pBucketName:
+  pDocumentationBucket:
     Type: String
     Description: The bucket name for the docs
   pBucketPath:
@@ -40,7 +40,7 @@ Resources:
     Type: AWS::S3::Bucket
     DeletionPolicy: Delete
     Properties:
-      BucketName: !Sub ${pBucketName}
+      BucketName: !Sub ${pDocumentationBucket}
       LifecycleConfiguration:
         Rules:
           - Id: delete incomplete uploads
@@ -54,7 +54,7 @@ Resources:
         IgnorePublicAcls: TRUE
       Tags:
         - Key: Name
-          Value: !Ref pBucketName
+          Value: !Ref pDocumentationBucket
 
   ApiDocsBucketPolicy:
     Type: AWS::S3::BucketPolicy
@@ -105,7 +105,7 @@ Resources:
         HttpVersion: http2
         IPV6Enabled: false
         Origins:
-          - DomainName: !Sub "${pBucketName}.s3.${AWS::Region}.amazonaws.com"
+          - DomainName: !Sub ${pDocumentationBucket}.s3.${AWS::Region}.amazonaws.com
             Id: api-docs-s3
             S3OriginConfig:
               OriginAccessIdentity: !Join ['', ['origin-access-identity/cloudfront/', !Ref ApiDocsCloudFrontOai ]]

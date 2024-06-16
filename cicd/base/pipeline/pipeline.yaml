@@ -210,7 +210,7 @@ Resources:
               Provider: CloudFormation
             Configuration:
               TemplatePath: !Sub 'ExportConfigArtifact::cicd/${pProductComponent}/app/#{ExportConfigNS.BASE_STACK_FILE_PFIX}.yaml'
-              TemplateConfiguration: 'ExportConfigArtifact::cicd/pipeline/template_config.json'
+              TemplateConfiguration: !Sub 'ExportConfigArtifact::cicd/${pProductComponent}/app/#{ExportConfigNS.BASE_STACK_FILE_PFIX}_template_config.yaml'
               ActionMode: !If [ IsDev, REPLACE_ON_FAILURE, CREATE_UPDATE ]
               Capabilities: CAPABILITY_IAM,CAPABILITY_AUTO_EXPAND,CAPABILITY_NAMED_IAM
               RoleArn:

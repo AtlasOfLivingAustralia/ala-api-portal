@@ -296,6 +296,33 @@ Resources:
             InputArtifacts:
               - Name: 'SourceArtifact'
             RunOrder: 4
+          - Name: DeployNotification
+            ActionTypeId:
+              Owner: AWS
+              Category: Build
+              Version: 1
+              Provider: CodeBuild
+            Configuration:
+              ProjectName: !Ref DeployNotification
+              EnvironmentVariables: !Sub |
+                [
+                  { "name":"AUTHOR", "value":"#{CheckoutSrcNS.AuthorDisplayName}" },
+                  { "name":"CLEAN_BRANCH", "value":"${pCleanBranch}" },
+                  { "name":"COMMIT_ID", "value":"#{CheckoutSrcNS.CommitId}" },
+                  { "name":"ENVIRONMENT", "value":"${pEnvironment}" },
+                  { "name":"PRODUCT_COMPONENT", "value":"#{ExportConfigNS.PRODUCT_COMPONENT}" },
+                  { "name":"PRODUCT_NAME", "value":"#{ExportConfigNS.PRODUCT_NAME}" },
+                  { "name":"SUB_DOMAIN", "value":"#{ExportConfigNS.SUB_DOMAIN}" },
+                  { "name":"HOSTED_ZONE", "value":"#{ExportConfigNS.HOSTED_ZONE}" },
+                  { "name":"REPO", "value":"#{CheckoutSrcNS.FullRepositoryName}" },
+                  { "name":"SLACK_ALERT_CHANNEL", "value":"#{ExportConfigNS.SLACK_ALERT_CHANNEL}" },
+                  { "name":"SLACK_DEPLOY_NOTIFICATION", "value":"#{ExportConfigNS.SLACK_DEPLOY_NOTIFICATION}" },
+                  { "name":"SRC_BRANCH", "value":"${pGitHubBranch}" }
+                ]
+            Namespace: DeployNotificationNS
+            InputArtifacts:
+              - Name: 'SourceArtifact'
+            RunOrder: 5
       - Name: Teardown
         Actions:
           - Name: AppTeardownApproval

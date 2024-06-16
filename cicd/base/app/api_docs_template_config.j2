@@ -1,12 +1,12 @@
 {
   "Parameters" : {
-    "pEnvironment"    : "{{ environment }}",
     "pBucketName"     : "{{ bucket_name }}",
     "pBucketPath"     : "{{ bucket_path }}",
-    "pHostedZone"     : "{{ hosted_zone }}",
     "pCleanBranch"    : "{{ clean_branch }}",
-    "pSubDomain"      : "{{ sub_domain }}",
-    "pSslCertificate" : "{{ ssl_certificate }}"
+    "pEnvironment"    : "{{ environment }}",
+    "pHostedZone"     : "{{ hosted_zone }}",
+    "pSslCertificate" : "{{ ssl_certificate }}",
+    "pSubDomain"      : "{{ sub_domain }}"
   },
   "Tags" : {
     "product"     : "{{ product_name }}",
@@ -14,7 +14,7 @@
     "environment" : "{{ environment }}",
     "branch"      : "{{ branch }}",
     "version"     : "{{ commit_id }}",
-    "build"       : "{{ build }}"
+    "build"       : "{{ codebuild_build_number }}"
   },
   "StackPolicy" : {
     "Statement" : [

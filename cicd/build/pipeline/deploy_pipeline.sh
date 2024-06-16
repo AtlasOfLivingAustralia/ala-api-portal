@@ -2,7 +2,7 @@
 set -ueo pipefail
 
 ###
-# Deploy the codepipeline for the alerts app
+# Deploy the codepipeline for the api-portal app
 # You must have AWS CLI authentication for this to run. 
 
 usage() {

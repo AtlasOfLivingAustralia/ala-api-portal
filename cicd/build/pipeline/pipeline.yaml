@@ -103,7 +103,7 @@ Resources:
     Type: AWS::CodeBuild::Project
     Properties:
       Name: !Sub
-              - "${pProductName}-empty-bucket-${ResourceName}"
+              - "${pProductName}-${pProductComponent}-empty-bucket-${ResourceName}"
               - ResourceName: !If [ IsDev, !Ref pEnvironment, !Ref pEnvironment ]
       Description: Empty the documentation s3 bucket so it can be deleted
       ServiceRole:
@@ -124,7 +124,7 @@ Resources:
     Type: AWS::CodeBuild::Project
     Properties:
       Name: !Sub
-              - "${pProductName}-invalidate-cache-${ResourceName}"
+              - "${pProductName}-${pProductComponent}-invalidate-cache-${ResourceName}"
               - ResourceName: !If [ IsDev, !Ref pEnvironment, !Ref pEnvironment ]
       Description: Invalidate the CloudFront cache after deploy
       ServiceRole:

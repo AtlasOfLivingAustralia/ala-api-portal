@@ -74,7 +74,9 @@ phases:
       # package templates and generate the template configs
       - |
           for i in cicd/$PRODUCT_COMPONENT/app/*.yaml; do
+            echo i is $i
             stack=$(echo $i | sed 's/.yaml$//')
+            echo stack is $stack
             aws cloudformation package --template-file $stack.yaml \
                                        --s3-bucket $ARTIFACTS_BUCKET \
                                        --s3-prefix $PRODUCT_NAME/$PRODUCT_COMPONENT/$CLEAN_BRANCH-$CODEBUILD_BUILD_NUMBER \

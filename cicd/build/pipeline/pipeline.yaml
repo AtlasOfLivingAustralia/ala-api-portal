@@ -346,33 +346,6 @@ Resources:
             RunOrder: 5
       - Name: Teardown
         Actions:
-          - Name: AppTeardownApproval
-            ActionTypeId:
-              Owner: AWS
-              Category: Approval
-              Version: 1
-              Provider: Manual
-            Configuration:
-              CustomData: Approval required to tear down the bucket and cloudfront distro
-            RunOrder: 1
-          - Name: EmptyBucket
-            ActionTypeId:
-              Owner: AWS
-              Category: Build
-              Version: 1
-              Provider: CodeBuild
-            Configuration:
-              ProjectName: !Ref EmptyBucket
-              EnvironmentVariables: |
-                [
-                  { "name":"DOCUMENTATION_BUCKET", "value":"#{ExportConfigNS.DOCUMENTATION_BUCKET}" },
-                  { "name":"BUCKET_PATH", "value":"#{ExportConfigNS.BUCKET_PATH}" },
-                  { "name":"KEEP_API_SPECS", "value":"false" }
-                ]
-            Namespace: EmptyBucketPreDeleteNS
-            InputArtifacts:
-              - Name: SourceArtifact
-            RunOrder: 2
           - Name: PipelineTeardownApproval
             ActionTypeId:
               Owner: AWS
@@ -381,7 +354,7 @@ Resources:
               Provider: Manual
             Configuration:
               CustomData: Approval required to tear down the pipeline. Self termination
-            RunOrder: 3
+            RunOrder: 1
           - Name: TeardownPipeline
             ActionTypeId:
               Owner: AWS
@@ -394,7 +367,7 @@ Resources:
               RoleArn:
                 Fn::ImportValue:
                   Fn::Sub: '${pBootstrapStackName}-CloudFormationServiceRoleArn'
-            RunOrder: 4
+            RunOrder: 2
 
 
   ExportConfigLogGroup:

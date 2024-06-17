@@ -69,19 +69,6 @@ phases:
   build:
     commands:
       - echo Entered the build phase...
-      # package templates and generate the template configs
-      - |
-          for i in $(ls cicd/$PRODUCT_COMPONENT/app/*.yaml 2>/dev/null); do
-            stack=$(echo $i | sed 's/.yaml$//')
-            aws cloudformation package --template-file $stack.yaml \
-                                       --s3-bucket $ARTIFACTS_BUCKET \
-                                       --s3-prefix $PRODUCT_NAME/$PRODUCT_COMPONENT/$CLEAN_BRANCH-$CODEBUILD_BUILD_NUMBER \
-                                       --output-template-file ${stack}.yaml \
-                                       --region $REGION
-
-            echo Generating the template config for $stack
-            cicd/gen_template_config.py  --template ${stack}_template_config.j2 > ${stack}_template_config.json
-          done
     finally:
       - #echo This always runs
 
@@ -89,9 +76,3 @@ phases:
   post_build:
     commands:
       - #echo Entered the post_build phase...
-
-artifacts:
-  files:
-    - cicd/$PRODUCT_COMPONENT/app/*
-  name: BuildTemplateConfigArtifact
-  discard-paths: no

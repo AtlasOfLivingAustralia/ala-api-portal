@@ -2,6 +2,18 @@ AWSTemplateFormatVersion: "2010-09-09"
 Description: API docs infrastructure
 
 Parameters:
+  pBucketPath:
+    Type: String
+    Description: Optional path that the documentation is stored under
+  pCleanBranch:
+    Type: String
+    Description: A clean version of the branch, used for resource naming
+  pDocumentRoot:
+    Type: String
+    Description: The default document root for the CF Distribution
+  pDocumentationBucket:
+    Type: String
+    Description: The bucket name for the docs
   pEnvironment:
     Type: String
     AllowedValues:
@@ -10,24 +22,15 @@ Parameters:
          - staging
          - production
     Description: The environment this belongs to
-  pDocumentationBucket:
-    Type: String
-    Description: The bucket name for the docs
-  pBucketPath:
-    Type: String
-    Description: Optional path that the documentation is stored under
-  pCleanBranch:
-    Type: String
-    Description: A clean version of the branch, used for resource naming
   pHostedZone:
     Type: String
     Description: The hosted zone the docs are accessed under
-  pSubDomain:
-    Type: String
-    Description: The subdomain the docs are accessed on
   pSslCertificate:
     Type: String
     Description: The arn of the SSL certificate to be used 
+  pSubDomain:
+    Type: String
+    Description: The subdomain the docs are accessed on
 
 Conditions:
   IsDev: !Equals
@@ -100,7 +103,7 @@ Resources:
           Compress: true
           TargetOriginId: api-docs-s3
           ViewerProtocolPolicy: redirect-to-https 
-        DefaultRootObject: index.html
+        DefaultRootObject: !Ref pDocumentRoot
         Enabled: true
         HttpVersion: http2
         IPV6Enabled: false

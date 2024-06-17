@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Description: Code pipeline for API docs
+Description: API docs build and deploy
 
 Parameters:
   pAutoDeploy:

@@ -23,8 +23,6 @@ env:
 phases:
 
   install:
-    runtime-versions:
-      python: 3.9
     commands:
       - #echo setting up build environment
       - echo Running on $(lsb_release -d | cut -f2)
@@ -73,7 +71,7 @@ phases:
       - echo Entered the build phase...
       # package templates and generate the template configs
       - |
-          for i in cicd/$PRODUCT_COMPONENT/app/*.yaml; do
+          for i in $(ls cicd/$PRODUCT_COMPONENT/app/*.yaml); do
             echo i is $i
             stack=$(echo $i | sed 's/.yaml$//')
             echo stack is $stack

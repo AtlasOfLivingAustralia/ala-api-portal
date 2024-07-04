@@ -443,7 +443,6 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=do
 &nbsp;
 
 <!-- Uncomment 11. 12. 13. 14. 15. 16 for prod deployment.  Comment them out for dev and test -->
-<!-- 
 ## 11. Species lists and traits
 
 Interact with   <a href="<%= I18n.t(:specieslistIndexAppUrl) %>" target="_blank">species lists</a> , including get list details and create a list.
@@ -495,10 +494,9 @@ Explore interactively on the ALA <a href="<%= I18n.t(:sensitiveAppUrl) %>" targe
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=sensitive">Open API specification</a> -->
 
+<!-- Uncomment 11. 12. 13. 14. 15. 16. 18 for test and dev deploys. Comment them out for prod  -->
 
-<!-- Uncomment 11. 12. 13. 14. 15. 16. 17. 18 for test and dev deploys. Comment them out for prod  -->
-
-
+<!--
 
 ## 11. Profiles service
 
@@ -554,13 +552,13 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=ev
 
 &nbsp;
 
-## 17. Ecodata
+## 18. Sensitive
 
 Services for the <a href="<%= I18n.t(:fieldcaptureUrl) %>" target="_blank">MERIT</a> and <a href="<%= I18n.t(:biocollectAppUrl) %>" target="_blank">BioCollect</a> applications.
 
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=ecodata">Open API specification</a>
+Explore interactively on the ALA <a href="https://sensitive-ws.ala.org.au" target="_blank">sensitive</a> service. 
 
-&nbsp;
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=sensitive">Open API specification</a>
 
 ## 18. Sensitive
 

@@ -1,45 +1,45 @@
 ---
 development:
-  title: Atlas of Living Australia API dev Documentation
-  baseUrl: https://api.test.ala.org.au
-  authBaseUrl: https://auth-cognito.dev.ala.org.au
-  biocacheBaseUrl: https://biocache-ws-dev.ala.org.au/ws
-  autoCompleteBaseUrl: https://biocache-ws-dev.ala.org.au/ws
-  userdetailsBaseUrl: https://auth-dev.ala.org.au/userdetails
-  userdetailsAPIUrl: https://api.test.ala.org.au/userdetails
-  loggerAPIUrl: https://api.test.ala.org.au/logger
   alertsAPIUrl: https://api.test.ala.org.au/alerts
-  doiAPIUrl: https://api.test.ala.org.au/doi
-  biocollectAPIUrl: https://api.test.ala.org.au/biocollect
-  bieIndexAPIUrl: https://api.test.ala.org.au/bie-index
-  specieslistIndexAPIUrl: https://api.test.ala.org.au/specieslist
-  collectoryApiUrl: https://api.test.ala.org.au/collectory
-  imagesApiUrl: https://api.test.ala.org.au/images
-  profilesApiUrl: https://api.test.ala.org.au/profiles
-  dqfServiceApiUrl: https://api.test.ala.org.au/dqf-service
-  biocacheServiceApiUrl: https://api.test.ala.org.au/occurrences
-  spatialServiceApiUrl: https://api.test.ala.org.au/spatial
-  tokensAppUrl: https://tokens.dev.ala.org.au
-  ecodataApiUrl: https://api.test.ala.org.au/ecodata
-  sensitiveApiUrl: https://api.test.ala.org.au/sensitive
-  oidcIssuer: https://cognito-idp.ap-southeast-2.amazonaws.com/ap-southeast-2_pQUl30qBX
-  oidcHost: https://auth-secure-development.auth.ap-southeast-2.amazoncognito.com
-  loggerAppUrl: https://logger-test.ala.org.au
   alertsAppUrl: https://alerts-test.ala.org.au
-  doiAppUrl: https://doi-test.ala.org.au
-  biocollectUrl: https://www-test.ala.org.au/biocollect/
+  authBaseUrl: https://auth-cognito.dev.ala.org.au
+  autoCompleteBaseUrl: https://biocache-ws-dev.ala.org.au/ws
+  baseUrl: https://api.test.ala.org.au
+  bieIndexAPIUrl: https://api.test.ala.org.au/bie-index
   bieIndexAppUrl: https://bie-test.ala.org.au
-  specieslistIndexAppUrl: https://lists-test.ala.org.au
-  collectoryAppUrl: https://collections-test.ala.org.au
-  imagesAppUrl: https://images-test.ala.org.au
-  profilesAppUrl: https://profiles-dev.ala.org.au
-  dqfServiceAppUrl: https://data-quality-service-test.ala.org.au
+  biocacheBaseUrl: https://biocache-ws-dev.ala.org.au/ws
+  biocacheServiceApiUrl: https://api.test.ala.org.au/occurrences
   biocacheServiceAppUrl: https://biocache-test.ala.org.au
-  spatialServiceAppUrl: https://spatial-dev.ala.org.au
-  ecodataAppUrl: https://ecodata-test.ala.org.au/documentation/index
-  sensitiveAppUrl: https://sensitive-ws-test.ala.org.au
-  eventsAppUrl: https://events.test.ala.org.au
-  namematchingUrl: https://namematching-ws-test.ala.org.au
-  fieldcaptureUrl: https://fieldcapture-dev.ala.org.au/
+  biocollectAPIUrl: https://api.test.ala.org.au/biocollect
   biocollectAppUrl: https://biocollect-test.ala.org.au
+  biocollectUrl: https://www-test.ala.org.au/biocollect/
+  collectoryApiUrl: https://api.test.ala.org.au/collectory
+  collectoryAppUrl: https://collections-test.ala.org.au
+  doiAPIUrl: https://api.test.ala.org.au/doi
+  doiAppUrl: https://doi-test.ala.org.au
+  dqfServiceApiUrl: https://api.test.ala.org.au/dqf-service
+  dqfServiceAppUrl: https://data-quality-service-test.ala.org.au
+  ecodataApiUrl: https://api.test.ala.org.au/ecodata
+  ecodataAppUrl: https://ecodata-test.ala.org.au/documentation/index
+  eventsAppUrl: https://events.test.ala.org.au
+  fieldcaptureUrl: https://fieldcapture-dev.ala.org.au/
   fieldguideUrl: https://fieldguide-test.ala.org.au/
+  imagesApiUrl: https://api.test.ala.org.au/images
+  imagesAppUrl: https://images-test.ala.org.au
+  loggerAPIUrl: https://api.test.ala.org.au/logger
+  loggerAppUrl: https://logger-test.ala.org.au
+  namematchingUrl: https://namematching-ws-test.ala.org.au
+  oidcHost: https://auth-secure-development.auth.ap-southeast-2.amazoncognito.com
+  oidcIssuer: https://cognito-idp.ap-southeast-2.amazonaws.com/ap-southeast-2_pQUl30qBX
+  profilesApiUrl: https://api.test.ala.org.au/profiles
+  profilesAppUrl: https://profiles-dev.ala.org.au
+  sensitiveApiUrl: https://api.test.ala.org.au/sensitive
+  sensitiveAppUrl: https://sensitive-ws-test.ala.org.au
+  spatialServiceApiUrl: https://api.test.ala.org.au/spatial
+  spatialServiceAppUrl: https://spatial-dev.ala.org.au
+  specieslistIndexAPIUrl: https://api.test.ala.org.au/specieslist
+  specieslistIndexAppUrl: https://lists-test.ala.org.au
+  title: Atlas of Living Australia API dev Documentation
+  tokensAppUrl: https://tokens.dev.ala.org.au
+  userdetailsAPIUrl: https://api.test.ala.org.au/userdetails
+  userdetailsBaseUrl: https://auth-dev.ala.org.au/userdetails

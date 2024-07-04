@@ -1,45 +1,45 @@
 ---
 staging:
-  title: Atlas of Living Australia API Documentation
-  baseUrl: https://api.ala.org.au
-  authBaseUrl: https://auth.ala.org.au
-  biocacheBaseUrl: https://biocache-ws.ala.org.au/ws
-  autoCompleteBaseUrl: https://biocache-ws.ala.org.au/ws
-  userdetailsBaseUrl: https://auth.ala.org.au/userdetails
-  userdetailsAPIUrl: https://api.ala.org.au/userdetails
-  loggerAPIUrl: https://api.ala.org.au/logger
   alertsAPIUrl: https://api.ala.org.au/alerts
-  doiAPIUrl: https://api.ala.org.au/doi
-  biocollectAPIUrl: https://api.ala.org.au/biocollect
-  bieIndexAPIUrl: https://api.ala.org.au/bie-index
-  specieslistIndexAPIUrl: https://api.ala.org.au/specieslist
-  collectoryApiUrl: https://api.ala.org.au/collectory
-  imagesApiUrl: https://api.ala.org.au/images
-  profilesApiUrl: https://api.ala.org.au/profiles
-  dqfServiceApiUrl: https://api.ala.org.au/dqf-service
-  biocacheServiceApiUrl: https://api.ala.org.au/occurrences
-  spatialServiceApiUrl: https://api.ala.org.au/spatial
-  tokensAppUrl: https://tokens.ala.org.au
-  ecodataApiUrl: https://api.ala.org.au/ecodata
-  sensitiveApiUrl: https://api.ala.org.au/sensitive
-  oidcIssuer: https://cognito-idp.ap-southeast-2.amazonaws.com/ap-southeast-2_Auyv55MYO
-  oidcHost: https://auth-secure.ala.org.au
-  loggerAppUrl: https://logger.ala.org.au
   alertsAppUrl: https://alerts.ala.org.au
-  doiAppUrl: https://doi.ala.org.au
-  biocollectUrl: https://www.ala.org.au/biocollect/
+  authBaseUrl: https://auth.ala.org.au
+  autoCompleteBaseUrl: https://biocache-ws.ala.org.au/ws
+  baseUrl: https://api.ala.org.au
+  bieIndexAPIUrl: https://api.ala.org.au/bie-index
   bieIndexAppUrl: https://bie.ala.org.au
-  specieslistIndexAppUrl: https://lists.ala.org.au
-  collectoryAppUrl: https://collections.ala.org.au
-  imagesAppUrl: https://images.ala.org.au
-  profilesAppUrl: https://profiles.ala.org.au
-  dqfServiceAppUrl: https://data-quality-service.ala.org.au
+  biocacheBaseUrl: https://biocache-ws.ala.org.au/ws
+  biocacheServiceApiUrl: https://api.ala.org.au/occurrences
   biocacheServiceAppUrl: https://biocache.ala.org.au
-  spatialServiceAppUrl: https://spatial.ala.org.au
-  ecodataAppUrl: https://ecodata.ala.org.au/documentation/index
-  sensitiveAppUrl: https://sensitive-ws.ala.org.au
-  eventsAppUrl: https://events.ala.org.au
-  namematchingUrl: https://namematching-ws.ala.org.au
-  fieldcaptureUrl: https://fieldcapture.ala.org.au/
+  biocollectAPIUrl: https://api.ala.org.au/biocollect
   biocollectAppUrl: https://biocollect.ala.org.au
+  biocollectUrl: https://www.ala.org.au/biocollect/
+  collectoryApiUrl: https://api.ala.org.au/collectory
+  collectoryAppUrl: https://collections.ala.org.au
+  doiAPIUrl: https://api.ala.org.au/doi
+  doiAppUrl: https://doi.ala.org.au
+  dqfServiceApiUrl: https://api.ala.org.au/dqf-service
+  dqfServiceAppUrl: https://data-quality-service.ala.org.au
+  ecodataApiUrl: https://api.ala.org.au/ecodata
+  ecodataAppUrl: https://ecodata.ala.org.au/documentation/index
+  eventsAppUrl: https://events.ala.org.au
+  fieldcaptureUrl: https://fieldcapture.ala.org.au/
   fieldguideUrl: https://fieldguide.ala.org.au/
+  imagesApiUrl: https://api.ala.org.au/images
+  imagesAppUrl: https://images.ala.org.au
+  loggerAPIUrl: https://api.ala.org.au/logger
+  loggerAppUrl: https://logger.ala.org.au
+  namematchingUrl: https://namematching-ws.ala.org.au
+  oidcHost: https://auth-secure.ala.org.au
+  oidcIssuer: https://cognito-idp.ap-southeast-2.amazonaws.com/ap-southeast-2_Auyv55MYO
+  profilesApiUrl: https://api.ala.org.au/profiles
+  profilesAppUrl: https://profiles.ala.org.au
+  sensitiveApiUrl: https://api.ala.org.au/sensitive
+  sensitiveAppUrl: https://sensitive-ws.ala.org.au
+  spatialServiceApiUrl: https://api.ala.org.au/spatial
+  spatialServiceAppUrl: https://spatial.ala.org.au
+  specieslistIndexAPIUrl: https://api.ala.org.au/specieslist
+  specieslistIndexAppUrl: https://lists.ala.org.au
+  title: Atlas of Living Australia API Documentation
+  tokensAppUrl: https://tokens.ala.org.au
+  userdetailsAPIUrl: https://api.ala.org.au/userdetails
+  userdetailsBaseUrl: https://auth.ala.org.au/userdetails

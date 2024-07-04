@@ -1,0 +1,30 @@
+{
+  "Parameters" : {
+    "pBucketPath"          : "{{ bucket_path }}",
+    "pCleanBranch"         : "{{ clean_branch }}",
+    "pDocumentRoot"        : "{{ document_root }}",
+    "pDocumentationBucket" : "{{ documentation_bucket }}",
+    "pEnvironment"         : "{{ environment }}",
+    "pHostedZone"          : "{{ hosted_zone }}",
+    "pSslCertificate"      : "{{ ssl_certificate }}",
+    "pSubDomain"           : "{{ sub_domain }}"
+  },
+  "Tags" : {
+    "product"     : "{{ product_name }}",
+    "component"   : "{{ product_component }}",
+    "environment" : "{{ environment }}",
+    "branch"      : "{{ src_branch }}",
+    "version"     : "{{ commit_id }}",
+    "build"       : "{{ codebuild_build_number }}"
+  },
+  "StackPolicy" : {
+    "Statement" : [
+      {
+        "Effect" : "Allow",
+        "Action" : "Update:*",
+        "Principal": "*",
+        "Resource" : "*"
+      }
+    ]
+  }
+}

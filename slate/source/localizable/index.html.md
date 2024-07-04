@@ -355,6 +355,9 @@ Explore interactively on the ALA <a href="<%= I18n.t(:biocacheServiceAppUrl) %>"
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=occurrences">Open API specification</a>
 
+Examples:
+- <a href="./html/map.html?occurrencesUrl=<%= I18n.t(:biocacheServiceApiUrl) %>">WMS Usage</a>
+
 &nbsp;
 
 ## 3. Surveys
@@ -440,7 +443,6 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=do
 &nbsp;
 
 <!-- Uncomment 11. 12. 13. 14. 15. 16 for prod deployment.  Comment them out for dev and test -->
-<!-- 
 ## 11. Species lists and traits
 
 Interact with   <a href="<%= I18n.t(:specieslistIndexAppUrl) %>" target="_blank">species lists</a> , including get list details and create a list.
@@ -492,10 +494,9 @@ Explore interactively on the ALA <a href="<%= I18n.t(:sensitiveAppUrl) %>" targe
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=sensitive">Open API specification</a> -->
 
+<!-- Uncomment 11. 12. 13. 14. 15. 16. 18 for test and dev deploys. Comment them out for prod  -->
 
-<!-- Uncomment 11. 12. 13. 14. 15. 16. 17. 18 for test and dev deploys. Comment them out for prod  -->
-
-
+<!--
 
 ## 11. Profiles service
 
@@ -551,17 +552,19 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=ev
 
 &nbsp;
 
-## 17. Ecodata
+## 18. Sensitive
 
 Services for the <a href="<%= I18n.t(:fieldcaptureUrl) %>" target="_blank">MERIT</a> and <a href="<%= I18n.t(:biocollectAppUrl) %>" target="_blank">BioCollect</a> applications.
 
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=ecodata">Open API specification</a>
+Explore interactively on the ALA <a href="https://sensitive-ws.ala.org.au" target="_blank">sensitive</a> service. 
 
-&nbsp;
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=sensitive">Open API specification</a>
 
 ## 18. Sensitive
 
-Services for interacting with Sensitive Data Service
+Services for interacting with Sensitive Data Service.
+
+ALA uses the sensitive service to generalise sensitive occurrences. Using <a href="https://github.com/AtlasOfLivingAustralia/ala-sensitive-data-service">ala-sensitive-data-client</a> it will get a record report `ALASDSServiceClient::report` and apply each generalisation from `ALASDSServiceClient::getGeneralisations` with `Generalisation::process` to produce the generalised output. See <a href="https://github.com/gbif/pipelines/blob/dev/livingatlas/pipelines/src/main/java/au/org/ala/pipelines/interpreters/SensitiveDataInterpreter.java">pipelines code</a>.
 
 Explore interactively on the ALA <a href="<%= I18n.t(:sensitiveAppUrl) %>" target="_blank">sensitive</a> service. 
 

@@ -2,27 +2,35 @@ AWSTemplateFormatVersion: "2010-09-09"
 Description: API docs infrastructure
 
 Parameters:
-  pEnvironment:
-    Type: String
-    Description: The AWS environment this belongs to
-  pBucketName:
-    Type: String
-    Description: The bucket name for the docs
   pBucketPath:
     Type: String
     Description: Optional path that the documentation is stored under
   pCleanBranch:
     Type: String
     Description: A clean version of the branch, used for resource naming
+  pDocumentRoot:
+    Type: String
+    Description: The default document root for the CF Distribution
+  pDocumentationBucket:
+    Type: String
+    Description: The bucket name for the docs
+  pEnvironment:
+    Type: String
+    AllowedValues:
+         - development
+         - testing
+         - staging
+         - production
+    Description: The environment this belongs to
   pHostedZone:
     Type: String
     Description: The hosted zone the docs are accessed under
-  pSubDomain:
-    Type: String
-    Description: The subdomain the docs are accessed on
   pSslCertificate:
     Type: String
     Description: The arn of the SSL certificate to be used 
+  pSubDomain:
+    Type: String
+    Description: The subdomain the docs are accessed on
 
 Conditions:
   IsDev: !Equals
@@ -32,10 +40,10 @@ Conditions:
 Resources:
   
   ApiDocsBucket:
-    Type: "AWS::S3::Bucket"
+    Type: AWS::S3::Bucket
     DeletionPolicy: Delete
     Properties:
-      BucketName: !Sub ${pBucketName}
+      BucketName: !Sub ${pDocumentationBucket}
       LifecycleConfiguration:
         Rules:
           - Id: delete incomplete uploads
@@ -49,7 +57,7 @@ Resources:
         IgnorePublicAcls: TRUE
       Tags:
         - Key: Name
-          Value: !Ref pBucketName
+          Value: !Ref pDocumentationBucket
 
   ApiDocsBucketPolicy:
     Type: AWS::S3::BucketPolicy
@@ -59,7 +67,7 @@ Resources:
         Version: 2012-10-17
         Statement:
           - Action:
-              - 's3:GetObject'
+              - s3:GetObject
             Effect: Allow
             Resource: !Join [ '', ['arn:aws:s3:::', !Ref ApiDocsBucket ,'/*' ]]
             Principal: 
@@ -95,12 +103,12 @@ Resources:
           Compress: true
           TargetOriginId: api-docs-s3
           ViewerProtocolPolicy: redirect-to-https 
-        DefaultRootObject: index.html
+        DefaultRootObject: !Ref pDocumentRoot
         Enabled: true
         HttpVersion: http2
         IPV6Enabled: false
         Origins:
-          - DomainName: !Sub "${pBucketName}.s3.${AWS::Region}.amazonaws.com"
+          - DomainName: !Sub ${pDocumentationBucket}.s3.${AWS::Region}.amazonaws.com
             Id: api-docs-s3
             S3OriginConfig:
               OriginAccessIdentity: !Join ['', ['origin-access-identity/cloudfront/', !Ref ApiDocsCloudFrontOai ]]
@@ -122,8 +130,8 @@ Resources:
         MaxTTL: 86400
         MinTTL: 1
         Name: !Sub
-                - "api-docs-cache-Policy-${ResourceName}"
-                - ResourceName: !If [ IsDev, !Ref pEnvironment, !Ref pEnvironment ]
+                - api-docs-cache-Policy-${ResourceName}
+                - ResourceName: !If [ IsDev, !Ref pCleanBranch, !Ref pEnvironment ]
 
         ParametersInCacheKeyAndForwardedToOrigin: 
           CookiesConfig: 

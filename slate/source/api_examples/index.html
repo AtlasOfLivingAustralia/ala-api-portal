@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../stylesheets/examples.css"/>
+  </head>
+  <body>
+  <script src="../javascripts/all.js"></script>
+  <div class="flex-container">
+    <div class="left_padding">
+      <div class="topbar_item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 320 512" onclick="location.href='../';">
+          <path d="M224 480c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25l192-192c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L77.25 256l169.4 169.4c12.5 12.5 12.5 32.75 0 45.25C240.4 476.9 232.2 480 224 480z" stroke="white" fill="white" />
+        </svg>
+      </div>
+      <div class="topbar_item">
+        <img class="ala_image" height="40" src="../images/ALA_Logo_Inline_REV.png" onclick="location.href='../';"/>
+      </div>
+    </div>
+    <div class="left_padding">
+      <form class="top_padding">
+        <label class="select-label" for="select"><span>Select a definition</span></label>
+        <select id="select" onchange="fillContent()">
+          <option value="occurrences">occurrences</option>
+        </select>
+      </form>
+    </div>
+  </div>
+    <h1 class="top_padding left_padding"></h1>
+    <div id="includedContent" class="left_padding"></div>
+  </body>
+
+  <script defer="true">
+    $(document).ready(function(e) {
+      const params = new URLSearchParams(window.location.search);
+      const product = params.get('product');
+      let element = document.getElementById('select');
+      element.value = product ?? "occurrences"
+      fillContent()
+    });
+
+    function fillContent() {
+      const params = new URLSearchParams(window.location.search);
+      const occurrenceUrl = params.get('occurrencesUrl');
+      let product = document.getElementById("select").value;
+
+      if(product === "occurrences") {
+        $("h1").html("Occurrences Examples");
+        $("#includedContent").load("./occurrences.html?occurrencesUrl="+occurrenceUrl);
+      }
+      else {
+        $("h1").html("Occurrences Examples");
+        $("#includedContent").load("./occurrences.html?occurrencesUrl="+occurrenceUrl);
+      }
+    }
+  </script>
+</html>

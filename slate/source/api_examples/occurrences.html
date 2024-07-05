@@ -3,81 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Tiled WMS</title>
-
   <link rel="stylesheet" href="../stylesheets/leaflet.css"/>
-
   <script src="../javascripts/leaflet.js"></script>
-  <style>
-    #map {
-      height: 100px;
-      width: 100px;
-    }
-
-    .envDiv {
-      padding: 20px;
-    }
-
-    #env {
-      font-family: "Lucida Console", Courier, monospace;
-    }
-
-    .mapTd {
-      vertical-align: top;
-    }
-
-    .infoTable tr td {
-      padding: 5px;
-      display: block;
-      width: 800px;
-    }
-
-    .infoTable {
-      border: 1px solid;
-      width: 30%;
-    }
-
-    .infoTable tr:nth-child(odd) {
-      background-color: #dddddd;
-    }
-
-    span {
-      word-break: break-word;
-    }
-
-    .code {
-      font-family: "Lucida Console", Courier, monospace;
-      font-weight: bold;
-    }
-    .updateButton {
-      background-color: #c44d34;
-      color: white;
-    }
-    .activeClick {
-      text-underline: #c44d34;
-      color: #c44d34;
-      cursor: pointer;
-    }
-
-    body {
-      margin: 10px;
-      font-family: "Roboto", sans-serif;
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 1.5;
-      color: #212121;
-      text-align: left;
-      background-color: #fff;
-    }
-
-    .inputs {
-      float: right;
-      margin-bottom: 10px;
-    }
-
-  </style>
 </head>
 <body>
-<h1>Simple WMS Example</h1>
+<h2>Simple WMS Example</h2>
 <table class="mainTable">
   <tr>
     <td>
@@ -218,29 +148,30 @@
 
 
 <script defer="true">
+  $(document).ready(function(e) {
+    var map = L.map('map').setView([-28, 130], 3);
 
-  var map = L.map('map').setView([-28, 130], 3);
+    const urlParams = new URLSearchParams(window.location.search);
+    const occurrencesUrl = urlParams.get('occurrencesUrl');
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const occurrencesUrl = urlParams.get('occurrencesUrl');
+    L.tileLayer('https://spatial.ala.org.au/osm/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
 
-  L.tileLayer('https://spatial.ala.org.au/osm/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-  }).addTo(map);
+    var layer = L.tileLayer.wms(occurrencesUrl + '/mapping/wms/reflect?', {
+      name: 'Object',
+      q: "Eucalyptus",
+      ENV: "size:5;colormode:hexbin;color:56FFFF00,10,56FFCC00,100,77FF9900,1000,AAFF6600,10000,FFD60A00",
+      outline: "false"
+    }).addTo(map);
 
-  var layer = L.tileLayer.wms(occurrencesUrl + '/mapping/wms/reflect?', {
-    name: 'Object',
-    q: "Eucalyptus",
-    ENV: "size:5;colormode:hexbin;color:56FFFF00,10,56FFCC00,100,77FF9900,1000,AAFF6600,10000,FFD60A00",
-    outline: "false"
-  }).addTo(map);
+    document.getElementById("map").style.width = (window.innerWidth / 3) + "px";
+    document.getElementById("map").style.height = (window.innerHeight / 3) + "px";
+    map.invalidateSize();
 
-  document.getElementById("map").style.width = (window.innerWidth / 3) +"px";
-  document.getElementById("map").style.height = (window.innerHeight / 3) +"px";
-  map.invalidateSize();
 
-  function updateLayer() {
+   updateLayer = function() {
 
     var size = document.getElementById("size").value
     var outline = document.getElementById("outline").value
@@ -267,6 +198,7 @@
 
 
   }
+  });
 </script>
 </body>
 </html>

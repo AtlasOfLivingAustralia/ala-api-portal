@@ -1,7 +1,7 @@
 ---
 testing:
-  alertsAPIUrl: https://api.test.ala.org.au/alerts
-  alertsAppUrl: https://alerts-test.ala.org.au
+  alertsAPIUrl: https://api.test.ala.org.au/alerts-dev
+  alertsAppUrl: https://alerts.dev.ala.org.au
   authBaseUrl: http://aws-auth-test-2023.test.ala.org.au
   autoCompleteBaseUrl: https://biocache-ws-test.ala.org.au/ws
   baseUrl: https://api.test.ala.org.au

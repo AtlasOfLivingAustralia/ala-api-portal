@@ -1,7 +1,7 @@
 ---
 development:
-  alertsAPIUrl: https://api.test.ala.org.au/alerts
-  alertsAppUrl: https://alerts-test.ala.org.au
+  alertsAPIUrl: https://api.test.ala.org.au/alerts-dev
+  alertsAppUrl: https://alerts.dev.ala.org.au
   authBaseUrl: https://auth-cognito.dev.ala.org.au
   autoCompleteBaseUrl: https://biocache-ws-dev.ala.org.au/ws
   baseUrl: https://api.test.ala.org.au

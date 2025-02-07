@@ -107,7 +107,7 @@ See [OIDC Authentication for R](https://search.r-project.org/CRAN/refmans/openeo
 
 OpenID Connect includes a [discovery mechanism](https://swagger.io/docs/specification/authentication/openid-connect-discovery/), where metadata for an OpenID server can be accessed.
 
-`GET <%= I18n.t(:oidcIssuer) %>/.well-known/openid-configuration`
+`GET <%= I18n.t(:discoveryUrl) %>`
 
 Examples of what the metadata includes are:
 
@@ -121,7 +121,7 @@ Examples of what the metadata includes are:
 
 ```shell
 # Exchange the client credentials (client ID & secret) for an access token
-curl --user {clientId}:{clientSecret}  -X POST -d 'grant_type=client_credentials' -d 'scope={scope}' '<%= I18n.t(:oidcHost) %>/oauth2/token'
+curl --user {clientId}:{clientSecret}  -X POST -d 'grant_type=client_credentials' -d 'scope={scope}' '<%= I18n.t(:tokenUrl) %>'
 
 # Use the access_token in the Authorization header
 curl "api_endpoint_here" \
@@ -134,7 +134,7 @@ import base64
 
 oauth_host = "<%= I18n.t(:oidcHost) %>"
 oauth_port = 443
-oauth_path = "/oauth2/token"
+oauth_path = "<%= I18n.t(:tokenUrlBasePath) %>"
 scope = "openid+email"
 conn = http.client.HTTPSConnection(oauth_host, oauth_port)
 payload = f"grant_type=client_credentials&scope={scope}"
@@ -156,7 +156,7 @@ print(data.decode("utf-8"))
 
 The Client Credentials grant type is used for machine to machine authentication where there is no user interaction.
 
-`POST <%= I18n.t(:oidcHost) %>/oauth2/token`
+`POST <%= I18n.t(:tokenUrl) %>`
 
 Header Parameters:
 
@@ -180,7 +180,7 @@ The postman http client supports the authorisation code flow. When configured th
 
 >
 
-`GET <%= I18n.t(:oidcHost) %>/oauth2/authorize`
+`GET <%= I18n.t(:authoriseUrl) %>`
 
 Request Parameters:
 
@@ -193,7 +193,7 @@ redirect_url | Y | | The URL where the authentication server redirects the brows
 code_challenge_method | N | | Set to `S256` if using PKCE
 code_challenge | N | | the code challenge
 
-`POST <%= I18n.t(:oidcHost) %>/oauth2/token`
+`POST <%= I18n.t(:tokenUrl) %>`
 
 Header Parameters:
 
@@ -223,7 +223,7 @@ The Implicit Flow is used for apps that have no “back end” logic on the web 
 
 The Implicit flow presents an authorisation page that will prompt a user for credentials before redirecting to the supplied `redirect_url` with the access_token.
 
-`GET <%= I18n.t(:oidcHost) %>/oauth2/authorize`
+`GET <%= I18n.t(:authoriseUrl) %>`
 
 Request Parameters:
 
@@ -508,7 +508,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=su
 
 ## 19. User details
 
-Access the ALA   <a href="<%= I18n.t(:authBaseUrl) %>/userdetails/" target="_blank">user details</a>  platform, such as a total count of users in the system and users by role.
+Access the ALA   <a href="<%= I18n.t(:userdetailsAppUrl) %>" target="_blank">user details</a>  platform, such as a total count of users in the system and users by role.
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=userdetails">Open API specification</a>
 

@@ -1,25 +1,50 @@
 ---
 production:
-  title: Atlas of Living Australia API Documentation
-  baseUrl: https://api.ala.org.au
-  authBaseUrl: https://auth.ala.org.au
-  biocacheBaseUrl: https://biocache-ws.ala.org.au/ws
-  autoCompleteBaseUrl: https://biocache-ws.ala.org.au/ws
-  userdetailsBaseUrl: https://auth.ala.org.au/userdetails
-  userdetailsAPIUrl: https://api.ala.org.au/userdetails
-  loggerAPIUrl: https://api.ala.org.au/logger
   alertsAPIUrl: https://api.ala.org.au/alerts
-  doiAPIUrl: https://api.ala.org.au/doi
-  biocollectAPIUrl: https://api.ala.org.au/biocollect
+  alertsAppUrl: https://alerts.ala.org.au
+  authBaseUrl: https://auth.ala.org.au
+  authoriseUrl: https://auth.ala.org.au/cas/oidc/oidcAuthorize
+  autoCompleteBaseUrl: https://biocache-ws.ala.org.au/ws
+  baseUrl: https://api.ala.org.au
   bieIndexAPIUrl: https://api.ala.org.au/bie-index
-  specieslistIndexAPIUrl: https://api.ala.org.au/specieslist
+  bieIndexAppUrl: https://bie.ala.org.au
+  biocacheBaseUrl: https://biocache-ws.ala.org.au/ws
+  biocacheServiceApiUrl: https://api.ala.org.au/occurrences
+  biocacheServiceAppUrl: https://biocache.ala.org.au
+  biocollectAPIUrl: https://api.ala.org.au/biocollect
+  biocollectAppUrl: https://biocollect.ala.org.au
+  biocollectUrl: https://www.ala.org.au/biocollect/
   collectoryApiUrl: https://api.ala.org.au/collectory
-  imagesApiUrl: https://api.ala.org.au/images
-  profilesApiUrl: https://api.ala.org.au/profiles
+  collectoryAppUrl: https://collections.ala.org.au
+  discoveryUrl: https://auth.ala.org.au/cas/oidc/.well-known
+  doiAPIUrl: https://api.ala.org.au/doi
+  doiAppUrl: https://doi.ala.org.au
   dqfServiceApiUrl: https://api.ala.org.au/dqf-service
-  biocacheServiceApiUrl: https://api.ala.org.au/biocache
-  spatialServiceApiUrl: https://api.ala.org.au/spatial
-  tokensAppUrl: https://tokens.ala.org.au
-  eventsUrl: https://api.ala.org.au/events
+  dqfServiceAppUrl: https://data-quality-service.ala.org.au
   ecodataApiUrl: https://api.ala.org.au/ecodata
+  ecodataAppUrl: https://ecodata.ala.org.au/documentation/index
+  eventsAppUrl: https://events.ala.org.au
+  eventsUrl: https://api.ala.org.au/events
+  fieldcaptureUrl: https://fieldcapture.ala.org.au/
+  fieldguideUrl: https://fieldguide.ala.org.au/
+  imagesApiUrl: https://api.ala.org.au/images
+  imagesAppUrl: https://images.ala.org.au
+  loggerAPIUrl: https://api.ala.org.au/logger
+  loggerAppUrl: https://logger.ala.org.au
+  namematchingUrl: https://namematching-ws.ala.org.au
+  oidcHost: https://auth.ala.org.au
+  oidcIssuer: https://auth.ala.org.au/cas/oidc
+  profilesApiUrl: https://api.ala.org.au/profiles
+  profilesAppUrl: https://profiles.ala.org.au
   sensitiveApiUrl: https://api.ala.org.au/sensitive
+  sensitiveAppUrl: https://sensitive-ws.ala.org.au
+  spatialServiceApiUrl: https://api.ala.org.au/spatial
+  spatialServiceAppUrl: https://spatial.ala.org.au
+  specieslistIndexAPIUrl: https://api.ala.org.au/specieslist
+  specieslistIndexAppUrl: https://lists.ala.org.au
+  title: Atlas of Living Australia API Documentation
+  tokensAppUrl: https://tokens.ala.org.au
+  tokenUrl: https://auth.ala.org.au/cas/oidc/oidcAccessToken
+  tokenUrlBasePath: /cas/oidc/oidcAccessToken
+  userdetailsAPIUrl: https://api.ala.org.au/userdetails
+  userdetailsAppUrl: https://auth.ala.org.au/userdetails

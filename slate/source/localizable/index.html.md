@@ -33,7 +33,7 @@ Welcome to the ALA API Portfolio Hub.
 We’ve recently moved to this API Gateway to streamline access and improve security for end-users by incorporating user authentication. ALA data are still open and freely accessible. 
 For more information or assistance, please contact [support@ala.org.au](mailto:support@ala.org.au). 
 
-API Endpoint: [api.ala.org.au](https://api.ala.org.au/)
+API Endpoint: ["<%= I18n.t(:baseUrl) %>"](https://api.ala.org.au/)
 
 ALA APIs allow two main methods of access
 
@@ -90,7 +90,7 @@ See [OIDC Authentication for R](https://search.r-project.org/CRAN/refmans/openeo
 
 ```javascript
 {
-   "issuer":"<%= I18n.t(:authBaseUrl) %>/cas/oidc",
+   "issuer":"<%= I18n.t(:oidcIssuer) %>",
    "scopes_supported":[
       "openid",
       "profile",
@@ -107,7 +107,7 @@ See [OIDC Authentication for R](https://search.r-project.org/CRAN/refmans/openeo
 
 OpenID Connect includes a [discovery mechanism](https://swagger.io/docs/specification/authentication/openid-connect-discovery/), where metadata for an OpenID server can be accessed.
 
-`GET <%= I18n.t(:authBaseUrl) %>/cas/oidc/.well-known`
+`GET <%= I18n.t(:discoveryUrl) %>`
 
 Examples of what the metadata includes are:
 
@@ -121,7 +121,7 @@ Examples of what the metadata includes are:
 
 ```shell
 # Exchange the client credentials (client ID & secret) for an access token
-curl --user {clientId}:{clientSecret}  -X POST -d 'grant_type=client_credentials' -d 'scope={scope}' '<%= I18n.t(:authBaseUrl) %>/cas/oidc/oidcAccessToken'
+curl --user {clientId}:{clientSecret}  -X POST -d 'grant_type=client_credentials' -d 'scope={scope}' '<%= I18n.t(:tokenUrl) %>'
 
 # Use the access_token in the Authorization header
 curl "api_endpoint_here" \
@@ -132,9 +132,9 @@ curl "api_endpoint_here" \
 import http.client
 import base64
 
-oauth_host = "<%= I18n.t(:authBaseUrl) %>"
+oauth_host = "<%= I18n.t(:oidcHost) %>"
 oauth_port = 443
-oauth_path = "/cas/oidc/oidcAccessToken"
+oauth_path = "<%= I18n.t(:tokenUrlBasePath) %>"
 scope = "openid+email"
 conn = http.client.HTTPSConnection(oauth_host, oauth_port)
 payload = f"grant_type=client_credentials&scope={scope}"
@@ -156,7 +156,7 @@ print(data.decode("utf-8"))
 
 The Client Credentials grant type is used for machine to machine authentication where there is no user interaction.
 
-`POST <%= I18n.t(:authBaseUrl) %>/cas/oidc/oidcAccessToken`
+`POST <%= I18n.t(:tokenUrl) %>`
 
 Header Parameters:
 
@@ -180,7 +180,7 @@ The postman http client supports the authorisation code flow. When configured th
 
 >
 
-`GET <%= I18n.t(:authBaseUrl) %>/cas/oidc/oidcAuthorize`
+`GET <%= I18n.t(:authoriseUrl) %>`
 
 Request Parameters:
 
@@ -193,7 +193,7 @@ redirect_url | Y | | The URL where the authentication server redirects the brows
 code_challenge_method | N | | Set to `S256` if using PKCE
 code_challenge | N | | the code challenge
 
-`POST <%= I18n.t(:authBaseUrl) %>/cas/oidc/oidcAccessToken`
+`POST <%= I18n.t(:tokenUrl) %>`
 
 Header Parameters:
 
@@ -223,7 +223,7 @@ The Implicit Flow is used for apps that have no “back end” logic on the web 
 
 The Implicit flow presents an authorisation page that will prompt a user for credentials before redirecting to the supplied `redirect_url` with the access_token.
 
-`GET <%= I18n.t(:authBaseUrl) %>/cas/oidc/oidcAuthorize`
+`GET <%= I18n.t(:authoriseUrl) %>`
 
 Request Parameters:
 
@@ -340,247 +340,176 @@ Access images and sound recordings from the ALA.
 -->
 ## 1. Alerts
 
-Services for interacting with the ALA  <a href="https://alerts.ala.org.au" target="_blank">Alerts</a> app, including view alert details, unsubscribe from and create an alert. 
+Services for interacting with the ALA  <a href="<%= I18n.t(:alertsAppUrl) %>" target="_blank">Alerts</a> app, including view alert details, unsubscribe from and create an alert. 
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=alerts">Open API specification</a>
 
-
 &nbsp;
 
-## 2. Occurrences
+## 2. Data Quality Service
 
-Services for interacting species occurrence records. 
+Interact with ALA data quality filters.
 
-Explore interactively on the ALA <a href="https://biocache.ala.org.au" target="_blank">BioCache</a> app. 
-
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=occurrences">Open API specification</a>
-
-&nbsp;
-
-## 3. Surveys
-
-
-Interact with the ALA <a href="https://biocollect.ala.org.au" target="_blank">BioCollect</a> app, such as searching for projects, surveys and activities. 
-
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=surveys">Open API specification</a>
-
-&nbsp;
-
-## 4. Species
-
-Services for species profile data. 
-
-Explore interactively on the ALA <a href="https://bie.ala.org.au" target="_blank">Biodiversity Information Explorer</a> app. 
-
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=species">Open API specification</a>
-
-&nbsp;
-
-
-## 5. Metadata
-
-Services for interacting with attribution information, such as data provider metadata and citations. 
-
-Explore interactively on the ALA <a href="https://collections.ala.org.au" target="_blank">Collectory</a> app. 
-
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=metadata">Open API specification</a>
-
-&nbsp;
-
-## 6. Data Quality Service
-
-Interact with ALA data quality filters. 
-
-Explore interactively on the ALA <a href="https://data-quality-service.ala.org.au" target="_blank">Data Quality Filter Service</a> app. 
+Explore interactively on the ALA <a href="<%= I18n.t(:dqfServiceAppUrl) %>" target="_blank">Data Quality Filter Service</a> app.
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=data-quality-service">Open API specification</a>
 
 &nbsp;
 
-## 7. DOI
+## 3. DOI
 
-Generate DOIs for ALA applications. 
+Generate DOIs for ALA applications.
 
-Explore interactively on the ALA <a href="https://doi.ala.org.au" target="_blank">DOI</a> app. 
+Explore interactively on the ALA <a href="<%= I18n.t(:doiAppUrl) %>" target="_blank">DOI</a> app.
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=doi">Open API specification</a>
 
 &nbsp;
 
-## 8. Galah
-Access a curated list of common  ALA services. 
+## 4. Download statistics
 
-ALA services required for Galah can be accessed via Common APIs, a curated list of APIs commonly used by the ALA, partners, and public users. An API key (which can be requested from ALA Support) is required for access. Please note that this API key is not used for authentication but rather for usage tracking, monitoring, and rate limiting due to the expected high frequency of usage on these endpoints. The postman *'Run in Postman'* link below demonstrates the usage of these APIs with API key. Further usage documentation on these APIs can be found in the corresponding service sections (e.g. Alerts, Logger etc) under [Services](#services).
-
-  [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/23926959-f59627be-b952-4939-bdd9-3b16236c143c?action=collection%2Ffork&collection-url=entityId%3D23926959-f59627be-b952-4939-bdd9-3b16236c143c%26entityType%3Dcollection%26workspaceId%3De9363855-ef16-46ba-bf16-cee7f7f2f8e9)
-
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=common">Open API specification</a>
-
-&nbsp;
-
-
-## 9. Images
-
-Access ALA images, such as finding an image by keyword.
-
-Explore interactively on the ALA <a href="https://images.ala.org.au" target="_blank">Images</a> app. 
-
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=images">Open API specification</a>
-
-&nbsp;
-
-
-## 10. Download statistics
-
-Interact with the ALA Logger <a href="https://logger.ala.org.au" target="_blank">Logger</a>  webapp, such as getting event types and reason breakdowns.
-
+Interact with the ALA Logger <a href="<%= I18n.t(:loggerAppUrl) %>" target="_blank">Logger</a>  webapp, such as getting event types and reason breakdowns.
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=download-statistics">Open API specification</a>
 
 &nbsp;
 
-<!-- Uncomment 11. 12. 13. 14. 15. 16 for prod deployment.  Comment them out for dev and test -->
-## 11. Species lists and traits
+## 5. Ecodata
 
-Interact with   <a href="https://lists.ala.org.au" target="_blank">species lists</a> , including get list details and create a list.
+Services for the <a href="<%= I18n.t(:fieldcaptureUrl) %>" target="_blank">MERIT</a> and <a href="<%= I18n.t(:biocollectAppUrl) %>" target="_blank">BioCollect</a> applications.
 
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=specieslist">Open API specification</a>
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=ecodata">Open API specification</a>
 
-&nbsp;
+## 6. Events
 
-## 12. User details
-
-Access the ALA   <a href="https://auth.ala.org.au/userdetails/" target="_blank">user details</a>  platform, such as a total count of users in the system and users by role.
-
-
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=userdetails">Open API specification</a>
-
-&nbsp;
-
-## 13. Spatial 
-
-Services for interacting with ALA Spatial services
-
-Explore interactively on the ALA <a href="https://spatial.ala.org.au" target="_blank">Spatial</a> app. 
-
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=spatial">Open API specification</a>
-&nbsp;
-
-## 14. Events
-
-Access the ALA   <a href="https://events-test.ala.org.au/" target="_blank">Events</a> app.
+Access the ALA   <a href="<%= I18n.t(:eventsAppUrl) %>" target="_blank">Events</a> app.
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=events">Open API specification</a>
 
 &nbsp;
 
-## 15. Profiles service
+## 7. Fieldguide
 
-Services for interacting with ALA Profile collections 
-
-Explore interactively on the ALA <a href="https://profiles.ala.org.au" target="_blank">Profile collection</a> app. 
-
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=profiles">Open API specification</a>
-&nbsp;
-
-## 16. Sensitive
-
-Services for interacting with Sensitive Data Service
-
-Explore interactively on the ALA <a href="https://sensitive-ws.ala.org.au" target="_blank">sensitive</a> service.
-
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=sensitive">Open API specification</a>
-&nbsp;
-
-## 17. Namematching
-
-Access the ALA   <a href="https://namematching-ws.ala.org.au/" target="_blank">namematching</a> service.
-
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=namematching">Open API specification</a>
-
-&nbsp;
-
-## 18. Fieldguide
-
-Access the ALA   <a href="https://fieldguide.ala.org.au/" target="_blank">fieldguide</a> service.
+Access the ALA   <a href="<%= I18n.t(:fieldguideUrl) %>" target="_blank">fieldguide</a> service.
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=fieldguide">Open API specification</a>
 
 &nbsp;
 
-## 19. Ecodata
+## 8. Galah
+Access a curated list of common  ALA services.
 
-Services for the <a href="https://fieldcapture.ala.org.au/" target="_blank">MERIT</a> and <a href="https://biocollect.ala.org.au/" target="_blank">BioCollect</a> applications.
+ALA services required for Galah can be accessed via Common APIs, a curated list of APIs commonly used by the ALA, partners, and public users. An API key (which can be requested from ALA Support) is required for access. Please note that this API key is not used for authentication but rather for usage tracking, monitoring, and rate limiting due to the expected high frequency of usage on these endpoints. The postman *'Run in Postman'* link below demonstrates the usage of these APIs with API key. Further usage documentation on these APIs can be found in the corresponding service sections (e.g. Alerts, Logger etc) under [Services](#services).
 
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=ecodata">Open API specification</a>
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/23926959-f59627be-b952-4939-bdd9-3b16236c143c?action=collection%2Ffork&collection-url=entityId%3D23926959-f59627be-b952-4939-bdd9-3b16236c143c%26entityType%3Dcollection%26workspaceId%3De9363855-ef16-46ba-bf16-cee7f7f2f8e9)
 
-&nbsp;
-
-
-<!-- Uncomment 11. 12. 13. 14. 15. 16. 18 for test and dev deploys. Comment them out for prod  -->
-
-<!--
-
-## 11. Profiles service
-
-Services for interacting with ALA Profile collections 
-
-Explore interactively on the ALA <a href="https://profiles.ala.org.au" target="_blank">Profile collection</a> app. 
-
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=profiles">Open API specification</a>
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=common">Open API specification</a>
 
 &nbsp;
 
+## 9. Images
 
-## 12. Species lists and traits
+Access ALA images, such as finding an image by keyword.
 
-Interact with   <a href="https://lists.ala.org.au" target="_blank">species lists</a> , including get list details and create a list.
+Explore interactively on the ALA <a href="<%= I18n.t(:imagesAppUrl) %>" target="_blank">Images</a> app.
 
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=specieslist">Open API specification</a>
-
-&nbsp;
-
-## 13. Spatial 
-
-Services for interacting with ALA Spatial services
-
-Explore interactively on the ALA <a href="https://spatial.ala.org.au" target="_blank">Spatial</a> app. 
-
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=spatial">Open API specification</a>
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=images">Open API specification</a>
 
 &nbsp;
 
-## 14. User details
+## 10. Metadata
 
-Access the ALA   <a href="https://auth.ala.org.au/userdetails/" target="_blank">user details</a>  platform, such as a total count of users in the system and users by role.
+Services for interacting with attribution information, such as data provider metadata and citations.
 
+Explore interactively on the ALA <a href="<%= I18n.t(:collectoryAppUrl) %>" target="_blank">Collectory</a> app.
 
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=userdetails">Open API specification</a>
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=metadata">Open API specification</a>
 
 &nbsp;
 
-## 15. Namematching
+## 11. Namematching
 
-Access the ALA   <a href="https://namematching-ws.ala.org.au/" target="_blank">namematching</a> service.
+Access the ALA   <a href="<%= I18n.t(:namematchingUrl) %>" target="_blank">namematching</a> service.
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=namematching">Open API specification</a>
 
 &nbsp;
 
-## 16. Events
+## 12. Occurrences
 
-Access the ALA   <a href="https://events-test.ala.org.au/" target="_blank">Events</a> app.
+Services for interacting species occurrence records. 
 
-For full api documentation see <a href="./openapi/index.html?urls.primaryName=events">Open API specification</a>
+Explore interactively on the ALA <a href="<%= I18n.t(:biocacheServiceAppUrl) %>" target="_blank">BioCache</a> app. 
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=occurrences">Open API specification</a>
+
+Examples:
+- <a href="./api_examples/index.html?product=occurrences&occurrencesUrl=<%= I18n.t(:biocacheServiceApiUrl) %>">WMS Usage</a>
 
 &nbsp;
 
-## 18. Sensitive
+## 13. Profiles service
 
-Services for interacting with Sensitive Data Service
+Services for interacting with ALA Profile collections
 
-Explore interactively on the ALA <a href="https://sensitive-ws.ala.org.au" target="_blank">sensitive</a> service. 
+Explore interactively on the ALA <a href="<%= I18n.t(:profilesAppUrl) %>" target="_blank">Profile collection</a> app.
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=profiles">Open API specification</a>
+
+&nbsp;
+
+## 14. Sensitive
+
+Services for interacting with Sensitive Data Service.
+
+ALA uses the sensitive service to generalise sensitive occurrences. Using <a href="https://github.com/AtlasOfLivingAustralia/ala-sensitive-data-service">ala-sensitive-data-client</a> it will get a record report `ALASDSServiceClient::report` and apply each generalisation from `ALASDSServiceClient::getGeneralisations` with `Generalisation::process` to produce the generalised output. See <a href="https://github.com/gbif/pipelines/blob/dev/livingatlas/pipelines/src/main/java/au/org/ala/pipelines/interpreters/SensitiveDataInterpreter.java">pipelines code</a>.
+
+Explore interactively on the ALA <a href="<%= I18n.t(:sensitiveAppUrl) %>" target="_blank">sensitive</a> service.
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=sensitive">Open API specification</a>
 
-&nbsp; -->
+&nbsp;
+
+## 15. Spatial
+
+Services for interacting with ALA Spatial services
+
+Explore interactively on the ALA <a href="<%= I18n.t(:spatialServiceAppUrl) %>" target="_blank">Spatial</a> app.
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=spatial">Open API specification</a>
+
+&nbsp;
+
+## 16. Species
+
+Services for species profile data.
+
+Explore interactively on the ALA <a href="<%= I18n.t(:bieIndexAppUrl) %>" target="_blank">Biodiversity Information Explorer</a> app.
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=species">Open API specification</a>
+
+&nbsp;
+
+## 17. Species lists and traits
+
+Interact with   <a href="<%= I18n.t(:specieslistIndexAppUrl) %>" target="_blank">species lists</a> , including get list details and create a list.
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=specieslist">Open API specification</a>
+
+&nbsp;
+
+## 18. Surveys
+
+Interact with the ALA <a href="<%= I18n.t(:biocollectAppUrl) %>" target="_blank">BioCollect</a> app, such as searching for projects, surveys and activities. 
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=surveys">Open API specification</a>
+
+&nbsp;
+
+## 19. User details
+
+Access the ALA   <a href="<%= I18n.t(:userdetailsAppUrl) %>" target="_blank">user details</a>  platform, such as a total count of users in the system and users by role.
+
+For full api documentation see <a href="./openapi/index.html?urls.primaryName=userdetails">Open API specification</a>
+
+&nbsp;

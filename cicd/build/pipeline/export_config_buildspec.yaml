@@ -63,6 +63,7 @@ phases:
       # import stack export from the base cloudformation stack
       - echo importing stack outputs...
       - CLOUDFRONT_DISTRIBUTION_ID=$(aws cloudformation describe-stacks --stack-name $BASE_STACK_NAME --query "Stacks[0].Outputs[?OutputKey=='ApiDocsCloudFrontDistributionId'].OutputValue" --output text)
+      - echo CLOUDFRONT_DISTRIBUTION_ID=$CLOUDFRONT_DISTRIBUTION_ID
     finally:
       - #echo This always runs
 

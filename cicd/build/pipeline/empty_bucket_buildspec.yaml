@@ -1,6 +1,6 @@
 version: 0.2
 ###
-# Detetes all objects from the documentation bucket, this needs to be done 
+# Deletes all objects from the documentation bucket, this needs to be done 
 # before publish so that old files are removed and before the teardown action
 # so the bucket can be removed
 # Files in the www/openapi/specs directory are kept if this is called during a

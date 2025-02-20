@@ -102,6 +102,10 @@ body {
   padding-left: 200px
 }
 
+.right_padding {
+  padding-right: 180px
+}
+
 .topbar_item {
   width: 50%;
   display: inline
@@ -113,4 +117,8 @@ body {
 
 .top_padding {
   padding-top: 20px
+}
+
+.bottom_padding {
+  padding-bottom: 20px
 }

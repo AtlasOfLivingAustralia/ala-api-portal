@@ -1,8 +1,9 @@
 ---
 testing:
   alertsAPIUrl: https://api.test.ala.org.au/alerts-dev
-  alertsAppUrl: https://alerts.dev.ala.org.au
+  alertsAppUrl: https://alerts.test.ala.org.au
   authBaseUrl: http://aws-auth-test-2023.test.ala.org.au
+  authoriseUrl: https://auth-secure.auth.ap-southeast-2.amazoncognito.com/oauth2/authorize
   autoCompleteBaseUrl: https://biocache-ws-test.ala.org.au/ws
   baseUrl: https://api.test.ala.org.au
   bieIndexAPIUrl: https://api.test.ala.org.au/bie-index
@@ -15,6 +16,7 @@ testing:
   biocollectUrl: https://www-test.ala.org.au/biocollect/
   collectoryApiUrl: https://api.test.ala.org.au/collectory
   collectoryAppUrl: https://collections-test.ala.org.au
+  discoveryUrl: https://cognito-idp.ap-southeast-2.amazonaws.com/ap-southeast-2_OOXU9GW39/.well-known/openid-configuration
   doiAPIUrl: https://api.test.ala.org.au/doi
   doiAppUrl: https://doi-test.ala.org.au
   dqfServiceApiUrl: https://api.test.ala.org.au/dqf-service
@@ -42,5 +44,7 @@ testing:
   specieslistIndexAppUrl: https://lists-test.ala.org.au
   title: Atlas of Living Australia API test Documentation
   tokensAppUrl: https://tokens.test.ala.org.au
+  tokenUrl: https://auth-secure.auth.ap-southeast-2.amazoncognito.com/oauth2/token
+  tokenUrlBasePath: /oauth2/token
   userdetailsAPIUrl: https://api.test.ala.org.au/userdetails
   userdetailsAppUrl: https://userdetails.test.ala.org.au

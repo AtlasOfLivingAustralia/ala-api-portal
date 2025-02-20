@@ -42,4 +42,4 @@ development:
   title: Atlas of Living Australia API dev Documentation
   tokensAppUrl: https://tokens.dev.ala.org.au
   userdetailsAPIUrl: https://api.test.ala.org.au/userdetails
-  userdetailsBaseUrl: https://auth-dev.ala.org.au/userdetails
+  userdetailsAppUrl: https://auth-dev.ala.org.au/userdetails

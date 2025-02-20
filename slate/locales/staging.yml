@@ -42,4 +42,4 @@ staging:
   title: Atlas of Living Australia API Documentation
   tokensAppUrl: https://tokens.ala.org.au
   userdetailsAPIUrl: https://api.ala.org.au/userdetails
-  userdetailsBaseUrl: https://auth.ala.org.au/userdetails
+  userdetailsAppUrl: https://auth.ala.org.au/userdetails

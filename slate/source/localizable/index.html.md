@@ -508,7 +508,7 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=su
 
 ## 19. User details
 
-Access the ALA   <a href="<%= I18n.t(:authBaseUrl) %>/userdetails/" target="_blank">user details</a>  platform, such as a total count of users in the system and users by role.
+Access the ALA   <a href="<%= I18n.t(:userdetailsAppUrl) %>" target="_blank">user details</a>  platform, such as a total count of users in the system and users by role.
 
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=userdetails">Open API specification</a>
 

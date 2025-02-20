@@ -43,4 +43,4 @@ testing:
   title: Atlas of Living Australia API test Documentation
   tokensAppUrl: https://tokens.test.ala.org.au
   userdetailsAPIUrl: https://api.test.ala.org.au/userdetails
-  userdetailsBaseUrl: https://auth-test.ala.org.au/userdetails
+  userdetailsAppUrl: https://userdetails.test.ala.org.au

@@ -2,7 +2,6 @@
 testing:
   alertsAPIUrl: https://api.test.ala.org.au/alerts-dev
   alertsAppUrl: https://alerts.test.ala.org.au
-  authBaseUrl: http://aws-auth-test-2023.test.ala.org.au
   authoriseUrl: https://auth-secure.auth.ap-southeast-2.amazoncognito.com/oauth2/authorize
   autoCompleteBaseUrl: https://biocache-ws-test.ala.org.au/ws
   baseUrl: https://api.test.ala.org.au

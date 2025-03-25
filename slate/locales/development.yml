@@ -2,6 +2,8 @@
 development:
   alertsAPIUrl: https://api.test.ala.org.au/alerts-dev
   alertsAppUrl: https://alerts.dev.ala.org.au
+  argaAPIUrl: https://staging.arga.org.au/api
+  argaAppUrl: https://staging.arga.org.au
   authoriseUrl: https://auth-secure-development.auth.ap-southeast-2.amazoncognito.com/oauth2/authorize
   autoCompleteBaseUrl: https://biocache-ws-dev.ala.org.au/ws
   baseUrl: https://api.test.ala.org.au

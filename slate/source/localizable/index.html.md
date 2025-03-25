@@ -513,3 +513,11 @@ Access the ALA   <a href="<%= I18n.t(:userdetailsAppUrl) %>" target="_blank">use
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=userdetails">Open API specification</a>
 
 &nbsp;
+
+## 20. Genomes
+
+Access the   <a href="<%= I18n.t(:argaAppUrl) %>" target="_blank">Australian Reference Genome Atlas</a>  platform, and explore genomic data across Australian taxa. 
+
+For full api documentation see <a href="<%= I18n.t(:argaAPIUrl) %>">GraphQL specification</a>
+
+&nbsp;

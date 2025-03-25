@@ -2,6 +2,8 @@
 production:
   alertsAPIUrl: https://api.ala.org.au/alerts
   alertsAppUrl: https://alerts.ala.org.au
+  argaAPIUrl: https://app.arga.org.au/api
+  argaAppUrl: https://app.arga.org.au
   authoriseUrl: https://auth.ala.org.au/cas/oidc/oidcAuthorize
   autoCompleteBaseUrl: https://biocache-ws.ala.org.au/ws
   baseUrl: https://api.ala.org.au

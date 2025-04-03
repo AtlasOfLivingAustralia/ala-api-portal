@@ -464,8 +464,6 @@ Services for interacting with Sensitive Data Service.
 
 ALA uses the sensitive service to generalise sensitive occurrences. Using <a href="https://github.com/AtlasOfLivingAustralia/ala-sensitive-data-service">ala-sensitive-data-client</a> it will get a record report `ALASDSServiceClient::report` and apply each generalisation from `ALASDSServiceClient::getGeneralisations` with `Generalisation::process` to produce the generalised output. See <a href="https://github.com/gbif/pipelines/blob/dev/livingatlas/pipelines/src/main/java/au/org/ala/pipelines/interpreters/SensitiveDataInterpreter.java">pipelines code</a>.
 
-Explore interactively on the ALA <a href="<%= I18n.t(:sensitiveAppUrl) %>" target="_blank">sensitive</a> service.
-
 For full api documentation see <a href="./openapi/index.html?urls.primaryName=sensitive">Open API specification</a>
 
 &nbsp;

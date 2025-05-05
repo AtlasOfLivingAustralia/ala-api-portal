@@ -1,6 +1,6 @@
 ---
 testing:
-  alertsAPIUrl: https://api.test.ala.org.au/alerts-dev
+  alertsAPIUrl: https://api.test.ala.org.au/alerts-test
   alertsAppUrl: https://alerts.test.ala.org.au
   argaAPIUrl: https://staging.arga.org.au/api
   argaAppUrl: https://staging.arga.org.au

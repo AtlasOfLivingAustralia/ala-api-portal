@@ -516,6 +516,10 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=us
 
 Access the   <a href="<%= I18n.t(:argaAppUrl) %>" target="_blank">Australian Reference Genome Atlas</a>  platform, and explore genomic data across Australian taxa. 
 
-For full api documentation see <a href="<%= I18n.t(:argaAPIUrl) %>">GraphQL specification</a>
+For getting started with GraphQL, see <a href="https://graphql.org/learn/">Learn GraphQL</a>
+
+For full GraphQL api documentation see the <a href="<%= I18n.t(:argaAPIUrl) %>">GraphQL specification</a>
+
+For example usage, see <a href="https://github.com/ARGA-Genomes/arga-backend/tree/main/examples/api/arga/ARGA%20Backend">query examples</a>
 
 &nbsp;

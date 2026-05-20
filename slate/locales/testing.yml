@@ -42,7 +42,7 @@ testing:
   spatialServiceApiUrl: https://api.test.ala.org.au/spatial
   spatialServiceAppUrl: https://spatial-test.ala.org.au
   specieslistIndexAPIUrl: https://api.test.ala.org.au/specieslist
-  specieslistIndexAppUrl: https://lists-test.ala.org.au
+  specieslistIndexAppUrl: https://lists.test.ala.org.au
   title: Atlas of Living Australia API test Documentation
   tokensAppUrl: https://tokens.test.ala.org.au
   tokenUrl: https://auth-secure.auth.ap-southeast-2.amazoncognito.com/oauth2/token

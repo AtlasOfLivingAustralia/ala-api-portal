@@ -396,10 +396,10 @@ For full api documentation see <a href="./openapi/index.html?urls.primaryName=fi
 
 &nbsp;
 
-## 8. Galah
-Access a curated list of common  ALA services.
+## 8. Rate-limited APIs
+Access a curated list of common ALA services.
 
-ALA services required for Galah can be accessed via Common APIs, a curated list of APIs commonly used by the ALA, partners, and public users. An API key (which can be requested from ALA Support) is required for access. Please note that this API key is not used for authentication but rather for usage tracking, monitoring, and rate limiting due to the expected high frequency of usage on these endpoints. The postman *'Run in Postman'* link below demonstrates the usage of these APIs with API key. Further usage documentation on these APIs can be found in the corresponding service sections (e.g. Alerts, Logger etc) under [Services](#services).
+In some instances, it may be sensible to support server-side rate limiting of API queries. These endpoints are duplicates of services documented elsewhere, with the exception that an API key (which can be requested from ALA Support) is required for access. Please note that this API key is not used for authentication but rather for usage tracking, monitoring, and rate limiting due to the expected high frequency of usage on these endpoints. The postman *'Run in Postman'* link below demonstrates the usage of these APIs with API key. Further usage documentation on these APIs can be found in the corresponding service sections (e.g. Alerts, Logger etc) under [Services](#services).
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/23926959-f59627be-b952-4939-bdd9-3b16236c143c?action=collection%2Ffork&collection-url=entityId%3D23926959-f59627be-b952-4939-bdd9-3b16236c143c%26entityType%3Dcollection%26workspaceId%3De9363855-ef16-46ba-bf16-cee7f7f2f8e9)
 
